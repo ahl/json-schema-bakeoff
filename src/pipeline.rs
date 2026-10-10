@@ -264,6 +264,9 @@ pub fn run(opts: RunOpts) -> Result<()> {
     };
     results.save(&out_dir.join("results.json"))?;
     std::fs::write(out_dir.join("summary.md"), summary::render(&results))?;
+    if filter.is_none() && opts.out.is_none() {
+        write_scoreboard()?;
+    }
 
     if filter.is_some() {
         print_detail(&results, &gen_dir, &items_keys(&results, &groups))?;
@@ -274,6 +277,24 @@ pub fn run(opts: RunOpts) -> Result<()> {
         out_dir.join("results.json").display(),
         started.elapsed()
     );
+    Ok(())
+}
+
+/// Regenerate `RESULTS.md` from every `results/*/results.json`.
+pub fn write_scoreboard() -> Result<()> {
+    let results_dir = repo_root().join("results");
+    let mut all = Vec::new();
+    if results_dir.is_dir() {
+        let mut dirs: Vec<PathBuf> = std::fs::read_dir(&results_dir)?.filter_map(|e| e.ok()).map(|e| e.path()).collect();
+        dirs.sort();
+        for dir in dirs {
+            let path = dir.join("results.json");
+            if path.is_file() {
+                all.push(Results::load(&path)?);
+            }
+        }
+    }
+    std::fs::write(repo_root().join("RESULTS.md"), summary::render_scoreboard(&all))?;
     Ok(())
 }
 

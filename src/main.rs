@@ -58,6 +58,8 @@ enum Cmd {
     Diff { a: PathBuf, b: PathBuf },
     /// Re-render summary.md from an existing results.json.
     Summary { results: PathBuf },
+    /// Regenerate RESULTS.md from every results/*/results.json.
+    Scoreboard,
     /// Print the bucket key.
     Key,
 }
@@ -84,6 +86,7 @@ fn main() -> Result<()> {
             print!("{}", summary::render(&r));
             Ok(())
         }
+        Cmd::Scoreboard => pipeline::write_scoreboard(),
         Cmd::Key => {
             println!("{}", results::Bucket::key_text());
             Ok(())

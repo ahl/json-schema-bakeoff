@@ -13,7 +13,9 @@ cargo run -- diff results/typify1/results.json results/typify1-before/results.js
 cargo run -- key
 ```
 
-`run` writes `results/<version>/results.json` and `summary.md`. A filtered
+`run` writes `results/<version>/results.json` and `summary.md`, and regenerates the
+cross-version scoreboard `RESULTS.md` at the repo root (`cargo run -- scoreboard`
+rebuilds it from whatever is in `results/`). A filtered
 run prints per-case detail (with the path to the generated code) and writes
 to `work/<version>/filtered/` instead, so it never clobbers the headline
 results. `--out <dir>` overrides either. `--optional` includes
