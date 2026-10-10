@@ -80,8 +80,6 @@ pub fn run(opts: RunOpts) -> Result<()> {
     std::fs::create_dir_all(&cache_dir)?;
     std::fs::create_dir_all(&gen_dir)?;
 
-    eprintln!("{}\n", Bucket::key_text());
-
     let groups = suite::load_draft(&opts.draft, opts.optional)?;
     let filter = opts.filter.as_deref();
     let selected: Vec<&Group> = groups.iter().filter(|g| filter.is_none_or(|f| g.matches(f))).collect();
@@ -108,11 +106,9 @@ pub fn run(opts: RunOpts) -> Result<()> {
     if !opts.no_cache {
         for item in &mut items {
             let path = cache_dir.join(format!("{}.json", item.hash));
-            if let Ok(text) = std::fs::read_to_string(&path) {
-                if let Ok(r) = serde_json::from_str::<GroupResult>(&text) {
-                    item.result = Some(r);
-                    cached += 1;
-                }
+            if let Ok(r) = std::fs::read_to_string(&path).map_err(|_| ()).and_then(|t| serde_json::from_str::<GroupResult>(&t).map_err(|_| ())) {
+                item.result = Some(r);
+                cached += 1;
             }
         }
     }
@@ -310,10 +306,8 @@ fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, Strin
             };
             let valid = if c.valid { "valid" } else { "invalid" };
             print!("    {mark}{} ({valid})", c.description);
-            if c.outcome != CaseOutcome::Match {
-                if let Some(e) = &c.error {
-                    print!(": {}", first_lines(e, 1));
-                }
+            if let (false, Some(e)) = (c.outcome == CaseOutcome::Match, &c.error) {
+                print!(": {}", first_lines(e, 1));
             }
             println!();
         }

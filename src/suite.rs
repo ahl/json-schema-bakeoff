@@ -25,8 +25,6 @@ pub struct Group {
     /// `optional/format/date.json`.
     pub file: String,
     pub optional: bool,
-    /// Index of the group within its file.
-    pub index: usize,
     pub description: String,
     pub schema: serde_json::Value,
     pub cases: Vec<Case>,
@@ -78,12 +76,11 @@ pub fn load_draft(draft: &str, optional: bool) -> Result<Vec<Group>> {
             serde_json::from_str(&text).with_context(|| format!("parsing {}", path.display()))?;
         let file = rel.to_string_lossy().replace('\\', "/");
         let is_optional = file.starts_with("optional/");
-        for (index, g) in raw.into_iter().enumerate() {
+        for g in raw {
             groups.push(Group {
                 draft: draft.to_string(),
                 file: file.clone(),
                 optional: is_optional,
-                index,
                 description: g.description,
                 schema: g.schema,
                 cases: g.tests,

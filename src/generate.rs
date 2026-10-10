@@ -51,12 +51,12 @@ fn generate_inner(schema_value: serde_json::Value) -> GenOutcome {
     // `$ref` to `#` (the root) is unresolvable and shows up as a panic.
     enum Input {
         Bool(bool),
-        Root(RootSchema),
+        Root(Box<RootSchema>),
     }
     let input = match &schema_value {
         serde_json::Value::Bool(b) => Input::Bool(*b),
         _ => match serde_json::from_value::<RootSchema>(schema_value) {
-            Ok(root) => Input::Root(root),
+            Ok(root) => Input::Root(Box::new(root)),
             Err(e) => {
                 return GenOutcome::Error(format!(
                     "schema did not parse as schemars::schema::RootSchema: {e}"
