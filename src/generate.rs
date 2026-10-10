@@ -1,7 +1,7 @@
 //! Step 1: feed a group's schema to typify and capture code, error, or panic.
 
 use crate::suite::Group;
-use schemars::schema::Schema;
+use schemars::schema::{RootSchema, Schema};
 use std::sync::Mutex;
 use std::time::Duration;
 use typify::{TypeSpace, TypeSpaceSettings};
@@ -41,9 +41,28 @@ pub fn generate(group: &Group, timeout: Duration) -> GenOutcome {
 }
 
 fn generate_inner(schema_value: serde_json::Value) -> GenOutcome {
-    let schema: Schema = match serde_json::from_value(schema_value) {
-        Ok(s) => s,
-        Err(e) => return GenOutcome::Error(format!("schema did not parse as schemars::schema::Schema: {e}")),
+    // A boolean schema has no definitions. An object schema is parsed as a
+    // RootSchema so its `definitions` can be registered first (that is how
+    // `#/definitions/x` refs resolve); the root itself goes in with the
+    // suggested name `Root`. We don't use `add_root_schema`: it names the
+    // root only from a title, and injecting one trips typify into
+    // `get_type_name().unwrap()` panics on merged schemas, which would
+    // mask whether the construct itself is supported. The cost is that a
+    // `$ref` to `#` (the root) is unresolvable and shows up as a panic.
+    enum Input {
+        Bool(bool),
+        Root(RootSchema),
+    }
+    let input = match &schema_value {
+        serde_json::Value::Bool(b) => Input::Bool(*b),
+        _ => match serde_json::from_value::<RootSchema>(schema_value) {
+            Ok(root) => Input::Root(root),
+            Err(e) => {
+                return GenOutcome::Error(format!(
+                    "schema did not parse as schemars::schema::RootSchema: {e}"
+                ))
+            }
+        },
     };
 
     // Capture the panic message without letting the default hook spew to
@@ -68,7 +87,14 @@ fn generate_inner(schema_value: serde_json::Value) -> GenOutcome {
     }
     let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         let mut ts = TypeSpace::new(&TypeSpaceSettings::default());
-        let id = ts.add_type_with_name(&schema, Some("Root".to_string()))?;
+        let root_name = Some("Root".to_string());
+        let id = match input {
+            Input::Bool(b) => ts.add_type_with_name(&Schema::Bool(b), root_name)?,
+            Input::Root(root) => {
+                ts.add_ref_types(root.definitions)?;
+                ts.add_type_with_name(&Schema::Object(root.schema), root_name)?
+            }
+        };
         let tsp = ts.to_typespace()?;
         let root = tsp.get_type(&id).ident().to_string();
         let stream = ts.to_stream()?;
@@ -91,5 +117,33 @@ fn generate_inner(schema_value: serde_json::Value) -> GenOutcome {
             let msg = captured.lock().unwrap().take().unwrap_or_else(|| "unknown panic".to_string());
             GenOutcome::Panic(msg)
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::collections::BTreeMap;
+
+    /// Every draft7 group generates (code, error, or panic) promptly.
+    #[test]
+    fn draft7_generates_without_hanging() {
+        let groups = crate::suite::load_draft("draft7", false).unwrap();
+        let mut counts: BTreeMap<&str, usize> = BTreeMap::new();
+        let start = std::time::Instant::now();
+        for g in &groups {
+            let o = generate(g, Duration::from_secs(30));
+            let k = match &o {
+                GenOutcome::Code { .. } => "code",
+                GenOutcome::Error(_) => "error",
+                GenOutcome::Panic(_) => "panic",
+            };
+            *counts.entry(k).or_default() += 1;
+            if let GenOutcome::Panic(m) | GenOutcome::Error(m) = &o {
+                eprintln!("{k:5} {}: {}", g.id(), m.lines().next().unwrap_or(""));
+            }
+        }
+        eprintln!("{counts:?} in {:.1?}", start.elapsed());
+        assert_eq!(counts.values().sum::<usize>(), groups.len());
     }
 }
