@@ -64,13 +64,21 @@ const MAX_DIAGS_PER_MODULE: usize = 3;
 /// is an error.
 pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput]) -> Result<CompiledBatch> {
     let src = crate_dir.join("src");
-    if crate_dir.exists() {
-        std::fs::remove_dir_all(crate_dir).with_context(|| format!("clearing {}", crate_dir.display()))?;
+    // Clear the sources but keep the crate directory: Cargo.lock lives
+    // there, and re-resolving dependencies on every run both costs a
+    // network round trip and risks a version bump that invalidates the
+    // shared target dir.
+    if src.exists() {
+        std::fs::remove_dir_all(&src).with_context(|| format!("clearing {}", src.display()))?;
     }
     std::fs::create_dir_all(&src).with_context(|| format!("creating {}", src.display()))?;
     std::fs::create_dir_all(target_dir).with_context(|| format!("creating {}", target_dir.display()))?;
 
-    std::fs::write(crate_dir.join("Cargo.toml"), CARGO_TOML)?;
+    // Batches share one target dir, and cargo uplifts every batch's binary
+    // to `<target>/debug/<bin name>`, so the name has to be per-batch or
+    // concurrent batches overwrite each other's runner.
+    let bin = bin_name(crate_dir);
+    std::fs::write(crate_dir.join("Cargo.toml"), cargo_toml(&bin))?;
 
     // Keys are content-derived upstream, so two identical groups (the same
     // schema in two different suite files, say) can share one. That's
@@ -79,6 +87,9 @@ pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput])
     let mut seen: BTreeMap<&str, &BatchInput> = BTreeMap::new();
     for input in inputs {
         anyhow::ensure!(is_ident(&input.key), "module key {:?} is not a plain identifier", input.key);
+        // `src/main.rs` is ours; a module claiming it would be silently
+        // clobbered by (or clobber) the dispatch table.
+        anyhow::ensure!(input.key != "main", "module key \"main\" collides with the batch crate's main.rs");
         match seen.get(input.key.as_str()) {
             Some(first) => anyhow::ensure!(
                 first.code == input.code && first.root == input.root,
@@ -97,7 +108,7 @@ pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput])
     let mut failures: BTreeMap<String, String> = BTreeMap::new();
 
     // Pass 1..n: `cargo check`, dropping whatever rustc complains about.
-    converge(crate_dir, target_dir, &mut alive, &mut failures, &["check"])?;
+    converge(crate_dir, target_dir, &bin, &mut alive, &mut failures, &["check"])?;
 
     // Pass n+1..: the real build. `check` catches essentially everything,
     // but codegen and linking can still fail, so the same loop applies.
@@ -106,16 +117,18 @@ pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput])
         runner = converge(
             crate_dir,
             target_dir,
+            &bin,
             &mut alive,
             &mut failures,
-            &["build", "--bin", "runner"],
+            &["build", "--bin", &bin],
         )?;
         anyhow::ensure!(
             runner.is_some() || alive.is_empty(),
             "cargo build reported no runner executable"
         );
-        // Batches share one target dir, so `target/debug/runner` belongs to
-        // whichever batch built last. Keep a private copy.
+        // The uplifted binary lives in the shared target dir, which the
+        // next build (or a `cargo clean`) is free to churn. Keep a private
+        // copy next to the batch's sources.
         if let Some(built) = runner.take() {
             let mine = crate_dir.join("runner-bin");
             std::fs::copy(&built, &mine)
@@ -148,13 +161,15 @@ pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput])
 fn converge(
     crate_dir: &Path,
     target_dir: &Path,
+    bin: &str,
     alive: &mut BTreeSet<String>,
     failures: &mut BTreeMap<String, String>,
     args: &[&str],
 ) -> Result<Option<PathBuf>> {
+    let mut last_diag = String::new();
     for _ in 0..MAX_PASSES {
         write_main(crate_dir, alive)?;
-        let pass = cargo_pass(crate_dir, target_dir, args, alive)?;
+        let pass = cargo_pass(crate_dir, target_dir, bin, args, alive)?;
 
         if pass.module_errors.is_empty() {
             if !pass.unattributed.is_empty() {
@@ -177,6 +192,11 @@ fn converge(
             return Ok(pass.runner);
         }
 
+        // Keep one diagnostic from the most recent pass: if we run out of
+        // passes, that bail is otherwise undebuggable.
+        if let Some((key, text)) = pass.module_errors.first_key_value() {
+            last_diag = format!("{key}: {}", first_lines(text, 10));
+        }
         for (key, text) in pass.module_errors {
             alive.remove(&key);
             failures.entry(key).or_insert(text);
@@ -188,9 +208,10 @@ fn converge(
         }
     }
     anyhow::bail!(
-        "cargo {} still failing after {MAX_PASSES} passes ({} modules left)",
+        "cargo {} still failing after {MAX_PASSES} passes ({} modules left); last diagnostic:\n{}",
         args.join(" "),
-        alive.len()
+        alive.len(),
+        last_diag
     )
 }
 
@@ -205,7 +226,13 @@ struct Pass {
     runner: Option<PathBuf>,
 }
 
-fn cargo_pass(crate_dir: &Path, target_dir: &Path, args: &[&str], keys: &BTreeSet<String>) -> Result<Pass> {
+fn cargo_pass(
+    crate_dir: &Path,
+    target_dir: &Path,
+    bin: &str,
+    args: &[&str],
+    keys: &BTreeSet<String>,
+) -> Result<Pass> {
     let cargo = std::env::var_os("CARGO").unwrap_or_else(|| "cargo".into());
     let mut cmd = Command::new(cargo);
     cmd.current_dir(crate_dir)
@@ -260,7 +287,7 @@ fn cargo_pass(crate_dir: &Path, target_dir: &Path, args: &[&str], keys: &BTreeSe
                     None => unattributed.push(rendered),
                 }
             }
-            Some("compiler-artifact") if msg["target"]["name"].as_str() == Some("runner") => {
+            Some("compiler-artifact") if msg["target"]["name"].as_str() == Some(bin) => {
                 if let Some(exe) = msg.get("executable").and_then(|e| e.as_str()) {
                     runner = Some(PathBuf::from(exe));
                 }
@@ -361,6 +388,27 @@ fn is_ident(s: &str) -> bool {
         && s.chars().all(|c| c.is_ascii_alphanumeric() || c == '_')
 }
 
+/// A binary name unique to this batch directory, so concurrent batches
+/// sharing a target dir don't uplift over each other's executable.
+fn bin_name(crate_dir: &Path) -> String {
+    let tag: String = crate_dir
+        .file_name()
+        .and_then(|n| n.to_str())
+        .unwrap_or("")
+        .chars()
+        .map(|c| if c.is_ascii_alphanumeric() { c } else { '_' })
+        .collect();
+    if tag.is_empty() { "runner".to_string() } else { format!("runner_{tag}") }
+}
+
+fn first_lines(s: &str, n: usize) -> String {
+    let mut out: String = s.lines().take(n).collect::<Vec<_>>().join("\n");
+    if s.lines().count() > n {
+        out.push_str("\n...");
+    }
+    out
+}
+
 fn truncate(s: &str, max: usize) -> String {
     if s.len() <= max {
         return s.to_string();
@@ -396,6 +444,9 @@ fn module_source(input: &BatchInput) -> String {
 
 fn write_main(crate_dir: &Path, alive: &BTreeSet<String>) -> Result<()> {
     let mut s = String::from(MAIN_PRELUDE);
+    s.push_str("mod crashguard {\n");
+    s.push_str(crate::crashguard::SOURCE);
+    s.push_str("}\n\n");
     for key in alive {
         s.push_str(&format!("mod {key};\n"));
     }
@@ -409,7 +460,9 @@ fn write_main(crate_dir: &Path, alive: &BTreeSet<String>) -> Result<()> {
     Ok(())
 }
 
-const CARGO_TOML: &str = r#"[package]
+fn cargo_toml(bin: &str) -> String {
+    format!(
+        r#"[package]
 name = "conformance-batch"
 version = "0.0.0"
 edition = "2021"
@@ -419,9 +472,13 @@ publish = false
 [workspace]
 
 [[bin]]
-name = "runner"
+name = "{bin}"
 path = "src/main.rs"
+{CARGO_TOML_TAIL}"#
+    )
+}
 
+const CARGO_TOML_TAIL: &str = r#"
 [dependencies]
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
@@ -454,6 +511,7 @@ const MAIN_BODY: &str = r#"
 static PANIC_MESSAGE: ::std::sync::Mutex<Option<String>> = ::std::sync::Mutex::new(None);
 
 fn main() {
+    crashguard::install();
     let args: Vec<String> = ::std::env::args().collect();
     if args.len() != 3 {
         eprintln!("usage: runner <cases.json> <start-index>");
@@ -462,6 +520,11 @@ fn main() {
     let text = ::std::fs::read_to_string(&args[1]).expect("read cases file");
     let start: usize = args[2].parse().expect("parse start index");
     let cases: Vec<::serde_json::Value> = ::serde_json::from_str(&text).expect("parse cases file");
+
+    // We got far enough to run cases; anything that kills us from here on
+    // is a case's fault, not a setup problem. (println! flushes on the
+    // newline, so this survives an abort on the very first case.)
+    println!("{}", ::serde_json::json!({ "ready": start }));
 
     // Capture panic messages instead of letting the default hook write to
     // stderr; the harness only reads stdout.
@@ -476,22 +539,25 @@ fn main() {
             .location()
             .map(|l| format!(" at {}:{}", l.file(), l.line()))
             .unwrap_or_default();
-        if let Ok(mut slot) = PANIC_MESSAGE.lock() {
-            *slot = Some(format!("{payload}{location}"));
-        }
+        let message = format!("{payload}{location}");
+        *PANIC_MESSAGE.lock().unwrap_or_else(|e| e.into_inner()) = Some(message);
     }));
 
     use ::std::io::Write;
     let stdout = ::std::io::stdout();
-    for case in cases.iter().skip(start) {
+    for (i, case) in cases.iter().enumerate().skip(start) {
         let key = case["key"].as_str().unwrap_or("").to_string();
         let data = case["data"].clone();
         let outcome = match MODULES.iter().find(|(k, _)| *k == key) {
             Some((_, check)) => run_one(*check, data),
             None => ::serde_json::json!({ "panic": "module not compiled" }),
         };
+        // The absolute case index goes on the wire so that stray output
+        // (anything a generated deserializer prints) can't shift the
+        // harness's cursor.
+        let line = ::serde_json::json!({ "case": { "i": i, "r": outcome } });
         let mut lock = stdout.lock();
-        let _ = writeln!(lock, "{}", ::serde_json::to_string(&outcome).unwrap());
+        let _ = writeln!(lock, "{}", ::serde_json::to_string(&line).unwrap());
         let _ = lock.flush();
     }
 }
@@ -500,9 +566,7 @@ fn main() {
 /// deserializers can recurse deeply). A genuine stack overflow still
 /// aborts the process; the harness restarts us past the offending case.
 fn run_one(check: Check, data: ::serde_json::Value) -> ::serde_json::Value {
-    if let Ok(mut slot) = PANIC_MESSAGE.lock() {
-        *slot = None;
-    }
+    *PANIC_MESSAGE.lock().unwrap_or_else(|e| e.into_inner()) = None;
     let joined = ::std::thread::Builder::new()
         .stack_size(256 * 1024 * 1024)
         .spawn(move || ::std::panic::catch_unwind(::std::panic::AssertUnwindSafe(move || check(data))))
@@ -514,8 +578,8 @@ fn run_one(check: Check, data: ::serde_json::Value) -> ::serde_json::Value {
         Ok(Err(_)) | Err(_) => {
             let message = PANIC_MESSAGE
                 .lock()
-                .ok()
-                .and_then(|mut slot| slot.take())
+                .unwrap_or_else(|e| e.into_inner())
+                .take()
                 .unwrap_or_else(|| "unknown panic".to_string());
             ::serde_json::json!({ "panic": message })
         }
@@ -615,6 +679,46 @@ mod tests {
         // The runner restarted and the following case still got a real answer.
         assert_eq!(outcomes[5], RunOutcome::Accept);
 
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    /// Breakage from three different compiler phases at once: a parse
+    /// error, a name-resolution error, and a type error. Each has to be
+    /// blamed on its own module and the healthy one has to survive.
+    /// (Today's rustc recovers from the parse error and reports all three
+    /// in one pass; if it ever stops at a phase boundary instead, the
+    /// convergence loop has to pick up the rest on later passes.)
+    #[test]
+    fn errors_from_different_phases_converge() {
+        let dir = std::env::temp_dir().join(format!("typify-conformance-phases-{}", std::process::id()));
+        let crate_dir = dir.join("batch");
+        let target_dir = dir.join("target");
+        let mk = |key: &str, code: &str| BatchInput {
+            key: key.to_string(),
+            code: code.to_string(),
+            root: "Root".to_string(),
+        };
+        let inputs = vec![
+            mk("g_ok", "#[derive(::serde::Deserialize)]\npub struct Root {\n    pub a: i64,\n}\n"),
+            mk("g_parse", "pub struct Root { pub a: ,,, }\n"),
+            mk("g_resolve", "pub struct Root {\n    pub a: NoSuchType,\n}\n"),
+            mk(
+                "g_typeck",
+                "#[derive(::serde::Deserialize)]\npub struct Root {\n    pub a: i64,\n}\n\
+                 pub fn oops() -> i64 {\n    \"not an integer\"\n}\n",
+            ),
+        ];
+        let batch = compile_batch(&crate_dir, &target_dir, &inputs).expect("compile batch");
+        assert_eq!(batch.outcomes.get("g_ok"), Some(&CompileOutcome::Ok));
+        for key in ["g_parse", "g_resolve", "g_typeck"] {
+            match batch.outcomes.get(key) {
+                Some(CompileOutcome::Fail(text)) => {
+                    assert!(!text.is_empty(), "{key} failed with no diagnostic")
+                }
+                other => panic!("expected {key} to fail to compile, got {other:?}"),
+            }
+        }
+        assert!(batch.runner.expect("runner binary").exists());
         let _ = std::fs::remove_dir_all(&dir);
     }
 

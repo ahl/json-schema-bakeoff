@@ -1,6 +1,6 @@
 # Conformance summary — typify1 (typify 0.10.0-alpha.2)
 
-_generated 2026-10-10T18:14:59Z_
+_generated 2026-10-10T18:38:34Z_
 
 **80 of 258 non-optional groups pass (31.0%)**
 

@@ -2,12 +2,16 @@
 //!
 //! Runner protocol (the runner is a generated `main.rs` in the batch crate):
 //!   runner <cases.json> <start-index>
-//! `cases.json` is a JSON array of `RunCase`. The runner processes cases
-//! from `start-index` onward, printing one JSON line (`RunOutcome`) per
-//! case to stdout and flushing after each. Each deserialize is wrapped in
-//! `catch_unwind` with a panic hook that captures the message. If the
-//! process dies (stack overflow, abort), the harness records the case at
-//! the cursor as a panic and restarts from the next one.
+//! `cases.json` is a JSON array of `RunCase`. The runner prints one JSON
+//! line per event to stdout, flushing after each: `{"ready":<start>}` once
+//! it has read the cases, then `{"case":{"i":<index>,"r":<outcome>}}` for
+//! every case from `start-index` onward. Indices are absolute so that
+//! stray output can't shift the harness's cursor, and the `ready` line
+//! distinguishes "this case killed the process" from "the runner never
+//! started". Each deserialize is wrapped in `catch_unwind` with a panic
+//! hook that captures the message. If the process dies (stack overflow,
+//! abort) or hangs, the harness records the case at the cursor as a panic
+//! and restarts from the next one.
 
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
@@ -33,6 +37,16 @@ pub enum RunOutcome {
     Reject(String),
     /// Deserialize panicked, or the runner process died on this case.
     Panic(String),
+}
+
+/// One line of the runner's stdout protocol.
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "snake_case")]
+enum Line {
+    /// The runner read its cases and is about to run from this index.
+    Ready(usize),
+    /// One case outcome, by absolute index into `cases`.
+    Case { i: usize, r: RunOutcome },
 }
 
 /// How much of the dead runner's stderr to keep in the panic text.
@@ -87,20 +101,11 @@ pub fn run_cases(runner: &Path, work_dir: &Path, cases: &[RunCase], timeout: Dur
             s
         });
 
+        let mut ready: Option<usize> = None;
         let mut timed_out = false;
         while outcomes.len() < cases.len() {
             match rx.recv_timeout(timeout) {
-                Ok(line) => {
-                    let line = line.trim();
-                    if line.is_empty() {
-                        continue;
-                    }
-                    // Anything we can't parse is stray output, not an
-                    // outcome; skipping keeps the cursor aligned.
-                    if let Ok(outcome) = serde_json::from_str::<RunOutcome>(line) {
-                        outcomes.push(outcome);
-                    }
-                }
+                Ok(line) => record(&mut outcomes, cases.len(), &mut ready, &line),
                 Err(RecvTimeoutError::Timeout) => {
                     timed_out = true;
                     break;
@@ -111,9 +116,31 @@ pub fn run_cases(runner: &Path, work_dir: &Path, cases: &[RunCase], timeout: Dur
         }
 
         let status = reap(&mut child);
-        drop(rx);
+        // The channel is unbounded, so the reader never blocks on send and
+        // joining it here can't deadlock. Draining afterwards matters for
+        // the timeout path: an outcome that landed while we were deciding
+        // to give up is a real answer, not a hang.
         let _ = reader.join();
         let stderr_text = errors.join().unwrap_or_default();
+        while let Ok(line) = rx.try_recv() {
+            record(&mut outcomes, cases.len(), &mut ready, &line);
+        }
+
+        // No `ready` line means the runner never got as far as its first
+        // case: that's a setup problem (bad binary, unreadable cases file),
+        // and respawning it once per remaining case would just repeat it a
+        // few thousand times.
+        match ready {
+            Some(at) if at == start => {}
+            Some(at) => anyhow::bail!("runner started at case {at}, not {start}"),
+            None => anyhow::bail!(
+                "runner {} never started: {} with cases {} from index {start}; stderr: {}",
+                runner.display(),
+                if timed_out { format!("no output within {timeout:?}") } else { format!("status {status}") },
+                cases_path.display(),
+                tail(stderr_text.trim(), STDERR_TAIL)
+            ),
+        }
 
         if outcomes.len() < cases.len() {
             // The case at the cursor took the process down (or hung).
@@ -135,6 +162,32 @@ pub fn run_cases(runner: &Path, work_dir: &Path, cases: &[RunCase], timeout: Dur
     }
 
     Ok(outcomes)
+}
+
+/// Fold one protocol line into `outcomes`. Lines the runner didn't write
+/// (anything a generated deserializer prints to stdout) don't parse and are
+/// ignored; because every outcome carries its own index, ignoring them
+/// can't shift later cases onto the wrong result.
+fn record(outcomes: &mut Vec<RunOutcome>, total: usize, ready: &mut Option<usize>, line: &str) {
+    match serde_json::from_str::<Line>(line.trim()) {
+        Ok(Line::Ready(at)) => *ready = Some(at),
+        Ok(Line::Case { i, r }) => {
+            // Already answered (a restart that re-ran a case), or past the
+            // end: nothing to do.
+            if i < outcomes.len() || i >= total {
+                return;
+            }
+            // A gap means a line went missing; say so rather than silently
+            // attributing this outcome to an earlier case.
+            while outcomes.len() < i {
+                outcomes.push(RunOutcome::Panic(
+                    "the runner reported no outcome for this case".to_string(),
+                ));
+            }
+            outcomes.push(r);
+        }
+        Err(_) => {}
+    }
 }
 
 /// Make sure the child is gone and describe how it ended.
@@ -182,6 +235,112 @@ mod tests {
             RunOutcome::Panic("boom".to_string())
         );
         assert_eq!(serde_json::to_string(&RunOutcome::Accept).unwrap(), "\"accept\"");
+
+        // The line envelope, as the generated runner prints it.
+        assert!(matches!(
+            serde_json::from_str::<Line>(r#"{"ready":7}"#).expect("parse ready"),
+            Line::Ready(7)
+        ));
+        match serde_json::from_str::<Line>(r#"{"case":{"i":2,"r":{"reject":"no"}}}"#).expect("parse case") {
+            Line::Case { i, r } => {
+                assert_eq!(i, 2);
+                assert_eq!(r, RunOutcome::Reject("no".to_string()));
+            }
+            other => panic!("expected a case line, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn record_uses_the_reported_index() {
+        let mut outcomes = Vec::new();
+        let mut ready = None;
+        let lines = [
+            r#"{"ready":0}"#,
+            // Stray output from generated code: ignored, cursor unmoved.
+            "hello from a deserializer",
+            r#"{"something":"else"}"#,
+            "",
+            r#"{"case":{"i":0,"r":"accept"}}"#,
+            // A duplicate (a restart that re-ran a case) shifts nothing.
+            r#"{"case":{"i":0,"r":{"panic":"x"}}}"#,
+            // A gap is filled explicitly rather than silently shifting.
+            r#"{"case":{"i":2,"r":"accept"}}"#,
+            // Past the end: dropped.
+            r#"{"case":{"i":9,"r":"accept"}}"#,
+        ];
+        for line in lines {
+            record(&mut outcomes, 4, &mut ready, line);
+        }
+        assert_eq!(ready, Some(0));
+        assert_eq!(outcomes.len(), 3);
+        assert_eq!(outcomes[0], RunOutcome::Accept);
+        assert!(matches!(outcomes[1], RunOutcome::Panic(_)));
+        assert_eq!(outcomes[2], RunOutcome::Accept);
+    }
+
+    #[cfg(unix)]
+    fn stub_runner(dir: &Path, body: &str) -> std::path::PathBuf {
+        use std::os::unix::fs::PermissionsExt;
+        std::fs::create_dir_all(dir).unwrap();
+        let path = dir.join("stub-runner");
+        std::fs::write(&path, format!("#!/bin/sh\n{body}\n")).unwrap();
+        std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o755)).unwrap();
+        path
+    }
+
+    #[cfg(unix)]
+    fn scratch(name: &str) -> std::path::PathBuf {
+        let dir = std::env::temp_dir().join(format!("typify-conformance-{name}-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        dir
+    }
+
+    /// Stray stdout from generated code must not shift later outcomes onto
+    /// the wrong case.
+    #[cfg(unix)]
+    #[test]
+    fn stray_output_does_not_shift_the_cursor() {
+        let dir = scratch("stray");
+        let runner = stub_runner(
+            &dir,
+            r#"echo '{"ready":0}'
+echo 'chatter from a deserializer'
+echo '{"case":{"i":0,"r":"accept"}}'
+echo 'not json either'
+echo '{"case":{"i":1,"r":{"reject":"no"}}}'
+echo '{"case":{"i":2,"r":{"panic":"boom"}}}'"#,
+        );
+        let cases: Vec<RunCase> = (0..3)
+            .map(|i| RunCase { key: format!("g_{i}"), data: serde_json::json!(i) })
+            .collect();
+        let outcomes = run_cases(&runner, &dir, &cases, Duration::from_secs(30)).expect("run cases");
+        assert_eq!(
+            outcomes,
+            vec![
+                RunOutcome::Accept,
+                RunOutcome::Reject("no".to_string()),
+                RunOutcome::Panic("boom".to_string()),
+            ]
+        );
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    /// A runner that never gets as far as its first case is a setup bug: we
+    /// must not respawn it once per case.
+    #[cfg(unix)]
+    #[test]
+    fn a_runner_that_never_starts_is_an_error() {
+        let dir = scratch("nostart");
+        let runner = stub_runner(&dir, "echo 'cannot read cases' >&2\nexit 3");
+        let cases: Vec<RunCase> = (0..100)
+            .map(|i| RunCase { key: format!("g_{i}"), data: serde_json::json!(i) })
+            .collect();
+        let err = run_cases(&runner, &dir, &cases, Duration::from_secs(30))
+            .expect_err("expected an error, not 100 panics");
+        let text = err.to_string();
+        assert!(text.contains("never started"), "unexpected error: {text}");
+        assert!(text.contains("cannot read cases"), "stderr not reported: {text}");
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]

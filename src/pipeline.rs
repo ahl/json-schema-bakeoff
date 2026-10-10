@@ -39,12 +39,15 @@ fn typify_version(label: &str) -> &'static str {
     }
 }
 
-/// Cache key for a group: everything that determines its result.
+/// Cache key for a group: everything that determines its result,
+/// including its id (two files can hold byte-identical groups).
 fn group_hash(group: &Group, typify: &str, cases: &[(usize, &suite::Case)]) -> String {
     let mut h = Sha256::new();
     h.update(HARNESS_REV);
     h.update([0]);
     h.update(typify);
+    h.update([0]);
+    h.update(group.id());
     h.update([0]);
     // serde_json::Value serializes object keys sorted, so this is canonical.
     h.update(serde_json::to_vec(&group.schema).unwrap());
@@ -56,6 +59,16 @@ fn group_hash(group: &Group, typify: &str, cases: &[(usize, &suite::Case)]) -> S
         h.update([c.valid as u8]);
     }
     hex::encode(h.finalize())
+}
+
+/// Module key for a group's generated code, which depends only on the
+/// schema and the typify version. Identical schemas share one module.
+fn module_key(group: &Group, typify: &str) -> String {
+    let mut h = Sha256::new();
+    h.update(typify);
+    h.update([0]);
+    h.update(serde_json::to_vec(&group.schema).unwrap());
+    format!("g_{}", &hex::encode(h.finalize())[..16])
 }
 
 /// Per-group state as it flows through the pipeline.
@@ -97,7 +110,7 @@ pub fn run(opts: RunOpts) -> Result<()> {
         .map(|g| {
             let cases: Vec<_> = g.filtered_cases(filter).collect();
             let hash = group_hash(g, typify, &cases);
-            Item { group: g, cases, key: format!("g_{}", &hash[..16]), hash, generated: None, result: None }
+            Item { group: g, cases, key: module_key(g, typify), hash, generated: None, result: None }
         })
         .collect();
 
@@ -118,13 +131,16 @@ pub fn run(opts: RunOpts) -> Result<()> {
     // and generation is fast, so this is a plain loop.)
     let t = Instant::now();
     let mut inputs = Vec::new();
+    let mut seen_keys = std::collections::BTreeSet::new();
     for item in items.iter_mut().filter(|i| i.result.is_none()) {
         let outcome = generate::generate(item.group, GENERATE_TIMEOUT);
         if let GenOutcome::Code { code, root } = &outcome {
             // Keep a copy for humans: work/<version>/generated/<key>.rs.
             let header = format!("// {}\n// root type: {}\n\n", item.group.id(), root);
             std::fs::write(gen_dir.join(format!("{}.rs", item.key)), format!("{header}{code}"))?;
-            inputs.push(BatchInput { key: item.key.clone(), code: code.clone(), root: root.clone() });
+            if seen_keys.insert(item.key.clone()) {
+                inputs.push(BatchInput { key: item.key.clone(), code: code.clone(), root: root.clone() });
+            }
         }
         item.generated = Some(outcome);
     }
@@ -140,7 +156,7 @@ pub fn run(opts: RunOpts) -> Result<()> {
     };
     if let Some(c) = &compiled {
         let ok = c.outcomes.values().filter(|o| **o == CompileOutcome::Ok).count();
-        eprintln!("compile: {ok} of {} modules compiled ({:.1?})", inputs.len(), t.elapsed());
+        eprintln!("compile: {ok} of {} modules compiled ({:.1?})", c.outcomes.len(), t.elapsed());
     }
 
     // Step 3: run.
@@ -263,23 +279,11 @@ pub fn run(opts: RunOpts) -> Result<()> {
 
 /// Map group id -> generated module key, for pointing humans at the file.
 fn items_keys(results: &Results, groups: &[Group]) -> BTreeMap<String, String> {
-    // The key is derived from the hash, which needs the case selection; we
-    // recompute from the stored cases by matching descriptions.
     let by_id: BTreeMap<String, &Group> = groups.iter().map(|g| (g.id(), g)).collect();
     results
         .groups
         .iter()
-        .filter_map(|r| {
-            let g = by_id.get(&r.id)?;
-            let cases: Vec<(usize, &suite::Case)> = g
-                .cases
-                .iter()
-                .enumerate()
-                .filter(|(_, c)| r.cases.iter().any(|rc| rc.description == c.description))
-                .collect();
-            let hash = group_hash(g, &results.typify, &cases);
-            Some((r.id.clone(), format!("g_{}", &hash[..16])))
-        })
+        .filter_map(|r| by_id.get(&r.id).map(|g| (r.id.clone(), module_key(g, &results.typify))))
         .collect()
 }
 

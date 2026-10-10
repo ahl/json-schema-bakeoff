@@ -1,4 +1,5 @@
 mod compile;
+mod crashguard;
 mod diff;
 mod generate;
 mod pipeline;
@@ -62,6 +63,7 @@ enum Cmd {
 }
 
 fn main() -> Result<()> {
+    crashguard::install();
     match Cli::parse().cmd {
         Cmd::Run { version, draft, filter, optional, no_cache, out } => pipeline::run(pipeline::RunOpts {
             version: version.label(),
