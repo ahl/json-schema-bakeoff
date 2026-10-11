@@ -10,11 +10,11 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:52:11Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 95.1% | 2026-10-11T21:59:49Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:51:27Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:53:33Z |
-| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:51:12Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:50:57Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T22:00:41Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T22:00:06Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T22:00:26Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | 30.2% | 26.8% | 27.1% | 2026-10-11T19:27:54Z |
 
 ### Optional tests
@@ -23,11 +23,11 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:52:11Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T21:59:49Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:51:27Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:53:33Z |
-| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:51:12Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:50:57Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T22:00:41Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T22:00:06Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T22:00:26Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T19:27:54Z |
 
 ## Other languages
@@ -91,8 +91,8 @@ A Rust validator, not a generator: it interprets the schema at run time, so
 it can enforce every keyword, which a type generator structurally can't. It's
 the reference row: the ceiling the suite allows, a check on the harness, and
 a price tag on the policies the generators live with. Remote refs come from
-`suite/remotes/`, the dialect from the suite directory, and `format` stays at
-the library default (asserted through draft 7, annotation-only after).
+`suite/remotes/`, the dialect from the suite directory, and `format` is
+asserted in every draft (the library default would stop at draft 7).
 
 **ogen v1.24.0** — [ogen.dev](https://ogen.dev)  
 An OpenAPI v3 generator for Go: its design center is an API document, and

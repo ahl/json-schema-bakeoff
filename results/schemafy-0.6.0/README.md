@@ -7,7 +7,7 @@ get out of the way. It models structure only, so validation keywords vanish
 and anything that isn't a plain object graph panics. The last release
 (0.6.0) is from October 2021.
 
-_generated 2026-10-11T18:53:33Z_
+_generated 2026-10-11T22:00:41Z_
 
 **325 of 1408 non-optional groups pass (23.1%)**; 301 optional groups reported separately
 

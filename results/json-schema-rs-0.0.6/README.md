@@ -5,7 +5,7 @@ must be an object with `properties` or it refuses outright. Constraints come
 out as attributes for its own validator, which serde ignores, so it's
 measured on the little it does model.
 
-_generated 2026-10-11T18:53:20Z_
+_generated 2026-10-11T22:01:51Z_
 
 **16 of 1408 non-optional groups pass (1.1%)**; 301 optional groups reported separately
 

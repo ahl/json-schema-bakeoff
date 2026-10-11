@@ -3,7 +3,7 @@
 The last typify release before the typespace rewrite. Same design center as
 0.10; it's here so the rewrite has something to be measured against.
 
-_generated 2026-10-11T18:50:57Z_
+_generated 2026-10-11T22:00:26Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
