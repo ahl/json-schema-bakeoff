@@ -473,6 +473,9 @@ pub fn render_terminal(results: &Results) -> String {
     s
 }
 
+/// Appended to a validator row's name; links to the note at the bottom.
+const VALIDATOR_MARK: &str = " [\\*\\*](#notes)";
+
 /// One row per version, one column per draft (pass rate),
 /// plus the generation date; empty if nothing qualifies.
 fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) -> String {
@@ -499,8 +502,9 @@ fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) ->
         if show_language && !r.language.is_empty() {
             name = format!("{name} ({})", crate::results::language_label(&r.language));
         }
+        let marker = if r.kind == "validator" { VALIDATOR_MARK } else { "" };
         rows.push_str(&format!(
-            "| [{}](results/{}/README.md) | {} | {} |\n",
+            "| [{}](results/{}/README.md){marker} | {} | {} |\n",
             escape_cell(&name),
             r.version,
             cells.join(" | "),
@@ -559,6 +563,10 @@ pub fn render_scoreboard(all: &[Results]) -> String {
         }
     }
 
+    if all.iter().any(|r| r.kind == "validator") {
+        s.push_str("## Notes\n\n");
+        s.push_str("\\*\\* A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.\n\n");
+    }
     s
 }
 
@@ -600,6 +608,7 @@ mod tests {
         Results {
             description: String::new(),
             language: String::new(),
+            kind: String::new(),
             version: "typify1".to_string(),
             typify: "typify 0.10.0-alpha.2".to_string(),
             generated_at: "2026-10-10T00:00:00Z".to_string(),
@@ -848,6 +857,7 @@ mod tests {
         let results = Results {
             description: String::new(),
             language: String::new(),
+            kind: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
@@ -874,6 +884,7 @@ mod tests {
         let results = Results {
             description: String::new(),
             language: String::new(),
+            kind: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),

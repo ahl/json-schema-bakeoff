@@ -312,6 +312,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
         typify: identity.to_string(),
         description: flavor.generator.description.clone(),
         language: flavor.generator.language(&flavor.target),
+        kind: flavor.generator.kind.clone(),
         generated_at: String::new(),
         groups: items.iter().map(|i| i.result.clone().expect("every item has a result")).collect(),
     };
