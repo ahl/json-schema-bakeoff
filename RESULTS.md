@@ -95,17 +95,12 @@ a price tag on the policies the generators live with. Remote refs come from
 the library default (asserted through draft 7, annotation-only after).
 
 **ogen v1.24.0** — [ogen.dev](https://ogen.dev)  
-An OpenAPI v3 generator for Go, so its design center is an API document
-rather than a schema: it emits a client, a server, and a Go type per schema
-whose JSON codec and validator are written out as code against
-`github.com/go-faster/jx` instead of `encoding/json` and reflection. Each
-group here is therefore wrapped as an OpenAPI 3.1 document whose
-`components.schemas.Root` is the group's schema — 3.1 schema objects are
-JSON Schema 2020-12, so the schema goes in untranslated — with one synthetic
-operation that takes it as a request body, because ogen only generates types
-something references. ogen splits the work across two methods, and the check
-calls both: `Decode` enforces the type and the required-field set, `Validate`
-enforces lengths, bounds, patterns and `uniqueItems`.
+An OpenAPI v3 generator for Go: its design center is an API document, and
+it emits a type per schema with a code-generated JSON codec and validator on
+top of `go-faster/jx`. Each group here is wrapped as an OpenAPI 3.1 document
+with the schema as a component (3.1 schema objects are JSON Schema 2020-12,
+so nothing is translated), and the check calls both `Decode` and
+`Validate`.
 
 **quicktype 26.0.0** — [quicktype.io](https://quicktype.io)  
 Types in a dozen languages from JSON samples or schemas. Its design center is
