@@ -391,7 +391,18 @@ fn is_ident(s: &str) -> bool {
 
 /// A binary name unique to this batch directory, so concurrent batches
 /// sharing a target dir don't uplift over each other's executable.
+/// A bin name unique to this crate directory. Every batch shares one
+/// `CARGO_TARGET_DIR`, and cargo uplifts each bin to `<target>/debug/<name>`
+/// and skips the uplift when it thinks the unit is fresh, so two batches
+/// with the same bin name would end up running each other's binary. The
+/// name is derived from the absolute path so it's stable across runs and
+/// distinct across generators.
 fn bin_name(crate_dir: &Path) -> String {
+    use std::hash::{Hash, Hasher};
+    let abs = std::path::absolute(crate_dir).unwrap_or_else(|_| crate_dir.to_path_buf());
+    // DefaultHasher::new() uses fixed keys, so this is deterministic.
+    let mut h = std::collections::hash_map::DefaultHasher::new();
+    abs.hash(&mut h);
     let tag: String = crate_dir
         .file_name()
         .and_then(|n| n.to_str())
@@ -399,7 +410,7 @@ fn bin_name(crate_dir: &Path) -> String {
         .chars()
         .map(|c| if c.is_ascii_alphanumeric() { c } else { '_' })
         .collect();
-    if tag.is_empty() { "runner".to_string() } else { format!("runner_{tag}") }
+    format!("runner_{tag}_{:016x}", h.finish())
 }
 
 fn first_lines(s: &str, n: usize) -> String {
