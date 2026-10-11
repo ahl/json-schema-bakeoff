@@ -1,10 +1,10 @@
-//! Step 2: emit generated modules into one batch crate, `cargo check` it,
-//! drop modules that fail, and build a runner binary over the survivors.
+//! Emit generated modules into one batch crate, `cargo check` it, drop
+//! modules that fail, and build a runner binary over the survivors.
 //!
 //! The batch crate is a plain binary crate with one module per generated
 //! group plus a `main.rs` that holds a static dispatch table. Each module
-//! exposes `__conformance_check`, which deserializes a `serde_json::Value`
-//! into that group's root type. Because rustc stops at phase boundaries
+//! (written by the generator) exposes `__conformance_check`, which
+//! deserializes a `serde_json::Value` into that group's root type. Because rustc stops at phase boundaries
 //! (parse, name resolution, typeck) we can't learn about every broken
 //! module in one go, so we loop: attribute each error to a module by the
 //! file name in its spans, drop those modules from `main.rs`, and check
@@ -21,11 +21,9 @@ pub struct BatchInput {
     /// Module name, a valid Rust identifier unique within the batch
     /// (e.g. `g_0123abcd4567`).
     pub key: String,
-    /// Complete module body from typify (items only), already pretty-printed.
-    pub code: String,
-    /// Type path to deserialize into, relative to the module
-    /// (e.g. `Root`, `i64`, `::std::vec::Vec<i64>`).
-    pub root: String,
+    /// Complete module source (items only), including
+    /// `pub fn __conformance_check(v: ::serde_json::Value) -> Result<(), String>`.
+    pub source: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -42,9 +40,12 @@ pub struct CompiledBatch {
     pub runner: Option<PathBuf>,
 }
 
-/// Name of the per-module entry point. Deliberately unlikely to collide
-/// with anything typify emits.
-const CHECK_FN: &str = "__conformance_check";
+/// Name of the per-module entry point every generator must define.
+pub const CHECK_FN: &str = "__conformance_check";
+
+/// Turns `SIGABRT` into a plain exit so a crash in the runner doesn't raise
+/// the macOS Crash Reporter dialog. Embedded in the generated `main.rs`.
+const CRASHGUARD: &str = include_str!("crashguard.inc.rs");
 
 /// How many check/build passes we'll spend shaking out broken modules.
 const MAX_PASSES: usize = 10;
@@ -92,12 +93,12 @@ pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput])
         anyhow::ensure!(input.key != "main", "module key \"main\" collides with the batch crate's main.rs");
         match seen.get(input.key.as_str()) {
             Some(first) => anyhow::ensure!(
-                first.code == input.code && first.root == input.root,
+                first.source == input.source,
                 "module key {:?} used for two different modules",
                 input.key
             ),
             None => {
-                std::fs::write(src.join(format!("{}.rs", input.key)), module_source(input))?;
+                std::fs::write(src.join(format!("{}.rs", input.key)), &input.source)?;
                 seen.insert(&input.key, input);
             }
         }
@@ -431,21 +432,10 @@ fn tail(s: &str, max: usize) -> String {
     format!("... (truncated)\n{}", &s[start..])
 }
 
-fn module_source(input: &BatchInput) -> String {
-    format!(
-        "{code}\n\
-         pub fn {CHECK_FN}(v: ::serde_json::Value) -> ::std::result::Result<(), ::std::string::String> {{\n\
-         \x20   ::serde_json::from_value::<{root}>(v).map(|_| ()).map_err(|e| e.to_string())\n\
-         }}\n",
-        code = input.code,
-        root = input.root,
-    )
-}
-
 fn write_main(crate_dir: &Path, alive: &BTreeSet<String>) -> Result<()> {
     let mut s = String::from(MAIN_PRELUDE);
     s.push_str("mod crashguard {\n");
-    s.push_str(crate::crashguard::SOURCE);
+    s.push_str(CRASHGUARD);
     s.push_str("}\n\n");
     for key in alive {
         s.push_str(&format!("mod {key};\n"));
@@ -481,7 +471,7 @@ path = "src/main.rs"
 const CARGO_TOML_TAIL: &str = r#"
 [dependencies]
 serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+serde_json = { version = "1", features = ["float_roundtrip"] }
 regress = "0.12"
 chrono = { version = "0.4", features = ["serde"] }
 uuid = { version = "1", features = ["serde"] }
@@ -590,21 +580,24 @@ fn run_one(check: Check, data: ::serde_json::Value) -> ::serde_json::Value {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::runner::{self, RunCase, RunOutcome};
-    use std::time::Duration;
+    use std::io::BufRead;
+    use std::process::Stdio;
+
+    /// A module body plus the check function a generator would append.
+    fn module(code: &str, root: &str) -> String {
+        format!(
+            "{code}\npub fn {CHECK_FN}(v: ::serde_json::Value) -> ::std::result::Result<(), ::std::string::String> {{\n\
+             \x20   ::serde_json::from_value::<{root}>(v).map(|_| ()).map_err(|e| e.to_string())\n}}\n"
+        )
+    }
+
+    fn mk(key: &str, code: &str, root: &str) -> BatchInput {
+        BatchInput { key: key.to_string(), source: module(code, root) }
+    }
 
     fn inputs() -> Vec<BatchInput> {
-        let mk = |key: &str, code: &str, root: &str| BatchInput {
-            key: key.to_string(),
-            code: code.to_string(),
-            root: root.to_string(),
-        };
         vec![
-            mk(
-                "g_ok",
-                "#[derive(::serde::Deserialize)]\npub struct Root {\n    pub a: i64,\n}\n",
-                "Root",
-            ),
+            mk("g_ok", "#[derive(::serde::Deserialize)]\npub struct Root {\n    pub a: i64,\n}\n", "Root"),
             mk("g_bad", "pub struct Root {\n    pub a: NoSuchType,\n}\n", "Root"),
             mk("g_builtin", "", "i64"),
             mk(
@@ -626,9 +619,27 @@ mod tests {
         ]
     }
 
+    /// Drive the runner once from `start`, returning its parsed stdout
+    /// lines and whether it exited cleanly.
+    fn run_from(runner: &Path, cases: &Path, start: usize) -> (Vec<serde_json::Value>, bool) {
+        let mut child = Command::new(runner)
+            .arg(cases)
+            .arg(start.to_string())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::null())
+            .spawn()
+            .expect("spawn runner");
+        let lines: Vec<serde_json::Value> = std::io::BufReader::new(child.stdout.take().unwrap())
+            .lines()
+            .map(|l| serde_json::from_str(&l.unwrap()).expect("runner line is JSON"))
+            .collect();
+        let ok = child.wait().unwrap().success();
+        (lines, ok)
+    }
+
     #[test]
     fn batch_compile_and_run() {
-        let dir = std::env::temp_dir().join(format!("typify-conformance-test-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("rust-batch-test-{}", std::process::id()));
         let crate_dir = dir.join("batch");
         let target_dir = dir.join("target");
         let mut inputs = inputs();
@@ -651,7 +662,7 @@ mod tests {
         let runner_bin = batch.runner.clone().expect("runner binary");
         assert!(runner_bin.exists(), "{} does not exist", runner_bin.display());
 
-        let case = |key: &str, data: serde_json::Value| RunCase { key: key.to_string(), data };
+        let case = |key: &str, data: serde_json::Value| serde_json::json!({ "key": key, "data": data });
         let cases = vec![
             case("g_ok", serde_json::json!({ "a": 1 })),
             case("g_ok", serde_json::json!("x")),
@@ -660,24 +671,28 @@ mod tests {
             case("g_abort", serde_json::json!(null)),
             case("g_ok", serde_json::json!({ "a": 2 })),
         ];
-        let outcomes =
-            runner::run_cases(&runner_bin, &dir, &cases, Duration::from_secs(60)).expect("run cases");
-        assert_eq!(outcomes.len(), cases.len());
-        assert_eq!(outcomes[0], RunOutcome::Accept);
-        assert!(matches!(outcomes[1], RunOutcome::Reject(_)), "{:?}", outcomes[1]);
-        assert_eq!(outcomes[2], RunOutcome::Accept);
-        match &outcomes[3] {
-            RunOutcome::Panic(msg) => assert!(msg.contains("boom"), "unexpected panic text: {msg}"),
-            other => panic!("expected a panic for g_panic, got {other:?}"),
-        }
-        match &outcomes[4] {
-            RunOutcome::Panic(msg) => {
-                assert!(msg.contains("runner process died"), "unexpected panic text: {msg}")
-            }
-            other => panic!("expected a process death for g_abort, got {other:?}"),
-        }
-        // The runner restarted and the following case still got a real answer.
-        assert_eq!(outcomes[5], RunOutcome::Accept);
+        let cases_path = dir.join("cases.json");
+        std::fs::write(&cases_path, serde_json::to_vec(&cases).unwrap()).unwrap();
+
+        // First run: ready, four outcomes, then the abort kills the process
+        // (the crash guard turns that into a plain non-zero exit).
+        let (lines, ok) = run_from(&runner_bin, &cases_path, 0);
+        assert!(!ok, "the abort case should have killed the runner");
+        assert_eq!(lines[0], serde_json::json!({ "ready": 0 }));
+        let outcome = |i: usize| lines[i + 1]["case"]["r"].clone();
+        assert_eq!(lines[1]["case"]["i"], 0);
+        assert_eq!(outcome(0), serde_json::json!("accept"));
+        assert!(outcome(1).get("reject").is_some(), "{:?}", outcome(1));
+        assert_eq!(outcome(2), serde_json::json!("accept"));
+        assert!(outcome(3)["panic"].as_str().unwrap().contains("boom"), "{:?}", outcome(3));
+        assert_eq!(lines.len(), 5, "no outcome should be printed for the aborting case");
+
+        // Restart after the dead case: the following case still gets a real answer.
+        let (lines, ok) = run_from(&runner_bin, &cases_path, 5);
+        assert!(ok);
+        assert_eq!(lines[0], serde_json::json!({ "ready": 5 }));
+        assert_eq!(lines[1]["case"]["i"], 5);
+        assert_eq!(lines[1]["case"]["r"], serde_json::json!("accept"));
 
         let _ = std::fs::remove_dir_all(&dir);
     }
@@ -690,14 +705,10 @@ mod tests {
     /// convergence loop has to pick up the rest on later passes.)
     #[test]
     fn errors_from_different_phases_converge() {
-        let dir = std::env::temp_dir().join(format!("typify-conformance-phases-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("rust-batch-phases-{}", std::process::id()));
         let crate_dir = dir.join("batch");
         let target_dir = dir.join("target");
-        let mk = |key: &str, code: &str| BatchInput {
-            key: key.to_string(),
-            code: code.to_string(),
-            root: "Root".to_string(),
-        };
+        let mk = |key: &str, code: &str| mk(key, code, "Root");
         let inputs = vec![
             mk("g_ok", "#[derive(::serde::Deserialize)]\npub struct Root {\n    pub a: i64,\n}\n"),
             mk("g_parse", "pub struct Root { pub a: ,,, }\n"),

@@ -59,7 +59,8 @@ const STDERR_TAIL: usize = 1000;
 /// bounds a single case rather than the whole batch; when it expires the
 /// runner is killed, the case at the cursor is recorded as a panic, and a
 /// fresh runner picks up from the following case.
-pub fn run_cases(runner: &Path, work_dir: &Path, cases: &[RunCase], timeout: Duration) -> Result<Vec<RunOutcome>> {
+pub fn run_cases(runner: &[String], work_dir: &Path, cases: &[RunCase], timeout: Duration) -> Result<Vec<RunOutcome>> {
+    anyhow::ensure!(!runner.is_empty(), "no runner command");
     if cases.is_empty() {
         return Ok(Vec::new());
     }
@@ -71,14 +72,15 @@ pub fn run_cases(runner: &Path, work_dir: &Path, cases: &[RunCase], timeout: Dur
     let mut outcomes: Vec<RunOutcome> = Vec::with_capacity(cases.len());
     while outcomes.len() < cases.len() {
         let start = outcomes.len();
-        let mut child = Command::new(runner)
+        let mut child = Command::new(&runner[0])
+            .args(&runner[1..])
             .arg(&cases_path)
             .arg(start.to_string())
             .stdin(Stdio::null())
             .stdout(Stdio::piped())
             .stderr(Stdio::piped())
             .spawn()
-            .with_context(|| format!("spawning {}", runner.display()))?;
+            .with_context(|| format!("spawning {}", runner.join(" ")))?;
 
         let stdout = child.stdout.take().expect("piped stdout");
         let (tx, rx) = mpsc::channel::<String>();
@@ -135,7 +137,7 @@ pub fn run_cases(runner: &Path, work_dir: &Path, cases: &[RunCase], timeout: Dur
             Some(at) => anyhow::bail!("runner started at case {at}, not {start}"),
             None => anyhow::bail!(
                 "runner {} never started: {} with cases {} from index {start}; stderr: {}",
-                runner.display(),
+                runner.join(" "),
                 if timed_out { format!("no output within {timeout:?}") } else { format!("status {status}") },
                 cases_path.display(),
                 tail(stderr_text.trim(), STDERR_TAIL)
@@ -313,7 +315,7 @@ echo '{"case":{"i":2,"r":{"panic":"boom"}}}'"#,
         let cases: Vec<RunCase> = (0..3)
             .map(|i| RunCase { key: format!("g_{i}"), data: serde_json::json!(i) })
             .collect();
-        let outcomes = run_cases(&runner, &dir, &cases, Duration::from_secs(30)).expect("run cases");
+        let outcomes = run_cases(&[runner.to_string_lossy().into_owned()], &dir, &cases, Duration::from_secs(30)).expect("run cases");
         assert_eq!(
             outcomes,
             vec![
@@ -335,7 +337,7 @@ echo '{"case":{"i":2,"r":{"panic":"boom"}}}'"#,
         let cases: Vec<RunCase> = (0..100)
             .map(|i| RunCase { key: format!("g_{i}"), data: serde_json::json!(i) })
             .collect();
-        let err = run_cases(&runner, &dir, &cases, Duration::from_secs(30))
+        let err = run_cases(&[runner.to_string_lossy().into_owned()], &dir, &cases, Duration::from_secs(30))
             .expect_err("expected an error, not 100 panics");
         let text = err.to_string();
         assert!(text.contains("never started"), "unexpected error: {text}");

@@ -1,13 +1,12 @@
-//! Step 1: feed a group's schema to typify and capture code, error, or panic.
+//! Feed a schema to typify and capture code, error, or panic.
 
-use crate::suite::Group;
 use schemars::schema::{RootSchema, Schema};
 use std::sync::Mutex;
 use std::time::Duration;
 use typify::{TypeSpace, TypeSpaceSettings};
 
-/// The version string reported in results for the `typify1` label.
-pub const TYPIFY1_VERSION: &str = concat!("typify ", env!("TYPIFY_CRATE_VERSION"));
+/// Identity string: `typify <pinned crate version>` (from build.rs).
+pub const VERSION: &str = concat!("typify ", env!("TYPIFY_CRATE_VERSION"));
 
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum GenOutcome {
@@ -19,16 +18,16 @@ pub enum GenOutcome {
     Panic(String),
 }
 
-/// Run typify on the group's schema with a fixed root name of `Root`.
+/// Run typify on a schema with a fixed root name of `Root`.
 ///
 /// Runs on a dedicated thread with a large stack (typify recurses on deep
 /// schemas) and catches panics. A generation that exceeds `timeout` is
 /// abandoned (the thread is leaked) and recorded as a panic.
-pub fn generate(group: &Group, timeout: Duration) -> GenOutcome {
-    let schema_value = group.schema.clone();
+pub fn generate(schema: &serde_json::Value, timeout: Duration) -> GenOutcome {
+    let schema_value = schema.clone();
     let (tx, rx) = std::sync::mpsc::channel();
     std::thread::Builder::new()
-        .name(format!("gen {}", group.id()))
+        .name("generate".to_string())
         .stack_size(256 * 1024 * 1024)
         .spawn(move || {
             let _ = tx.send(generate_inner(schema_value));
@@ -123,27 +122,23 @@ fn generate_inner(schema_value: serde_json::Value) -> GenOutcome {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::collections::BTreeMap;
 
-    /// Every draft7 group generates (code, error, or panic) promptly.
     #[test]
-    fn draft7_generates_without_hanging() {
-        let groups = crate::suite::load_draft("draft7", false).unwrap();
-        let mut counts: BTreeMap<&str, usize> = BTreeMap::new();
-        let start = std::time::Instant::now();
-        for g in &groups {
-            let o = generate(g, Duration::from_secs(30));
-            let k = match &o {
-                GenOutcome::Code { .. } => "code",
-                GenOutcome::Error(_) => "error",
-                GenOutcome::Panic(_) => "panic",
-            };
-            *counts.entry(k).or_default() += 1;
-            if let GenOutcome::Panic(m) | GenOutcome::Error(m) = &o {
-                eprintln!("{k:5} {}: {}", g.id(), m.lines().next().unwrap_or(""));
-            }
+    fn primitive_root_and_named_root() {
+        match generate(&serde_json::json!({"type": "integer"}), Duration::from_secs(10)) {
+            GenOutcome::Code { root, .. } => assert_eq!(root, "i64"),
+            other => panic!("{other:?}"),
         }
-        eprintln!("{counts:?} in {:.1?}", start.elapsed());
-        assert_eq!(counts.values().sum::<usize>(), groups.len());
+        match generate(&serde_json::json!({"properties": {"a": {"type": "string"}}}), Duration::from_secs(10)) {
+            GenOutcome::Code { root, code } => {
+                assert_eq!(root, "Root");
+                assert!(code.contains("pub struct Root"));
+            }
+            other => panic!("{other:?}"),
+        }
+        assert!(matches!(
+            generate(&serde_json::json!({"not": {"type": "integer"}}), Duration::from_secs(10)),
+            GenOutcome::Panic(_)
+        ));
     }
 }

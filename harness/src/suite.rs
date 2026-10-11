@@ -57,7 +57,7 @@ impl Group {
 
 /// Root of the vendored suite (`suite/`).
 pub fn suite_root() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("suite")
+    crate::pipeline::repo_root().join("suite")
 }
 
 /// Load every group for `draft`, in file order then group order. Optional

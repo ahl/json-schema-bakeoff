@@ -1,51 +1,46 @@
-//! Orchestration: load -> (cache?) -> generate -> compile -> run -> report.
+//! `run`: for each generator flavor, load the suite, reuse stored records
+//! whose hash matches, generate → build → run the rest, store, render.
 
-use crate::compile::{self, BatchInput, CompileOutcome};
-use crate::generate::{self, GenOutcome};
+use crate::generator::{self, BuildOutcome, Generator};
 use crate::results::{version_slug, Bucket, CaseOutcome, CaseResult, GroupResult, Results};
 use crate::runner::{self, RunCase, RunOutcome};
 use crate::suite::{self, Group};
 use crate::summary;
-use anyhow::Result;
+use anyhow::{Context, Result};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 
-/// Bump when the pipeline changes in a way that invalidates cached results
-/// (e.g. the runner's deserialize path or the bucket rules).
-const HARNESS_REV: &str = "1";
+/// Bump when the pipeline changes in a way that invalidates stored results
+/// (e.g. the runner protocol semantics or the bucket rules).
+const HARNESS_REV: &str = "2";
 
-const GENERATE_TIMEOUT: Duration = Duration::from_secs(60);
 const RUN_TIMEOUT: Duration = Duration::from_secs(120);
 
 pub struct RunOpts {
-    pub version: &'static str,
-    pub draft: String,
+    /// Generator directory name; `None` runs every generator.
+    pub generator: Option<String>,
+    /// Target within the generator; `None` runs every target it lists.
+    pub target: Option<String>,
+    pub drafts: Vec<String>,
     pub filter: Option<String>,
     pub optional: bool,
     pub no_cache: bool,
     pub out: Option<PathBuf>,
 }
 
-fn repo_root() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+pub fn repo_root() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR")).parent().expect("harness/ is under the repo root").to_path_buf()
 }
 
-fn typify_version(label: &str) -> &'static str {
-    match label {
-        "typify1" => generate::TYPIFY1_VERSION,
-        other => panic!("unknown version label {other}"),
-    }
-}
-
-/// Cache key for a group: everything that determines its result,
+/// Cache key for a group: everything that determines its record,
 /// including its id (two files can hold byte-identical groups).
-fn group_hash(group: &Group, typify: &str, cases: &[(usize, &suite::Case)]) -> String {
+fn group_hash(group: &Group, identity: &str, cases: &[(usize, &suite::Case)]) -> String {
     let mut h = Sha256::new();
     h.update(HARNESS_REV);
     h.update([0]);
-    h.update(typify);
+    h.update(identity);
     h.update([0]);
     h.update(group.id());
     h.update([0]);
@@ -62,13 +57,55 @@ fn group_hash(group: &Group, typify: &str, cases: &[(usize, &suite::Case)]) -> S
 }
 
 /// Module key for a group's generated code, which depends only on the
-/// schema and the typify version. Identical schemas share one module.
-fn module_key(group: &Group, typify: &str) -> String {
+/// schema and the generator identity. Identical schemas share one module.
+fn module_key(group: &Group, identity: &str) -> String {
     let mut h = Sha256::new();
-    h.update(typify);
+    h.update(identity);
     h.update([0]);
     h.update(serde_json::to_vec(&group.schema).unwrap());
     format!("g_{}", &hex::encode(h.finalize())[..16])
+}
+
+/// One (generator, target) pair to run.
+struct Flavor {
+    generator: Generator,
+    target: String,
+}
+
+fn flavors(opts: &RunOpts) -> Result<Vec<Flavor>> {
+    let root = repo_root();
+    let generators = match &opts.generator {
+        Some(name) => vec![generator::load(&root, name)?],
+        None => generator::discover(&root)?,
+    };
+    anyhow::ensure!(!generators.is_empty(), "no generators found under {}", root.join("generators").display());
+    let mut out = Vec::new();
+    for g in generators {
+        let targets: Vec<String> = match (&opts.target, g.targets.is_empty()) {
+            (Some(t), false) => {
+                anyhow::ensure!(g.targets.contains(t), "{}: no target {t:?} (has {:?})", g.name, g.targets);
+                vec![t.clone()]
+            }
+            (Some(t), true) => anyhow::bail!("{}: has no targets, so --target {t:?} doesn't apply", g.name),
+            (None, false) => g.targets.clone(),
+            (None, true) => vec![String::new()],
+        };
+        // Loading a generator once per target keeps `Flavor` self-contained.
+        for t in targets {
+            out.push(Flavor { generator: generator::load(&root, g.dir.file_name().unwrap().to_str().unwrap())?, target: t });
+        }
+    }
+    Ok(out)
+}
+
+pub fn run(opts: RunOpts) -> Result<()> {
+    for flavor in flavors(&opts)? {
+        let identity = flavor.generator.version(&flavor.target)?;
+        for draft in &opts.drafts {
+            run_one(&opts, &flavor, &identity, draft)?;
+        }
+    }
+    Ok(())
 }
 
 /// Per-group state as it flows through the pipeline.
@@ -78,28 +115,27 @@ struct Item<'a> {
     cases: Vec<(usize, &'a suite::Case)>,
     hash: String,
     key: String,
-    generated: Option<GenOutcome>,
+    /// Generation status, once known: ("ok" | "error" | "panic", message).
+    generated: Option<(String, Option<String>)>,
     result: Option<GroupResult>,
 }
 
-pub fn run(opts: RunOpts) -> Result<()> {
+fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Result<()> {
     let started = Instant::now();
-    let typify = typify_version(opts.version);
-    let slug = version_slug(typify);
-    let work = repo_root().join("work");
-    let target_dir = work.join("target");
-    let version_dir = work.join(&slug);
-    let gen_dir = version_dir.join("generated");
+    let root = repo_root();
+    let slug = version_slug(identity);
+    let scratch = root.join("target").join("bakeoff").join(&slug);
+    let gen_dir = scratch.join("generated");
+    let batch_dir = scratch.join("batch");
     std::fs::create_dir_all(&gen_dir)?;
-    let headline_dir = repo_root().join("results").join(&slug);
+    let headline_dir = root.join("results").join(&slug);
 
-    let groups = suite::load_draft(&opts.draft, opts.optional)?;
+    let groups = suite::load_draft(draft, opts.optional)?;
     let filter = opts.filter.as_deref();
     let selected: Vec<&Group> = groups.iter().filter(|g| filter.is_none_or(|f| g.matches(f))).collect();
     anyhow::ensure!(!selected.is_empty(), "no groups match");
     eprintln!(
-        "{} on {typify}: {} of {} groups selected ({} cases)",
-        opts.draft,
+        "{draft} on {identity}: {} of {} groups selected ({} cases)",
         selected.len(),
         groups.len(),
         selected.iter().map(|g| g.filtered_cases(filter).count()).sum::<usize>()
@@ -109,8 +145,8 @@ pub fn run(opts: RunOpts) -> Result<()> {
         .iter()
         .map(|g| {
             let cases: Vec<_> = g.filtered_cases(filter).collect();
-            let hash = group_hash(g, typify, &cases);
-            Item { group: g, cases, key: module_key(g, typify), hash, generated: None, result: None }
+            let hash = group_hash(g, identity, &cases);
+            Item { group: g, cases, key: module_key(g, identity), hash, generated: None, result: None }
         })
         .collect();
 
@@ -129,45 +165,53 @@ pub fn run(opts: RunOpts) -> Result<()> {
     }
     eprintln!("cache: {cached} hit, {} to run", items.len() - cached);
 
-    // Step 1: generate. (typify's panic capture is serialized on a lock,
-    // and generation is fast, so this is a plain loop.)
+    // Step 1: generate, one module per distinct key.
     let t = Instant::now();
-    let mut inputs = Vec::new();
-    let mut seen_keys = std::collections::BTreeSet::new();
-    for item in items.iter_mut().filter(|i| i.result.is_none()) {
-        let outcome = generate::generate(item.group, GENERATE_TIMEOUT);
-        if let GenOutcome::Code { code, root } = &outcome {
-            // Keep a copy for humans: work/<version>/generated/<key>.rs.
-            let header = format!("// {}\n// root type: {}\n\n", item.group.id(), root);
-            std::fs::write(gen_dir.join(format!("{}.rs", item.key)), format!("{header}{code}"))?;
-            if seen_keys.insert(item.key.clone()) {
-                inputs.push(BatchInput { key: item.key.clone(), code: code.clone(), root: root.clone() });
-            }
+    let mut to_generate: Vec<(String, serde_json::Value)> = Vec::new();
+    let mut seen = std::collections::BTreeSet::new();
+    for item in items.iter().filter(|i| i.result.is_none()) {
+        if seen.insert(item.key.clone()) {
+            to_generate.push((item.key.clone(), item.group.schema.clone()));
         }
-        item.generated = Some(outcome);
     }
-    let n_gen = items.iter().filter(|i| i.generated.is_some()).count();
-    eprintln!("generate: {n_gen} groups, {} produced code ({:.1?})", inputs.len(), t.elapsed());
+    let mut gen_status: BTreeMap<String, (String, Option<String>)> = BTreeMap::new();
+    if !to_generate.is_empty() {
+        for s in flavor.generator.generate(&flavor.target, &gen_dir, &to_generate)? {
+            gen_status.insert(s.key, (s.status, s.message));
+        }
+    }
+    let mut ok_keys: Vec<String> = Vec::new();
+    for item in items.iter_mut().filter(|i| i.result.is_none()) {
+        let status = gen_status
+            .get(&item.key)
+            .cloned()
+            .with_context(|| format!("{}: generate reported nothing for {}", flavor.generator.name, item.group.id()))?;
+        if status.0 == "ok" && !ok_keys.contains(&item.key) {
+            ok_keys.push(item.key.clone());
+        }
+        item.generated = Some(status);
+    }
+    eprintln!("generate: {} modules, {} produced code ({:.1?})", to_generate.len(), ok_keys.len(), t.elapsed());
 
-    // Step 2: compile.
+    // Step 2: build.
     let t = Instant::now();
-    let compiled = if inputs.is_empty() {
+    let built = if ok_keys.is_empty() {
         None
     } else {
-        Some(compile::compile_batch(&version_dir.join("batch"), &target_dir, &inputs)?)
+        Some(flavor.generator.build(&flavor.target, &gen_dir, &batch_dir, &ok_keys)?)
     };
-    if let Some(c) = &compiled {
-        let ok = c.outcomes.values().filter(|o| **o == CompileOutcome::Ok).count();
-        eprintln!("compile: {ok} of {} modules compiled ({:.1?})", c.outcomes.len(), t.elapsed());
+    if let Some(b) = &built {
+        let ok = b.outcomes.values().filter(|o| **o == BuildOutcome::Ok).count();
+        eprintln!("build: {ok} of {} modules compiled ({:.1?})", b.outcomes.len(), t.elapsed());
     }
 
     // Step 3: run.
     let t = Instant::now();
     let mut run_cases = Vec::new();
     let mut case_slots: Vec<(usize, usize)> = Vec::new(); // (item index, position in item.cases)
-    if let Some(c) = &compiled {
+    if let Some(b) = &built {
         for (ii, item) in items.iter().enumerate() {
-            if c.outcomes.get(&item.key) != Some(&CompileOutcome::Ok) {
+            if item.result.is_some() || b.outcomes.get(&item.key) != Some(&BuildOutcome::Ok) {
                 continue;
             }
             for (pos, (_, case)) in item.cases.iter().enumerate() {
@@ -177,8 +221,8 @@ pub fn run(opts: RunOpts) -> Result<()> {
         }
     }
     let mut outcomes: BTreeMap<(usize, usize), RunOutcome> = BTreeMap::new();
-    if let Some(runner_bin) = compiled.as_ref().and_then(|c| c.runner.as_ref()) {
-        let results = runner::run_cases(runner_bin, &version_dir, &run_cases, RUN_TIMEOUT)?;
+    if let Some(b) = built.as_ref().filter(|b| !b.runner.is_empty() && !run_cases.is_empty()) {
+        let results = runner::run_cases(&b.runner, &scratch, &run_cases, RUN_TIMEOUT)?;
         anyhow::ensure!(results.len() == run_cases.len(), "runner returned {} outcomes for {} cases", results.len(), run_cases.len());
         for (slot, outcome) in case_slots.into_iter().zip(results) {
             outcomes.insert(slot, outcome);
@@ -186,7 +230,7 @@ pub fn run(opts: RunOpts) -> Result<()> {
     }
     eprintln!("run: {} cases ({:.1?})", run_cases.len(), t.elapsed());
 
-    // Assemble results for everything that wasn't cached.
+    // Assemble records for everything that wasn't cached.
     let now = chrono_free_timestamp();
     let mut fresh = 0;
     for (ii, item) in items.iter_mut().enumerate() {
@@ -200,14 +244,15 @@ pub fn run(opts: RunOpts) -> Result<()> {
                 .map(|(_, c)| CaseResult { description: c.description.clone(), valid: c.valid, outcome: CaseOutcome::NotRun, error: None })
                 .collect()
         };
-        let (bucket, error, cases) = match item.generated.as_ref().expect("generated") {
-            GenOutcome::Panic(msg) => (Bucket::GenerationPanic, Some(msg.clone()), not_run(&item.cases)),
-            GenOutcome::Error(msg) => (Bucket::GenerationError, Some(msg.clone()), not_run(&item.cases)),
-            GenOutcome::Code { .. } => {
-                let compiled = compiled.as_ref().expect("compiled batch");
-                match compiled.outcomes.get(&item.key) {
-                    Some(CompileOutcome::Fail(msg)) => (Bucket::CompileFail, Some(msg.clone()), not_run(&item.cases)),
-                    Some(CompileOutcome::Ok) => {
+        let (status, message) = item.generated.clone().expect("generated");
+        let (bucket, error, cases) = match status.as_str() {
+            "panic" => (Bucket::GenerationPanic, message, not_run(&item.cases)),
+            "error" => (Bucket::GenerationError, message, not_run(&item.cases)),
+            "ok" => {
+                let built = built.as_ref().expect("built batch");
+                match built.outcomes.get(&item.key) {
+                    Some(BuildOutcome::Fail(msg)) => (Bucket::CompileFail, Some(msg.clone()), not_run(&item.cases)),
+                    Some(BuildOutcome::Ok) => {
                         let cases: Vec<CaseResult> = item
                             .cases
                             .iter()
@@ -224,19 +269,18 @@ pub fn run(opts: RunOpts) -> Result<()> {
                             })
                             .collect();
                         let bucket = GroupResult::bucket_from_cases(&cases);
-                        let error = cases.iter().find(|c| c.outcome != CaseOutcome::Match).map(|c| {
-                            match c.outcome {
-                                CaseOutcome::FalseAccept => format!("accepted `{}` though valid: false", c.description),
-                                _ => format!("{}: {}", c.description, c.error.clone().unwrap_or_default()),
-                            }
+                        let error = cases.iter().find(|c| c.outcome != CaseOutcome::Match).map(|c| match c.outcome {
+                            CaseOutcome::FalseAccept => format!("accepted `{}` though valid: false", c.description),
+                            _ => format!("{}: {}", c.description, c.error.clone().unwrap_or_default()),
                         });
                         (bucket, error, cases)
                     }
-                    None => anyhow::bail!("compile step reported nothing for {}", group.id()),
+                    None => anyhow::bail!("build step reported nothing for {}", group.id()),
                 }
             }
+            other => anyhow::bail!("{}: unknown generate status {other:?} for {}", flavor.generator.name, group.id()),
         };
-        let result = GroupResult {
+        item.result = Some(GroupResult {
             id: group.id(),
             draft: group.draft.clone(),
             file: group.file.clone(),
@@ -247,32 +291,30 @@ pub fn run(opts: RunOpts) -> Result<()> {
             bucket,
             error,
             cases,
-        };
-        item.result = Some(result);
+        });
         fresh += 1;
     }
 
     let mut results = Results {
         version: slug.clone(),
-        typify: typify.to_string(),
+        typify: identity.to_string(),
         generated_at: String::new(),
-        groups: items.into_iter().map(|i| i.result.expect("every item has a result")).collect(),
+        groups: items.iter().map(|i| i.result.clone().expect("every item has a result")).collect(),
     };
 
     // A filtered run never overwrites the headline results; it goes to
-    // work/<version>/filtered/ unless --out is given.
+    // target/bakeoff/<slug>/filtered/ unless --out is given.
     let headline = opts.out.is_none() && filter.is_none();
     let out_dir = match (&opts.out, filter) {
         (Some(o), _) => o.clone(),
         (None, None) => headline_dir.clone(),
-        (None, Some(_)) => version_dir.join("filtered"),
+        (None, Some(_)) => scratch.join("filtered"),
     };
     if headline {
         // The headline file accumulates drafts: this run replaces only its
-        // own draft's groups, so running drafts one at a time builds up the
-        // full picture. Drafts are kept in canonical order.
+        // own draft's groups. Drafts are kept in canonical order.
         if let Some(prev) = previous {
-            let mut kept: Vec<GroupResult> = prev.groups.into_iter().filter(|g| g.draft != opts.draft).collect();
+            let mut kept: Vec<GroupResult> = prev.groups.into_iter().filter(|g| g.draft != draft).collect();
             kept.append(&mut results.groups);
             kept.sort_by_key(|g| summary::draft_rank(&g.draft));
             results.groups = kept;
@@ -280,20 +322,17 @@ pub fn run(opts: RunOpts) -> Result<()> {
     }
     results.generated_at = results.groups.iter().map(|g| g.generated_at.clone()).max().unwrap_or_default();
     results.save(&out_dir.join("results.json"))?;
-    std::fs::write(out_dir.join("summary.md"), summary::render(&results))?;
+    std::fs::write(out_dir.join("README.md"), summary::render(&results))?;
     if headline {
         write_scoreboard()?;
     }
 
     if filter.is_some() {
-        print_detail(&results, &gen_dir, &items_keys(&results, &groups))?;
+        let keys: BTreeMap<String, String> = items.iter().map(|i| (i.group.id(), i.key.clone())).collect();
+        print_detail(&results, &gen_dir, &keys);
     }
     println!("{}", summary::render_terminal(&results));
-    eprintln!(
-        "{fresh} fresh, {cached} cached; wrote {} ({:.1?} total)",
-        out_dir.join("results.json").display(),
-        started.elapsed()
-    );
+    eprintln!("{fresh} fresh, {cached} cached; wrote {} ({:.1?} total)", out_dir.join("results.json").display(), started.elapsed());
     Ok(())
 }
 
@@ -321,35 +360,32 @@ pub fn write_scoreboard() -> Result<()> {
     Ok(())
 }
 
-/// Re-render every `results/*/summary.md` and `RESULTS.md` from the stored
+/// Re-render every `results/*/README.md` and `RESULTS.md` from the stored
 /// results, without running anything.
 pub fn render_all() -> Result<()> {
     for (dir, r) in all_results()? {
-        std::fs::write(dir.join("summary.md"), summary::render(&r))?;
-        eprintln!("rendered {}", dir.join("summary.md").display());
+        std::fs::write(dir.join("README.md"), summary::render(&r))?;
+        eprintln!("rendered {}", dir.join("README.md").display());
     }
     write_scoreboard()?;
     eprintln!("rendered {}", repo_root().join("RESULTS.md").display());
     Ok(())
 }
 
-/// Map group id -> generated module key, for pointing humans at the file.
-fn items_keys(results: &Results, groups: &[Group]) -> BTreeMap<String, String> {
-    let by_id: BTreeMap<String, &Group> = groups.iter().map(|g| (g.id(), g)).collect();
-    results
-        .groups
-        .iter()
-        .filter_map(|r| by_id.get(&r.id).map(|g| (r.id.clone(), module_key(g, &results.typify))))
-        .collect()
-}
-
 /// Per-group, per-case detail for filtered runs.
-fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, String>) -> Result<()> {
+fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, String>) {
     for g in &results.groups {
         println!("{} {}  [{}]", g.bucket.glyph(), g.id, g.bucket.name());
         if let Some(k) = keys.get(&g.id) {
-            let path = gen_dir.join(format!("{k}.rs"));
-            if path.exists() {
+            // Whatever extension the generator used.
+            if let Some(path) = std::fs::read_dir(gen_dir)
+                .ok()
+                .into_iter()
+                .flatten()
+                .filter_map(|e| e.ok())
+                .map(|e| e.path())
+                .find(|p| p.file_stem().is_some_and(|s| s == k.as_str()))
+            {
                 println!("    generated: {}", path.display());
             }
         }
@@ -373,7 +409,6 @@ fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, Strin
         }
         println!();
     }
-    Ok(())
 }
 
 fn first_lines(s: &str, n: usize) -> String {

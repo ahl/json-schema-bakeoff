@@ -1,7 +1,5 @@
-mod compile;
-mod crashguard;
 mod diff;
-mod generate;
+mod generator;
 mod pipeline;
 mod results;
 mod runner;
@@ -9,37 +7,28 @@ mod suite;
 mod summary;
 
 use anyhow::Result;
-use clap::{Parser, Subcommand, ValueEnum};
+use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
 #[derive(Parser)]
-#[command(about = "Run the JSON Schema test suite through typify")]
+#[command(about = "Run the JSON Schema test suite through code generators and keep score")]
 struct Cli {
     #[command(subcommand)]
     cmd: Cmd,
 }
 
-#[derive(Clone, Copy, Debug, ValueEnum)]
-enum Version {
-    Typify1,
-}
-
-impl Version {
-    fn label(self) -> &'static str {
-        match self {
-            Version::Typify1 => "typify1",
-        }
-    }
-}
-
 #[derive(Subcommand)]
 enum Cmd {
-    /// Generate, compile, and run; write results/<version>/{results.json,summary.md}.
+    /// Run the suite through generators; store results/<version>/results.json and render.
     Run {
-        #[arg(long, value_enum, default_value = "typify1")]
-        version: Version,
+        /// Generator directory under generators/ (default: every generator).
+        #[arg(long)]
+        generator: Option<String>,
+        /// Target within the generator, e.g. go (default: every target it lists).
+        #[arg(long)]
+        target: Option<String>,
         /// Draft directory under suite/tests (e.g. draft7), or `all`.
-        #[arg(long, default_value = "draft7")]
+        #[arg(long, default_value = "all")]
         draft: String,
         /// Substring filter on `<file>::<group>::<case>`.
         #[arg(long)]
@@ -56,43 +45,44 @@ enum Cmd {
         #[arg(long)]
         out: Option<PathBuf>,
     },
-    /// Compare two results.json files and list groups that moved buckets.
-    Diff { a: PathBuf, b: PathBuf },
-    /// Re-render every results/*/summary.md and RESULTS.md from stored
+    /// Re-render every results/*/README.md and RESULTS.md from stored
     /// results, without running anything.
     Render,
+    /// Compare two results.json files and list groups that moved buckets.
+    Diff { a: PathBuf, b: PathBuf },
+    /// List the generators and targets found under generators/.
+    Generators,
     /// Print the bucket key.
     Key,
 }
 
 fn main() -> Result<()> {
-    crashguard::install();
     match Cli::parse().cmd {
-        Cmd::Run { version, draft, filter, no_optional, no_cache, out } => {
+        Cmd::Run { generator, target, draft, filter, no_optional, no_cache, out } => {
             let drafts: Vec<String> = if draft == "all" {
                 summary::DRAFT_ORDER.iter().map(|d| d.to_string()).collect()
             } else {
                 vec![draft]
             };
-            for draft in drafts {
-                pipeline::run(pipeline::RunOpts {
-                    version: version.label(),
-                    draft,
-                    filter: filter.clone(),
-                    optional: !no_optional,
-                    no_cache,
-                    out: out.clone(),
-                })?;
-            }
-            Ok(())
+            pipeline::run(pipeline::RunOpts { generator, target, drafts, filter, optional: !no_optional, no_cache, out })
         }
+        Cmd::Render => pipeline::render_all(),
         Cmd::Diff { a, b } => {
             let a = results::Results::load(&a)?;
             let b = results::Results::load(&b)?;
             print!("{}", diff::render(&a, &b));
             Ok(())
         }
-        Cmd::Render => pipeline::render_all(),
+        Cmd::Generators => {
+            for g in generator::discover(&pipeline::repo_root())? {
+                if g.targets.is_empty() {
+                    println!("{}", g.name);
+                } else {
+                    println!("{}  targets: {}", g.name, g.targets.join(", "));
+                }
+            }
+            Ok(())
+        }
         Cmd::Key => {
             println!("{}", results::Bucket::key_text());
             Ok(())
