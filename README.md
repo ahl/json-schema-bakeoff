@@ -61,9 +61,9 @@ section has a paragraph on each tool's design center.
   of an OpenAPI 3.1 document; the check calls the generated decoder and
   `Validate()`.
 - `jsonschema-0.58`, `ajv`: validators, not generators (marked 𝓥 on the
-  scoreboard). They calibrate the Rust and Node paths, resolve the suite's
-  `localhost:1234` remotes from `suite/remotes/`, and leave `format` at each
-  library's default.
+  scoreboard). They calibrate the Rust and Node paths and resolve the suite's
+  `localhost:1234` remotes from `suite/remotes/`. jsonschema asserts `format`
+  in every draft; ajv ships no formats and ignores it.
 
 ## License
 

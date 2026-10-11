@@ -29,7 +29,8 @@ commands run as subprocesses), the runner protocol, the buckets, the record
 cache (hash of harness revision, tool identity, generator sources, group,
 schema, cases), and the policies (remote refs left to fail for generators,
 resolved from `suite/remotes/` only by validator rows; `format` at library
-defaults; dialect passed as `draft`).
+defaults for generators, asserted by the jsonschema row; dialect passed as
+`draft`).
 
 `harness/` orchestrates. `rust-batch/` is the shared build step for Rust
 output. Everything scratch is under `target/`; Adam deletes it freely.
