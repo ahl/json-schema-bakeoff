@@ -1,6 +1,14 @@
-# Conformance summary — quicktype-26.0.0-go (quicktype 26.0.0 go)
+# quicktype 26.0.0 go
 
-_generated 2026-10-11T18:07:21Z_
+quicktype infers types from JSON samples or schemas and emits them in many
+languages. Its design center is the shape of data: produce ergonomic,
+compilable types everywhere, with serialization glue for each language.
+Validation beyond type and shape is out of scope, so constraint keywords
+(bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted
+silently. The TypeScript target adds a runtime type check; the Go target
+leans on encoding/json's leniency.
+
+_generated 2026-10-11T18:13:31Z_
 
 **302 of 1408 non-optional groups pass (21.4%)**; 301 optional groups reported separately
 

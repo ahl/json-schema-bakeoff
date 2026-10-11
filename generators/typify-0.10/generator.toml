@@ -2,6 +2,16 @@
 # pinned crate (see Cargo.toml) and names the results directory.
 name = "typify-0.10"
 
+description = """
+typify turns JSON Schema into Rust types for serde. It grew out of generating
+OpenAPI clients (progenitor), so its design center is idiomatic Rust that
+round-trips through serde: structs, enums, newtypes, and `deny_unknown_fields`
+where the schema is closed. Validation is whatever the type system expresses;
+constraints it doesn't model are silently absent, and constructs it can't
+represent fail at generation rather than produce a wrong type. The 0.10 line
+is the in-progress rewrite onto the typespace crate.
+"""
+
 [commands]
 # Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
 # {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.

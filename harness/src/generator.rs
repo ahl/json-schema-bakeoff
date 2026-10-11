@@ -5,6 +5,7 @@
 //!
 //! ```toml
 //! name = "quicktype"
+//! description = "What the tool is and what it's designed for."
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
@@ -31,6 +32,10 @@ use std::process::{Command, Stdio};
 #[derive(Debug, Deserialize)]
 struct Manifest {
     name: String,
+    /// A paragraph on what the tool is and its apparent design center,
+    /// shown on the scoreboard and the generator's page.
+    #[serde(default)]
+    description: String,
     #[serde(default)]
     targets: Vec<String>,
     commands: Commands,
@@ -46,6 +51,7 @@ struct Commands {
 #[derive(Debug)]
 pub struct Generator {
     pub name: String,
+    pub description: String,
     pub dir: PathBuf,
     root: PathBuf,
     /// Targets from the manifest; empty means the generator has one
@@ -102,7 +108,14 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
     let path = dir.join("generator.toml");
     let text = std::fs::read_to_string(&path).with_context(|| format!("reading {}", path.display()))?;
     let m: Manifest = toml::from_str(&text).with_context(|| format!("parsing {}", path.display()))?;
-    Ok(Generator { name: m.name, dir: dir.to_path_buf(), root: root.to_path_buf(), targets: m.targets, commands: m.commands })
+    Ok(Generator {
+        name: m.name,
+        description: m.description.trim().to_string(),
+        dir: dir.to_path_buf(),
+        root: root.to_path_buf(),
+        targets: m.targets,
+        commands: m.commands,
+    })
 }
 
 impl Generator {

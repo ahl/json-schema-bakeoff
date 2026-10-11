@@ -1,6 +1,14 @@
-# Conformance summary — typify-0.10.0-alpha.2 (typify 0.10.0-alpha.2)
+# typify 0.10.0-alpha.2
 
-_generated 2026-10-11T18:06:38Z_
+typify turns JSON Schema into Rust types for serde. It grew out of generating
+OpenAPI clients (progenitor), so its design center is idiomatic Rust that
+round-trips through serde: structs, enums, newtypes, and `deny_unknown_fields`
+where the schema is closed. Validation is whatever the type system expresses;
+constraints it doesn't model are silently absent, and constructs it can't
+represent fail at generation rather than produce a wrong type. The 0.10 line
+is the in-progress rewrite onto the typespace crate.
+
+_generated 2026-10-11T18:13:08Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
