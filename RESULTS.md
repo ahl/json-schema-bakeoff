@@ -21,12 +21,12 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T18:25:16Z |
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [\*\*](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:28:00Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:13:22Z |
+| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T18:33:48Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [\*\*](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:32:37Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:31:54Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:25:46Z |
-| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:23:42Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:23:26Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:31:38Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:31:22Z |
 
 ### Optional tests
 
@@ -34,12 +34,12 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T18:25:16Z |
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [\*\*](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:28:00Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:13:22Z |
+| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T18:33:48Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [\*\*](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:32:37Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:31:54Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:25:46Z |
-| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:23:42Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:23:26Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:31:38Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:31:22Z |
 
 ## Other languages
 
@@ -49,11 +49,11 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0](results/ajv-8.20.0/README.md) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:22:08Z |
-| [go-jsonschema v0.24.1 (unknown)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.7% | 1.8% | 2026-10-11T18:24:33Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [\*\*](#notes) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:28:47Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 2.1% | 2026-10-11T18:30:38Z |
 | [json-schema-to-zod 2.8.1 (zod 4.6.6) (ts)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:23:45Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:13:31Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:13:45Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:32:03Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:32:18Z |
 
 ### Optional tests
 
@@ -61,11 +61,11 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0](results/ajv-8.20.0/README.md) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:22:08Z |
-| [go-jsonschema v0.24.1 (unknown)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-10-11T18:24:33Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [\*\*](#notes) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:28:47Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-10-11T18:30:38Z |
 | [json-schema-to-zod 2.8.1 (zod 4.6.6) (ts)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:23:45Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:13:31Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:13:45Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:32:03Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:32:18Z |
 
 ## The tools
 
@@ -98,19 +98,10 @@ that a schema whose root has no `type` keyword produces no root type at all,
 and the combinators (`allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`,
 `const`) are reduced to `interface{}`.
 
-**[json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md)** — json-schema-rs turns a JSON Schema into serde structs, and its design center
-is the hand-written schema that describes a configuration object: the root
-must be `type: "object"` with non-empty `properties` or it refuses to
-generate, and each schema object is modelled as one shape with one keyword
-per field, so `type: ["string", "null"]` or a tuple `items` fails to parse
-rather than degrading. It also generates in the other direction — every
-struct it emits derives its `ToJsonSchema` and carries `#[json_schema(...)]`
-attributes, which record the constraints — `minLength`, `pattern`, bounds —
-for that round trip and for the crate's own validator, not for serde, which
-ignores them. It is an early crate (the 0.0 line) that takes 2020-12 as its
-default dialect: applicators are types rather than validation, and a root
-`anyOf`/`oneOf` becomes an externally tagged enum that no plain instance
-deserializes into.
+**[json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md)** — A young Rust generator (0.0.x) aimed at hand-written config schemas: the root
+must be an object with `properties` or it refuses outright. Constraints come
+out as attributes for its own validator, which serde ignores, so it's
+measured on the little it does model.
 
 **[json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md)** — json-schema-to-zod rewrites a JSON Schema into zod schema source: one zod
 expression, as a string, for you to paste into a TypeScript project. Its
@@ -126,39 +117,30 @@ is not meant to be used at runtime and recommends Ajv instead; we run it
 anyway, because what it does translate it translates exactly. Deprecated
 since March 2026.
 
-**[jsonschema 0.58.6](results/jsonschema-0.58.6/README.md)** — jsonschema is a Rust validator, not a code generator: it interprets the
-schema at run time instead of compiling it into types, so it can enforce
-every keyword, which a type generator structurally cannot. It is the
-reference row: it shows the ceiling the suite allows, calibrates the harness
-(a miss here is a harness bug or a policy), and prices the policies the
-generators live with. It resolves `localhost:1234` remotes from
-`suite/remotes/`, selects the dialect from the suite directory, and leaves
-`format` at the library default (asserted through draft 7, annotation-only
-from 2019-09 on).
+**[jsonschema 0.58.6](results/jsonschema-0.58.6/README.md)** — A Rust validator, not a generator: it interprets the schema at run time, so
+it can enforce every keyword, which a type generator structurally can't. It's
+the reference row: the ceiling the suite allows, a check on the harness, and
+a price tag on the policies the generators live with. Remote refs come from
+`suite/remotes/`, the dialect from the suite directory, and `format` stays at
+the library default (asserted through draft 7, annotation-only after).
 
-**[quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md)** — quicktype infers types from JSON samples or schemas and emits them in many
-languages. Its design center is the shape of data: produce ergonomic,
-compilable types everywhere, with serialization glue for each language.
-Validation beyond type and shape is out of scope, so constraint keywords
-(bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted
-silently. The TypeScript target adds a runtime type check; the Go target
-leans on encoding/json's leniency.
+**[quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md)** — Types in a dozen languages from JSON samples or schemas. Its design center is
+the shape of data: ergonomic, compilable types everywhere. Validation beyond
+shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
+exclusivity sail through. TypeScript adds a runtime type check; Go leans on
+encoding/json's leniency.
 
-**[quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md)** — quicktype infers types from JSON samples or schemas and emits them in many
-languages. Its design center is the shape of data: produce ergonomic,
-compilable types everywhere, with serialization glue for each language.
-Validation beyond type and shape is out of scope, so constraint keywords
-(bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted
-silently. The TypeScript target adds a runtime type check; the Go target
-leans on encoding/json's leniency.
+**[quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md)** — Types in a dozen languages from JSON samples or schemas. Its design center is
+the shape of data: ergonomic, compilable types everywhere. Validation beyond
+shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
+exclusivity sail through. TypeScript adds a runtime type check; Go leans on
+encoding/json's leniency.
 
-**[quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md)** — quicktype infers types from JSON samples or schemas and emits them in many
-languages. Its design center is the shape of data: produce ergonomic,
-compilable types everywhere, with serialization glue for each language.
-Validation beyond type and shape is out of scope, so constraint keywords
-(bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted
-silently. The TypeScript target adds a runtime type check; the Go target
-leans on encoding/json's leniency.
+**[quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md)** — Types in a dozen languages from JSON samples or schemas. Its design center is
+the shape of data: ergonomic, compilable types everywhere. Validation beyond
+shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
+exclusivity sail through. TypeScript adds a runtime type check; Go leans on
+encoding/json's leniency.
 
 **[schemafy 0.6.0](results/schemafy-0.6.0/README.md)** — schemafy is the original Rust JSON Schema → serde generator (2017), usually
 used through the `schemafy!` proc macro that drops types for a schema file
@@ -172,18 +154,15 @@ a `$ref` it can't find) panics rather than degrading. `schemafy_lib` is the
 library behind the macro, and the generator here calls its `Expander`
 directly.
 
-**[typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md)** — typify turns JSON Schema into Rust types for serde. It grew out of generating
-OpenAPI clients (progenitor), so its design center is idiomatic Rust that
-round-trips through serde: structs, enums, newtypes, and `deny_unknown_fields`
-where the schema is closed. Validation is whatever the type system expresses;
-constraints it doesn't model are silently absent, and constructs it can't
-represent fail at generation rather than produce a wrong type. The 0.10 line
-is the in-progress rewrite onto the typespace crate.
+**[typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md)** — Rust types for serde from JSON Schema, built to generate OpenAPI clients
+(progenitor). Its design center is idiomatic Rust: structs, enums, newtypes,
+`deny_unknown_fields` when the schema is closed. Validation is whatever the
+type system can say; anything else is silently absent, and a construct it
+can't model fails at generation rather than producing a wrong type. The 0.10
+line is the in-progress rewrite on top of typespace.
 
-**[typify 0.8.0](results/typify-0.8.0/README.md)** — typify 0.8.0 is the last release before the typespace rewrite. Same design
-center as 0.10: idiomatic serde types for Rust, validation only where the
-type system expresses it, generation failures for the rest. Included so the
-rewrite can be measured against where it started.
+**[typify 0.8.0](results/typify-0.8.0/README.md)** — The last typify release before the typespace rewrite. Same design center as
+0.10; it's here so the rewrite has something to be measured against.
 
 ## Notes
 

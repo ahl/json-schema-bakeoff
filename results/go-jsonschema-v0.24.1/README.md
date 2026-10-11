@@ -12,9 +12,9 @@ that a schema whose root has no `type` keyword produces no root type at all,
 and the combinators (`allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`,
 `const`) are reduced to `interface{}`.
 
-_generated 2026-10-11T18:24:33Z_
+_generated 2026-10-11T18:30:38Z_
 
-**26 of 1408 non-optional groups pass (1.8%)**; 301 optional groups reported separately
+**28 of 1408 non-optional groups pass (2.0%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -36,9 +36,9 @@ _generated 2026-10-11T18:24:33Z_
 | draft4 | 3 | 11 | 1 | 2 | 121 | 22 | 160 | 1.9% |
 | draft6 | 3 | 10 | 1 | 3 | 172 | 44 | 233 | 1.3% |
 | draft7 | 3 | 10 | 1 | 3 | 185 | 56 | 258 | 1.2% |
-| draft2019-09 | 10 | 31 | 1 | 3 | 280 | 48 | 373 | 2.7% |
-| draft2020-12 | 7 | 13 | 1 | 3 | 338 | 22 | 384 | 1.8% |
-| **Total** | **26** | **75** | **5** | **14** | **1096** | **192** | **1408** | **1.8%** |
+| draft2019-09 | 11 | 31 | 1 | 3 | 279 | 48 | 373 | 2.9% |
+| draft2020-12 | 8 | 13 | 1 | 3 | 337 | 22 | 384 | 2.1% |
+| **Total** | **28** | **75** | **5** | **14** | **1094** | **192** | **1408** | **2.0%** |
 
 ### Optional groups
 
@@ -58,9 +58,9 @@ _generated 2026-10-11T18:24:33Z_
 | draft4 | 75 | 101 | 74.3% | 618 | 12.1% |
 | draft6 | 75 | 102 | 73.5% | 841 | 8.9% |
 | draft7 | 75 | 102 | 73.5% | 929 | 8.1% |
-| draft2019-09 | 111 | 168 | 66.1% | 1261 | 8.8% |
-| draft2020-12 | 88 | 121 | 72.7% | 1301 | 6.8% |
-| **Total** | **424** | **594** | **71.4%** | **4950** | **8.6%** |
+| draft2019-09 | 113 | 170 | 66.5% | 1261 | 9.0% |
+| draft2020-12 | 90 | 123 | 73.2% | 1301 | 6.9% |
+| **Total** | **428** | **598** | **71.6%** | **4950** | **8.6%** |
 
 ### Per-case match rate (optional)
 
@@ -317,10 +317,10 @@ _generated 2026-10-11T18:24:33Z_
 | required.json | 0 | 0 | 0 | 0 | 5 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | type.json | 1 | 7 | 0 | 3 | 0 | 0 | 11 | 🤪🙈🙈🙈🙈🙈🙈🤪✅🤪🙈 |
 | unevaluatedItems.json | 0 | 0 | 0 | 0 | 11 | 15 | 26 | 🦀🦀🦀🦀❌❌🦀🦀❌🦀❌❌❌❌❌❌🦀❌❌❌❌❌🦀🦀🦀❌ |
-| unevaluatedProperties.json | 6 | 21 | 0 | 0 | 16 | 1 | 44 | ✅🙈🙈🙈🙈✅🦀🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🦀🦀🦀🦀🦀✅✅🙈🙈🙈🙈🙈🙈🙈❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
+| unevaluatedProperties.json | 7 | 21 | 0 | 0 | 15 | 1 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🦀🦀🦀🦀🦀✅✅🙈🙈🙈🙈🙈🙈🙈❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 2 | 4 | 6 | 🦀❌❌🦀❌❌ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🦀✅ |
-| **Total** | **10** | **31** | **1** | **3** | **280** | **48** | **373** |  |
+| **Total** | **11** | **31** | **1** | **3** | **279** | **48** | **373** |  |
 
 #### optional
 
@@ -407,10 +407,10 @@ _generated 2026-10-11T18:24:33Z_
 | required.json | 0 | 0 | 0 | 0 | 5 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | type.json | 1 | 7 | 0 | 3 | 0 | 0 | 11 | 🤪🙈🙈🙈🙈🙈🙈🤪✅🤪🙈 |
 | unevaluatedItems.json | 0 | 0 | 0 | 0 | 29 | 0 | 29 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
-| unevaluatedProperties.json | 1 | 0 | 0 | 0 | 43 | 0 | 44 | 🦀🦀🦀🦀🦀✅🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
+| unevaluatedProperties.json | 2 | 0 | 0 | 0 | 42 | 0 | 44 | 🦀🦀🦀🦀🦀✅✅🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 6 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | vocabulary.json | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🦀✅ |
-| **Total** | **7** | **13** | **1** | **3** | **338** | **22** | **384** |  |
+| **Total** | **8** | **13** | **1** | **3** | **337** | **22** | **384** |  |
 
 #### optional
 
@@ -456,46 +456,46 @@ _generated 2026-10-11T18:24:33Z_
 
 ### ❌ `generation_error` (207)
 
-130 distinct first-line errors; most common:
+25 distinct first-line errors; most common:
 
+- **107×** `error parsing from file <schema>: cannot load schema`
 - **59×** `schema has no root`
 - **5×** `cannot add struct field: could not generate type with scope 'NodeSubtree': could not follow $ref "tree" to file "tree": cannot load schema`
 - **5×** `could not follow $ref "folderInteger.json" to file "folderInteger.json": cannot load schema`
 - **3×** `cannot add struct field: could not generate type with scope 'RootList': definition does not exist in schema: "baz/definitions/bar" (from ref "#/definitions/baz/…`
-- **2×** `cannot add struct field: could not generate type with scope 'ExtendedBar': could not follow $ref "bar" to file "bar": cannot load schema`
 
 Per group:
 
-- `draft4/additionalItems.json::additionalItems as schema` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_1c72691a55870c0e/Root: cannot load schema`
-- `draft4/additionalItems.json::array of items with no additionalItems permitted` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_75fcead834bd0bdd/Root: cannot load schema`
-- `draft4/additionalItems.json::additionalItems are allowed by default` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_e47a57f7b8e52b41/Root: cannot load schema`
-- `draft4/additionalItems.json::additionalItems does not look in applicators, invalid case` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_8e61f25b1b748183/Root: cannot load schema`
-- `draft4/additionalItems.json::items validation adjusts the starting index for additionalItems` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_9e26b86296cbd8c4/Root: cannot load schema`
-- `draft4/additionalItems.json::additionalItems with heterogeneous array` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_0beb84366201b1a3/Root: cannot load schema`
+- `draft4/additionalItems.json::additionalItems as schema` — `error parsing from file <schema>: cannot load schema`
+- `draft4/additionalItems.json::array of items with no additionalItems permitted` — `error parsing from file <schema>: cannot load schema`
+- `draft4/additionalItems.json::additionalItems are allowed by default` — `error parsing from file <schema>: cannot load schema`
+- `draft4/additionalItems.json::additionalItems does not look in applicators, invalid case` — `error parsing from file <schema>: cannot load schema`
+- `draft4/additionalItems.json::items validation adjusts the starting index for additionalItems` — `error parsing from file <schema>: cannot load schema`
+- `draft4/additionalItems.json::additionalItems with heterogeneous array` — `error parsing from file <schema>: cannot load schema`
 - `draft4/dependencies.json::dependencies` — `schema has no root`
 - `draft4/dependencies.json::multiple dependencies` — `schema has no root`
 - `draft4/dependencies.json::multiple dependencies subschema` — `schema has no root`
 - `draft4/dependencies.json::dependencies with escaped characters` — `schema has no root`
-- `draft4/items.json::an array of schemas for items` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_fec04406af7f4128/Root: cannot load schema`
-- `draft4/items.json::items and subitems` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_68a28a0e00916a2d/Root: cannot load schema`
-- `draft4/items.json::array-form items with null instance elements` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_5367cf1b962a39e6/Root: cannot load schema`
-- `draft4/ref.json::relative pointer ref to array` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_7fdd6850fb381c59/Root: cannot load schema`
+- `draft4/items.json::an array of schemas for items` — `error parsing from file <schema>: cannot load schema`
+- `draft4/items.json::items and subitems` — `error parsing from file <schema>: cannot load schema`
+- `draft4/items.json::array-form items with null instance elements` — `error parsing from file <schema>: cannot load schema`
+- `draft4/ref.json::relative pointer ref to array` — `error parsing from file <schema>: cannot load schema`
 - `draft4/ref.json::Recursive references between schemas` — `cannot add struct field: could not generate type with scope 'NodeSubtree': could not follow $ref "tree" to file "tree": cannot load schema`
 - `draft4/refRemote.json::base URI change - change folder` — `could not follow $ref "folderInteger.json" to file "folderInteger.json": cannot load schema`
 - `draft4/refRemote.json::base URI change - change folder in subschema` — `cannot add struct field: could not generate type with scope 'RootList': definition does not exist in schema: "baz/definitions/bar" (from ref "#/definitions/baz/…`
 - `draft4/refRemote.json::root ref in remote ref` — `cannot add struct field: could not generate type with scope 'RootName': could not follow $ref "draft4/name.json#/definitions/orNull" to file "draft4/name.json":…`
-- `draft4/uniqueItems.json::uniqueItems with an array of items` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_edb20af5b7811909/Root: cannot load schema`
-- `draft4/uniqueItems.json::uniqueItems with an array of items and additionalItems=false` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_972c7a4a18230320/Root: cannot load schema`
-- `draft4/uniqueItems.json::uniqueItems=false with an array of items` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_63105c37d9ca0f0c/Root: cannot load schema`
-- `draft4/uniqueItems.json::uniqueItems=false with an array of items and additionalItems=false` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_8eea91633219e382/Root: cannot load schema`
-- `draft6/additionalItems.json::additionalItems as schema` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_c0c38fa8555ef566/Root: cannot load schema`
-- `draft6/additionalItems.json::array of items with no additionalItems permitted` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_e830158889f509c5/Root: cannot load schema`
-- `draft6/additionalItems.json::additionalItems are allowed by default` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_52f0963e72506c55/Root: cannot load schema`
-- `draft6/additionalItems.json::additionalItems does not look in applicators, invalid case` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_0c89ee0a52045ac2/Root: cannot load schema`
-- `draft6/additionalItems.json::items validation adjusts the starting index for additionalItems` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_c7a76c6ad5232d4c/Root: cannot load schema`
-- `draft6/additionalItems.json::additionalItems with heterogeneous array` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_af2433685725f7fd/Root: cannot load schema`
-- `draft6/boolean_schema.json::boolean schema 'true'` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_b6249cf433df54a6/Root: cannot load schema`
-- `draft6/boolean_schema.json::boolean schema 'false'` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_cac0d06582846a4c/Root: cannot load schema`
+- `draft4/uniqueItems.json::uniqueItems with an array of items` — `error parsing from file <schema>: cannot load schema`
+- `draft4/uniqueItems.json::uniqueItems with an array of items and additionalItems=false` — `error parsing from file <schema>: cannot load schema`
+- `draft4/uniqueItems.json::uniqueItems=false with an array of items` — `error parsing from file <schema>: cannot load schema`
+- `draft4/uniqueItems.json::uniqueItems=false with an array of items and additionalItems=false` — `error parsing from file <schema>: cannot load schema`
+- `draft6/additionalItems.json::additionalItems as schema` — `error parsing from file <schema>: cannot load schema`
+- `draft6/additionalItems.json::array of items with no additionalItems permitted` — `error parsing from file <schema>: cannot load schema`
+- `draft6/additionalItems.json::additionalItems are allowed by default` — `error parsing from file <schema>: cannot load schema`
+- `draft6/additionalItems.json::additionalItems does not look in applicators, invalid case` — `error parsing from file <schema>: cannot load schema`
+- `draft6/additionalItems.json::items validation adjusts the starting index for additionalItems` — `error parsing from file <schema>: cannot load schema`
+- `draft6/additionalItems.json::additionalItems with heterogeneous array` — `error parsing from file <schema>: cannot load schema`
+- `draft6/boolean_schema.json::boolean schema 'true'` — `error parsing from file <schema>: cannot load schema`
+- `draft6/boolean_schema.json::boolean schema 'false'` — `error parsing from file <schema>: cannot load schema`
 - `draft6/contains.json::contains keyword validation` — `schema has no root`
 - `draft6/contains.json::contains keyword with const keyword` — `schema has no root`
 - `draft6/contains.json::contains keyword with boolean schema true` — `schema has no root`
@@ -507,20 +507,20 @@ Per group:
 - `draft6/dependencies.json::multiple dependencies subschema` — `schema has no root`
 - `draft6/dependencies.json::dependencies with boolean subschemas` — `schema has no root`
 - `draft6/dependencies.json::dependencies with escaped characters` — `schema has no root`
-- `draft6/items.json::an array of schemas for items` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_765f9e07b3eff846/Root: cannot load schema`
-- `draft6/items.json::items with boolean schemas` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_b957e9c476f68bf7/Root: cannot load schema`
-- `draft6/items.json::items and subitems` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_3b962b95a8c29026/Root: cannot load schema`
-- `draft6/items.json::array-form items with null instance elements` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_37e4ead0bc711296/Root: cannot load schema`
-- `draft6/maxItems.json::maxItems validation with a decimal` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_5805527fe81220c6/Root: cannot load schema`
-- `draft6/maxLength.json::maxLength validation with a decimal` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_3c9e98920f927dcc/Root: cannot load schema`
-- `draft6/maxProperties.json::maxProperties validation with a decimal` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_628eec378d89394f/Root: cannot load schema`
-- `draft6/minItems.json::minItems validation with a decimal` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_5858e707d8aad2ed/Root: cannot load schema`
-- `draft6/minLength.json::minLength validation with a decimal` — `error parsing from file /Users/ahl/src/typify-conformance/target/bakeoff/go-jsonschema-v0.24.1/go-jsonschema-schemas/g_e72021a2ffb27d92/Root: cannot load schema`
+- `draft6/items.json::an array of schemas for items` — `error parsing from file <schema>: cannot load schema`
+- `draft6/items.json::items with boolean schemas` — `error parsing from file <schema>: cannot load schema`
+- `draft6/items.json::items and subitems` — `error parsing from file <schema>: cannot load schema`
+- `draft6/items.json::array-form items with null instance elements` — `error parsing from file <schema>: cannot load schema`
+- `draft6/maxItems.json::maxItems validation with a decimal` — `error parsing from file <schema>: cannot load schema`
+- `draft6/maxLength.json::maxLength validation with a decimal` — `error parsing from file <schema>: cannot load schema`
+- `draft6/maxProperties.json::maxProperties validation with a decimal` — `error parsing from file <schema>: cannot load schema`
+- `draft6/minItems.json::minItems validation with a decimal` — `error parsing from file <schema>: cannot load schema`
+- `draft6/minLength.json::minLength validation with a decimal` — `error parsing from file <schema>: cannot load schema`
 - … and 157 more
 
-### 🦀 `compile_fail` (1289)
+### 🦀 `compile_fail` (1287)
 
-1184 distinct first-line errors; most common:
+1182 distinct first-line errors; most common:
 
 - **8×** `g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root`
 - **8×** `g_debdfb0bc8ba4bfa/g_debdfb0bc8ba4bfa.go:9:8: undefined: Root`
@@ -580,7 +580,7 @@ Per group:
 - `draft4/format.json::uri format` — `g_6bac4657aa959e29/g_6bac4657aa959e29.go:9:8: undefined: Root`
 - `draft4/infinite-loop-detection.json::evaluating the same schema location against the same data location twice is not a sign of an infinite loop` — `g_19bf22974b211372/g_19bf22974b211372.go:11:8: undefined: Root`
 - `draft4/items.json::a schema given for items` — `g_1a57970c3f190bec/g_1a57970c3f190bec.go:9:8: undefined: Root`
-- … and 1239 more
+- … and 1237 more
 
 ### 🤪 `mixed` (14)
 

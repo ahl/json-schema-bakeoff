@@ -7,6 +7,8 @@
 # the Rust one. Anything other than ✅ here is the harness's doing or a
 # documented policy, not a gap in the tool. See README.md.
 name = "ajv"
+language = "js"
+kind = "validator"
 description = """
 ajv is the JSON Schema validator for JavaScript, and for most of the
 ecosystem it *is* JSON Schema: it compiles a schema into purpose-built

@@ -1,16 +1,13 @@
 # jsonschema 0.58.6
 
-jsonschema is a Rust validator, not a code generator: it interprets the
-schema at run time instead of compiling it into types, so it can enforce
-every keyword, which a type generator structurally cannot. It is the
-reference row: it shows the ceiling the suite allows, calibrates the harness
-(a miss here is a harness bug or a policy), and prices the policies the
-generators live with. It resolves `localhost:1234` remotes from
-`suite/remotes/`, selects the dialect from the suite directory, and leaves
-`format` at the library default (asserted through draft 7, annotation-only
-from 2019-09 on).
+A Rust validator, not a generator: it interprets the schema at run time, so
+it can enforce every keyword, which a type generator structurally can't. It's
+the reference row: the ceiling the suite allows, a check on the harness, and
+a price tag on the policies the generators live with. Remote refs come from
+`suite/remotes/`, the dialect from the suite directory, and `format` stays at
+the library default (asserted through draft 7, annotation-only after).
 
-_generated 2026-10-11T18:28:00Z_
+_generated 2026-10-11T18:32:37Z_
 
 **1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
 

@@ -1,14 +1,12 @@
 # quicktype 26.0.0 typescript
 
-quicktype infers types from JSON samples or schemas and emits them in many
-languages. Its design center is the shape of data: produce ergonomic,
-compilable types everywhere, with serialization glue for each language.
-Validation beyond type and shape is out of scope, so constraint keywords
-(bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted
-silently. The TypeScript target adds a runtime type check; the Go target
-leans on encoding/json's leniency.
+Types in a dozen languages from JSON samples or schemas. Its design center is
+the shape of data: ergonomic, compilable types everywhere. Validation beyond
+shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
+exclusivity sail through. TypeScript adds a runtime type check; Go leans on
+encoding/json's leniency.
 
-_generated 2026-10-11T18:13:45Z_
+_generated 2026-10-11T18:32:18Z_
 
 **591 of 1408 non-optional groups pass (42.0%)**; 301 optional groups reported separately
 

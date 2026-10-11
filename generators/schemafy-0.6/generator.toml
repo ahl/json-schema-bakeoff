@@ -3,6 +3,7 @@
 # directory.
 name = "schemafy-0.6"
 
+language = "rust"
 description = """
 schemafy is the original Rust JSON Schema → serde generator (2017), usually
 used through the `schemafy!` proc macro that drops types for a schema file
