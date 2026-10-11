@@ -11,7 +11,7 @@ publish = false
 [dependencies]
 anyhow = "1"
 prettyplease = "0.3"
-schemars = "0.8"
+schemars = "1.2"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip"] }
 syn = { version = "3", features = ["full"] }
