@@ -313,6 +313,8 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
         description: flavor.generator.description.clone(),
         language: flavor.generator.language(&flavor.target),
         kind: flavor.generator.kind.clone(),
+        generator: flavor.generator.name.clone(),
+        homepage: flavor.generator.homepage.clone(),
         // A flag set by hand in the stored file survives a rerun.
         hidden: flavor.generator.hidden || previous.as_ref().is_some_and(|p| p.hidden),
         generated_at: String::new(),

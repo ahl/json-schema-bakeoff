@@ -1,0 +1,11 @@
+{
+  "name": "bakeoff-ajv",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ajv integration for the JSON Schema codegen bakeoff",
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-draft-04": "1.0.0"
+  }
+}

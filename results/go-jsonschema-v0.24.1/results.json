@@ -4,7 +4,7 @@
   "description": "go-jsonschema (github.com/omissis/go-jsonschema, module path\ngithub.com/atombender/go-jsonschema) turns JSON Schema into Go structs plus\nhand-rolled `UnmarshalJSON` methods that re-check the schema's validation\nkeywords as they decode. Its design center is a configuration file with a\nknown shape: a schema whose root declares `type: object` becomes a struct\nwhose fields carry `json`/`yaml`/`mapstructure` tags, and required fields,\nenums, string lengths, patterns and numeric bounds are enforced in the\ngenerated unmarshaller rather than left to the type system. The flip side is\nthat a schema whose root has no `type` keyword produces no root type at all,\nand the combinators (`allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`,\n`const`) are reduced to `interface{}`.",
   "language": "go",
   "kind": "generator",
-  "generated_at": "2026-10-11T18:30:38Z",
+  "generated_at": "2026-10-11T18:41:27Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -18184,7 +18184,7 @@
       "optional": false,
       "group": "additionalItems as schema",
       "hash": "f0fe99705d87f311dd88a7616abdc1c62fb159243cfe8da58d85a335cbed51d6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -18207,7 +18207,7 @@
       "optional": false,
       "group": "when items is schema, additionalItems does nothing",
       "hash": "0a4cca2f6cfb911347e0d123b2e29cccdf7ab9ca999bfeb5475801b93647e6f6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_c04381face041a9c/g_c04381face041a9c.go:9:8: undefined: Root",
       "cases": [
@@ -18230,7 +18230,7 @@
       "optional": false,
       "group": "when items is schema, boolean additionalItems does nothing",
       "hash": "8164c8d485c0e1b485cf6839b64fc436c04a186c0fb3e429daeda57af6e05843",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f0f8fc70bd481780/g_f0f8fc70bd481780.go:9:8: undefined: Root",
       "cases": [
@@ -18248,7 +18248,7 @@
       "optional": false,
       "group": "array of items with no additionalItems permitted",
       "hash": "00c4998ca5be01f04cb3e1e69d5cb2f524e3e61c847de7c7a3149df66af6217e",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -18286,7 +18286,7 @@
       "optional": false,
       "group": "additionalItems as false without items",
       "hash": "3d099a4c257be76469d6bbfaed5d870f4022ca5f0e7f0043a2f7feda76f5b21a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8e5a20727f334016/g_8e5a20727f334016.go:9:8: undefined: Root",
       "cases": [
@@ -18309,7 +18309,7 @@
       "optional": false,
       "group": "additionalItems are allowed by default",
       "hash": "cb2b582c5b4397c4fc2d96a20a1ab9eaebd3aa721c191d0c96bb3327dbc10c64",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -18327,7 +18327,7 @@
       "optional": false,
       "group": "additionalItems does not look in applicators, invalid case",
       "hash": "3a804e71d0c0f4e2ec8f4cb12c55d872ea09a6560622f387ffa8c78808e6f1b1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -18345,7 +18345,7 @@
       "optional": false,
       "group": "items validation adjusts the starting index for additionalItems",
       "hash": "a8cb24da878d20907411c9db783df68d13e10ce3614e8149dbf4af48f3782f0d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -18368,7 +18368,7 @@
       "optional": false,
       "group": "additionalItems with heterogeneous array",
       "hash": "3ea6b7d1002448fde10a7b66d35dcaeb0b1d4f5de452f9778eef1e1616e43bf6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -18391,7 +18391,7 @@
       "optional": false,
       "group": "additionalItems with null instance elements",
       "hash": "1e0dece8e82e955b9c0ea4bacdc4e79ed438ce465e362b8e5be8e57c84f52cfe",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_76508a721b34f361/g_76508a721b34f361.go:9:8: undefined: Root",
       "cases": [
@@ -18409,7 +18409,7 @@
       "optional": false,
       "group": "additionalProperties being false does not allow other properties",
       "hash": "7714a9ff07a146380d75261b54c0b77ad58e3e853c9ecc89ea193179c31ebac3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9b70e9b6321e34c5/g_9b70e9b6321e34c5.go:9:8: undefined: Root",
       "cases": [
@@ -18452,7 +18452,7 @@
       "optional": false,
       "group": "non-ASCII pattern with additionalProperties",
       "hash": "21ba00748708b56bd5f24b89ecb1c6c64221e51124d67a2ab37e174c55d78362",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_61f8e7934b144d88/g_61f8e7934b144d88.go:9:8: undefined: Root",
       "cases": [
@@ -18475,7 +18475,7 @@
       "optional": false,
       "group": "additionalProperties with schema",
       "hash": "008310debe066a36fb151ca6ffeed558c2fb98942b298417731771f72e85d5ec",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b45d07e670da46d8/g_b45d07e670da46d8.go:9:8: undefined: Root",
       "cases": [
@@ -18503,7 +18503,7 @@
       "optional": false,
       "group": "additionalProperties can exist by itself",
       "hash": "52864d7cf1961ad5d260b000f33d285e4549d6cfa02a63a891c10c62c2121835",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7f2294a3e1b0c161/g_7f2294a3e1b0c161.go:9:8: undefined: Root",
       "cases": [
@@ -18526,7 +18526,7 @@
       "optional": false,
       "group": "additionalProperties are allowed by default",
       "hash": "e884ea0707bca030ef1cc6de4b3ea93a8426d2d87804e95be34ce5511311709f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_998e4b046a30f3f8/g_998e4b046a30f3f8.go:9:8: undefined: Root",
       "cases": [
@@ -18544,7 +18544,7 @@
       "optional": false,
       "group": "additionalProperties does not look in applicators",
       "hash": "0f66eb815fc1a2efd9895807cae24fe52bab90569a4690ee24cf26f7371d4af1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_43ed2612e585d9e5/g_43ed2612e585d9e5.go:9:8: undefined: Root",
       "cases": [
@@ -18562,7 +18562,7 @@
       "optional": false,
       "group": "additionalProperties with null valued instance properties",
       "hash": "f4498acf88e2267cceb8f3934b04e2affd832b9d2a4e2e69f40d0b3cef830af5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_16a508a55c5bc264/g_16a508a55c5bc264.go:9:8: undefined: Root",
       "cases": [
@@ -18580,7 +18580,7 @@
       "optional": false,
       "group": "allOf",
       "hash": "17b4e6c8076a616aeed3b4cdf6dc8a74ef6cd9d98832c7089dcf93584f96338b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_97e85565762df49c/g_97e85565762df49c.go:9:8: undefined: Root",
       "cases": [
@@ -18613,7 +18613,7 @@
       "optional": false,
       "group": "allOf with base schema",
       "hash": "81041a4fa59fd164bbc2252fbe49b9b6b131aa20e4f770ca9dde48e08657e9d7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_855b18290559d23e/g_855b18290559d23e.go:9:8: undefined: Root",
       "cases": [
@@ -18651,7 +18651,7 @@
       "optional": false,
       "group": "allOf simple types",
       "hash": "8adc054922b28e2702763ea9097dad3486313e077adf1147551e9f955495fddd",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_27b6df4472ce382e/g_27b6df4472ce382e.go:9:8: undefined: Root",
       "cases": [
@@ -18674,7 +18674,7 @@
       "optional": false,
       "group": "allOf with boolean schemas, all true",
       "hash": "f35cfa19630975125c2410e645af8f75724c6f88ebaeae820ab1527574962509",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5bea1096c7e239e7/g_5bea1096c7e239e7.go:9:8: undefined: Root",
       "cases": [
@@ -18692,7 +18692,7 @@
       "optional": false,
       "group": "allOf with boolean schemas, some false",
       "hash": "e76dc400803ca9e68a775ce42d4dbc98c5437ac97c43c8f699e81ff2efac7290",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_321910e71f819f01/g_321910e71f819f01.go:9:8: undefined: Root",
       "cases": [
@@ -18710,7 +18710,7 @@
       "optional": false,
       "group": "allOf with boolean schemas, all false",
       "hash": "71c71cf5120379730b3d39c149d5df27751644bea4a40c64e1056bfd26db28c4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_c5ed5ec632ffdbdd/g_c5ed5ec632ffdbdd.go:9:8: undefined: Root",
       "cases": [
@@ -18728,7 +18728,7 @@
       "optional": false,
       "group": "allOf with one empty schema",
       "hash": "55377b029c01c2822563efbf72c8913db189da1c90bbe5fa37cc7852ab52b20a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d00a621192508c37/g_d00a621192508c37.go:9:8: undefined: Root",
       "cases": [
@@ -18746,7 +18746,7 @@
       "optional": false,
       "group": "allOf with two empty schemas",
       "hash": "5125b86398adcdbcfe92806a773b7930e8e3f001d4c7f309d027dedd4640d1ce",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_a62b7ae5cb214491/g_a62b7ae5cb214491.go:9:8: undefined: Root",
       "cases": [
@@ -18764,7 +18764,7 @@
       "optional": false,
       "group": "allOf with the first empty schema",
       "hash": "60a0fcb05aa95ea1080ddafc48bd9dd2d28c7dcc9ba9d02f88061595c12919d1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_4dccb625a35068f4/g_4dccb625a35068f4.go:9:8: undefined: Root",
       "cases": [
@@ -18787,7 +18787,7 @@
       "optional": false,
       "group": "allOf with the last empty schema",
       "hash": "3ad4a81980ba8dfe9caf987ff7e25086495e0bc274dd4e2143f54e7b1150f534",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_cf3bebdd678978b4/g_cf3bebdd678978b4.go:9:8: undefined: Root",
       "cases": [
@@ -18810,7 +18810,7 @@
       "optional": false,
       "group": "nested allOf, to check validation semantics",
       "hash": "bda29b1308f87f601a50b3aef2e9b97d43ae2b50adae4c935a0fd1306cb2229c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8b4cdf762f9fcae9/g_8b4cdf762f9fcae9.go:9:8: undefined: Root",
       "cases": [
@@ -18833,7 +18833,7 @@
       "optional": false,
       "group": "allOf combined with anyOf, oneOf",
       "hash": "2b97ef076a87a5e766cb1bb7941a0b647fec196fbe2b1af3c219d69cee4b2b2e",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_4dbbae4e27c560c9/g_4dbbae4e27c560c9.go:9:8: undefined: Root",
       "cases": [
@@ -18886,7 +18886,7 @@
       "optional": false,
       "group": "anyOf",
       "hash": "43e2a5d9074a7861a9e0d898392c10ab67ca4e7499e55016fe487a5bb58c1566",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9eee9f281cb3c416/g_9eee9f281cb3c416.go:9:8: undefined: Root",
       "cases": [
@@ -18919,7 +18919,7 @@
       "optional": false,
       "group": "anyOf with base schema",
       "hash": "66ec785cf1219882c27f6661eb618fa5ce202c5400dada78f422178a819a08d5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `both anyOf invalid` though valid: false",
       "cases": [
@@ -18948,7 +18948,7 @@
       "optional": false,
       "group": "anyOf with boolean schemas, all true",
       "hash": "9de323709a86d972a91b4919a3df75778842ced0d438cf617c210afee5b81d38",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_74b3fd49811bf595/g_74b3fd49811bf595.go:9:8: undefined: Root",
       "cases": [
@@ -18966,7 +18966,7 @@
       "optional": false,
       "group": "anyOf with boolean schemas, some true",
       "hash": "66eeb7a88d170c0cee6da08c4ceaf6ca1e92cb7befebaf4a928b6f48aa002ccc",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ae5032d792cde4ab/g_ae5032d792cde4ab.go:9:8: undefined: Root",
       "cases": [
@@ -18984,7 +18984,7 @@
       "optional": false,
       "group": "anyOf with boolean schemas, all false",
       "hash": "6001cb5d1577b1ae48ed722c7709f12541546c471b975a6f88c255715c58e068",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_228c38a5a5519803/g_228c38a5a5519803.go:9:8: undefined: Root",
       "cases": [
@@ -19002,7 +19002,7 @@
       "optional": false,
       "group": "anyOf complex types",
       "hash": "b5a62c38bd13b295570ab7001625a4fabfcda085bc274e1bc49a7d259c823095",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7ce8a02e390efe9e/g_7ce8a02e390efe9e.go:9:8: undefined: Root",
       "cases": [
@@ -19035,7 +19035,7 @@
       "optional": false,
       "group": "anyOf with one empty schema",
       "hash": "ff8ce9bb0caed4c54743ab70246540359ad61179dff323f8ed79d0206ee41e1c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1cb234934f1357c3/g_1cb234934f1357c3.go:9:8: undefined: Root",
       "cases": [
@@ -19058,7 +19058,7 @@
       "optional": false,
       "group": "nested anyOf, to check validation semantics",
       "hash": "e3201b5f74121bb5d0fb04d352958d939bc62b6ca26e39f0deda616d0952360d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f42621351b4e9e9a/g_f42621351b4e9e9a.go:9:8: undefined: Root",
       "cases": [
@@ -19081,7 +19081,7 @@
       "optional": false,
       "group": "boolean schema 'true'",
       "hash": "9083b595ee025f3ccefff1ca76648e60df5b2462f0a8dfdba067537073e46c77",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal bool into Go value of type schemas.unmarshalerSchema",
       "cases": [
@@ -19139,7 +19139,7 @@
       "optional": false,
       "group": "boolean schema 'false'",
       "hash": "6c071ca40c7761ac17d6db924e5c7e4aaeb20b435a43683bbc351d41633c1b54",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal bool into Go value of type schemas.unmarshalerSchema",
       "cases": [
@@ -19197,7 +19197,7 @@
       "optional": false,
       "group": "const validation",
       "hash": "da59e13ceef17f7cc0805ba45b7ba3fd53238ae579712edadf4ba2e872d6976b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_02339141cc91fb54/g_02339141cc91fb54.go:9:8: undefined: Root",
       "cases": [
@@ -19225,7 +19225,7 @@
       "optional": false,
       "group": "const with object",
       "hash": "6541444faf87ed63c65c4e9edf9a17ec34223e20aacc72fc296a406f4e7aa759",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_df7b89b1cf27c5d8/g_df7b89b1cf27c5d8.go:9:8: undefined: Root",
       "cases": [
@@ -19258,7 +19258,7 @@
       "optional": false,
       "group": "const with array",
       "hash": "02c135106da4699951063df1004a2fc7e21fe656fb7dbbadfa30de03750273db",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8276f8583d20b098/g_8276f8583d20b098.go:9:8: undefined: Root",
       "cases": [
@@ -19286,7 +19286,7 @@
       "optional": false,
       "group": "const with null",
       "hash": "fbd2648d48548f9c37eea941184a93605648911a3135ef6880a3e8eae50de322",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_91a510851010fca4/g_91a510851010fca4.go:9:8: undefined: Root",
       "cases": [
@@ -19309,7 +19309,7 @@
       "optional": false,
       "group": "const with false does not match 0",
       "hash": "75669a6d65e0e7ce75466a1bb843c16af5275e616ebd5ca3fdc869c6001e0037",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e230ba032cfaa355/g_e230ba032cfaa355.go:9:8: undefined: Root",
       "cases": [
@@ -19337,7 +19337,7 @@
       "optional": false,
       "group": "const with true does not match 1",
       "hash": "ef6fd3c8fe4c159ac802a8020db533eb9bdcbe6fd6a748fd2215934adcf20451",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_667e94ef971c4422/g_667e94ef971c4422.go:9:8: undefined: Root",
       "cases": [
@@ -19365,7 +19365,7 @@
       "optional": false,
       "group": "const with [false] does not match [0]",
       "hash": "f0199f47b96e68a6312e03699280191ca11e4b0bc6c75217a47323497f44e919",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_0da7299978858111/g_0da7299978858111.go:9:8: undefined: Root",
       "cases": [
@@ -19393,7 +19393,7 @@
       "optional": false,
       "group": "const with [true] does not match [1]",
       "hash": "2b326f62e5a19b1635b57ddc1b3e754eb5b11bc4ea3bbdd06faa8c2f8a4ee287",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_cc8a7e2eb8212425/g_cc8a7e2eb8212425.go:9:8: undefined: Root",
       "cases": [
@@ -19421,7 +19421,7 @@
       "optional": false,
       "group": "const with {\"a\": false} does not match {\"a\": 0}",
       "hash": "23e4db5060e5ce04e0a3fc866b2f33c35f3ea3bc8e549b8ea26a79b279710f9a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_475a861479697d59/g_475a861479697d59.go:9:8: undefined: Root",
       "cases": [
@@ -19449,7 +19449,7 @@
       "optional": false,
       "group": "const with {\"a\": true} does not match {\"a\": 1}",
       "hash": "e2a68757b9c43a4e938909aa47d3221617c8bf12495445444b0cba9efb779d1f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_da762b13a1d2e1c5/g_da762b13a1d2e1c5.go:9:8: undefined: Root",
       "cases": [
@@ -19477,7 +19477,7 @@
       "optional": false,
       "group": "const with 0 does not match other zero-like types",
       "hash": "78bd06cecc4b42d4faac4e948d898ec1d1c02d46ae3cfe705484e4dc4c14867d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9f2d488406e815df/g_9f2d488406e815df.go:9:8: undefined: Root",
       "cases": [
@@ -19520,7 +19520,7 @@
       "optional": false,
       "group": "const with 1 does not match true",
       "hash": "20fbe523fd78ff718d62c29c4da68f4c6ff626005130b4795c6ed4e2779a4ac1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_353722523cbfd57b/g_353722523cbfd57b.go:9:8: undefined: Root",
       "cases": [
@@ -19548,7 +19548,7 @@
       "optional": false,
       "group": "const with -2.0 matches integer and float types",
       "hash": "44cea9b3196365959979fe30f18df4ac22368c415d9c98d32bd550985798e0ca",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_fea03ec9295b334b/g_fea03ec9295b334b.go:9:8: undefined: Root",
       "cases": [
@@ -19586,7 +19586,7 @@
       "optional": false,
       "group": "float and integers are equal up to 64-bit representation limits",
       "hash": "fa3010201e405fffcab12be3e151a95e1fbe6abe9099495d1f911cfbe7640c2a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f8e3a185eeaca002/g_f8e3a185eeaca002.go:9:8: undefined: Root",
       "cases": [
@@ -19619,7 +19619,7 @@
       "optional": false,
       "group": "nul characters in strings",
       "hash": "70eb55822dd5b80a5f48d5e7148d066a69ee1310fb773077b3af63b8ae7ce79d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1e05b92fccb09dab/g_1e05b92fccb09dab.go:9:8: undefined: Root",
       "cases": [
@@ -19642,7 +19642,7 @@
       "optional": false,
       "group": "characters with the same visual representation but different codepoint",
       "hash": "0466c55d7b5dbf9027e03a5f237acb8d385c84930f79c34be62974cdaa17c74d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ed093543e3738e4d/g_ed093543e3738e4d.go:9:8: undefined: Root",
       "cases": [
@@ -19665,7 +19665,7 @@
       "optional": false,
       "group": "characters with the same visual representation, but different number of codepoints",
       "hash": "b6662881f86071aba5e0baeffcb92289f597b43004cdca8836215c08e11bad61",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e442fb15fb0345c9/g_e442fb15fb0345c9.go:9:8: undefined: Root",
       "cases": [
@@ -19688,7 +19688,7 @@
       "optional": false,
       "group": "contains keyword validation",
       "hash": "9f6b3a7bb350a5e030e92ad22ab44fe57d1864214ca4a2d147f4074b692c1fdf",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -19731,7 +19731,7 @@
       "optional": false,
       "group": "contains keyword with const keyword",
       "hash": "6f046ad1326368c280ad84f1ddb3a57be75c52b3e2c7355d9820875d2f6a8bd4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -19759,7 +19759,7 @@
       "optional": false,
       "group": "contains keyword with boolean schema true",
       "hash": "2f20480364fed286330c4b3c509f920ce337ceda549caba37d99782b2e7a08e2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -19782,7 +19782,7 @@
       "optional": false,
       "group": "contains keyword with boolean schema false",
       "hash": "9446b7384f4d7888835107d2d18d18f09cad2aa1c68e52011f5485c323f0d86d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -19810,7 +19810,7 @@
       "optional": false,
       "group": "items + contains",
       "hash": "27004602c7cc1fc43b2d8012ff93cb103bce4dacbf829a8310ac53cea6fab247",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1e67f0ff6e2aed1f/g_1e67f0ff6e2aed1f.go:9:8: undefined: Root",
       "cases": [
@@ -19843,7 +19843,7 @@
       "optional": false,
       "group": "contains with false if subschema",
       "hash": "60c1cf91ea86bb1743baa64dc92ea82fdae24330afb799b403607497b481e90c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -19866,7 +19866,7 @@
       "optional": false,
       "group": "contains with null instance elements",
       "hash": "edfb0de4ba3e06d9e1921fd061150f1a8613750486f0f84a30a8b3ed60799536",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -19884,7 +19884,7 @@
       "optional": false,
       "group": "invalid type for default",
       "hash": "f005d34120ce2bb4b77e8d1e09980fdf282b23ab7e0403ebe1940c408e82a240",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b6853c4306c0fc9d/g_b6853c4306c0fc9d.go:9:8: undefined: Root",
       "cases": [
@@ -19907,7 +19907,7 @@
       "optional": false,
       "group": "invalid string value for default",
       "hash": "046ee962e086b82244ae1e487255d5b51c4476e70dd5527bbb6b0a916cce368b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ba6d1b010a828ec3/g_ba6d1b010a828ec3.go:9:8: undefined: Root",
       "cases": [
@@ -19930,7 +19930,7 @@
       "optional": false,
       "group": "the default keyword does not do anything if the property is missing",
       "hash": "7ad0a7d7fb889bc247a025c716f8e4625376cf53a3b070d2df17382a1f3bde1f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_reject",
       "error": "missing properties are not filled in with the default: field alpha: must be <= 3",
       "cases": [
@@ -19960,7 +19960,7 @@
       "optional": false,
       "group": "validate definition against metaschema",
       "hash": "b56bd1418aa84dfdf5014bb371e72ceae3fe210ba5b093e8a41b4538c7d40906",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d6d487c86b278c6c/g_d6d487c86b278c6c.go:9:8: undefined: Root",
       "cases": [
@@ -19983,7 +19983,7 @@
       "optional": false,
       "group": "dependencies",
       "hash": "e6f44f34d65d9ae5ee2846acf574b0846f8b2998db7d3a90724ac6592bb83553",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -20031,7 +20031,7 @@
       "optional": false,
       "group": "dependencies with empty array",
       "hash": "13f817ac9ec4f84e202ddc39b6ecb8e1f4a190aa046cb0c3581ca1bbd55be04c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -20059,7 +20059,7 @@
       "optional": false,
       "group": "multiple dependencies",
       "hash": "84f1967e33ee3223a2a7ae62fbb1fdb280b294bede0263e28b40f6a9fc7a9df8",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -20102,7 +20102,7 @@
       "optional": false,
       "group": "multiple dependencies subschema",
       "hash": "fdf3df5151311e9ca50ee63d0377efbc825a0c40dc65c66599e1b04097f58f62",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -20140,7 +20140,7 @@
       "optional": false,
       "group": "dependencies with boolean subschemas",
       "hash": "25e7f507973366fc07b89fc6c88e6736e6733bf4b769a3983f810fb3c31546f2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -20173,7 +20173,7 @@
       "optional": false,
       "group": "dependencies with escaped characters",
       "hash": "4558039e73804dfc02051897292d1756961a998ce37bc3c72daf004e4ffe6318",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -20221,7 +20221,7 @@
       "optional": false,
       "group": "dependent subschema incompatible with root",
       "hash": "0a62483a32e11f0ff8f0df01f836dd719cfa4aca38f1f68e6a95c1da58ae672b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d80e6d24c9775bd2/g_d80e6d24c9775bd2.go:9:8: undefined: Root",
       "cases": [
@@ -20254,7 +20254,7 @@
       "optional": false,
       "group": "simple enum validation",
       "hash": "7fb7e8bfafc574eef8f78ab630b316557ee2424725f2e7d063d09787cd5f309b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_dc59c5610c288c29/g_dc59c5610c288c29.go:9:8: undefined: Root",
       "cases": [
@@ -20277,7 +20277,7 @@
       "optional": false,
       "group": "heterogeneous enum validation",
       "hash": "f9c5420b6922297f3c60ce8d4d4a1246036034104ff2029037a8f2a8046136b8",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_2c825a890cbee383/g_2c825a890cbee383.go:9:8: undefined: Root",
       "cases": [
@@ -20315,7 +20315,7 @@
       "optional": false,
       "group": "heterogeneous enum-with-null validation",
       "hash": "d756f935923aeff6bb025054b1e5dea1c54e47529078d0a1492a7956b56de2ed",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_82dbb7618a018f32/g_82dbb7618a018f32.go:9:8: undefined: Root",
       "cases": [
@@ -20343,7 +20343,7 @@
       "optional": false,
       "group": "enums in properties",
       "hash": "f4207c0cbd3071dd0bf45027a3334bb4ae7d941ce168c9dc2b65b3d2643f70ee",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -20389,7 +20389,7 @@
       "optional": false,
       "group": "enum with escaped characters",
       "hash": "a9c1623bb0c502e34d9cd5a140b2d4284557912d58b7d0b893b2bdf9f2c65201",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_457d0127cbc6be69/g_457d0127cbc6be69.go:9:8: undefined: Root",
       "cases": [
@@ -20417,7 +20417,7 @@
       "optional": false,
       "group": "enum with false does not match 0",
       "hash": "f1be437b65c90f260df8a2aaf612688d7a477bf33a24cef49146ae23ac63c406",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_dea93ee9846cd2a0/g_dea93ee9846cd2a0.go:9:8: undefined: Root",
       "cases": [
@@ -20445,7 +20445,7 @@
       "optional": false,
       "group": "enum with [false] does not match [0]",
       "hash": "d4de26dff2133c4535db94f1e5969b728420d245ddeb1bd58a7345275c40fc61",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5d7b010a5b78f091/g_5d7b010a5b78f091.go:9:8: undefined: Root",
       "cases": [
@@ -20473,7 +20473,7 @@
       "optional": false,
       "group": "enum with true does not match 1",
       "hash": "c2efff04cfbdb347236ff46f4f0ed42ae143158490a6aeb56852f19a019b292b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_fce54e64b03fbc4f/g_fce54e64b03fbc4f.go:9:8: undefined: Root",
       "cases": [
@@ -20501,7 +20501,7 @@
       "optional": false,
       "group": "enum with [true] does not match [1]",
       "hash": "5ffe1611be7c9562c2a574f51093a973063a6fb68fba0a3baa6a99aa89728734",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1f8c82b675d5086f/g_1f8c82b675d5086f.go:9:8: undefined: Root",
       "cases": [
@@ -20529,7 +20529,7 @@
       "optional": false,
       "group": "enum with 0 does not match false",
       "hash": "3b9c52107aed37f69cbdb120acaba3f7014fcff2805aa9298f477a8adb8a9344",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_94fc9c4a1c6a1cca/g_94fc9c4a1c6a1cca.go:9:8: undefined: Root",
       "cases": [
@@ -20557,7 +20557,7 @@
       "optional": false,
       "group": "enum with [0] does not match [false]",
       "hash": "5fd7bb5d04ad7e1b7dd270c11f667de7efcbf3d910be182cae90aff72d830e15",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d853be710552a852/g_d853be710552a852.go:9:8: undefined: Root",
       "cases": [
@@ -20585,7 +20585,7 @@
       "optional": false,
       "group": "enum with 1 does not match true",
       "hash": "c0f66064ce4e40f13bbe52d3499481db9640b45b01c06d607c8de91eb88cddf8",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_95cdacad51d6817a/g_95cdacad51d6817a.go:9:8: undefined: Root",
       "cases": [
@@ -20613,7 +20613,7 @@
       "optional": false,
       "group": "enum with [1] does not match [true]",
       "hash": "d0d7d2e6c561424c354b43ffc8701b60ba77488cf1e378894c2a8345d60061d4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_90d4b375b4e91abc/g_90d4b375b4e91abc.go:9:8: undefined: Root",
       "cases": [
@@ -20641,7 +20641,7 @@
       "optional": false,
       "group": "nul characters in strings",
       "hash": "ba5082fe23c7c83fba13102af1227b47d0cad3656dda3bf7ac531e30f672c472",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9b6e0f5c67a313b9/g_9b6e0f5c67a313b9.go:9:8: undefined: Root",
       "cases": [
@@ -20664,7 +20664,7 @@
       "optional": false,
       "group": "characters with the same visual representation, but different number of codepoints",
       "hash": "c0e406d49d2d687d756dcf8c5bd79f21d282b1d88ac5414204634e4fa625a939",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_718257e4c8665c45/g_718257e4c8665c45.go:9:8: undefined: Root",
       "cases": [
@@ -20687,7 +20687,7 @@
       "optional": false,
       "group": "exclusiveMaximum validation",
       "hash": "902aa5ce5b5100be653a701d0579a1e364853fdfc7e2ce8ee4c567269445d1e3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_bb0735f6a8c8025c/g_bb0735f6a8c8025c.go:9:8: undefined: Root",
       "cases": [
@@ -20720,7 +20720,7 @@
       "optional": false,
       "group": "exclusiveMinimum validation",
       "hash": "bc7a419ec0b21015d5334fb0d3e03845e9bffd1b3a52641189c49509a79818dd",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_544b127b7fe13789/g_544b127b7fe13789.go:9:8: undefined: Root",
       "cases": [
@@ -20753,7 +20753,7 @@
       "optional": false,
       "group": "email format",
       "hash": "0f657369b4b30c1c608c05d9a36f1015940a0f18c30ec72fcd9369fca7b54325",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_77782b633247e41d/g_77782b633247e41d.go:9:8: undefined: Root",
       "cases": [
@@ -20796,7 +20796,7 @@
       "optional": false,
       "group": "idn-email format",
       "hash": "25298886fb529db984dd6bc81ff083ad1d5fbf7024c3eff82fc23f393f01e030",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e62d223397362254/g_e62d223397362254.go:9:8: undefined: Root",
       "cases": [
@@ -20839,7 +20839,7 @@
       "optional": false,
       "group": "regex format",
       "hash": "b898ada0dd64084018c7a20855ffa9cf34478e8420f203c272e8e5671eef72c1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -20882,7 +20882,7 @@
       "optional": false,
       "group": "ipv4 format",
       "hash": "3c4b054edbd498bb470ed36ea0589b744c7dee196e62ef479c3b4a3530757a5b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5da7a44ca118388e/g_5da7a44ca118388e.go:9:8: undefined: Root",
       "cases": [
@@ -20925,7 +20925,7 @@
       "optional": false,
       "group": "ipv6 format",
       "hash": "41dfaa0a5ae2977386617a591fe7e6599aeac5be1960279109daa1f1fa5b5d87",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_787199504188394c/g_787199504188394c.go:9:8: undefined: Root",
       "cases": [
@@ -20968,7 +20968,7 @@
       "optional": false,
       "group": "idn-hostname format",
       "hash": "09203c967763808f07ed06c366bb3d47ec85352da8a0c8c797c55d778fd04a7a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_c697aba762ff8d73/g_c697aba762ff8d73.go:9:8: undefined: Root",
       "cases": [
@@ -21011,7 +21011,7 @@
       "optional": false,
       "group": "hostname format",
       "hash": "aa705cf33892568c406a99b4b33ede6d4493c74e07e56917c6aede9c09abb755",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7fe05e8ac392b90d/g_7fe05e8ac392b90d.go:9:8: undefined: Root",
       "cases": [
@@ -21054,7 +21054,7 @@
       "optional": false,
       "group": "date format",
       "hash": "1926d19839945b8126112f9c29203bc141e62a0dcf7b39eec71c6e0469eded92",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d5efcce065d74020/g_d5efcce065d74020.go:9:8: undefined: Root",
       "cases": [
@@ -21097,7 +21097,7 @@
       "optional": false,
       "group": "date-time format",
       "hash": "9fb9a6c7baef262cfb041781678ddffac0078d3337fa5b3924a83c69d358baa4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8113a315ee089448/g_8113a315ee089448.go:9:8: undefined: Root",
       "cases": [
@@ -21140,7 +21140,7 @@
       "optional": false,
       "group": "time format",
       "hash": "876c523717325135acf9d7b40d24bd7ff74074e047d3deb8a141147828567e97",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_33d5af9dbc4d60af/g_33d5af9dbc4d60af.go:9:8: undefined: Root",
       "cases": [
@@ -21183,7 +21183,7 @@
       "optional": false,
       "group": "json-pointer format",
       "hash": "76e21fa1ddac43e8019359cefe6433f6754e09ff91f254666a1ba0e363b59d58",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_dfa3765246c02315/g_dfa3765246c02315.go:9:8: undefined: Root",
       "cases": [
@@ -21226,7 +21226,7 @@
       "optional": false,
       "group": "relative-json-pointer format",
       "hash": "d4073376dbaa737317bbd0d0ee961c4a6804ef5511ee547a24ffdead757cdbef",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6b6ed942f8bf6375/g_6b6ed942f8bf6375.go:9:8: undefined: Root",
       "cases": [
@@ -21269,7 +21269,7 @@
       "optional": false,
       "group": "iri format",
       "hash": "e5d731b9922bdf87061ddc031350c647b674720ad956743fed8d5f2672d2813c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5fdccf6257bbef39/g_5fdccf6257bbef39.go:9:8: undefined: Root",
       "cases": [
@@ -21312,7 +21312,7 @@
       "optional": false,
       "group": "iri-reference format",
       "hash": "dca97f9a2979481c39a1aea6b34ec1977cc9136e9678cfd011d235b882dc483f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_77569d73f5629b28/g_77569d73f5629b28.go:9:8: undefined: Root",
       "cases": [
@@ -21355,7 +21355,7 @@
       "optional": false,
       "group": "uri format",
       "hash": "4e2f3af1000b93a1e44f1dba09a3ff03105999440ee980d0b0f76c071b3b1459",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1883d056ce873623/g_1883d056ce873623.go:9:8: undefined: Root",
       "cases": [
@@ -21398,7 +21398,7 @@
       "optional": false,
       "group": "uri-reference format",
       "hash": "29170f5f2f2fc090fa6e5bc2ea169334aeb194d8d322ab52f6a6a26de9ad1512",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_535e60d89718a0e3/g_535e60d89718a0e3.go:9:8: undefined: Root",
       "cases": [
@@ -21441,7 +21441,7 @@
       "optional": false,
       "group": "uri-template format",
       "hash": "6ac251f90a921aced65b188c901151d8791192ded95f064bd91a00e1423fe4fa",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7dda7c60be28e374/g_7dda7c60be28e374.go:9:8: undefined: Root",
       "cases": [
@@ -21484,7 +21484,7 @@
       "optional": false,
       "group": "ignore if without then or else",
       "hash": "92990ebbdcb6d688ea2e0dad389915670bb1c3aaec1ac17c306c1c59f1072d44",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21507,7 +21507,7 @@
       "optional": false,
       "group": "ignore then without if",
       "hash": "7da899550b94b6bc00b1bf8480aaf02299e208900f9d3dfb725d562c1c55722a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21530,7 +21530,7 @@
       "optional": false,
       "group": "ignore else without if",
       "hash": "756def60aa945318b59d789b8f7ff323ee181d60f6bc8070b0fc52aef0dd8e7c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21553,7 +21553,7 @@
       "optional": false,
       "group": "if and then without else",
       "hash": "3903fca0db5cd29178544f4d0c9ea8010224cff812b85b5b7322d8c6750be4cb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21581,7 +21581,7 @@
       "optional": false,
       "group": "if and else without then",
       "hash": "87f3268b1c14bbdfdb77c7695721ff9e22c8cd4aa410cc383e1c860155552641",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21609,7 +21609,7 @@
       "optional": false,
       "group": "validate against correct branch, then vs else",
       "hash": "369df350a9a22846d316efdba038319c326d2f3d0871dd7f6dd89d66b493ca52",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21642,7 +21642,7 @@
       "optional": false,
       "group": "non-interference across combined schemas",
       "hash": "c2c4d498dba80a4b8a3cb12174238cec7ef8e75677623c062a7a173d4aefe0cc",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9ba3583cda852730/g_9ba3583cda852730.go:9:8: undefined: Root",
       "cases": [
@@ -21665,7 +21665,7 @@
       "optional": false,
       "group": "if with boolean schema true",
       "hash": "a108956f70ba20b870541f01edcf6ecd77a39e90afa1c2c1ba341da014987ec9",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21688,7 +21688,7 @@
       "optional": false,
       "group": "if with boolean schema false",
       "hash": "68f2b7b77ecdcd336b34e495d700800b18fd74b11d50be8b0bd14a47df1e6375",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21711,7 +21711,7 @@
       "optional": false,
       "group": "if appears at the end when serialized (keyword processing sequence)",
       "hash": "897814844c93529e8caed684ed46748e46f293716bf9ba82d27a441aadce5ac8",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21744,7 +21744,7 @@
       "optional": false,
       "group": "then: false fails when condition matches",
       "hash": "f73defc47cc2ed4215c92874f27f6a7590f7d26265863f7682c7b70f8fd92f25",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21767,7 +21767,7 @@
       "optional": false,
       "group": "else: false fails when condition does not match",
       "hash": "baacb303ec47c5aced205d43007d755b524af42f32567cff62886b12d25f4cef",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -21790,7 +21790,7 @@
       "optional": false,
       "group": "evaluating the same schema location against the same data location twice is not a sign of an infinite loop",
       "hash": "3962e97db0bee3bf15a976fd31e27fe01446f5c993f6cc3038025e107cbd4a38",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_68d856f2d92742df/g_68d856f2d92742df.go:11:8: undefined: Root",
       "cases": [
@@ -21813,7 +21813,7 @@
       "optional": false,
       "group": "a schema given for items",
       "hash": "a4f5f443c18512be6b26074b7e08cc1a78b3971c20add8e5de07e4c16e514508",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_af21220a746ba049/g_af21220a746ba049.go:9:8: undefined: Root",
       "cases": [
@@ -21846,7 +21846,7 @@
       "optional": false,
       "group": "an array of schemas for items",
       "hash": "a052e9b4dfebd9d8493623ca0f05d8f264bcb5e9ffdfe6f97a5e73a45794150c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -21889,7 +21889,7 @@
       "optional": false,
       "group": "items with boolean schema (true)",
       "hash": "b7cf8efc6082cd851a6f035d2122e5fad8b6013c72d725281ad0227b7fc4df73",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_4b1d40ff0697526d/g_4b1d40ff0697526d.go:9:8: undefined: Root",
       "cases": [
@@ -21912,7 +21912,7 @@
       "optional": false,
       "group": "items with boolean schema (false)",
       "hash": "cbd3122f7ad458ba4f3fc8b01e9f76ca097e9f1319cc83f547603c06c6aba3d3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_cb9e1cf6e0c796b8/g_cb9e1cf6e0c796b8.go:9:8: undefined: Root",
       "cases": [
@@ -21935,7 +21935,7 @@
       "optional": false,
       "group": "items with boolean schemas",
       "hash": "4b9d267735ec63348cb7747fa368ad10374be839a693796420cc9c563ea97de4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -21963,7 +21963,7 @@
       "optional": false,
       "group": "items and subitems",
       "hash": "75110115c33bc532ebbcc8bfaba10f3975a82ad70cfcc8e6fd5c4338c92d2943",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -22006,7 +22006,7 @@
       "optional": false,
       "group": "nested items",
       "hash": "7518742a730e168091686184d2ec15c6b3a2cc61253796c99e0b54cbbb1a0bab",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -22035,7 +22035,7 @@
       "optional": false,
       "group": "single-form items with null instance elements",
       "hash": "f505f5d163446f463ed8f96b107990827e25c74836b151681030562c8c533a27",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6cd6942712f3e300/g_6cd6942712f3e300.go:9:8: undefined: Root",
       "cases": [
@@ -22053,7 +22053,7 @@
       "optional": false,
       "group": "array-form items with null instance elements",
       "hash": "d43af60961cfd4c8f616db3d0a5c49f637d9941ba37222c39947caaa1dbd7373",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -22071,7 +22071,7 @@
       "optional": false,
       "group": "maxItems validation",
       "hash": "143abad0acb163fd527adf1077251868886833d284fe838d23c43f16683c80b7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_93b83b6b11bae544/g_93b83b6b11bae544.go:9:8: undefined: Root",
       "cases": [
@@ -22104,7 +22104,7 @@
       "optional": false,
       "group": "maxItems validation with a decimal",
       "hash": "4f972585f3d73a61847afc1ff9157867af0444900e5de89f498d85488bf25936",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal number 2.0 into Go struct field unmarshalerSchema.maxItems of type int",
       "cases": [
@@ -22127,7 +22127,7 @@
       "optional": false,
       "group": "maxLength validation",
       "hash": "84a2ec5147092d69f741db59ab19b83fb22a8238085596d0eb6b101f4a2bec51",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_79620d7f421af5b5/g_79620d7f421af5b5.go:9:8: undefined: Root",
       "cases": [
@@ -22165,7 +22165,7 @@
       "optional": false,
       "group": "maxLength validation with a decimal",
       "hash": "1e7d7d77dce9221b15dcc961c684022f347ae485286b016d1080420f587aca98",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal number 2.0 into Go struct field unmarshalerSchema.maxLength of type int",
       "cases": [
@@ -22188,7 +22188,7 @@
       "optional": false,
       "group": "maxProperties validation",
       "hash": "00dae5dace7adda76460c561a7274fe9929ad4fc6ac192ee1784c573b84fade2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_2f3249a668f864f4/g_2f3249a668f864f4.go:9:8: undefined: Root",
       "cases": [
@@ -22231,7 +22231,7 @@
       "optional": false,
       "group": "maxProperties validation with a decimal",
       "hash": "1a19a3498d20f53ef377bc6c541b0bd8a5cbcb5092cb271a19a51ff8a5a02928",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal number 2.0 into Go struct field unmarshalerSchema.maxProperties of type int",
       "cases": [
@@ -22254,7 +22254,7 @@
       "optional": false,
       "group": "maxProperties = 0 means the object is empty",
       "hash": "0fcf931e832f5778ddb2edff1b0dc5601ca64afd95af208b63adec52b8ba2b47",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_88a8aefdfef767a0/g_88a8aefdfef767a0.go:9:8: undefined: Root",
       "cases": [
@@ -22277,7 +22277,7 @@
       "optional": false,
       "group": "maximum validation",
       "hash": "ecae656387e428c1ab11b22e2d73e0b34ff3c8be04c64ad831ab4dfceee65514",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b83048bc0c46622e/g_b83048bc0c46622e.go:9:8: undefined: Root",
       "cases": [
@@ -22310,7 +22310,7 @@
       "optional": false,
       "group": "maximum validation with unsigned integer",
       "hash": "cdef9c8086ad274ab0096aef87ad61bdef771544a0184e3ae28605b3a23ba1f5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7e86f634759d7816/g_7e86f634759d7816.go:9:8: undefined: Root",
       "cases": [
@@ -22343,7 +22343,7 @@
       "optional": false,
       "group": "minItems validation",
       "hash": "bcd0f63e13e21ca8014aa8a98039bd93c113568ac6ed7c2b90064646a69f9982",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_a7716c9299dc5b99/g_a7716c9299dc5b99.go:9:8: undefined: Root",
       "cases": [
@@ -22376,7 +22376,7 @@
       "optional": false,
       "group": "minItems validation with a decimal",
       "hash": "1344858ff36228fe7faa697aaaa182f610ff97b4e2b4d7fd177442c0e130b377",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal number 1.0 into Go struct field unmarshalerSchema.minItems of type int",
       "cases": [
@@ -22399,7 +22399,7 @@
       "optional": false,
       "group": "minLength validation",
       "hash": "546285877dd38f1494656bd4748767f0973a77a9a9c7be64bfbb3286b3209497",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_315f9674db65c3a3/g_315f9674db65c3a3.go:9:8: undefined: Root",
       "cases": [
@@ -22437,7 +22437,7 @@
       "optional": false,
       "group": "minLength validation with a decimal",
       "hash": "cf44bf2e7fcf63123dca8aea6b99eb34ccac8e4e82a7d42a32c4754c9adb7c95",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal number 2.0 into Go struct field unmarshalerSchema.minLength of type int",
       "cases": [
@@ -22460,7 +22460,7 @@
       "optional": false,
       "group": "minProperties validation",
       "hash": "019f8257e61a0a6fbf6b212609000b83a89409e094934a8557cf539dd2420ab0",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_0a0b8e71ade9c0c9/g_0a0b8e71ade9c0c9.go:9:8: undefined: Root",
       "cases": [
@@ -22513,7 +22513,7 @@
       "optional": false,
       "group": "minProperties validation with a decimal",
       "hash": "33e4da9989c9bec31e6a359d0eba60d85475552a86ac9775e1f7eb8ffd0bfeda",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: json: cannot unmarshal number 1.0 into Go struct field unmarshalerSchema.minProperties of type int",
       "cases": [
@@ -22536,7 +22536,7 @@
       "optional": false,
       "group": "minimum validation",
       "hash": "df192bf02da3da8b387a5efc01d46a12adfedad23447b9cea228feff6df01f73",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_12be822f82bf5b6a/g_12be822f82bf5b6a.go:9:8: undefined: Root",
       "cases": [
@@ -22569,7 +22569,7 @@
       "optional": false,
       "group": "minimum validation with signed integer",
       "hash": "c792aa3471c7746fec7dc8f9bd8f77a9010134674e522255d08b94d3a1b2137e",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_31965511f363dec5/g_31965511f363dec5.go:9:8: undefined: Root",
       "cases": [
@@ -22617,7 +22617,7 @@
       "optional": false,
       "group": "by int",
       "hash": "d4b69a7f1c403e49cf7347a6be5029861d57f7580b1794ab25504afc51787c1d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_2a6fac582bb1256b/g_2a6fac582bb1256b.go:9:8: undefined: Root",
       "cases": [
@@ -22645,7 +22645,7 @@
       "optional": false,
       "group": "by number",
       "hash": "16dfadafdce2b8f87fbe74c2096fe1f3feb2fae4e95350015cb7ff378a4ed058",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_3f67b3dec68d9648/g_3f67b3dec68d9648.go:9:8: undefined: Root",
       "cases": [
@@ -22678,7 +22678,7 @@
       "optional": false,
       "group": "by small number",
       "hash": "f30dc6421f8fbb2e9ad0d819bdb9ae023249ca02bde61448f1df81406f428b8d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_70d363b3e02be3a4/g_70d363b3e02be3a4.go:9:8: undefined: Root",
       "cases": [
@@ -22701,7 +22701,7 @@
       "optional": false,
       "group": "float division = inf",
       "hash": "a48367c70a8a64ec14d0885b7d34d883b775ef636e4f9141bdb0c68556e92936",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ec07aa6a8de7c446/g_ec07aa6a8de7c446.go:19:11: invalid operation: division by zero",
       "cases": [
@@ -22719,7 +22719,7 @@
       "optional": false,
       "group": "small multiple of large integer",
       "hash": "c81dd76334863b1622f762255ba762234fa2ffa07374e140650cbdd38eac46f5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_090e53ad470827d2/g_090e53ad470827d2.go:19:11: invalid operation: division by zero",
       "cases": [
@@ -22737,7 +22737,7 @@
       "optional": false,
       "group": "not",
       "hash": "edbcba64e424c652bf86f1ece26beac55d9f156b8f0e336068e41959479a7373",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_fca2e08d87fd4097/g_fca2e08d87fd4097.go:9:8: undefined: Root",
       "cases": [
@@ -22760,7 +22760,7 @@
       "optional": false,
       "group": "not multiple types",
       "hash": "0f118d9e3c1519133e9c928d72fc8a1e389f90fca0901c456397ac0eee2015dc",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_c1463e9a4dbaf15b/g_c1463e9a4dbaf15b.go:9:8: undefined: Root",
       "cases": [
@@ -22788,7 +22788,7 @@
       "optional": false,
       "group": "not more complex schema",
       "hash": "d738ba3354c0c309d7fb4b081d8af3abbd890c7e0b2262c68510550d34b06042",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_194327b0a6871245/g_194327b0a6871245.go:9:8: undefined: Root",
       "cases": [
@@ -22816,7 +22816,7 @@
       "optional": false,
       "group": "forbidden property",
       "hash": "4419a74b2b8722c5eeddee8ad9ecae2304fa88806e01ecba45a802e341dae102",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ed917e553fb637f0/g_ed917e553fb637f0.go:9:8: undefined: Root",
       "cases": [
@@ -22839,7 +22839,7 @@
       "optional": false,
       "group": "forbid everything with empty schema",
       "hash": "55c3ab6e812103f33deac1249a5979bd123b7570705d5af76dd7ef4d89567a3b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_055168f611d256cc/g_055168f611d256cc.go:9:8: undefined: Root",
       "cases": [
@@ -22897,7 +22897,7 @@
       "optional": false,
       "group": "forbid everything with boolean schema true",
       "hash": "6f3ea8b0272f6b3c857bb55642d93b539e25d344f7dd0c91d93cb58a71fc0721",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_da2f5314b0fc1f01/g_da2f5314b0fc1f01.go:9:8: undefined: Root",
       "cases": [
@@ -22955,7 +22955,7 @@
       "optional": false,
       "group": "allow everything with boolean schema false",
       "hash": "817f3d28b9f5b0351220a7445847fa38243e69cc34371e0b39f19ea17b89e68f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6064e8b382409a8b/g_6064e8b382409a8b.go:9:8: undefined: Root",
       "cases": [
@@ -23013,7 +23013,7 @@
       "optional": false,
       "group": "double negation",
       "hash": "6f9068a9c21fbfd2fdabb7ce7d8fc4c190a77d8726b10ec7fd06bf53931fca1d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9c3b717419088cd1/g_9c3b717419088cd1.go:9:8: undefined: Root",
       "cases": [
@@ -23031,7 +23031,7 @@
       "optional": false,
       "group": "oneOf",
       "hash": "c7666b6b40c4c8d157fa48ca34cf99b1f2d828fe796ae02d0c5cdc80377c6ed7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e1573813c4bf627e/g_e1573813c4bf627e.go:9:8: undefined: Root",
       "cases": [
@@ -23064,7 +23064,7 @@
       "optional": false,
       "group": "oneOf with base schema",
       "hash": "388c34defb8301c801f9b1395f781ad188f2a5f09ff8e5180f18b3ea331c7d1c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `both oneOf valid` though valid: false",
       "cases": [
@@ -23093,7 +23093,7 @@
       "optional": false,
       "group": "oneOf with boolean schemas, all true",
       "hash": "b93cf7b8d03b78ad6a235c400c32b5607785d7948b0dc56d8b788093172d40fd",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_fce96c96ca01dbbe/g_fce96c96ca01dbbe.go:9:8: undefined: Root",
       "cases": [
@@ -23111,7 +23111,7 @@
       "optional": false,
       "group": "oneOf with boolean schemas, one true",
       "hash": "2101cc63150f3e5db1566e7ed6e504485c5d0e5abc0c3510c719d195387f5942",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5e2f71e89eb5f66f/g_5e2f71e89eb5f66f.go:9:8: undefined: Root",
       "cases": [
@@ -23129,7 +23129,7 @@
       "optional": false,
       "group": "oneOf with boolean schemas, more than one true",
       "hash": "032dcfd4f008018906ffeb3fb2c9fe49289a72870680ec6912fb1d60718edaec",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1c8661aaaea513b6/g_1c8661aaaea513b6.go:9:8: undefined: Root",
       "cases": [
@@ -23147,7 +23147,7 @@
       "optional": false,
       "group": "oneOf with boolean schemas, all false",
       "hash": "1e0fd95002676b957b57807dc6e3aa23d9145366e242974e5629210c8cac61cc",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9fc58ee50b621e54/g_9fc58ee50b621e54.go:9:8: undefined: Root",
       "cases": [
@@ -23165,7 +23165,7 @@
       "optional": false,
       "group": "oneOf complex types",
       "hash": "3ec8816e350c5bb87ea9a27e19b7f856d9d6dc0f9e76a3e43157a0f1fb97e720",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9719db51c938f6ce/g_9719db51c938f6ce.go:9:8: undefined: Root",
       "cases": [
@@ -23198,7 +23198,7 @@
       "optional": false,
       "group": "oneOf with empty schema",
       "hash": "5414879236bb723cb601728c099888bd72d4c52e6ee3c26e2f530752e7e8ab44",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b323cd72b341071c/g_b323cd72b341071c.go:9:8: undefined: Root",
       "cases": [
@@ -23221,7 +23221,7 @@
       "optional": false,
       "group": "oneOf with required",
       "hash": "e1afe65f19acab1e7d7364eb895a23a95c0e1af6148146fd42dec639f49d0a47",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `both invalid - invalid` though valid: false",
       "cases": [
@@ -23254,7 +23254,7 @@
       "optional": false,
       "group": "oneOf with missing optional property",
       "hash": "36ee7620416ca1a22c229aee274f0439be1512be28b2ef6152a1f4a27d2fe6b5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_dcaa2dbc461474e1/g_dcaa2dbc461474e1.go:9:8: undefined: Root",
       "cases": [
@@ -23287,7 +23287,7 @@
       "optional": false,
       "group": "nested oneOf, to check validation semantics",
       "hash": "08bde0bfdad39d081bb2082472113dffc9a1a6e6fd035eaa7ae3550b327a636e",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5b558e0f538ca17f/g_5b558e0f538ca17f.go:9:8: undefined: Root",
       "cases": [
@@ -23310,7 +23310,7 @@
       "optional": true,
       "group": "integer",
       "hash": "7086d3a2d543837dd1d92d48cf05d742574507bd166d9e4661176e52e1f01278",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_reject",
       "error": "a bignum is an integer: json: cannot unmarshal number 12345678910111213141516171819202122232425262728293031 into Go value of type g_c5a49de2ae923598.Root",
       "cases": [
@@ -23335,7 +23335,7 @@
       "optional": true,
       "group": "number",
       "hash": "670a6e5ea604c0a907b4606609457aa3183a8e958774d12625ccf7f846acd724",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23357,7 +23357,7 @@
       "optional": true,
       "group": "string",
       "hash": "6eee2fe56295e9109bfc265cbae0eeef10aefac47391ebea1a6f5a6bee7d1bf6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23375,7 +23375,7 @@
       "optional": true,
       "group": "maximum integer comparison",
       "hash": "30a050ad8729e2758fc4ce800d14ae8cd4c1ce4a910f170b8192f3a6deee14b0",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5d6fa22de4fc354c/g_5d6fa22de4fc354c.go:9:8: undefined: Root",
       "cases": [
@@ -23393,7 +23393,7 @@
       "optional": true,
       "group": "float comparison with high precision",
       "hash": "588f9a893663c27d85e13e4ed96e921f3068bc149fcb9b698e1591571a2edf95",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_02ca5c1f0a402ba5/g_02ca5c1f0a402ba5.go:9:8: undefined: Root",
       "cases": [
@@ -23411,7 +23411,7 @@
       "optional": true,
       "group": "minimum integer comparison",
       "hash": "0dfcc1ef46ed5d72060e91f60bf0254d7d01c575b96dcd97f75e289b98d37a91",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e106aff9289e8e74/g_e106aff9289e8e74.go:9:8: undefined: Root",
       "cases": [
@@ -23429,7 +23429,7 @@
       "optional": true,
       "group": "float comparison with high precision on negative numbers",
       "hash": "1341d2c8ba19e53ae51365b368718fbf5b72ad4a8e1656f21e02835a1d433161",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_0a57f7e36eef1ecc/g_0a57f7e36eef1ecc.go:9:8: undefined: Root",
       "cases": [
@@ -23447,7 +23447,7 @@
       "optional": true,
       "group": "validation of string-encoded content based on media type",
       "hash": "09ef208041ef61503dae3a680d54b5915b18ebc60af543a6ed0e786f4510624c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -23475,7 +23475,7 @@
       "optional": true,
       "group": "validation of binary string-encoding",
       "hash": "f9cdddfffe9f3d26c54f4d7348758a0b34ee309c2de9e101581b42047e3fbeca",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -23503,7 +23503,7 @@
       "optional": true,
       "group": "validation of binary-encoded media type documents",
       "hash": "2ac5332281897488eea4335442f74abbf5fde21dccc7c71ca7c17e0ebd04cd78",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -23536,7 +23536,7 @@
       "optional": true,
       "group": "refs to future drafts are processed as future drafts",
       "hash": "65696a075aaa57925aad1af0abfd5bd539afbd920029abc7ad53e02bb737e157",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `missing bar is invalid` though valid: false",
       "cases": [
@@ -23559,7 +23559,7 @@
       "optional": true,
       "group": "ECMA 262 regex $ does not match trailing newline",
       "hash": "03f44890a960dc712f3e4c9d0af705d62fe2211d95c32c9dcd6c14400aeba038",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23582,7 +23582,7 @@
       "optional": true,
       "group": "ECMA 262 regex converts \\t to horizontal tab",
       "hash": "9b550f2cb654887f0f25b6950d64877afe99afb63ad26fcace563d72766012b7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23605,7 +23605,7 @@
       "optional": true,
       "group": "ECMA 262 regex escapes control codes with \\c and upper letter",
       "hash": "5c7418a0cb55a5cefdc4aa47f7575ccd47df0c50b0b23bdbafa35965cc744bb6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_reject",
       "error": "matches: field  pattern match: must match ^\\cC$",
       "cases": [
@@ -23630,7 +23630,7 @@
       "optional": true,
       "group": "ECMA 262 regex escapes control codes with \\c and lower letter",
       "hash": "18d3875f89683ac4c1e36c804c1ad57724fcfea5188816526ade1420cbb87f38",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_reject",
       "error": "matches: field  pattern match: must match ^\\cc$",
       "cases": [
@@ -23655,7 +23655,7 @@
       "optional": true,
       "group": "ECMA 262 \\d matches ascii digits only",
       "hash": "94c34b3aa45c193ccdad474ff5501b3eb32802cd0148d6f4d0ccdd782ea00243",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23684,7 +23684,7 @@
       "optional": true,
       "group": "ECMA 262 \\D matches everything but ascii digits",
       "hash": "5cba01186746bfc60a47bd2dee734e1a60b58c209c952fa045200dcdfd103c1f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23712,7 +23712,7 @@
       "optional": true,
       "group": "ECMA 262 \\w matches ascii letters only",
       "hash": "eff5293083dc21d39862438bcff270678586288deb3a9b00deb6995f00d77fec",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23735,7 +23735,7 @@
       "optional": true,
       "group": "ECMA 262 \\W matches everything but ascii letters",
       "hash": "9f7389033d7f059b262db5a96ff26bf99141fe5106df3cef626871fb8eb0cbe2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -23758,7 +23758,7 @@
       "optional": true,
       "group": "ECMA 262 \\s matches whitespace",
       "hash": "b10442ef12596bf7b076116dced9d21b39facfa1b01c09ad2bb72a3ef3297080",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_reject",
       "error": "Line tabulation matches: field  pattern match: must match ^\\s$",
       "cases": [
@@ -23833,7 +23833,7 @@
       "optional": true,
       "group": "ECMA 262 \\S matches everything but whitespace",
       "hash": "e419cb08979475ec883c74c08b3276f1bf398f4fe94130f9c6740c280b2e1540",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `Line tabulation does not match` though valid: false",
       "cases": [
@@ -23905,7 +23905,7 @@
       "optional": true,
       "group": "patterns always use unicode semantics with pattern",
       "hash": "1950b6723240d8f2747c4ba81aea580582caf6ba98724f80ced100e4de94f508",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_58df38417726a3c8/g_58df38417726a3c8.go:9:8: undefined: Root",
       "cases": [
@@ -23938,7 +23938,7 @@
       "optional": true,
       "group": "\\w in patterns matches [A-Za-z0-9_], not unicode letters",
       "hash": "e29d17c67877788e63076afbb41a898f5db8e0bb536fb16e011696fa1189ee26",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b9d0783256169f91/g_b9d0783256169f91.go:9:8: undefined: Root",
       "cases": [
@@ -23971,7 +23971,7 @@
       "optional": true,
       "group": "pattern with ASCII ranges",
       "hash": "3a6a48d96a46b8e8556d4e0ebfd72c40fbc7133fbc889f3adfb0c284b7cb99f3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_54bf451600a7c226/g_54bf451600a7c226.go:9:8: undefined: Root",
       "cases": [
@@ -23999,7 +23999,7 @@
       "optional": true,
       "group": "\\d in pattern matches [0-9], not unicode digits",
       "hash": "219c6caec64fb3d933b8a180cae4d1d8643e5121752b933bc900a08d5eacfb27",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_05bc160867da3a87/g_05bc160867da3a87.go:9:8: undefined: Root",
       "cases": [
@@ -24027,7 +24027,7 @@
       "optional": true,
       "group": "pattern with non-ASCII digits",
       "hash": "96a3be1c7da68b2d7d40e7f140351ff3c8f81ff45a8690abb189874e439dd96d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1b0fcd7aecacbb8e/g_1b0fcd7aecacbb8e.go:9:8: undefined: Root",
       "cases": [
@@ -24055,7 +24055,7 @@
       "optional": true,
       "group": "patterns always use unicode semantics with patternProperties",
       "hash": "55cda47e947a1839c1e64fe168a0d95b7508067d70e68a60ba14ff8d53655782",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `unicode matching is case-sensitive` though valid: false",
       "cases": [
@@ -24088,7 +24088,7 @@
       "optional": true,
       "group": "\\w in patternProperties matches [A-Za-z0-9_], not unicode letters",
       "hash": "2c0d4dac3e1308ed95f8ba3013f23e18aebf2ae9ebb787017f9f219ed15a9833",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `literal unicode character in json string` though valid: false",
       "cases": [
@@ -24121,7 +24121,7 @@
       "optional": true,
       "group": "patternProperties with ASCII ranges",
       "hash": "2baf5eed803945616f50104822311da3bdf8f725bcf5aa9534d634e902bcc5c1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `literal unicode character in json string` though valid: false",
       "cases": [
@@ -24149,7 +24149,7 @@
       "optional": true,
       "group": "\\d in patternProperties matches [0-9], not unicode digits",
       "hash": "dc8d72658895c03a12c282702d3d1f85945817aeee51b814679d13f4681f32d0",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `ascii non-digits` though valid: false",
       "cases": [
@@ -24177,7 +24177,7 @@
       "optional": true,
       "group": "patternProperties with non-ASCII digits",
       "hash": "8274b94929c9c2e3a1e725ede9bc2b1b8f1c08e16656379cf754f0eb41b3532e",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `ascii non-digits` though valid: false",
       "cases": [
@@ -24205,7 +24205,7 @@
       "optional": true,
       "group": "all integers are multiples of 0.5, if overflow is handled",
       "hash": "295d6ff5963a327150fff4407ae88cb3abd8a12a834e75aed8c34ddd19a1c47c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8815c220c31b7817/g_8815c220c31b7817.go:19:11: invalid operation: division by zero",
       "cases": [
@@ -24223,7 +24223,7 @@
       "optional": true,
       "group": "validation of date-time strings",
       "hash": "3977d41738b1bcd6ccacf42931adbcaad29e1a4036458cbb3c84f28bd990cf9a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8113a315ee089448/g_8113a315ee089448.go:9:8: undefined: Root",
       "cases": [
@@ -24471,7 +24471,7 @@
       "optional": true,
       "group": "validation of date strings",
       "hash": "b1060a5a3295eafffec2178279cf15ef95a27a077109acb779f45562eea110b4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d5efcce065d74020/g_d5efcce065d74020.go:9:8: undefined: Root",
       "cases": [
@@ -24889,7 +24889,7 @@
       "optional": true,
       "group": "\\a is not an ECMA 262 control escape",
       "hash": "27a33af4e165ecb625a680966ed3e14510196b6df3bca99a6f4b9e01d8e38a75",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -24907,7 +24907,7 @@
       "optional": true,
       "group": "Python-specific regular expression syntax is not valid ECMA 262",
       "hash": "392a855bf9522286c7d8aa14fe85d601c0d59b1631d122e2885d980ef0274396",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -24935,7 +24935,7 @@
       "optional": true,
       "group": "global inline flag groups are not valid ECMA 262",
       "hash": "b4e1bfd80b31b3d43955ad24cbc2be36b678a0bda9c1c86790cebdf7cb892e84",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -24958,7 +24958,7 @@
       "optional": true,
       "group": "ECMA 262 named groups and backreferences are valid",
       "hash": "439a2657c81cb27a90f50bbf05e2db4e140ede4b308104ab5779fed1e8fdccc7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -24981,7 +24981,7 @@
       "optional": true,
       "group": "ECMA 262 lookbehind is valid, including variable width",
       "hash": "2ffbc19d7cca0374f5005dd7392ab146c33115f26df37ab40295dd7c300a55d4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -24999,7 +24999,7 @@
       "optional": true,
       "group": "ECMA 262 character classes and escapes",
       "hash": "15c9abf5f0220af6b05be20951bdc75389a6d66ed69d9fb158154a77c8b721b2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -25027,7 +25027,7 @@
       "optional": true,
       "group": "validation of e-mail addresses",
       "hash": "30df627eb79d1046e9bd22a7baea07719f07d3dafdd7c3305bf90cfae6155c4a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_77782b633247e41d/g_77782b633247e41d.go:9:8: undefined: Root",
       "cases": [
@@ -25395,7 +25395,7 @@
       "optional": true,
       "group": "validation of host names",
       "hash": "2d8caa6defec4ca123745394bd6fc01adf9fe80d42b5f45f015aed55ae96ed18",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7fe05e8ac392b90d/g_7fe05e8ac392b90d.go:9:8: undefined: Root",
       "cases": [
@@ -25538,7 +25538,7 @@
       "optional": true,
       "group": "validation of A-label (punycode) host names",
       "hash": "728d0bdb5e8d35ce40b4f602c79bc2b5d4aa40eb00fddc9217406bd170d74dc8",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7fe05e8ac392b90d/g_7fe05e8ac392b90d.go:9:8: undefined: Root",
       "cases": [
@@ -25741,7 +25741,7 @@
       "optional": true,
       "group": "validation of an internationalized e-mail addresses",
       "hash": "f3c0536e7970d596066beddcfc2ded3b419c3b11e798c414907c77a355d0e08d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e62d223397362254/g_e62d223397362254.go:9:8: undefined: Root",
       "cases": [
@@ -25874,7 +25874,7 @@
       "optional": true,
       "group": "validation of internationalized host names",
       "hash": "b27409c829905ffae2561dc9390f9e05cfa64d924dfc6f503c819c4ec0052f6c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_c697aba762ff8d73/g_c697aba762ff8d73.go:9:8: undefined: Root",
       "cases": [
@@ -26277,7 +26277,7 @@
       "optional": true,
       "group": "validation of separators in internationalized host names",
       "hash": "a64e607de89ccfc6b55127c6538950b4437a3f6958c8c5bddfb133393838bcd1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_c697aba762ff8d73/g_c697aba762ff8d73.go:9:8: undefined: Root",
       "cases": [
@@ -26390,7 +26390,7 @@
       "optional": true,
       "group": "validation of IP addresses",
       "hash": "f282f38a2aa7647c824de1f9dc261822cf33fa00e408352bfee361f5287b85a7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5da7a44ca118388e/g_5da7a44ca118388e.go:9:8: undefined: Root",
       "cases": [
@@ -26608,7 +26608,7 @@
       "optional": true,
       "group": "validation of IPv6 addresses",
       "hash": "c91173c63dcef56c65eb8c6d97d2265a4438f76dffc4ca448e823e75ae10243a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_787199504188394c/g_787199504188394c.go:9:8: undefined: Root",
       "cases": [
@@ -26876,7 +26876,7 @@
       "optional": true,
       "group": "validation of IRI References",
       "hash": "07c606f7316c01c46faaad45eca373a5328ee4cf3a6e35943925e1238c287c9d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_77569d73f5629b28/g_77569d73f5629b28.go:9:8: undefined: Root",
       "cases": [
@@ -26994,7 +26994,7 @@
       "optional": true,
       "group": "validation of IRIs",
       "hash": "0d24997df58f86dd5d572ee467d613367680282036312b467d0f7d8c44eb2a51",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5fdccf6257bbef39/g_5fdccf6257bbef39.go:9:8: undefined: Root",
       "cases": [
@@ -27137,7 +27137,7 @@
       "optional": true,
       "group": "validation of JSON-pointers (JSON String Representation)",
       "hash": "308b87149b411e942057d2c9d618cdf048826ea67dc39562c49837a485045e9d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_dfa3765246c02315/g_dfa3765246c02315.go:9:8: undefined: Root",
       "cases": [
@@ -27350,7 +27350,7 @@
       "optional": true,
       "group": "validation of regular expressions",
       "hash": "ceb0fa654fdde7aff05006b3cfab8f1e2732f0882f47e9244eb9e4d9078e5af9",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -27428,7 +27428,7 @@
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
       "hash": "860370140a1321cc507bc9ac327f0161a303dab00b41ade7fec1519c85e6f849",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6b6ed942f8bf6375/g_6b6ed942f8bf6375.go:9:8: undefined: Root",
       "cases": [
@@ -27571,7 +27571,7 @@
       "optional": true,
       "group": "validation of time strings",
       "hash": "70d8a76a81dc47d827f64ec3a4f6d5e5c055531c01acf5b02367088c85c4823c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_33d5af9dbc4d60af/g_33d5af9dbc4d60af.go:9:8: undefined: Root",
       "cases": [
@@ -27864,7 +27864,7 @@
       "optional": true,
       "group": "unknown format",
       "hash": "0ef9904de9fae51f918c23e44849ae333a7b1e251a95c38f0761bf123b6454ed",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_94fd6f694bd64557/g_94fd6f694bd64557.go:9:8: undefined: Root",
       "cases": [
@@ -27912,7 +27912,7 @@
       "optional": true,
       "group": "validation of URI References",
       "hash": "ca65cf2bbbb075d878048b34e97b28d9047834b2cab95b36deb33c7d30960497",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_535e60d89718a0e3/g_535e60d89718a0e3.go:9:8: undefined: Root",
       "cases": [
@@ -28080,7 +28080,7 @@
       "optional": true,
       "group": "format: uri-template",
       "hash": "d003bcd4eb11fab2f60707d236cf9fb44c4c4b915f6a8c380702eea1c4f94177",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7dda7c60be28e374/g_7dda7c60be28e374.go:9:8: undefined: Root",
       "cases": [
@@ -28333,7 +28333,7 @@
       "optional": true,
       "group": "validation of URIs",
       "hash": "9df837fc436243307a3cb2b98405c0c10af69f5b78ff4658eb4ed68856f53c6b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1883d056ce873623/g_1883d056ce873623.go:9:8: undefined: Root",
       "cases": [
@@ -28581,7 +28581,7 @@
       "optional": true,
       "group": "id inside an enum is not a real identifier",
       "hash": "06064fe7517f37e7ebc6895f6a5db9d09a4942d53acaf43024e15a81055cd463",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "enum has non-primitive value map[$id:https://localhost:1234/id/my_identifier.json type:null]",
       "cases": [
@@ -28609,7 +28609,7 @@
       "optional": true,
       "group": "non-schema object containing a plain-name $id property",
       "hash": "6a68144daaf3db747de062d23da174ce70e8e057bfe4e0dae91665bd8d5ceec7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -28632,7 +28632,7 @@
       "optional": true,
       "group": "non-schema object containing an $id property",
       "hash": "f0e4d107a91f812afd96d0b58ccbae9098c48eec1ab99fda8189fac577688a14",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -28655,7 +28655,7 @@
       "optional": true,
       "group": "Proper UTF-16 surrogate pair handling: pattern",
       "hash": "968de2b7df65a4a69a50ecffab223d276855f3e7eb69168ecf55e7c80bea2b1c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d451cba8fde8eaf1/g_d451cba8fde8eaf1.go:9:8: undefined: Root",
       "cases": [
@@ -28703,7 +28703,7 @@
       "optional": true,
       "group": "Proper UTF-16 surrogate pair handling: patternProperties",
       "hash": "94cc3ac9473f6f00f718d6b4c84da8ec55a29344ac3343700c3422a38969dc0a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_57b77164e2daa371/g_57b77164e2daa371.go:9:8: undefined: Root",
       "cases": [
@@ -28741,7 +28741,7 @@
       "optional": true,
       "group": "$id inside an unknown keyword is not a real identifier",
       "hash": "891410708269ca7988d1a73ed3ae8a23ec1ee51404c158a03ffac71ea054b0aa",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9f9d94349e4a265e/g_9f9d94349e4a265e.go:15:8: undefined: Root",
       "cases": [
@@ -28769,7 +28769,7 @@
       "optional": false,
       "group": "pattern validation",
       "hash": "21c11cca599203f0cec3e7f4ce528106f3bf446b5b64f254aa9c8de5757bfb9b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f6d1da646c7ba948/g_f6d1da646c7ba948.go:9:8: undefined: Root",
       "cases": [
@@ -28822,7 +28822,7 @@
       "optional": false,
       "group": "pattern is not anchored",
       "hash": "3daa81e7c026a55870ca57c26422c65771ab49fc02a5e16aef483530ee7f5024",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_aa2de6c877c0a504/g_aa2de6c877c0a504.go:9:8: undefined: Root",
       "cases": [
@@ -28840,7 +28840,7 @@
       "optional": false,
       "group": "patternProperties validates properties matching a regex",
       "hash": "5ce5a68c0b71bb232e4988ec37c1a9a31603f6640c6d5e426cef9a88a16456c7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_2019dcf99ff306c1/g_2019dcf99ff306c1.go:9:8: undefined: Root",
       "cases": [
@@ -28888,7 +28888,7 @@
       "optional": false,
       "group": "multiple simultaneous patternProperties are validated",
       "hash": "8ab2f5bbf5aaf7eb652822665d73600f63001430129f95e5588912dcd44af0ce",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_56642304db76df91/g_56642304db76df91.go:9:8: undefined: Root",
       "cases": [
@@ -28931,7 +28931,7 @@
       "optional": false,
       "group": "regexes are not anchored by default and are case sensitive",
       "hash": "0f724ac17bdb42764eee2969869ccd13eb575ec1063de346b7ac5529d8a38b32",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_72787813e05e05f7/g_72787813e05e05f7.go:9:8: undefined: Root",
       "cases": [
@@ -28964,7 +28964,7 @@
       "optional": false,
       "group": "patternProperties with boolean schemas",
       "hash": "0ca49bf00ce843f48d70bd85e3965e24b095a5e6b939c6b91e2b5933efa15c37",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6778b4fd0ca8faef/g_6778b4fd0ca8faef.go:9:8: undefined: Root",
       "cases": [
@@ -29002,7 +29002,7 @@
       "optional": false,
       "group": "patternProperties with null valued instance properties",
       "hash": "1e340f4c98b98e6e99e5321393b4e7e0be6b655c181fa41d3486e1628b6b5471",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_eb08404d30a0e03b/g_eb08404d30a0e03b.go:9:8: undefined: Root",
       "cases": [
@@ -29020,7 +29020,7 @@
       "optional": false,
       "group": "object properties validation",
       "hash": "26cff43eca44bed367f210d77431df096f2099395d3010a766c819eba9077496",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b10dd22301a8aaf5/g_b10dd22301a8aaf5.go:9:8: undefined: Root",
       "cases": [
@@ -29063,7 +29063,7 @@
       "optional": false,
       "group": "properties, patternProperties, additionalProperties interaction",
       "hash": "8d4564ea6d00b049afd3a978666f0f4153271909e1a397725e7a51c13e6ef7b3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8c02eefed0b26b61/g_8c02eefed0b26b61.go:9:8: undefined: Root",
       "cases": [
@@ -29116,7 +29116,7 @@
       "optional": false,
       "group": "properties with boolean schema",
       "hash": "67b00ddaaafd527771ad50c02f8098b5e579c23c560489e33ea8852c505b8bdf",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_75f32b97b1742945/g_75f32b97b1742945.go:9:8: undefined: Root",
       "cases": [
@@ -29149,7 +29149,7 @@
       "optional": false,
       "group": "properties with escaped characters",
       "hash": "00fed977ad432c4591bb953286e9c3dfcfca40755a0cb28c9d1bf0a4be07aeae",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e0c5c827cf867821/g_e0c5c827cf867821.go:9:8: undefined: Root",
       "cases": [
@@ -29172,7 +29172,7 @@
       "optional": false,
       "group": "properties with null valued instance properties",
       "hash": "1f7e57ea04590d12fc2c5dd2508ddcb3f5ca39bc348307a3ce2993aebe329c98",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1f42498ea682f444/g_1f42498ea682f444.go:9:8: undefined: Root",
       "cases": [
@@ -29190,7 +29190,7 @@
       "optional": false,
       "group": "properties whose names are Javascript object property names",
       "hash": "22642bc0bf8c29e9ce6178408e544195539f42a18a18b719a336c0ca83875eca",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f8fb78e7ba2147c1/g_f8fb78e7ba2147c1.go:9:8: undefined: Root",
       "cases": [
@@ -29238,7 +29238,7 @@
       "optional": false,
       "group": "propertyNames validation",
       "hash": "d14a6a11b5cb9846b10a947fb105f900636a7e08983ced5a7aea7ac5fbf7f40c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -29291,7 +29291,7 @@
       "optional": false,
       "group": "propertyNames validation with pattern",
       "hash": "83951649cf5b1cd682517ac6e2cd7532d7d61788dd74db5b0be417d3fecb2685",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -29319,7 +29319,7 @@
       "optional": false,
       "group": "propertyNames with boolean schema true",
       "hash": "15050ad5df51b09a06e2f3353ecf961787fe9eb31a202ff803698c0c6676d9a1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -29342,7 +29342,7 @@
       "optional": false,
       "group": "propertyNames with boolean schema false",
       "hash": "51341f11c9aab43449eaca5db411a1c07b99267671acf101ecab27101fde40c6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -29365,7 +29365,7 @@
       "optional": false,
       "group": "propertyNames with const",
       "hash": "14624072a21d0319b53175d6a6951700483a9e00ebdbc6881f4ac2a145e26ac4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -29393,7 +29393,7 @@
       "optional": false,
       "group": "propertyNames with enum",
       "hash": "3e048c603ac9d05d0fa5a196c7f20a9183088ad638b42870475692668ce75021",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "schema has no root",
       "cases": [
@@ -29426,7 +29426,7 @@
       "optional": false,
       "group": "root pointer ref",
       "hash": "ead1714795265815930cfc7c6657d021f81d11da10d8128fa5e2a5fb79f87ca9",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_500f5a0e1ab4c1f6/g_500f5a0e1ab4c1f6.go:9:8: undefined: Root",
       "cases": [
@@ -29459,7 +29459,7 @@
       "optional": false,
       "group": "relative pointer ref to object",
       "hash": "da521c3e8ec3dcdf69e4dfc663df711e7b6d50f4347330f3dd1016b495dd50be",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_636680d3fb9c9f6e/g_636680d3fb9c9f6e.go:9:8: undefined: Root",
       "cases": [
@@ -29482,7 +29482,7 @@
       "optional": false,
       "group": "relative pointer ref to array",
       "hash": "644c6b167f2a88599e7b3ec49c1828f762010cf4e758e2cf3d9a47873e784e4b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -29505,7 +29505,7 @@
       "optional": false,
       "group": "escaped pointer ref",
       "hash": "5546f0b59a08c988bbb3593951161f1f870f38aee14da2b75416c00d27947725",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f364c9f1aae4487b/g_f364c9f1aae4487b.go:15:8: undefined: Root",
       "cases": [
@@ -29548,7 +29548,7 @@
       "optional": false,
       "group": "nested refs",
       "hash": "491d938ffc242b45a47e321d0dd82e7bb1ae56c12a31cbbf1c2e60d847be2633",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_21ff932bd975c78e/g_21ff932bd975c78e.go:11:8: undefined: Root",
       "cases": [
@@ -29571,7 +29571,7 @@
       "optional": false,
       "group": "ref overrides any sibling keywords",
       "hash": "a501052fda333bc260ae9418a3bc5f0b4e78e68c72ebd89c6fa1eab7d78ed836",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_380d53f17405de6b/g_380d53f17405de6b.go:11:8: undefined: Root",
       "cases": [
@@ -29599,7 +29599,7 @@
       "optional": false,
       "group": "$ref prevents a sibling $id from changing the base uri",
       "hash": "576aef5c9465b93649c508b9f64fac02c016b2630788dda1dceac351a17e2d13",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d8f5c36a8c99a795/g_d8f5c36a8c99a795.go:13:8: undefined: Root",
       "cases": [
@@ -29622,7 +29622,7 @@
       "optional": false,
       "group": "remote ref, containing refs itself",
       "hash": "7ae635e2cf39bae30b6c648ae60b7ac095d356a9925683cd34b1579ac9be956b",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_d6d487c86b278c6c/g_d6d487c86b278c6c.go:9:8: undefined: Root",
       "cases": [
@@ -29645,7 +29645,7 @@
       "optional": false,
       "group": "property named $ref that is not a reference",
       "hash": "2cdf80edd03fba67a25343a91425bce4e0078800ed46698f2aef27b6a3a6f118",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_55ab2c850fb35e7d/g_55ab2c850fb35e7d.go:9:8: undefined: Root",
       "cases": [
@@ -29668,7 +29668,7 @@
       "optional": false,
       "group": "property named $ref, containing an actual $ref",
       "hash": "a096da729029c0a5adbf1c9e39d73830b3a8040f1726975ab58bb397f59440cb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9e26bd9452ccd390/g_9e26bd9452ccd390.go:11:8: undefined: Root",
       "cases": [
@@ -29691,7 +29691,7 @@
       "optional": false,
       "group": "$ref to boolean schema true",
       "hash": "58f34813c7d075c4ef74a520d28a307225ffb2e1a66bcdde8a36fa7cf44cc1c4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_162370513e8b206f/g_162370513e8b206f.go:11:8: undefined: Root",
       "cases": [
@@ -29709,7 +29709,7 @@
       "optional": false,
       "group": "$ref to boolean schema false",
       "hash": "9e34023d827f276dca393d753cfbca30e2d61ee4350c6d0df09ba2ec1d199335",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7b894fc9b6a2f029/g_7b894fc9b6a2f029.go:11:8: undefined: Root",
       "cases": [
@@ -29727,7 +29727,7 @@
       "optional": false,
       "group": "Recursive references between schemas",
       "hash": "e6b9a5072ea4c63e1172afc5578c2ab956dd9fb0333b4650e7be31c1a3b4588a",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "cannot add struct field: could not generate type with scope 'NodeSubtree': could not follow $ref \"tree\" to file \"tree\": cannot load schema\nfailed to load schema \"tree\": cannot resolve schema \"g_95187a40506b8430/tree\"",
       "cases": [
@@ -29750,7 +29750,7 @@
       "optional": false,
       "group": "refs with quote",
       "hash": "587096f716c6838f442bdeab7a3e20a2aaa93b90b0db4b1b102c4bb4b5d79462",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_1ec5c0325b9d23d9/g_1ec5c0325b9d23d9.go:11:8: undefined: Root",
       "cases": [
@@ -29773,7 +29773,7 @@
       "optional": false,
       "group": "Location-independent identifier",
       "hash": "454b5bd167fae04d50d99a3fd28245ed0f133822ace6d8a5d56b3bb9ec0bcc95",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_53a7d62c11be32f9/g_53a7d62c11be32f9.go:11:8: undefined: Root",
       "cases": [
@@ -29796,7 +29796,7 @@
       "optional": false,
       "group": "Reference an anchor with a non-relative URI",
       "hash": "641aad1707e2cb5a1e68d09d630c1308f13b84cb4b635b50ae55c3c4c0394042",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_8f5e7260024d62d3/g_8f5e7260024d62d3.go:11:8: undefined: Root",
       "cases": [
@@ -29819,7 +29819,7 @@
       "optional": false,
       "group": "Location-independent identifier with base URI change in subschema",
       "hash": "9066a37b49203bd4a67bb393a9289871cc2dd88fb4f0a6971387e946884c19f3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_18e0f14f8809cee1/g_18e0f14f8809cee1.go:11:8: undefined: Root",
       "cases": [
@@ -29842,7 +29842,7 @@
       "optional": false,
       "group": "naive replacement of $ref with its destination is not correct",
       "hash": "2f7a93b9a095f3b85a5eaa9c24e9840073a54902f870fa6d044ffde2bcb1ce80",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6c44464a66f63d54/g_6c44464a66f63d54.go:11:8: undefined: Root",
       "cases": [
@@ -29870,7 +29870,7 @@
       "optional": false,
       "group": "refs with relative uris and defs",
       "hash": "cda98bbe246cd3b8c184e71c1744778e66fad6c600bd958a61d3d1ee2c572f49",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6675bc9406c0145e/g_6675bc9406c0145e.go:9:8: undefined: Root",
       "cases": [
@@ -29898,7 +29898,7 @@
       "optional": false,
       "group": "relative refs with absolute uris and defs",
       "hash": "7ac316445d1928aea5a72b275c7a98f5b0b1d71799f41da5a6060f4ca8e0466d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5601e77cb486a6a7/g_5601e77cb486a6a7.go:9:8: undefined: Root",
       "cases": [
@@ -29926,7 +29926,7 @@
       "optional": false,
       "group": "$id must be resolved against nearest parent, not just immediate parent",
       "hash": "3ec0057cfd0bef74c97b5e16478f76874f8932c30902786d6475fffa312511a6",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_41b4e7eda702dc80/g_41b4e7eda702dc80.go:11:8: undefined: Root",
       "cases": [
@@ -29949,7 +29949,7 @@
       "optional": false,
       "group": "simple URN base URI with $ref via the URN",
       "hash": "0a20a78e0f4037e2cd626da152166f9941c065db46c5e14d31de907ca65166bb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_483c882fedc456b8/g_483c882fedc456b8.go:9:8: undefined: Root",
       "cases": [
@@ -29972,7 +29972,7 @@
       "optional": false,
       "group": "simple URN base URI with JSON pointer",
       "hash": "e3c06f6fc5e5b2060c5d31ed1435f6bcbb6bfcb0de854bb7ecda846335f1d3ea",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ea3e3b81fd57bda2/g_ea3e3b81fd57bda2.go:11:8: undefined: Root",
       "cases": [
@@ -29995,7 +29995,7 @@
       "optional": false,
       "group": "URN base URI with NSS",
       "hash": "7581464696a064eee60eba2433b5b6281fccf242b427fe4f0e77180a3fcbd45d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e334d201cfb547fc/g_e334d201cfb547fc.go:11:8: undefined: Root",
       "cases": [
@@ -30018,7 +30018,7 @@
       "optional": false,
       "group": "URN base URI with r-component",
       "hash": "a7566b8e0d3b7aea42ff45e1dc0d08043ebbb5c9990124b38901a0410eed75e2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6e2d8f71c2519d3b/g_6e2d8f71c2519d3b.go:11:8: undefined: Root",
       "cases": [
@@ -30041,7 +30041,7 @@
       "optional": false,
       "group": "URN base URI with q-component",
       "hash": "a99c3d5f25aadcd63e9d0571fc50d855ab913ebf24b6494a3bdb1823397b0872",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_9c1604671a6c1603/g_9c1604671a6c1603.go:11:8: undefined: Root",
       "cases": [
@@ -30064,7 +30064,7 @@
       "optional": false,
       "group": "URN base URI with URN and JSON pointer ref",
       "hash": "86f07fa0038f7a481bcd9474b769c7803faf87cd372605a25a00c0306248ea47",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_a90031c749104379/g_a90031c749104379.go:11:8: undefined: Root",
       "cases": [
@@ -30087,7 +30087,7 @@
       "optional": false,
       "group": "URN base URI with URN and anchor ref",
       "hash": "c56e2ddfc27f672a7a944fb1db70846fb188601ca3952e7dd091f2dbadb4ddb5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7cc63011737bd9e3/g_7cc63011737bd9e3.go:11:8: undefined: Root",
       "cases": [
@@ -30110,7 +30110,7 @@
       "optional": false,
       "group": "ref to if",
       "hash": "050d26bcb6e3b3974dfdee796861ef9576f0632d8b31f8058e979cad16556bfb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_ba479624560c7701/g_ba479624560c7701.go:9:8: undefined: Root",
       "cases": [
@@ -30133,7 +30133,7 @@
       "optional": false,
       "group": "ref to then",
       "hash": "b6d3ac4d7f93e73e63f092f80ab9227877ddc031f36d6b6fd5ac7184cafb4b21",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_3daedc733909ed58/g_3daedc733909ed58.go:9:8: undefined: Root",
       "cases": [
@@ -30156,7 +30156,7 @@
       "optional": false,
       "group": "ref to else",
       "hash": "86e8c32587c30f4cda514b4fedba7e3141851bc11ddf771bdf032b13add1d765",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_f7a7d3e46c0f351a/g_f7a7d3e46c0f351a.go:9:8: undefined: Root",
       "cases": [
@@ -30179,7 +30179,7 @@
       "optional": false,
       "group": "ref with absolute-path-reference",
       "hash": "9bb7056c973e10f9e68c9913dbbffeaf7fda59a572d006ca545708fe3a5fe2c1",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_533d57f5f5ee9e6c/g_533d57f5f5ee9e6c.go:13:8: undefined: Root",
       "cases": [
@@ -30202,7 +30202,7 @@
       "optional": false,
       "group": "$id with file URI still resolves pointers - *nix",
       "hash": "9b22d0f93c05538f749d74db6e43eea1857f51679875ca592fcbd34cac45b082",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_7389c049e8911fd6/g_7389c049e8911fd6.go:11:8: undefined: Root",
       "cases": [
@@ -30225,7 +30225,7 @@
       "optional": false,
       "group": "$id with file URI still resolves pointers - windows",
       "hash": "72e4dbd5e9453f549751e44a0ca4f832b8b3630dc872da73c25893c60e9fd0d3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_fcb01d5cd5994267/g_fcb01d5cd5994267.go:11:8: undefined: Root",
       "cases": [
@@ -30248,7 +30248,7 @@
       "optional": false,
       "group": "empty tokens in $ref json-pointer",
       "hash": "0be6b860cdace3069c0d516b5f3b21442d04357749cf8ddb02222fa583798da2",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_90ccc0887a867f4f/g_90ccc0887a867f4f.go:11:8: undefined: Root",
       "cases": [
@@ -30271,7 +30271,7 @@
       "optional": false,
       "group": "remote ref",
       "hash": "8588cfef4ad3e72863a1d9813bb14fd97d318eb4fff7250c455ca8b109efa814",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_09d6e8c4dee0a2df/g_09d6e8c4dee0a2df.go:9:8: undefined: Root",
       "cases": [
@@ -30294,7 +30294,7 @@
       "optional": false,
       "group": "fragment within remote ref",
       "hash": "fe001ec6672ad5104bfb2adfc37a564bf506083dd74340cd8d0c1bc4efd1db79",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_74ac033df232f449/g_74ac033df232f449.go:9:8: undefined: Root",
       "cases": [
@@ -30317,7 +30317,7 @@
       "optional": false,
       "group": "ref within remote ref",
       "hash": "cefd5a03961de09d6073f5b5e80f5abb598671a7042350ffa477be4812542e1f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_45a5edda3c6924b4/g_45a5edda3c6924b4.go:9:8: undefined: Root",
       "cases": [
@@ -30340,7 +30340,7 @@
       "optional": false,
       "group": "base URI change",
       "hash": "064a7dd3278101cc93abca2bfb906fc1e9cf5858673166be9a3ba91b10ba8199",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_88c2a3bb67f04037/g_88c2a3bb67f04037.go:9:8: undefined: Root",
       "cases": [
@@ -30363,7 +30363,7 @@
       "optional": false,
       "group": "base URI change - change folder",
       "hash": "c91aa677598aba8d8e1e9b2d5718f20e3d566121cd100c1c04f2ef5bf1259cb3",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "could not follow $ref \"folderInteger.json\" to file \"folderInteger.json\": cannot load schema\nfailed to load schema \"folderInteger.json\": cannot resolve schema \"g_d4786c3d1f5c7c01/folderInteger.json\"",
       "cases": [
@@ -30386,7 +30386,7 @@
       "optional": false,
       "group": "base URI change - change folder in subschema",
       "hash": "c74a05b6f486940d4fa62aa45cad5d883159a6191ccf0b13f4377abf8b6d0029",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "cannot add struct field: could not generate type with scope 'RootList': definition does not exist in schema: \"baz/definitions/bar\" (from ref \"#/definitions/baz/definitions/bar\")",
       "cases": [
@@ -30409,7 +30409,7 @@
       "optional": false,
       "group": "root ref in remote ref",
       "hash": "53a6bb9f063f96e03cd8194b4769ba9ef18e2269338ebd39c9342ec872238feb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "cannot add struct field: could not generate type with scope 'RootName': could not follow $ref \"draft7/name.json#/definitions/orNull\" to file \"draft7/name.json\": cannot load schema\nfailed to load schema \"draft7/name.json\": cannot resolve schema \"g_0e5c794705621c19/draft7/name.json\"",
       "cases": [
@@ -30437,7 +30437,7 @@
       "optional": false,
       "group": "remote ref with ref to definitions",
       "hash": "1f09498045df72c1458b16f394b20c2387f8fc7112664730a757d3656137a85d",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_895a5c3f047f551c/g_895a5c3f047f551c.go:9:8: undefined: Root",
       "cases": [
@@ -30460,7 +30460,7 @@
       "optional": false,
       "group": "Location-independent identifier in remote ref",
       "hash": "8107a7d20412326d3e0a64aed154d274416c1a50fab58cc096da8d9fae669bdb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_259b8b1188df9f18/g_259b8b1188df9f18.go:9:8: undefined: Root",
       "cases": [
@@ -30483,7 +30483,7 @@
       "optional": false,
       "group": "retrieved nested refs resolve relative to their URI not $id",
       "hash": "6e2ea4a16edd27423e9493a029cbc6590042296f421bfe078cd9390e2f5b4859",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_dd84fcad9f614890/g_dd84fcad9f614890.go:9:8: undefined: Root",
       "cases": [
@@ -30506,7 +30506,7 @@
       "optional": false,
       "group": "$ref to $ref finds location-independent $id",
       "hash": "c1fcd04e6fa80049632df4b6aacb7de703e15443548c23d06fe95a6648f0c8ed",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_340e026688b6ee1b/g_340e026688b6ee1b.go:9:8: undefined: Root",
       "cases": [
@@ -30529,7 +30529,7 @@
       "optional": false,
       "group": "required validation",
       "hash": "18d5e7efe4678de8a9901aecd62be20ad861c86f6027418d605e11a82dc412f4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_77d4340096684799/g_77d4340096684799.go:9:8: undefined: Root",
       "cases": [
@@ -30577,7 +30577,7 @@
       "optional": false,
       "group": "required default validation",
       "hash": "33fbec803ebbe77f6c40f8bbbfef2216e6ac7765495c4eaef64eae4e783ac39e",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_b929d55c068f4415/g_b929d55c068f4415.go:9:8: undefined: Root",
       "cases": [
@@ -30595,7 +30595,7 @@
       "optional": false,
       "group": "required with empty array",
       "hash": "ea681176e8a9be28a9299566dd971536637c4a03e76ecc7a3cd691f1fbbb84fc",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_e0378652d591544e/g_e0378652d591544e.go:9:8: undefined: Root",
       "cases": [
@@ -30613,7 +30613,7 @@
       "optional": false,
       "group": "required with escaped characters",
       "hash": "e6ef054c86b7b4c8a1ea9827de49d4dc52b622aeffd15824e8cb5c9503d6bfb4",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_33abe294e8c0bffb/g_33abe294e8c0bffb.go:9:8: undefined: Root",
       "cases": [
@@ -30636,7 +30636,7 @@
       "optional": false,
       "group": "required properties whose names are Javascript object property names",
       "hash": "9c8f8c76902230fe921e6d373c88b8dee7a150810c82a0dd22b77d74f1df34ec",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_5e0186dd6feb102e/g_5e0186dd6feb102e.go:9:8: undefined: Root",
       "cases": [
@@ -30684,7 +30684,7 @@
       "optional": false,
       "group": "integer type matches integers",
       "hash": "1e14d3766acefd10babe61974ebf11956823c88799d54fe06554e8e8d1613d44",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "mixed",
       "error": "a float with zero fractional part is an integer: json: cannot unmarshal number 1.0 into Go value of type g_c5a49de2ae923598.Root",
       "cases": [
@@ -30749,7 +30749,7 @@
       "optional": false,
       "group": "number type matches numbers",
       "hash": "6584e53395160a92dd51d766a453a448b6f87895e9763da9314296ca3d82ea30",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `null is not a number` though valid: false",
       "cases": [
@@ -30812,7 +30812,7 @@
       "optional": false,
       "group": "string type matches strings",
       "hash": "21c8bcea6b31b7188ba7e1d21bd7fab174774864dfd54c5d41e0c19fc54881eb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `null is not a string` though valid: false",
       "cases": [
@@ -30875,7 +30875,7 @@
       "optional": false,
       "group": "object type matches objects",
       "hash": "0682b976b35ee03b0b9e3d207826eaadc2c238129ab0f6997c03c925fc0b3211",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `null is not an object` though valid: false",
       "cases": [
@@ -30928,7 +30928,7 @@
       "optional": false,
       "group": "array type matches arrays",
       "hash": "7cee47f88b4d1d1d94a0fe9c1f63b516da3d9eb2051128484640fd4113df322f",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `null is not an array` though valid: false",
       "cases": [
@@ -30981,7 +30981,7 @@
       "optional": false,
       "group": "boolean type matches booleans",
       "hash": "ead7b09af55022d1bc43802e959297bace12ed230a1b3566e4fa5bd8ca8af886",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `null is not a boolean` though valid: false",
       "cases": [
@@ -31051,7 +31051,7 @@
       "optional": false,
       "group": "null type matches only the null object",
       "hash": "af4fb6faa804e8d670c4ef3e315450ee835588d2ca41deadb21304ebd9d84c19",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `an integer is not null` though valid: false",
       "cases": [
@@ -31114,7 +31114,7 @@
       "optional": false,
       "group": "multiple types can be specified in an array",
       "hash": "405d31d9a395463d581c5c003f15d659f5b3bf5d1230bbf06d7e9b2471de1f3c",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "mixed",
       "error": "an integer is valid: json: cannot unmarshal number into Go value of type g_ae071fa272594ea5.Root",
       "cases": [
@@ -31167,7 +31167,7 @@
       "optional": false,
       "group": "type as array with one item",
       "hash": "aa4e39c051d76908cd9459e19da9f0c0e5ba4ad05e809be594fb4b15ff50d108",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "pass",
       "cases": [
         {
@@ -31190,7 +31190,7 @@
       "optional": false,
       "group": "type: array or object",
       "hash": "a419c3c56b7c5a4b427f5b4e421c04d194e4952bcbe7edfa803870bd09120ffd",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "mixed",
       "error": "array is valid: json: cannot unmarshal array into Go value of type g_6f74f6a5a5f1cf85.Root",
       "cases": [
@@ -31231,7 +31231,7 @@
       "optional": false,
       "group": "type: array, object or null",
       "hash": "8c60a0efe06c2812d38747056bddbf4d4526623c7b5e80eae860394e949cfeb5",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "false_accept",
       "error": "accepted `number is invalid` though valid: false",
       "cases": [
@@ -31269,7 +31269,7 @@
       "optional": false,
       "group": "uniqueItems validation",
       "hash": "065a027534a63aa189d52162d178d5a4816cae36f8f4538c88e9791096b9a5e9",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_6fc3c694cc9221e6/g_6fc3c694cc9221e6.go:9:8: undefined: Root",
       "cases": [
@@ -31422,7 +31422,7 @@
       "optional": false,
       "group": "uniqueItems with an array of items",
       "hash": "0c2874f7c3c3975f849571950ec91a020b3730f42e92b85bfd8088d37af8e202",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -31475,7 +31475,7 @@
       "optional": false,
       "group": "uniqueItems with an array of items and additionalItems=false",
       "hash": "7dc67bee3d2ea7a7c47cc3f028198c450795d984afea15c4ae1d3eb112c78dc7",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -31513,7 +31513,7 @@
       "optional": false,
       "group": "uniqueItems=false validation",
       "hash": "aa06473fcf9d27f3b0ce2b0d6a578f3228d0b5b0cf41b3e3998b640acdbb32fb",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "compile_fail",
       "error": "g_2ed7ffb93154baeb/g_2ed7ffb93154baeb.go:9:8: undefined: Root",
       "cases": [
@@ -31601,7 +31601,7 @@
       "optional": false,
       "group": "uniqueItems=false with an array of items",
       "hash": "0ae240c07f23ff58a52c33951824523400b8f7c636e2337da140ef8ab93bd408",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [
@@ -31654,7 +31654,7 @@
       "optional": false,
       "group": "uniqueItems=false with an array of items and additionalItems=false",
       "hash": "ce67e88704df8775cf5918c43f11a6859f3843facb2cb6f23921610d5d674bae",
-      "generated_at": "2026-10-11T18:30:35Z",
+      "generated_at": "2026-10-11T18:41:27Z",
       "bucket": "generation_error",
       "error": "error parsing from file <schema>: cannot load schema\nfailed to load schema \"<schema>\": error parsing JSON file <schema>: failed to unmarshal JSON: failed to unmarshal schema: failed to unmarshal type: json: cannot unmarshal array into Go value of type schemas.ObjectAsType",
       "cases": [

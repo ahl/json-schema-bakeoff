@@ -7,7 +7,7 @@ a price tag on the policies the generators live with. Remote refs come from
 `suite/remotes/`, the dialect from the suite directory, and `format` stays at
 the library default (asserted through draft 7, annotation-only after).
 
-_generated 2026-10-11T18:32:37Z_
+_generated 2026-10-11T18:45:40Z_
 
 **1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
 

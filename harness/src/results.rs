@@ -183,6 +183,12 @@ pub struct Results {
     /// time and generates no types).
     #[serde(default)]
     pub kind: String,
+    /// The generator directory name (`quicktype`), shared by its targets.
+    #[serde(default)]
+    pub generator: String,
+    /// Where the tool lives, for a link on the scoreboard (may be empty).
+    #[serde(default)]
+    pub homepage: String,
     /// Kept out of the scoreboard tables; the page is still rendered.
     /// Set in generator.toml, or by hand in this file (a rerun keeps it).
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
@@ -213,6 +219,19 @@ pub fn language_label(language: &str) -> &str {
         "typescript" => "ts",
         "javascript" => "js",
         other => other,
+    }
+}
+
+/// A short link label for a homepage URL: `crates.io`, `npm`, `GitHub`,
+/// or the host name.
+pub fn homepage_label(url: &str) -> String {
+    let host = url.trim_start_matches("https://").trim_start_matches("http://").split('/').next().unwrap_or("");
+    match host.trim_start_matches("www.") {
+        "crates.io" => "crates.io".to_string(),
+        "npmjs.com" => "npm".to_string(),
+        "github.com" => "GitHub".to_string(),
+        "" => "homepage".to_string(),
+        other => other.to_string(),
     }
 }
 

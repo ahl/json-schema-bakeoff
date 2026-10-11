@@ -9,6 +9,7 @@
 //! language = "rust"                         # or per target via [languages]
 //! kind = "validator"                        # optional; default "generator"
 //! hidden = true                             # optional; keep off the scoreboard tables
+//! homepage = "https://crates.io/crates/x"   # optional; linked from the scoreboard
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
@@ -56,10 +57,13 @@ struct Manifest {
     /// rendered and linked from the bottom of RESULTS.md).
     #[serde(default)]
     hidden: bool,
+    /// Where the tool lives (crates.io, npm, GitHub, a website).
+    #[serde(default)]
+    homepage: Option<String>,
     commands: Commands,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, serde::Serialize)]
 struct Commands {
     version: String,
     generate: String,
@@ -73,6 +77,7 @@ pub struct Generator {
     /// `generator` or `validator`.
     pub kind: String,
     pub hidden: bool,
+    pub homepage: String,
     language: Option<String>,
     languages: BTreeMap<String, String>,
     pub dir: PathBuf,
@@ -136,6 +141,7 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
         description: m.description.trim().to_string(),
         kind: m.kind.unwrap_or_else(|| "generator".to_string()),
         hidden: m.hidden,
+        homepage: m.homepage.unwrap_or_default(),
         language: m.language,
         languages: m.languages,
         dir: dir.to_path_buf(),
@@ -162,7 +168,9 @@ impl Generator {
     /// A hash of the generator's own sources, so an edit to its glue code
     /// invalidates stored records the way a version bump does. Covers every
     /// regular file under the generator directory except documentation
-    /// (`*.md`), dotfiles, and `node_modules`/`target`.
+    /// (`*.md`), dotfiles, and `node_modules`/`target`. `generator.toml`
+    /// contributes only its commands and targets, so editing the
+    /// description, homepage, or `hidden` flag doesn't recompute anything.
     pub fn source_hash(&self) -> Result<String> {
         use sha2::{Digest, Sha256};
         fn walk(dir: &Path, out: &mut Vec<PathBuf>) -> Result<()> {
@@ -185,9 +193,16 @@ impl Generator {
         walk(&self.dir, &mut files)?;
         let mut h = Sha256::new();
         for f in files {
-            h.update(f.strip_prefix(&self.dir).unwrap_or(&f).to_string_lossy().as_bytes());
+            let rel = f.strip_prefix(&self.dir).unwrap_or(&f).to_string_lossy().into_owned();
+            h.update(rel.as_bytes());
             h.update([0]);
-            h.update(std::fs::read(&f).with_context(|| format!("reading {}", f.display()))?);
+            if rel == "generator.toml" {
+                h.update(toml::to_string(&self.commands).unwrap_or_default());
+                h.update(self.targets.join(","));
+                h.update(format!("{:?}", self.languages));
+            } else {
+                h.update(std::fs::read(&f).with_context(|| format!("reading {}", f.display()))?);
+            }
             h.update([0]);
         }
         Ok(hex::encode(h.finalize()))

@@ -9,23 +9,13 @@
 name = "ajv"
 language = "js"
 kind = "validator"
+homepage = "https://ajv.js.org"
 description = """
-ajv is the JSON Schema validator for JavaScript, and for most of the
-ecosystem it *is* JSON Schema: it compiles a schema into purpose-built
-JavaScript source and runs that, which is why it is fast enough to sit in
-request paths and why it covers draft-04 through 2020-12 keyword for
-keyword. It produces no types — the schema stays the artifact, validation
-happens at the boundary, and what flows past it is a plain parsed value —
-so it answers the opposite question from a code generator: not "what shape
-does this schema describe" but "does this document satisfy it". It is here
-as the reference row for the Node path. It resolves the suite's
-`http://localhost:1234/` remotes from `suite/remotes/`, which the code
-generators are not allowed to do, so the difference between this row and
-theirs on `refRemote.json` is the price of that policy. The one thing ajv
-leaves at the door is `format`: the core package ships no format
-implementations at all, and the `ajv-formats` package that does is
-deliberately not installed here, so every `format` in the suite is an
-annotation.
+The JSON Schema validator for JavaScript, and for much of the ecosystem the
+reference implementation: it compiles a schema into purpose-built JS and runs
+that at the boundary. No types come out; the schema stays the artifact. It's
+the reference row for the Node path, resolving `localhost:1234` remotes from
+`suite/remotes/` and shipping no formats, so `format` is ignored everywhere.
 """
 
 [commands]
