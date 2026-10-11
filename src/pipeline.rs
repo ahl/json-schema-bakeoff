@@ -116,19 +116,14 @@ pub fn run(opts: RunOpts) -> Result<()> {
 
     // The committed results file is the cache: a record whose hash matches
     // is reused as-is, so a rerun that changes nothing rewrites nothing.
-    let previous = match Results::load(&headline_dir.join("results.json")) {
-        Ok(r) => Some(r),
-        Err(_) => None,
-    };
+    let previous = Results::load(&headline_dir.join("results.json")).ok();
     let mut cached = 0;
-    if !opts.no_cache {
-        if let Some(prev) = &previous {
-            let by_hash: BTreeMap<&str, &GroupResult> = prev.groups.iter().map(|g| (g.hash.as_str(), g)).collect();
-            for item in &mut items {
-                if let Some(r) = by_hash.get(item.hash.as_str()) {
-                    item.result = Some((*r).clone());
-                    cached += 1;
-                }
+    if let Some(prev) = previous.as_ref().filter(|_| !opts.no_cache) {
+        let by_hash: BTreeMap<&str, &GroupResult> = prev.groups.iter().map(|g| (g.hash.as_str(), g)).collect();
+        for item in &mut items {
+            if let Some(r) = by_hash.get(item.hash.as_str()) {
+                item.result = Some((*r).clone());
+                cached += 1;
             }
         }
     }
