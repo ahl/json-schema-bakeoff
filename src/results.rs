@@ -43,7 +43,7 @@ impl Bucket {
         match self {
             Bucket::Pass => "✅",
             Bucket::FalseAccept => "🙈",
-            Bucket::FalseReject => "🚫",
+            Bucket::FalseReject => "🚧",
             Bucket::Mixed => "🔀",
             Bucket::RuntimePanic => "🔥",
             Bucket::CompileFail => "🧱",
