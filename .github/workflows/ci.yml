@@ -28,6 +28,7 @@ jobs:
       - run: cargo clippy --workspace --all-targets -- -D warnings
       - name: Stored results are current
         run: |
-          cargo run --release -- run --generator typify-0.10 --draft draft7 | tee run.log
+          # Progress lines go to stderr; capture both.
+          cargo run --release -- run --generator typify-0.10 --draft draft7 2>&1 | tee run.log
           grep -q "cache: 322 hit, 0 to run" run.log
           git diff --exit-code -- results RESULTS.md
