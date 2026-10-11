@@ -14,6 +14,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:53:33Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:51:12Z |
+| [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | — | — | — | 2026-10-11T19:26:33Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:50:57Z |
 
 ### Optional tests
@@ -26,6 +27,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:53:33Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:51:12Z |
+| [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | — | — | — | 2026-10-11T19:26:33Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:50:57Z |
 
 ## Other languages
@@ -39,9 +41,10 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:53:54Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 2.1% | 2026-10-11T18:50:16Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:53:39Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 21.2% | 17.6% | 19.8% | 20.4% | 18.8% | 2026-10-11T19:20:29Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:51:36Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:51:51Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.1% | 19.7% | 17.8% | 13.7% | 12.2% | 2026-10-11T18:56:42Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.1% | 19.7% | 17.8% | 13.7% | 12.2% | 2026-10-11T19:24:11Z |
 
 ### Optional tests
 
@@ -52,9 +55,10 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:53:54Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-10-11T18:50:16Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:53:39Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 56.4% | 34.1% | 28.1% | 25.0% | 24.4% | 2026-10-11T19:20:29Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:51:36Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:51:51Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.9% | 31.8% | 21.9% | 18.4% | 17.9% | 2026-10-11T18:56:42Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.9% | 31.8% | 21.9% | 18.4% | 17.9% | 2026-10-11T19:24:11Z |
 
 ## The tools
 
@@ -89,6 +93,19 @@ the reference row: the ceiling the suite allows, a check on the harness, and
 a price tag on the policies the generators live with. Remote refs come from
 `suite/remotes/`, the dialect from the suite directory, and `format` stays at
 the library default (asserted through draft 7, annotation-only after).
+
+**ogen v1.24.0** — [ogen.dev](https://ogen.dev)  
+An OpenAPI v3 generator for Go: it reads a whole API document and emits the
+client, the server and — the part this row measures — a Go type per schema
+with its JSON codec and its validator written out as code, against
+`github.com/go-faster/jx` rather than `encoding/json` and reflection.
+Decoding and validation are deliberately two methods: `Decode` enforces the
+type and the required-field set, `Validate` enforces lengths, bounds,
+patterns and `uniqueItems`. Because the input is an API document and not a
+bare schema, each group here is wrapped as an OpenAPI 3.1 document whose
+`components.schemas.Root` is the group's schema and whose one synthetic
+operation takes it as a request body; 3.1 schema objects are JSON Schema
+2020-12, so the schema itself goes in untranslated.
 
 **quicktype 26.0.0** — [quicktype.io](https://quicktype.io)  
 Types in a dozen languages from JSON samples or schemas. Its design center is
@@ -129,6 +146,11 @@ Rust types for serde from JSON Schema, built to generate OpenAPI clients
 type system can say; anything else is silently absent, and a construct it
 can't model fails at generation rather than producing a wrong type. The 0.10
 line is the in-progress rewrite on top of typespace.
+
+**typify 0.3.0** — [crates.io](https://crates.io/crates/typify)  
+typify 0.3.0, from December 2024: the version most typify users were on
+before the 0.4 through 0.8 releases and well before the rewrite. Same design
+center; it's here to show how much the last two years moved.
 
 **typify 0.8.0** — [crates.io](https://crates.io/crates/typify)  
 The last typify release before the typespace rewrite. Same design center as
