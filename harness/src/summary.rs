@@ -834,6 +834,7 @@ mod tests {
     #[test]
     fn all_pass_results_have_no_failures_and_no_division_by_zero() {
         let results = Results {
+            description: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
@@ -858,6 +859,7 @@ mod tests {
     #[test]
     fn empty_results_render_without_panicking() {
         let results = Results {
+            description: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
