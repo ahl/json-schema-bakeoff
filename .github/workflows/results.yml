@@ -67,7 +67,7 @@ jobs:
             generators/schemafy-0.6 -> target
             generators/json-schema-rs-0.0 -> target
           cache-targets: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - uses: actions/setup-go@v7
