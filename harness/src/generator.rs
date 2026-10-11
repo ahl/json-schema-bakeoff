@@ -147,7 +147,9 @@ impl Generator {
         if let Some(l) = &self.language {
             return l.clone();
         }
-        if !target.is_empty() { target.to_string() } else { "unknown".to_string() }
+        // No declared language: a target name is the best guess; otherwise
+        // leave it empty rather than label the row with a made-up word.
+        target.to_string()
     }
 
     /// A hash of the generator's own sources, so an edit to its glue code
