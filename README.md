@@ -6,7 +6,9 @@ schema group, did the generator produce a type, did it compile, and does
 deserializing each test case agree with the suite's `valid` flag?
 
 The scoreboard is [RESULTS.md](RESULTS.md). Each row links to a page with
-every failing group and its error.
+every failing group and its error. RESULTS.md and the per-tool pages are
+generated: `cargo run -- run` rewrites them after storing results, and
+`cargo run -- render` rebuilds them from stored results alone.
 
 ```sh
 git submodule update --init
@@ -94,3 +96,52 @@ a `generator.toml` and the three commands it names.
   🤯. What does generate models required-ness and nothing else, so 🙈
   dominates. See
   [generators/schemafy-0.6/README.md](generators/schemafy-0.6/README.md).
+- `json-schema-to-zod`: [json-schema-to-zod](https://github.com/StefanTerdell/json-schema-to-zod)
+  2.8.1 with zod 4, both pinned in its `package.json`. A source-to-source
+  converter rather than a type generator: it returns a *string* holding one
+  zod expression, so it emits `.min()`, `.max()`, `.regex()`, `.strict()`
+  and `superRefine` closures where the others drop constraints. The catch
+  is its dispatcher, which keys on `type` — a schema with no `type` and no
+  combinator falls through to `z.any()`, which is 960 of the 1587 modules
+  the suite produces and most of the row's 🙈. No dialect setting and no
+  `$ref` resolver (a `$ref` root is `z.any()`, local or remote alike). The
+  output is erasable TypeScript, so node runs it directly: no `tsc`, and
+  the build step is a load probe instead of a compile. 🚧 comes almost
+  entirely from `z.literal` on a non-scalar `const`/`enum` and from `oneOf`
+  branches that compiled to `z.any()` and so match everything. Deprecated
+  upstream since March 2026. See
+  [generators/json-schema-to-zod/README.md](generators/json-schema-to-zod/README.md).
+- `ajv`: [ajv](https://ajv.js.org/) 8.x plus `ajv-draft-04`, both pinned in
+  its `package.json`. A validator rather than a code generator, and the
+  **calibration row for the Node path** the way `jsonschema-0.58` is for
+  Rust: the same generate → build → run pipeline, the same runner protocol,
+  so a group that fails here and on the Rust validator row is the harness's,
+  and a group that fails only here is ajv's. The Ajv class comes from the
+  suite directory, which outranks a root `$schema`; it is the second row
+  that resolves the suite's `http://localhost:1234/…` remotes (all 79 files
+  under `suite/remotes/` pre-registered with `addSchema`, never the
+  network). It sits at 95.7% of required groups — 97–98% on draft 4/6/7,
+  90.6% on 2020-12 — and every miss is ajv's own, most of them groups ajv's
+  CI skips by name: `$dynamicRef` scope resolution, `unevaluated*`
+  annotations from `contains` and `if`, `$ref` siblings in the old drafts
+  (ajv applies them in every draft), and `ownProperties: false`, which lets
+  `required: ["toString"]` pass on `{}`. `format` is annotation-only
+  everywhere, because the `ajv` package ships no formats at all and
+  `ajv-formats` is deliberately not installed. See
+  [generators/ajv/README.md](generators/ajv/README.md).
+- `go-jsonschema`: [go-jsonschema](https://github.com/omissis/go-jsonschema)
+  0.24 line, pinned in its `go.mod` (module path still
+  `github.com/atombender/go-jsonschema`). One of the few code generators
+  whose output actually *validates*: the tool emits an `UnmarshalJSON` per type that re-checks
+  `required`, `enum`, `pattern`, the length, bound and `multipleOf`
+  keywords and `const` on strings and booleans. Used as a library, not a
+  CLI, because the CLI's per-schema flags are keyed by `$id` (which the
+  suite rarely declares) and it aborts the whole batch on the first bad
+  schema; the glue runs one generator per schema in one process and
+  restarts a worker past anything that crashes. The catch dwarfs the
+  validation: a schema whose root has no `type` keyword produces **no root
+  type at all**, so `var v Root` doesn't compile and 1084 of the 1408
+  required groups are 🦀 — the design center is a config file that starts
+  `type: object`, not arbitrary schemas. `$ref` support stops at top-level
+  definitions in the same file. See
+  [generators/go-jsonschema/README.md](generators/go-jsonschema/README.md).
