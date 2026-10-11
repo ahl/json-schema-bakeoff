@@ -12,4 +12,4 @@ hex = "0.4"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip", "arbitrary_precision"] }
 sha2 = "0.11"
-toml = "0.8"
+toml = "1.1"
