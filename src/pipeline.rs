@@ -326,7 +326,7 @@ fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, Strin
                 CaseOutcome::Match => "ok ",
                 CaseOutcome::FalseAccept => "🙈 ",
                 CaseOutcome::FalseReject => "🚧 ",
-                CaseOutcome::Panic => "🔥 ",
+                CaseOutcome::Panic => "💀 ",
                 CaseOutcome::NotRun => "-- ",
             };
             let valid = if c.valid { "valid" } else { "invalid" };

@@ -45,10 +45,10 @@ impl Bucket {
             Bucket::FalseAccept => "🙈",
             Bucket::FalseReject => "🚧",
             Bucket::Mixed => "🔀",
-            Bucket::RuntimePanic => "🔥",
+            Bucket::RuntimePanic => "💀",
             Bucket::CompileFail => "🦀",
             Bucket::GenerationError => "❌",
-            Bucket::GenerationPanic => "💥",
+            Bucket::GenerationPanic => "🤯",
         }
     }
 
