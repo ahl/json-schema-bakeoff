@@ -23,7 +23,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T18:25:16Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:24:07Z |
-| [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:13:22Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:13:22Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:25:46Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:23:42Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:23:26Z |
 
@@ -35,7 +36,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T18:25:16Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:24:07Z |
-| [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:13:22Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:13:22Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:25:46Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:23:42Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:23:26Z |
 
@@ -45,27 +47,25 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 Pass rate per draft: groups where every test case matched, over all groups in the draft.
 
-| | Language | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0](results/ajv-8.20.0/README.md) |  | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:22:08Z |
-| [go-jsonschema v0.24.1](results/go-jsonschema-v0.24.1/README.md) | unknown | 1.9% | 1.3% | 1.2% | 2.7% | 1.8% | 2026-10-11T18:24:33Z |
-| [json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | typescript | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:23:45Z |
-| [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | go | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:13:31Z |
-| [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | typescript | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:13:45Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) |  | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:21:50Z |
+| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
+|---|:---:|:---:|:---:|:---:|:---:|---|
+| [ajv 8.20.0](results/ajv-8.20.0/README.md) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:22:08Z |
+| [go-jsonschema v0.24.1 (unknown)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.7% | 1.8% | 2026-10-11T18:24:33Z |
+| [json-schema-to-zod 2.8.1 (zod 4.6.6) (ts)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:23:45Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:13:31Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:13:45Z |
 
 ### Optional tests
 
 `tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...). Reported here, never counted above.
 
-| | Language | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0](results/ajv-8.20.0/README.md) |  | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:22:08Z |
-| [go-jsonschema v0.24.1](results/go-jsonschema-v0.24.1/README.md) | unknown | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-10-11T18:24:33Z |
-| [json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | typescript | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:23:45Z |
-| [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | go | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:13:31Z |
-| [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | typescript | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:13:45Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) |  | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:21:50Z |
+| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
+|---|:---:|:---:|:---:|:---:|:---:|---|
+| [ajv 8.20.0](results/ajv-8.20.0/README.md) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:22:08Z |
+| [go-jsonschema v0.24.1 (unknown)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-10-11T18:24:33Z |
+| [json-schema-to-zod 2.8.1 (zod 4.6.6) (ts)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:23:45Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:13:31Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:13:45Z |
 
 ## The tools
 

@@ -495,12 +495,14 @@ fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) ->
         if cells.iter().all(|c| c == "—") {
             continue;
         }
-        let language = if show_language { format!(" {} |", escape_cell(&r.language)) } else { String::new() };
+        let mut name = crate::results::display_name(&r.typify, &r.language);
+        if show_language && !r.language.is_empty() {
+            name = format!("{name} ({})", crate::results::language_label(&r.language));
+        }
         rows.push_str(&format!(
-            "| [{}](results/{}/README.md) |{} {} | {} |\n",
-            escape_cell(&r.typify),
+            "| [{}](results/{}/README.md) | {} | {} |\n",
+            escape_cell(&name),
             r.version,
-            language,
             cells.join(" | "),
             r.generated_at
         ));
@@ -508,15 +510,11 @@ fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) ->
     if rows.is_empty() {
         return rows;
     }
-    let language_header = if show_language { " Language |" } else { "" };
-    let language_sep = if show_language { "---|" } else { "" };
     // Column headers are just the draft number: 4, 6, 7, 2019-09, 2020-12.
     let header: Vec<&str> = drafts.iter().map(|d| d.strip_prefix("draft").unwrap_or(d)).collect();
     format!(
-        "| |{} {} | Generated |\n|---|{}{}---|\n{rows}",
-        language_header,
+        "| | {} | Generated |\n|---|{}---|\n{rows}",
         header.join(" | "),
-        language_sep,
         ":---:|".repeat(drafts.len())
     )
 }

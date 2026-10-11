@@ -12,7 +12,7 @@ a `$ref` it can't find) panics rather than degrading. `schemafy_lib` is the
 library behind the macro, and the generator here calls its `Expander`
 directly.
 
-_generated 2026-10-11T18:21:50Z_
+_generated 2026-10-11T18:25:46Z_
 
 **325 of 1408 non-optional groups pass (23.1%)**; 301 optional groups reported separately
 
@@ -27,7 +27,7 @@ _generated 2026-10-11T18:21:50Z_
 | ❌ | `generation_error` | the generator returned an error |
 | 🤯 | `generation_panic` | the generator crashed or hung |
 
-## Headline
+## Core
 
 ### Groups
 

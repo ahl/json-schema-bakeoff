@@ -184,9 +184,43 @@ pub struct Results {
     pub groups: Vec<GroupResult>,
 }
 
-/// `results/<slug>/` for a typify version string like `typify 0.10.0-alpha.2`.
+/// `results/<slug>/` for an identity string like `typify 0.10.0-alpha.2`
+/// or `json-schema-to-zod 2.8.1 (zod 4.6.6)`: runs of anything but
+/// alphanumerics, `.` and `-` collapse to one `-`, trimmed at the ends.
 pub fn version_slug(typify: &str) -> String {
-    typify.chars().map(|c| if c.is_ascii_alphanumeric() || c == '.' || c == '-' { c } else { '-' }).collect()
+    let mut out = String::new();
+    for c in typify.chars() {
+        if c.is_ascii_alphanumeric() || c == '.' || c == '-' {
+            out.push(c);
+        } else if !out.ends_with('-') {
+            out.push('-');
+        }
+    }
+    out.trim_matches('-').to_string()
+}
+
+/// Short label for a language, for row names like `ajv (js)`.
+pub fn language_label(language: &str) -> &str {
+    match language {
+        "typescript" => "ts",
+        "javascript" => "js",
+        other => other,
+    }
+}
+
+/// The identity string without a trailing language token (`quicktype
+/// 26.0.0 rust` -> `quicktype 26.0.0`), for display next to a section or
+/// suffix that already says the language.
+pub fn display_name(identity: &str, language: &str) -> String {
+    let lower = identity.to_ascii_lowercase();
+    for token in [language.to_ascii_lowercase(), language_label(language).to_ascii_lowercase()] {
+        if !token.is_empty() {
+            if let Some(stripped) = lower.strip_suffix(&format!(" {token}")) {
+                return identity[..stripped.len()].to_string();
+            }
+        }
+    }
+    identity.to_string()
 }
 
 impl Results {
