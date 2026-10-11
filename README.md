@@ -9,17 +9,28 @@ test case and comparing the outcome with the suite's `valid` flag.
 git submodule update --init
 cargo run -- run --version typify1 --draft draft7   # or --draft all
 cargo run -- run --version typify1 --filter 'ref.json::relative pointer'
-cargo run -- diff results/typify1/results.json results/typify1-before/results.json
+cargo run -- render
+cargo run -- diff results/typify-0.10.0-alpha.2/results.json results/typify-0.10.0-beta.7/results.json
 cargo run -- key
 ```
 
-`run` writes `results/<version>/results.json` and `summary.md` (the headline
-file accumulates: each draft run replaces only that draft's groups), and regenerates the
-cross-version scoreboard `RESULTS.md` at the repo root (`cargo run -- scoreboard`
-rebuilds it from whatever is in `results/`). A filtered
-run prints per-case detail (with the path to the generated code) and writes
-to `work/<version>/filtered/` instead, so it never clobbers the headline
-results. `--out <dir>` overrides either. `tests/<draft>/optional/`, which the summary reports separately.
+There are two actions. `run` executes the suite and stores data; `render`
+turns stored data into pages.
+
+- `run` writes `results/<typify version>/results.json`, keyed by the exact
+  crate version that produced it (`typify-0.10.0-alpha.2`), so bumping the
+  pin in `Cargo.toml` starts a new directory and leaves old results alone.
+  Each group record carries a hash of everything that determined it, and
+  the file is its own cache: a rerun reuses matching records and recomputes
+  the rest, so an unchanged rerun is a byte-for-byte no-op. The file
+  accumulates drafts (a draft run replaces only that draft's groups).
+  `--no-cache` recomputes everything selected. A filtered run prints
+  per-case detail (with the path to the generated code) and writes to
+  `work/<version>/filtered/` so it never touches the headline results;
+  `--out <dir>` overrides either.
+- `render` regenerates every `results/*/summary.md` and the cross-version
+  scoreboard `RESULTS.md` from whatever is stored, without running
+  anything. `run` renders too, after it stores. `tests/<draft>/optional/`, which the summary reports separately.
 
 ## Buckets
 
@@ -57,6 +68,6 @@ built into a runner binary that deserializes each case under `catch_unwind`
 and prints one JSON line per case; if the runner process dies (stack
 overflow), the case at the cursor is recorded as a panic and the runner is
 restarted on the next case. `work/target/` is shared so dependencies build
-once. Each group's result is cached under `work/<version>/cache/` by a hash
-of the schema, the selected cases, the typify version, and a harness
-revision constant; `--no-cache` ignores it.
+once. Each group's result carries a hash of the schema, the selected cases,
+the typify version, and a harness revision constant; a rerun reuses any
+stored record whose hash matches.

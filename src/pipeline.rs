@@ -2,7 +2,7 @@
 
 use crate::compile::{self, BatchInput, CompileOutcome};
 use crate::generate::{self, GenOutcome};
-use crate::results::{Bucket, CaseOutcome, CaseResult, GroupResult, Results};
+use crate::results::{version_slug, Bucket, CaseOutcome, CaseResult, GroupResult, Results};
 use crate::runner::{self, RunCase, RunOutcome};
 use crate::suite::{self, Group};
 use crate::summary;
@@ -85,20 +85,20 @@ struct Item<'a> {
 pub fn run(opts: RunOpts) -> Result<()> {
     let started = Instant::now();
     let typify = typify_version(opts.version);
+    let slug = version_slug(typify);
     let work = repo_root().join("work");
     let target_dir = work.join("target");
-    let version_dir = work.join(opts.version);
-    let cache_dir = version_dir.join("cache");
+    let version_dir = work.join(&slug);
     let gen_dir = version_dir.join("generated");
-    std::fs::create_dir_all(&cache_dir)?;
     std::fs::create_dir_all(&gen_dir)?;
+    let headline_dir = repo_root().join("results").join(&slug);
 
     let groups = suite::load_draft(&opts.draft, opts.optional)?;
     let filter = opts.filter.as_deref();
     let selected: Vec<&Group> = groups.iter().filter(|g| filter.is_none_or(|f| g.matches(f))).collect();
     anyhow::ensure!(!selected.is_empty(), "no groups match");
     eprintln!(
-        "{}: {} of {} groups selected ({} cases)",
+        "{} on {typify}: {} of {} groups selected ({} cases)",
         opts.draft,
         selected.len(),
         groups.len(),
@@ -114,14 +114,21 @@ pub fn run(opts: RunOpts) -> Result<()> {
         })
         .collect();
 
-    // Cache lookup.
+    // The committed results file is the cache: a record whose hash matches
+    // is reused as-is, so a rerun that changes nothing rewrites nothing.
+    let previous = match Results::load(&headline_dir.join("results.json")) {
+        Ok(r) => Some(r),
+        Err(_) => None,
+    };
     let mut cached = 0;
     if !opts.no_cache {
-        for item in &mut items {
-            let path = cache_dir.join(format!("{}.json", item.hash));
-            if let Ok(r) = std::fs::read_to_string(&path).map_err(|_| ()).and_then(|t| serde_json::from_str::<GroupResult>(&t).map_err(|_| ())) {
-                item.result = Some(r);
-                cached += 1;
+        if let Some(prev) = &previous {
+            let by_hash: BTreeMap<&str, &GroupResult> = prev.groups.iter().map(|g| (g.hash.as_str(), g)).collect();
+            for item in &mut items {
+                if let Some(r) = by_hash.get(item.hash.as_str()) {
+                    item.result = Some((*r).clone());
+                    cached += 1;
+                }
             }
         }
     }
@@ -185,6 +192,7 @@ pub fn run(opts: RunOpts) -> Result<()> {
     eprintln!("run: {} cases ({:.1?})", run_cases.len(), t.elapsed());
 
     // Assemble results for everything that wasn't cached.
+    let now = chrono_free_timestamp();
     let mut fresh = 0;
     for (ii, item) in items.iter_mut().enumerate() {
         if item.result.is_some() {
@@ -239,19 +247,20 @@ pub fn run(opts: RunOpts) -> Result<()> {
             file: group.file.clone(),
             optional: group.optional,
             group: group.description.clone(),
+            hash: item.hash.clone(),
+            generated_at: now.clone(),
             bucket,
             error,
             cases,
         };
-        std::fs::write(cache_dir.join(format!("{}.json", item.hash)), serde_json::to_string(&result)?)?;
         item.result = Some(result);
         fresh += 1;
     }
 
     let mut results = Results {
-        version: opts.version.to_string(),
+        version: slug.clone(),
         typify: typify.to_string(),
-        generated_at: chrono_free_timestamp(),
+        generated_at: String::new(),
         groups: items.into_iter().map(|i| i.result.expect("every item has a result")).collect(),
     };
 
@@ -260,22 +269,21 @@ pub fn run(opts: RunOpts) -> Result<()> {
     let headline = opts.out.is_none() && filter.is_none();
     let out_dir = match (&opts.out, filter) {
         (Some(o), _) => o.clone(),
-        (None, None) => repo_root().join("results").join(opts.version),
+        (None, None) => headline_dir.clone(),
         (None, Some(_)) => version_dir.join("filtered"),
     };
     if headline {
         // The headline file accumulates drafts: this run replaces only its
         // own draft's groups, so running drafts one at a time builds up the
         // full picture. Drafts are kept in canonical order.
-        let path = out_dir.join("results.json");
-        if path.is_file() {
-            let previous = Results::load(&path)?;
-            let mut kept: Vec<GroupResult> = previous.groups.into_iter().filter(|g| g.draft != opts.draft).collect();
+        if let Some(prev) = previous {
+            let mut kept: Vec<GroupResult> = prev.groups.into_iter().filter(|g| g.draft != opts.draft).collect();
             kept.append(&mut results.groups);
             kept.sort_by_key(|g| summary::draft_rank(&g.draft));
             results.groups = kept;
         }
     }
+    results.generated_at = results.groups.iter().map(|g| g.generated_at.clone()).max().unwrap_or_default();
     results.save(&out_dir.join("results.json"))?;
     std::fs::write(out_dir.join("summary.md"), summary::render(&results))?;
     if headline {
@@ -294,8 +302,8 @@ pub fn run(opts: RunOpts) -> Result<()> {
     Ok(())
 }
 
-/// Regenerate `RESULTS.md` from every `results/*/results.json`.
-pub fn write_scoreboard() -> Result<()> {
+/// Every `results/*/results.json`, in directory order, with its directory.
+fn all_results() -> Result<Vec<(PathBuf, Results)>> {
     let results_dir = repo_root().join("results");
     let mut all = Vec::new();
     if results_dir.is_dir() {
@@ -304,11 +312,29 @@ pub fn write_scoreboard() -> Result<()> {
         for dir in dirs {
             let path = dir.join("results.json");
             if path.is_file() {
-                all.push(Results::load(&path)?);
+                all.push((dir, Results::load(&path)?));
             }
         }
     }
+    Ok(all)
+}
+
+/// Regenerate `RESULTS.md` from every `results/*/results.json`.
+pub fn write_scoreboard() -> Result<()> {
+    let all: Vec<Results> = all_results()?.into_iter().map(|(_, r)| r).collect();
     std::fs::write(repo_root().join("RESULTS.md"), summary::render_scoreboard(&all))?;
+    Ok(())
+}
+
+/// Re-render every `results/*/summary.md` and `RESULTS.md` from the stored
+/// results, without running anything.
+pub fn render_all() -> Result<()> {
+    for (dir, r) in all_results()? {
+        std::fs::write(dir.join("summary.md"), summary::render(&r))?;
+        eprintln!("rendered {}", dir.join("summary.md").display());
+    }
+    write_scoreboard()?;
+    eprintln!("rendered {}", repo_root().join("RESULTS.md").display());
     Ok(())
 }
 

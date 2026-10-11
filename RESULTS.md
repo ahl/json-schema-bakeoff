@@ -19,7 +19,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| typify 0.10.0-alpha.2 | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T04:14:00Z |
+| typify 0.10.0-alpha.2 | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T04:20:57Z |
 
 ## Optional tests
 
@@ -27,9 +27,9 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| typify 0.10.0-alpha.2 | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T04:14:00Z |
+| typify 0.10.0-alpha.2 | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T04:20:57Z |
 
-## typify1 (typify 0.10.0-alpha.2)
+## typify-0.10.0-alpha.2 (typify 0.10.0-alpha.2)
 
 ### draft4
 
@@ -408,5 +408,5 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | optional/unknownKeyword.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
 | **Total** | **21** | **6** | **7** | **44** | **78** |  |
 
-Details: [results/typify1/summary.md](results/typify1/summary.md)
+Details: [results/typify-0.10.0-alpha.2/summary.md](results/typify-0.10.0-alpha.2/summary.md)
 

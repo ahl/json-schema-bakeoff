@@ -273,6 +273,8 @@ mod tests {
             file: file.to_string(),
             optional: file.starts_with("optional/"),
             group: desc.to_string(),
+            hash: String::new(),
+            generated_at: String::new(),
             bucket,
             error: error.map(|e| e.to_string()),
             cases,

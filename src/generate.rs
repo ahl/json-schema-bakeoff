@@ -7,7 +7,7 @@ use std::time::Duration;
 use typify::{TypeSpace, TypeSpaceSettings};
 
 /// The version string reported in results for the `typify1` label.
-pub const TYPIFY1_VERSION: &str = concat!("typify ", "0.10.0-alpha.2");
+pub const TYPIFY1_VERSION: &str = concat!("typify ", env!("TYPIFY_CRATE_VERSION"));
 
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum GenOutcome {

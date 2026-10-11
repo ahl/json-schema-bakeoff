@@ -133,6 +133,14 @@ pub struct GroupResult {
     /// True for anything under `optional/`.
     pub optional: bool,
     pub group: String,
+    /// Hash of everything that determined this record (typify version,
+    /// schema, cases, harness revision). A rerun reuses the record when
+    /// the hash matches, so the results file doubles as the cache.
+    #[serde(default)]
+    pub hash: String,
+    /// When this record was computed (RFC 3339, UTC).
+    #[serde(default)]
+    pub generated_at: String,
     pub bucket: Bucket,
     /// First error message or panic text, for every non-pass bucket.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -160,12 +168,19 @@ impl GroupResult {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Results {
-    /// Harness-level version label, e.g. `typify1`.
+    /// Directory name under `results/`, derived from the typify version,
+    /// e.g. `typify-0.10.0-alpha.2`.
     pub version: String,
-    /// What that label resolved to, e.g. `typify 0.10.0-alpha.2`.
+    /// The typify that produced these results, e.g. `typify 0.10.0-alpha.2`.
     pub typify: String,
+    /// The newest `generated_at` among the groups.
     pub generated_at: String,
     pub groups: Vec<GroupResult>,
+}
+
+/// `results/<slug>/` for a typify version string like `typify 0.10.0-alpha.2`.
+pub fn version_slug(typify: &str) -> String {
+    typify.chars().map(|c| if c.is_ascii_alphanumeric() || c == '.' || c == '-' { c } else { '-' }).collect()
 }
 
 impl Results {

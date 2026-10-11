@@ -48,7 +48,8 @@ enum Cmd {
         /// counted in headline numbers).
         #[arg(long)]
         no_optional: bool,
-        /// Ignore the cache and redo everything.
+        /// Recompute every selected group even if the stored results
+        /// already have a record with a matching hash.
         #[arg(long)]
         no_cache: bool,
         /// Write results here instead of results/<version>/.
@@ -57,10 +58,9 @@ enum Cmd {
     },
     /// Compare two results.json files and list groups that moved buckets.
     Diff { a: PathBuf, b: PathBuf },
-    /// Re-render summary.md from an existing results.json.
-    Summary { results: PathBuf },
-    /// Regenerate RESULTS.md from every results/*/results.json.
-    Scoreboard,
+    /// Re-render every results/*/summary.md and RESULTS.md from stored
+    /// results, without running anything.
+    Render,
     /// Print the bucket key.
     Key,
 }
@@ -92,12 +92,7 @@ fn main() -> Result<()> {
             print!("{}", diff::render(&a, &b));
             Ok(())
         }
-        Cmd::Summary { results } => {
-            let r = results::Results::load(&results)?;
-            print!("{}", summary::render(&r));
-            Ok(())
-        }
-        Cmd::Scoreboard => pipeline::write_scoreboard(),
+        Cmd::Render => pipeline::render_all(),
         Cmd::Key => {
             println!("{}", results::Bucket::key_text());
             Ok(())

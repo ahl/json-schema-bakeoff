@@ -574,6 +574,8 @@ mod tests {
             file: file.to_string(),
             optional,
             group: group_desc.to_string(),
+            hash: String::new(),
+            generated_at: String::new(),
             bucket,
             error: error.map(|e| e.to_string()),
             cases,
