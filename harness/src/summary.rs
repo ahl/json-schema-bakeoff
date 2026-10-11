@@ -474,7 +474,7 @@ pub fn render_terminal(results: &Results) -> String {
 }
 
 /// Appended to a validator row's name; links to the note at the bottom.
-const VALIDATOR_MARK: &str = " [𝒱](#notes)";
+const VALIDATOR_MARK: &str = " [**𝒱**](#notes)";
 
 /// One row per version, one column per draft (pass rate),
 /// plus the generation date; empty if nothing qualifies.
@@ -565,7 +565,7 @@ pub fn render_scoreboard(all: &[Results]) -> String {
 
     if all.iter().any(|r| r.kind == "validator") {
         s.push_str("## Notes\n\n");
-        s.push_str("𝒱 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.\n\n");
+        s.push_str("**𝒱** A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.\n\n");
     }
     s
 }
