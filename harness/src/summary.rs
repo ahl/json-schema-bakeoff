@@ -531,7 +531,9 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     s.push_str("# JSON Schema codegen bakeoff\n\n");
     s.push_str("Each row links to that generator's page, which lists every failing group with its error.\n\n");
 
-    let (rust, other): (Vec<&Results>, Vec<&Results>) = all.iter().partition(|r| r.language == "rust");
+    let shown: Vec<&Results> = all.iter().filter(|r| !r.hidden).collect();
+    let hidden: Vec<&Results> = all.iter().filter(|r| r.hidden).collect();
+    let (rust, other): (Vec<&Results>, Vec<&Results>) = shown.iter().partition(|r| r.language == "rust");
     for (title, rows, show_language) in [("Rust", rust, false), ("Other languages", other, true)] {
         if rows.is_empty() {
             continue;
@@ -549,9 +551,9 @@ pub fn render_scoreboard(all: &[Results]) -> String {
             s.push('\n');
         }
     }
-    if all.iter().any(|r| !r.description.is_empty()) {
+    if shown.iter().any(|r| !r.description.is_empty()) {
         s.push_str("## The tools\n\n");
-        for r in all {
+        for r in &shown {
             s.push_str(&format!("**[{}](results/{}/README.md)**", escape_cell(&r.typify), r.version));
             if r.description.is_empty() {
                 s.push_str("\n\n");
@@ -561,9 +563,18 @@ pub fn render_scoreboard(all: &[Results]) -> String {
         }
     }
 
-    if all.iter().any(|r| r.kind == "validator") {
+    if shown.iter().any(|r| r.kind == "validator") || !hidden.is_empty() {
         s.push_str("## Notes\n\n");
+    }
+    if shown.iter().any(|r| r.kind == "validator") {
         s.push_str("𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.\n\n");
+    }
+    if !hidden.is_empty() {
+        let links: Vec<String> = hidden
+            .iter()
+            .map(|r| format!("[{}](results/{}/README.md)", escape_cell(&r.typify), r.version))
+            .collect();
+        s.push_str(&format!("Also measured but left off the tables: {}.\n\n", links.join(", ")));
     }
     s
 }
@@ -607,6 +618,7 @@ mod tests {
             description: String::new(),
             language: String::new(),
             kind: String::new(),
+            hidden: false,
             version: "typify1".to_string(),
             typify: "typify 0.10.0-alpha.2".to_string(),
             generated_at: "2026-10-10T00:00:00Z".to_string(),
@@ -856,6 +868,7 @@ mod tests {
             description: String::new(),
             language: String::new(),
             kind: String::new(),
+            hidden: false,
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
@@ -883,6 +896,7 @@ mod tests {
             description: String::new(),
             language: String::new(),
             kind: String::new(),
+            hidden: false,
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
