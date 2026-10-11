@@ -179,6 +179,10 @@ pub struct Results {
     /// Language of the generated code (`rust`, `go`, `typescript`, ...).
     #[serde(default)]
     pub language: String,
+    /// `generator` or `validator` (a validator checks instances at run
+    /// time and generates no types).
+    #[serde(default)]
+    pub kind: String,
     /// The newest `generated_at` among the groups.
     pub generated_at: String,
     pub groups: Vec<GroupResult>,

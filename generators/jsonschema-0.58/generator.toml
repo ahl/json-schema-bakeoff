@@ -7,6 +7,7 @@
 name = "jsonschema-0.58"
 
 language = "rust"
+kind = "validator"
 description = """
 jsonschema is a Rust validator, not a code generator: it interprets the
 schema at run time instead of compiling it into types, so it can enforce

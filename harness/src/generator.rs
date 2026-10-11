@@ -7,6 +7,7 @@
 //! name = "quicktype"
 //! description = "What the tool is and what it's designed for."
 //! language = "rust"                         # or per target via [languages]
+//! kind = "validator"                        # optional; default "generator"
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
@@ -46,6 +47,10 @@ struct Manifest {
     language: Option<String>,
     #[serde(default)]
     languages: BTreeMap<String, String>,
+    /// `generator` (default) or `validator`: a validator row checks
+    /// instances against the schema at run time and generates no types.
+    #[serde(default)]
+    kind: Option<String>,
     commands: Commands,
 }
 
@@ -60,6 +65,8 @@ struct Commands {
 pub struct Generator {
     pub name: String,
     pub description: String,
+    /// `generator` or `validator`.
+    pub kind: String,
     language: Option<String>,
     languages: BTreeMap<String, String>,
     pub dir: PathBuf,
@@ -121,6 +128,7 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
     Ok(Generator {
         name: m.name,
         description: m.description.trim().to_string(),
+        kind: m.kind.unwrap_or_else(|| "generator".to_string()),
         language: m.language,
         languages: m.languages,
         dir: dir.to_path_buf(),
