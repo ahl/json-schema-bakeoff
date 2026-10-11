@@ -4,6 +4,7 @@
 name = "quicktype"
 targets = ["rust", "go", "typescript"]
 
+homepage = "https://quicktype.io"
 description = """
 Types in a dozen languages from JSON samples or schemas. Its design center is
 the shape of data: ergonomic, compilable types everywhere. Validation beyond

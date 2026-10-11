@@ -8,6 +8,7 @@ name = "jsonschema-0.58"
 
 language = "rust"
 kind = "validator"
+homepage = "https://crates.io/crates/jsonschema"
 description = """
 A Rust validator, not a generator: it interprets the schema at run time, so
 it can enforce every keyword, which a type generator structurally can't. It's

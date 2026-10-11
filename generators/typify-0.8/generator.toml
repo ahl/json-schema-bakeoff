@@ -3,6 +3,7 @@
 name = "typify-0.8"
 
 language = "rust"
+homepage = "https://crates.io/crates/typify"
 description = """
 The last typify release before the typespace rewrite. Same design center as
 0.10; it's here so the rewrite has something to be measured against.
