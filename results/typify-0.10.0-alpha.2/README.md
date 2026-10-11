@@ -8,7 +8,7 @@ constraints it doesn't model are silently absent, and constructs it can't
 represent fail at generation rather than produce a wrong type. The 0.10 line
 is the in-progress rewrite onto the typespace crate.
 
-_generated 2026-10-11T18:13:08Z_
+_generated 2026-10-11T18:23:42Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
@@ -23,7 +23,7 @@ _generated 2026-10-11T18:13:08Z_
 | ❌ | `generation_error` | the generator returned an error |
 | 🤯 | `generation_panic` | the generator crashed or hung |
 
-## Headline
+## Core
 
 ### Groups
 

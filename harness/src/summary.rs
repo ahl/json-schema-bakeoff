@@ -364,7 +364,7 @@ pub fn render(results: &Results) -> String {
     s.push_str(&Bucket::key_markdown());
     s.push('\n');
 
-    s.push_str("## Headline\n\n");
+    s.push_str("## Core\n\n");
     s.push_str("### Groups\n\n");
     match groups_table(results, &drafts, false) {
         Some(t) => s.push_str(&t),
@@ -475,8 +475,8 @@ pub fn render_terminal(results: &Results) -> String {
 
 /// One row per version, one column per draft (pass rate),
 /// plus the generation date; empty if nothing qualifies.
-fn scoreboard_headline(all: &[Results], optional: bool) -> String {
-    let mut drafts: Vec<String> = all.iter().flat_map(sorted_drafts).collect();
+fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) -> String {
+    let mut drafts: Vec<String> = all.iter().flat_map(|r| sorted_drafts(r)).collect();
     drafts.sort_by_key(|d| draft_rank(d));
     drafts.dedup();
     let mut rows = String::new();
@@ -495,10 +495,12 @@ fn scoreboard_headline(all: &[Results], optional: bool) -> String {
         if cells.iter().all(|c| c == "—") {
             continue;
         }
+        let language = if show_language { format!(" {} |", escape_cell(&r.language)) } else { String::new() };
         rows.push_str(&format!(
-            "| [{}](results/{}/README.md) | {} | {} |\n",
+            "| [{}](results/{}/README.md) |{} {} | {} |\n",
             escape_cell(&r.typify),
             r.version,
+            language,
             cells.join(" | "),
             r.generated_at
         ));
@@ -506,11 +508,15 @@ fn scoreboard_headline(all: &[Results], optional: bool) -> String {
     if rows.is_empty() {
         return rows;
     }
+    let language_header = if show_language { " Language |" } else { "" };
+    let language_sep = if show_language { "---|" } else { "" };
     // Column headers are just the draft number: 4, 6, 7, 2019-09, 2020-12.
     let header: Vec<&str> = drafts.iter().map(|d| d.strip_prefix("draft").unwrap_or(d)).collect();
     format!(
-        "| | {} | Generated |\n|---|{}---|\n{rows}",
+        "| |{} {} | Generated |\n|---|{}{}---|\n{rows}",
+        language_header,
         header.join(" | "),
+        language_sep,
         ":---:|".repeat(drafts.len())
     )
 }
@@ -525,16 +531,23 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     s.push_str(&Bucket::key_markdown());
     s.push('\n');
 
-    s.push_str("## Headline (non-optional groups)\n\n");
-    s.push_str("Pass rate per draft: groups where every test case matched, over all groups in the draft.\n\n");
-    s.push_str(&scoreboard_headline(all, false));
-    s.push('\n');
-    let opt_table = scoreboard_headline(all, true);
-    if !opt_table.is_empty() {
-        s.push_str("## Optional tests\n\n");
-        s.push_str("`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...). Reported here, never counted above.\n\n");
-        s.push_str(&opt_table);
+    let (rust, other): (Vec<&Results>, Vec<&Results>) = all.iter().partition(|r| r.language == "rust");
+    for (title, rows, show_language) in [("Rust", rust, false), ("Other languages", other, true)] {
+        if rows.is_empty() {
+            continue;
+        }
+        s.push_str(&format!("## {title}\n\n"));
+        s.push_str("### Core\n\n");
+        s.push_str("Pass rate per draft: groups where every test case matched, over all groups in the draft.\n\n");
+        s.push_str(&scoreboard_headline(&rows, false, show_language));
         s.push('\n');
+        let opt_table = scoreboard_headline(&rows, true, show_language);
+        if !opt_table.is_empty() {
+            s.push_str("### Optional tests\n\n");
+            s.push_str("`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...). Reported here, never counted above.\n\n");
+            s.push_str(&opt_table);
+            s.push('\n');
+        }
     }
     if all.iter().any(|r| !r.description.is_empty()) {
         s.push_str("## The tools\n\n");
@@ -588,6 +601,7 @@ mod tests {
     fn sample_results() -> Results {
         Results {
             description: String::new(),
+            language: String::new(),
             version: "typify1".to_string(),
             typify: "typify 0.10.0-alpha.2".to_string(),
             generated_at: "2026-10-10T00:00:00Z".to_string(),
@@ -835,6 +849,7 @@ mod tests {
     fn all_pass_results_have_no_failures_and_no_division_by_zero() {
         let results = Results {
             description: String::new(),
+            language: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
@@ -860,6 +875,7 @@ mod tests {
     fn empty_results_render_without_panicking() {
         let results = Results {
             description: String::new(),
+            language: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),

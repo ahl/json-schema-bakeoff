@@ -6,6 +6,7 @@
 //! ```toml
 //! name = "quicktype"
 //! description = "What the tool is and what it's designed for."
+//! language = "rust"                         # or per target via [languages]
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
@@ -38,6 +39,13 @@ struct Manifest {
     description: String,
     #[serde(default)]
     targets: Vec<String>,
+    /// Language of the generated code (`rust`, `go`, `typescript`, ...).
+    /// With targets, each target's language defaults to the target name;
+    /// `[languages]` can override per target.
+    #[serde(default)]
+    language: Option<String>,
+    #[serde(default)]
+    languages: BTreeMap<String, String>,
     commands: Commands,
 }
 
@@ -52,6 +60,8 @@ struct Commands {
 pub struct Generator {
     pub name: String,
     pub description: String,
+    language: Option<String>,
+    languages: BTreeMap<String, String>,
     pub dir: PathBuf,
     root: PathBuf,
     /// Targets from the manifest; empty means the generator has one
@@ -111,6 +121,8 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
     Ok(Generator {
         name: m.name,
         description: m.description.trim().to_string(),
+        language: m.language,
+        languages: m.languages,
         dir: dir.to_path_buf(),
         root: root.to_path_buf(),
         targets: m.targets,
@@ -119,6 +131,17 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
 }
 
 impl Generator {
+    /// The language of `target`'s generated code.
+    pub fn language(&self, target: &str) -> String {
+        if let Some(l) = self.languages.get(target) {
+            return l.clone();
+        }
+        if let Some(l) = &self.language {
+            return l.clone();
+        }
+        if !target.is_empty() { target.to_string() } else { "unknown".to_string() }
+    }
+
     /// A hash of the generator's own sources, so an edit to its glue code
     /// invalidates stored records the way a version bump does. Covers every
     /// regular file under the generator directory except documentation

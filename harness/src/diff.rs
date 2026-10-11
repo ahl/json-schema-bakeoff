@@ -284,6 +284,7 @@ mod tests {
     fn results_a() -> Results {
         Results {
             description: String::new(),
+            language: String::new(),
             version: "typify1".to_string(),
             typify: "typify 0.10.0-alpha.2".to_string(),
             generated_at: "2026-10-10T00:00:00Z".to_string(),
@@ -324,6 +325,7 @@ mod tests {
     fn results_b() -> Results {
         Results {
             description: String::new(),
+            language: String::new(),
             version: "typify2".to_string(),
             typify: "typify2 0.1.0".to_string(),
             generated_at: "2026-10-10T01:00:00Z".to_string(),

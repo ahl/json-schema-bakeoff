@@ -1,0 +1,34 @@
+# Integration for ajv, the JSON Schema validator for JavaScript. The exact
+# version comes from the pinned npm package (see package.json) and names the
+# results directory: `ajv 8.20.0`.
+#
+# ajv is a validator, not a code generator: it joins the bakeoff as a
+# calibration row for the Node runner path, the way jsonschema-0.58 does for
+# the Rust one. Anything other than ✅ here is the harness's doing or a
+# documented policy, not a gap in the tool. See README.md.
+name = "ajv"
+description = """
+ajv is the JSON Schema validator for JavaScript, and for most of the
+ecosystem it *is* JSON Schema: it compiles a schema into purpose-built
+JavaScript source and runs that, which is why it is fast enough to sit in
+request paths and why it covers draft-04 through 2020-12 keyword for
+keyword. It produces no types — the schema stays the artifact, validation
+happens at the boundary, and what flows past it is a plain parsed value —
+so it answers the opposite question from a code generator: not "what shape
+does this schema describe" but "does this document satisfy it". It is here
+as the reference row for the Node path. It resolves the suite's
+`http://localhost:1234/` remotes from `suite/remotes/`, which the code
+generators are not allowed to do, so the difference between this row and
+theirs on `refRemote.json` is the price of that policy. The one thing ajv
+leaves at the door is `format`: the core package ships no format
+implementations at all, and the `ajv-formats` package that does is
+deliberately not installed here, so every `format` in the suite is an
+annotation.
+"""
+
+[commands]
+# Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
+# {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.
+version  = "node generate.mjs version"
+generate = "node generate.mjs generate {out_dir}"
+build    = "node build.mjs {gen_dir} {batch_dir}"

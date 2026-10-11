@@ -2,6 +2,7 @@
 # pinned crate (see Cargo.toml) and names the results directory.
 name = "typify-0.8"
 
+language = "rust"
 description = """
 typify 0.8.0 is the last release before the typespace rewrite. Same design
 center as 0.10: idiomatic serde types for Rust, validation only where the
