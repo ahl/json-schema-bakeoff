@@ -2,6 +2,7 @@
 # pinned crate (see Cargo.toml) and names the results directory.
 name = "typify-0.10"
 
+language = "rust"
 description = """
 typify turns JSON Schema into Rust types for serde. It grew out of generating
 OpenAPI clients (progenitor), so its design center is idiomatic Rust that

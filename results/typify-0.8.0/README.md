@@ -5,7 +5,7 @@ center as 0.10: idiomatic serde types for Rust, validation only where the
 type system expresses it, generation failures for the rest. Included so the
 rewrite can be measured against where it started.
 
-_generated 2026-10-11T18:12:53Z_
+_generated 2026-10-11T18:23:26Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
@@ -20,7 +20,7 @@ _generated 2026-10-11T18:12:53Z_
 | ❌ | `generation_error` | the generator returned an error |
 | 🤯 | `generation_panic` | the generator crashed or hung |
 
-## Headline
+## Core
 
 ### Groups
 

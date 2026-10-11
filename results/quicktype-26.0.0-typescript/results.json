@@ -2,6 +2,7 @@
   "version": "quicktype-26.0.0-typescript",
   "typify": "quicktype 26.0.0 typescript",
   "description": "quicktype infers types from JSON samples or schemas and emits them in many\nlanguages. Its design center is the shape of data: produce ergonomic,\ncompilable types everywhere, with serialization glue for each language.\nValidation beyond type and shape is out of scope, so constraint keywords\n(bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted\nsilently. The TypeScript target adds a runtime type check; the Go target\nleans on encoding/json's leniency.",
+  "language": "typescript",
   "generated_at": "2026-10-11T18:13:45Z",
   "groups": [
     {

@@ -14,7 +14,7 @@ default dialect: applicators are types rather than validation, and a root
 `anyOf`/`oneOf` becomes an externally tagged enum that no plain instance
 deserializes into.
 
-_generated 2026-10-11T18:19:15Z_
+_generated 2026-10-11T18:25:16Z_
 
 **16 of 1408 non-optional groups pass (1.1%)**; 301 optional groups reported separately
 
@@ -29,7 +29,7 @@ _generated 2026-10-11T18:19:15Z_
 | ❌ | `generation_error` | the generator returned an error |
 | 🤯 | `generation_panic` | the generator crashed or hung |
 
-## Headline
+## Core
 
 ### Groups
 

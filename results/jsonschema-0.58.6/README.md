@@ -10,7 +10,7 @@ generators live with. It resolves `localhost:1234` remotes from
 `format` at the library default (asserted through draft 7, annotation-only
 from 2019-09 on).
 
-_generated 2026-10-11T18:14:09Z_
+_generated 2026-10-11T18:24:07Z_
 
 **1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
 
@@ -25,7 +25,7 @@ _generated 2026-10-11T18:14:09Z_
 | ❌ | `generation_error` | the generator returned an error |
 | 🤯 | `generation_panic` | the generator crashed or hung |
 
-## Headline
+## Core
 
 ### Groups
 

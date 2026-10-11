@@ -2,6 +2,7 @@
 # the pinned crate (see Cargo.toml) and names the results directory.
 name = "json-schema-rs-0.0"
 
+language = "rust"
 description = """
 json-schema-rs turns a JSON Schema into serde structs, and its design center
 is the hand-written schema that describes a configuration object: the root

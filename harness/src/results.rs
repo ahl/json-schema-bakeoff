@@ -176,6 +176,9 @@ pub struct Results {
     /// The generator's description from its manifest (may be empty).
     #[serde(default)]
     pub description: String,
+    /// Language of the generated code (`rust`, `go`, `typescript`, ...).
+    #[serde(default)]
+    pub language: String,
     /// The newest `generated_at` among the groups.
     pub generated_at: String,
     pub groups: Vec<GroupResult>,

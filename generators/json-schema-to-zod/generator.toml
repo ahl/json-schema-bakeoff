@@ -1,0 +1,29 @@
+# Integration for json-schema-to-zod. The exact versions come from the
+# pinned npm packages (see package.json) and name the results directory:
+# `json-schema-to-zod 2.8.1 (zod 4.6.6)`.
+name = "json-schema-to-zod"
+
+# The emitted zod expression is erasable TypeScript (`parseOneOf` writes an
+# explicit type argument), run by node's own type stripping rather than tsc.
+language = "typescript"
+description = """
+json-schema-to-zod rewrites a JSON Schema into zod schema source: one zod
+expression, as a string, for you to paste into a TypeScript project. Its
+design center is developer convenience at the boundary between a published
+schema and a zod-shaped codebase — get a usable validator and an inferred
+TypeScript type out of a schema you didn't write. It is a *constraint*
+translator rather than a type generator, so where quicktype and typify
+model shape and drop the rest, this emits `.min()`, `.max()`, `.regex()`,
+`.strict()` and `superRefine` closures, and keywords it has no parser for
+(`$ref`, `multipleOf` outside a typed number, `propertyNames`,
+`dependencies`) fall through to `z.any()`. Its own README says the output
+is not meant to be used at runtime and recommends Ajv instead; we run it
+anyway, because what it does translate it translates exactly. Deprecated
+since March 2026.
+"""
+
+[commands]
+# Run with cwd = this directory. {out_dir}/{gen_dir}/{batch_dir} are absolute.
+version  = "node generate.mjs version"
+generate = "node generate.mjs generate {out_dir}"
+build    = "node build.mjs {gen_dir} {batch_dir}"
