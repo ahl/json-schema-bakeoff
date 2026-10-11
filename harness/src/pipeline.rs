@@ -56,11 +56,14 @@ fn group_hash(group: &Group, identity: &str, cases: &[(usize, &suite::Case)]) ->
     hex::encode(h.finalize())
 }
 
-/// Module key for a group's generated code, which depends only on the
-/// schema and the generator identity. Identical schemas share one module.
+/// Module key for a group's generated code, which depends on the generator
+/// identity, the draft (a generator may read it), and the schema. Identical
+/// schemas within a draft share one module.
 fn module_key(group: &Group, identity: &str) -> String {
     let mut h = Sha256::new();
     h.update(identity);
+    h.update([0]);
+    h.update(&group.draft);
     h.update([0]);
     h.update(serde_json::to_vec(&group.schema).unwrap());
     format!("g_{}", &hex::encode(h.finalize())[..16])
@@ -176,7 +179,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Resu
     }
     let mut gen_status: BTreeMap<String, (String, Option<String>)> = BTreeMap::new();
     if !to_generate.is_empty() {
-        for s in flavor.generator.generate(&flavor.target, &gen_dir, &to_generate)? {
+        for s in flavor.generator.generate(&flavor.target, draft, &gen_dir, &to_generate)? {
             gen_status.insert(s.key, (s.status, s.message));
         }
     }
@@ -198,7 +201,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Resu
     let built = if ok_keys.is_empty() {
         None
     } else {
-        Some(flavor.generator.build(&flavor.target, &gen_dir, &batch_dir, &ok_keys)?)
+        Some(flavor.generator.build(&flavor.target, draft, &gen_dir, &batch_dir, &ok_keys)?)
     };
     if let Some(b) = &built {
         let ok = b.outcomes.values().filter(|o| **o == BuildOutcome::Ok).count();

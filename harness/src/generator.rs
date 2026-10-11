@@ -8,7 +8,7 @@
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
-//! generate = "..."   # stdin: [{key, schema}]; writes {out_dir}/<key>.<ext>;
+//! generate = "..."   # stdin: [{key, draft, schema}]; writes {out_dir}/<key>.<ext>;
 //!                    # stdout: [{key, status: ok|error|panic, message?}]
 //! build    = "..."   # stdin: [key]; stdout: {outcomes: {key: "ok"|{fail}},
 //!                    #                       runner: [exe, args...]}
@@ -17,8 +17,9 @@
 //! Commands are run through `sh -c` with cwd = the generator directory.
 //! Placeholders: `{root}` (repo root), `{target}`, `{out_dir}`, `{gen_dir}`,
 //! `{batch_dir}`. Environment: `CARGO_TARGET_DIR=<root>/target`,
-//! `BAKEOFF_ROOT`, `BAKEOFF_TARGET`. stderr is inherited so build noise and
-//! progress reach the terminal; stdout is the protocol.
+//! `BAKEOFF_ROOT`, `BAKEOFF_TARGET`, and for generate/build `BAKEOFF_DRAFT`
+//! (the suite directory name, e.g. `draft7`). stderr is inherited so build
+//! noise and progress reach the terminal; stdout is the protocol.
 
 use anyhow::{Context, Result};
 use serde::Deserialize;
@@ -113,14 +114,17 @@ impl Generator {
         Ok(v)
     }
 
-    /// Generate code for every group into `out_dir`.
-    pub fn generate(&self, target: &str, out_dir: &Path, groups: &[(String, serde_json::Value)]) -> Result<Vec<GenStatus>> {
+    /// Generate code for every group (all from `draft`) into `out_dir`.
+    pub fn generate(&self, target: &str, draft: &str, out_dir: &Path, groups: &[(String, serde_json::Value)]) -> Result<Vec<GenStatus>> {
         std::fs::create_dir_all(out_dir)?;
-        let input: Vec<serde_json::Value> =
-            groups.iter().map(|(key, schema)| serde_json::json!({ "key": key, "schema": schema })).collect();
-        let out = self.run(
+        let input: Vec<serde_json::Value> = groups
+            .iter()
+            .map(|(key, schema)| serde_json::json!({ "key": key, "draft": draft, "schema": schema }))
+            .collect();
+        let out = self.run_in_draft(
             &self.commands.generate,
             target,
+            draft,
             &[("{out_dir}", &out_dir.to_string_lossy())],
             Some(&serde_json::to_vec(&input)?),
         )?;
@@ -129,12 +133,13 @@ impl Generator {
         Ok(statuses)
     }
 
-    /// Build the generated modules named by `keys` into a runner.
-    pub fn build(&self, target: &str, gen_dir: &Path, batch_dir: &Path, keys: &[String]) -> Result<BuildResult> {
+    /// Build the generated modules named by `keys` (all from `draft`) into a runner.
+    pub fn build(&self, target: &str, draft: &str, gen_dir: &Path, batch_dir: &Path, keys: &[String]) -> Result<BuildResult> {
         std::fs::create_dir_all(batch_dir)?;
-        let out = self.run(
+        let out = self.run_in_draft(
             &self.commands.build,
             target,
+            draft,
             &[("{gen_dir}", &gen_dir.to_string_lossy()), ("{batch_dir}", &batch_dir.to_string_lossy())],
             Some(&serde_json::to_vec(keys)?),
         )?;
@@ -160,6 +165,10 @@ impl Generator {
     }
 
     fn run(&self, template: &str, target: &str, subst: &[(&str, &str)], stdin: Option<&[u8]>) -> Result<String> {
+        self.run_in_draft(template, target, "", subst, stdin)
+    }
+
+    fn run_in_draft(&self, template: &str, target: &str, draft: &str, subst: &[(&str, &str)], stdin: Option<&[u8]>) -> Result<String> {
         let mut cmd_line = template.replace("{root}", &self.root.to_string_lossy()).replace("{target}", target);
         for (k, v) in subst {
             cmd_line = cmd_line.replace(k, v);
@@ -171,6 +180,7 @@ impl Generator {
             .env("CARGO_TARGET_DIR", self.root.join("target"))
             .env("BAKEOFF_ROOT", &self.root)
             .env("BAKEOFF_TARGET", target)
+            .env("BAKEOFF_DRAFT", draft)
             .stdin(if stdin.is_some() { Stdio::piped() } else { Stdio::null() })
             .stdout(Stdio::piped())
             .stderr(Stdio::inherit());

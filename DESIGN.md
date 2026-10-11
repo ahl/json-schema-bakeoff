@@ -44,20 +44,23 @@ build    = "sh build.sh {target} {gen_dir} {batch_dir}"
 
 The harness never links a generator. It runs the three commands as
 subprocesses through `sh -c`, with cwd set to the generator directory,
-`CARGO_TARGET_DIR=<repo>/target`, `BAKEOFF_ROOT`, and `BAKEOFF_TARGET` in
-the environment, and `{root}`, `{target}`, `{out_dir}`, `{gen_dir}`,
-`{batch_dir}` substituted. stdout is the protocol; stderr is inherited so
+`CARGO_TARGET_DIR=<repo>/target`, `BAKEOFF_ROOT`, `BAKEOFF_TARGET`, and (for
+generate and build) `BAKEOFF_DRAFT` in the environment, and `{root}`,
+`{target}`, `{out_dir}`, `{gen_dir}`, `{batch_dir}` substituted. stdout is the protocol; stderr is inherited so
 build noise reaches the terminal.
 
 1. **`version`** prints an identity string, e.g. `typify 0.10.0-alpha.2` or
    `quicktype 26.0.0 go`. Slugged, it names the results directory and the
    scoreboard row, and it is part of every cache hash.
-2. **`generate <out_dir>`** reads a JSON array of `{key, schema}` on stdin
-   in one long-lived process (never one process per group), writes
+2. **`generate <out_dir>`** reads a JSON array of `{key, draft, schema}` on
+   stdin in one long-lived process (never one process per group), writes
    `<out_dir>/<key>.<ext>` for each schema it can handle, and prints a JSON
    array of `{key, status, message?}` with status `ok`, `error` (the tool
    returned an error) or `panic` (the tool crashed or hung). The root type
-   must be named `Root` where the tool lets the caller choose.
+   must be named `Root` where the tool lets the caller choose. `draft` is
+   the suite directory the schema came from (`draft4` ... `draft2020-12`);
+   a generator that can select a dialect should use it, and one that can't
+   should ignore it (its results don't change either way).
 3. **`build <gen_dir> <batch_dir>`** reads a JSON array of keys on stdin,
    compiles those modules together, attributes compiler diagnostics back
    to keys, drops the failures, repeats until clean, and prints
