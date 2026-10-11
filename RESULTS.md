@@ -19,7 +19,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | draft4 | draft6 | draft7 | draft2019-09 | draft2020-12 | Generated |
 |---|---:|---:|---:|---:|---:|---|
-| typify 0.10.0-alpha.2 | 38.1% (61/160) | 34.3% (80/233) | 31.0% (80/258) | 27.6% (103/373) | 27.9% (107/384) | 2026-10-11T04:14:00Z |
+| typify 0.10.0-alpha.2 | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T04:14:00Z |
 
 ## Optional tests
 
@@ -27,7 +27,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | draft4 | draft6 | draft7 | draft2019-09 | draft2020-12 | Generated |
 |---|---:|---:|---:|---:|---:|---|
-| typify 0.10.0-alpha.2 | 56.4% (22/39) | 45.5% (20/44) | 31.2% (20/64) | 27.6% (21/76) | 26.9% (21/78) | 2026-10-11T04:14:00Z |
+| typify 0.10.0-alpha.2 | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T04:14:00Z |
 
 ## typify1 (typify 0.10.0-alpha.2)
 

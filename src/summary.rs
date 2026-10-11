@@ -470,7 +470,7 @@ pub fn render_terminal(results: &Results) -> String {
     s
 }
 
-/// One row per version, one column per draft (pass rate with pass/total),
+/// One row per version, one column per draft (pass rate),
 /// plus the generation date; empty if nothing qualifies.
 fn scoreboard_headline(all: &[Results], optional: bool) -> String {
     let mut drafts: Vec<String> = all.iter().flat_map(sorted_drafts).collect();
@@ -485,8 +485,7 @@ fn scoreboard_headline(all: &[Results], optional: bool) -> String {
                 if groups.is_empty() {
                     "—".to_string()
                 } else {
-                    let pass = count(&groups, Bucket::Pass);
-                    format!("{} ({pass}/{})", pass_rate(pass, groups.len()), groups.len())
+                    pass_rate(count(&groups, Bucket::Pass), groups.len())
                 }
             })
             .collect();
