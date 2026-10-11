@@ -1,6 +1,11 @@
-# Conformance summary — typify-0.8.0 (typify 0.8.0)
+# typify 0.8.0
 
-_generated 2026-10-11T18:06:23Z_
+typify 0.8.0 is the last release before the typespace rewrite. Same design
+center as 0.10: idiomatic serde types for Rust, validation only where the
+type system expresses it, generation failures for the rest. Included so the
+rewrite can be measured against where it started.
+
+_generated 2026-10-11T18:12:53Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 

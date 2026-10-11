@@ -340,7 +340,10 @@ fn failures_section(results: &Results) -> String {
 /// Render the markdown summary for one results file.
 pub fn render(results: &Results) -> String {
     let mut s = String::new();
-    s.push_str(&format!("# Conformance summary — {} ({})\n\n", results.version, results.typify));
+    s.push_str(&format!("# {}\n\n", results.typify));
+    if !results.description.is_empty() {
+        s.push_str(&format!("{}\n\n", results.description));
+    }
     s.push_str(&format!("_generated {}_\n\n", results.generated_at));
 
     let drafts = sorted_drafts(results);
@@ -533,6 +536,17 @@ pub fn render_scoreboard(all: &[Results]) -> String {
         s.push_str(&opt_table);
         s.push('\n');
     }
+    if all.iter().any(|r| !r.description.is_empty()) {
+        s.push_str("## The tools\n\n");
+        for r in all {
+            s.push_str(&format!("**[{}](results/{}/README.md)**", escape_cell(&r.typify), r.version));
+            if r.description.is_empty() {
+                s.push_str("\n\n");
+            } else {
+                s.push_str(&format!(" — {}\n\n", r.description));
+            }
+        }
+    }
 
     s
 }
@@ -573,6 +587,7 @@ mod tests {
     /// bucket represented at least once.
     fn sample_results() -> Results {
         Results {
+            description: String::new(),
             version: "typify1".to_string(),
             typify: "typify 0.10.0-alpha.2".to_string(),
             generated_at: "2026-10-10T00:00:00Z".to_string(),

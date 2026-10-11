@@ -2,6 +2,13 @@
 # pinned crate (see Cargo.toml) and names the results directory.
 name = "typify-0.8"
 
+description = """
+typify 0.8.0 is the last release before the typespace rewrite. Same design
+center as 0.10: idiomatic serde types for Rust, validation only where the
+type system expresses it, generation failures for the rest. Included so the
+rewrite can be measured against where it started.
+"""
+
 [commands]
 # Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
 # {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.

@@ -171,8 +171,11 @@ pub struct Results {
     /// Directory name under `results/`, derived from the typify version,
     /// e.g. `typify-0.10.0-alpha.2`.
     pub version: String,
-    /// The typify that produced these results, e.g. `typify 0.10.0-alpha.2`.
+    /// The tool that produced these results, e.g. `typify 0.10.0-alpha.2`.
     pub typify: String,
+    /// The generator's description from its manifest (may be empty).
+    #[serde(default)]
+    pub description: String,
     /// The newest `generated_at` among the groups.
     pub generated_at: String,
     pub groups: Vec<GroupResult>,

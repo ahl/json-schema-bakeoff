@@ -1,6 +1,16 @@
-# Conformance summary — jsonschema-0.58.6 (jsonschema 0.58.6)
+# jsonschema 0.58.6
 
-_generated 2026-10-11T18:06:57Z_
+jsonschema is a Rust validator, not a code generator: it interprets the
+schema at run time instead of compiling it into types, so it can enforce
+every keyword, which a type generator structurally cannot. It is the
+reference row: it shows the ceiling the suite allows, calibrates the harness
+(a miss here is a harness bug or a policy), and prices the policies the
+generators live with. It resolves `localhost:1234` remotes from
+`suite/remotes/`, selects the dialect from the suite directory, and leaves
+`format` at the library default (asserted through draft 7, annotation-only
+from 2019-09 on).
+
+_generated 2026-10-11T18:14:09Z_
 
 **1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
 

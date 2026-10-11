@@ -310,6 +310,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
     let mut results = Results {
         version: slug.clone(),
         typify: identity.to_string(),
+        description: flavor.generator.description.clone(),
         generated_at: String::new(),
         groups: items.iter().map(|i| i.result.clone().expect("every item has a result")).collect(),
     };
