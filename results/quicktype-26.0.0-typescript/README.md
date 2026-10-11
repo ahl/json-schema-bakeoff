@@ -1,6 +1,6 @@
 # Conformance summary — quicktype-26.0.0-typescript (quicktype 26.0.0 typescript)
 
-_generated 2026-10-11T17:38:21Z_
+_generated 2026-10-11T18:07:35Z_
 
 **591 of 1408 non-optional groups pass (42.0%)**; 301 optional groups reported separately
 

@@ -1,0 +1,14 @@
+# Integration for the jsonschema 0.58 line. The exact version comes from the
+# pinned crate (see Cargo.toml) and names the results directory.
+#
+# jsonschema is a validator, not a code generator: it joins the bakeoff as a
+# calibration row. Anything other than ✅ here is the harness's doing, not
+# the tool's. See README.md.
+name = "jsonschema-0.58"
+
+[commands]
+# Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
+# {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.
+version  = "cargo run -q -- version"
+generate = "cargo run -q -- generate {out_dir}"
+build    = "cargo run -q --manifest-path {root}/Cargo.toml -p rust-batch -- build {gen_dir} {batch_dir}"

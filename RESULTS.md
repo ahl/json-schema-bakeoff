@@ -20,12 +20,12 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T17:48:16Z |
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:01:25Z |
-| [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T17:38:07Z |
-| [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T17:37:58Z |
-| [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T17:38:21Z |
-| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T17:37:22Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:01:47Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:06:57Z |
+| [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:07:21Z |
+| [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:07:12Z |
+| [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:07:35Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:06:38Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:06:23Z |
 
 ## Optional tests
 
@@ -34,10 +34,10 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T17:48:16Z |
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:01:25Z |
-| [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T17:38:07Z |
-| [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T17:37:58Z |
-| [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T17:38:21Z |
-| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T17:37:22Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:01:47Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:06:57Z |
+| [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:07:21Z |
+| [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:07:12Z |
+| [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:07:35Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:06:38Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:06:23Z |
 

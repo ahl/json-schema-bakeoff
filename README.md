@@ -32,6 +32,8 @@ a `generator.toml` and the three commands it names.
 
 ## Generators
 
+- `typify-0.8`: typify 0.8.0, the last stable release before the typespace
+  rewrite. Same integration as `typify-0.10` against the 0.8 API.
 - `typify-0.10`: [typify](https://github.com/oxidecomputer/typify) 0.10 line,
   pinned in its `Cargo.toml`. The group's `definitions` are registered with
   `add_ref_types`, then the schema is added with the suggested name `Root`;
@@ -39,3 +41,35 @@ a `generator.toml` and the three commands it names.
   on merged schemas. A schema that doesn't deserialize as a schemars 0.8
   `RootSchema` (e.g. draft 4's boolean `exclusiveMaximum`) is a
   `generation_error`. typify has no notion of draft; `$schema` is ignored.
+- `quicktype`: [quicktype](https://github.com/glideapps/quicktype) through
+  `quicktype-core`, pinned in its `package.json`, with targets `rust`, `go`
+  and `typescript`. Each group becomes a `JSONSchemaInput` with one source
+  named `Root`; references are resolved against an empty store, so the
+  suite's remotes come back as `SchemaFetchError`. quicktype models types
+  and not constraints, so `false_accept` dominates. See
+  [generators/quicktype/README.md](generators/quicktype/README.md) for the
+  renderer options and the per-target quirks.
+- `json-schema-rs-0.0`: [json-schema-rs](https://github.com/goddtriffin/json-schema-rs)
+  0.0 line, pinned in its `Cargo.toml`. Generated one schema at a time with
+  `DedupeMode::Disabled`, the only path that reports a non-object root and
+  that emits root `anyOf`/`oneOf` enums. The tool requires the root to be
+  `type: "object"` with non-empty `properties` — a bare `{"properties": ...}`
+  is `CodeGenError::RootNotObject` — so almost the whole suite is a
+  `generation_error`. The root type is named from `title`, else the root
+  `$ref`'s def key, else `Root`. See
+  [generators/json-schema-rs-0.0/README.md](generators/json-schema-rs-0.0/README.md)
+  for the settings and what the batch crate needed.
+- `jsonschema-0.58`: [jsonschema](https://github.com/Stranger6667/jsonschema)
+  0.58 line, pinned in its `Cargo.toml`. A validator rather than a code
+  generator, here as a **calibration row**: each module embeds the group's
+  schema and validates against it, so anything other than ✅ is the harness's
+  doing and not the tool's. It is also the one row that resolves the suite's
+  `http://localhost:1234/…` remotes (from `suite/remotes/`, never the
+  network), which is how we measure what the other rows forfeit to that
+  policy. Each module compiles with the draft of the suite directory it came
+  from, which outranks the schema's own `$schema`; with that wired up it is
+  ✅ on all 1408 required groups across all five drafts. `format` stays at
+  the library default — an assertion in draft 4/6/7, an annotation from
+  2019-09 on — so `optional/format` is 100% for the old drafts and 🙈 for the
+  new ones. See
+  [generators/jsonschema-0.58/README.md](generators/jsonschema-0.58/README.md).

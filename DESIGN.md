@@ -131,9 +131,11 @@ non-pass group, plus per-case detail.
 ## Caching and idempotence
 
 Each stored record carries a hash of the harness revision, the generator
-identity, the group id, the schema, and the selected cases. `run` reuses any
-record whose hash matches and recomputes the rest; an unchanged rerun is a
-byte-for-byte no-op. A draft run replaces only that draft's records, so
+identity, a hash of the generator directory's own sources (everything but
+`*.md`, dotfiles, `node_modules/` and `target/`), the group id, the schema,
+and the selected cases. `run` reuses any record whose hash matches and
+recomputes the rest; an unchanged rerun is a byte-for-byte no-op, and an
+edit to a generator's glue code recomputes that generator's records. A draft run replaces only that draft's records, so
 drafts accumulate. `--no-cache` recomputes everything selected. Bump
 `HARNESS_REV` in `harness/src/pipeline.rs` when the pipeline's semantics
 change in a way that should invalidate stored records.
@@ -145,5 +147,18 @@ section, never in headline numbers. `--no-optional` skips it.
 
 ## Remote references
 
-`http://localhost:1234/...` references are not resolved; a generator that
-can't handle them records whatever it does (typify panics).
+`http://localhost:1234/...` references are not resolved for code
+generators; a generator records whatever its tool does with them (typify
+panics, quicktype reports a fetch error). A validator row may resolve them
+from `suite/remotes/`, never from the network, precisely to show what that
+policy costs the generators.
+
+## Where number precision stops
+
+The harness keeps numbers as the suite's text through `cases.json`. What
+happens next is the tool's: `rust-batch`'s runner parses cases with
+serde_json (correctly rounded, but an integer beyond `u64` becomes an
+`f64`), Go's runner hands the raw bytes to the generated unmarshal, and the
+TypeScript runner re-serializes from source text. So a bignum result
+reflects the target language's JSON parser plus the tool, which is the
+experience a user of that tool would have.
