@@ -4,7 +4,7 @@
 use std::path::Path;
 
 fn main() {
-    let lock = Path::new(env!("CARGO_MANIFEST_DIR")).join("Cargo.lock");
+    let lock = std::path::PathBuf::from(std::env::var_os("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR")).join("Cargo.lock");
     println!("cargo:rerun-if-changed={}", lock.display());
     let text = std::fs::read_to_string(&lock).expect("read Cargo.lock");
     let mut version = None;
