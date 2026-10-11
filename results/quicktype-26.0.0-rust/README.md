@@ -12,8 +12,8 @@ _generated 2026-10-11T17:37:58Z_
 | 🤪 | `mixed` | both false_accept and false_reject cases in one group |
 | 💀 | `runtime_panic` | a test case panicked during deserialize |
 | 🦀 | `compile_fail` | generated code doesn't compile |
-| ❌ | `generation_error` | typify returned an error |
-| 🤯 | `generation_panic` | typify panicked |
+| ❌ | `generation_error` | the generator returned an error |
+| 🤯 | `generation_panic` | the generator crashed or hung |
 
 ## Headline
 

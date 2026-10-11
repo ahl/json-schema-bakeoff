@@ -512,9 +512,9 @@ fn scoreboard_headline(all: &[Results], optional: bool) -> String {
     )
 }
 
-/// `RESULTS.md`: the cross-version scoreboard at the repo root. One
-/// headline row per (version, draft), then the chart tables per version,
-/// pointing at `results/<version>/summary.md` for the failure detail.
+/// `RESULTS.md`: the cross-version scoreboard at the repo root. Just the
+/// headline tables (one row per generator version, one column per draft)
+/// and links to each generator's own page under `results/<version>/`.
 pub fn render_scoreboard(all: &[Results]) -> String {
     let mut s = String::new();
     s.push_str("# JSON Schema codegen bakeoff\n\n");
@@ -534,25 +534,6 @@ pub fn render_scoreboard(all: &[Results]) -> String {
         s.push('\n');
     }
 
-    for r in all {
-        s.push_str(&format!("## {} ({})\n\n", r.version, r.typify));
-        for draft in sorted_drafts(r) {
-            let non_opt = files_for_draft(r, &draft, false);
-            if non_opt.is_empty() {
-                continue;
-            }
-            s.push_str(&format!("### {draft}\n\n"));
-            s.push_str(&chart_table(&non_opt));
-            s.push('\n');
-            let opt = files_for_draft(r, &draft, true);
-            if !opt.is_empty() {
-                s.push_str(&format!("#### {draft} optional tests\n\n"));
-                s.push_str(&chart_table(&opt));
-                s.push('\n');
-            }
-        }
-        s.push_str(&format!("Details: [results/{0}/README.md](results/{0}/README.md)\n\n", r.version));
-    }
     s
 }
 

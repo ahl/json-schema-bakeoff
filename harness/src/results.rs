@@ -8,9 +8,9 @@ use std::path::Path;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Bucket {
-    /// typify panicked during generation.
+    /// The generator crashed or hung.
     GenerationPanic,
-    /// typify returned an error (or the schema didn't parse as a schemars Schema).
+    /// The generator returned an error (including "I can't represent this schema").
     GenerationError,
     /// Generated code didn't compile.
     CompileFail,
@@ -73,8 +73,8 @@ impl Bucket {
             Bucket::Mixed => "both false_accept and false_reject cases in one group",
             Bucket::RuntimePanic => "a test case panicked during deserialize",
             Bucket::CompileFail => "generated code doesn't compile",
-            Bucket::GenerationError => "typify returned an error",
-            Bucket::GenerationPanic => "typify panicked",
+            Bucket::GenerationError => "the generator returned an error",
+            Bucket::GenerationPanic => "the generator crashed or hung",
         }
     }
 
