@@ -3,6 +3,7 @@
 name = "typify-0.10"
 
 language = "rust"
+homepage = "https://crates.io/crates/typify"
 description = """
 Rust types for serde from JSON Schema, built to generate OpenAPI clients
 (progenitor). Its design center is idiomatic Rust: structs, enums, newtypes,
