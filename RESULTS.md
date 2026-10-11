@@ -22,7 +22,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T18:33:48Z |
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [\*\*](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:32:37Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝒱](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:32:37Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:31:54Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:25:46Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:31:38Z |
@@ -35,7 +35,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T18:33:48Z |
-| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [\*\*](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:32:37Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝒱](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:32:37Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:31:54Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:25:46Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:31:38Z |
@@ -49,9 +49,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [\*\*](#notes) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:28:47Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝒱](#notes) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-10-11T18:28:47Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 2.1% | 2026-10-11T18:30:38Z |
-| [json-schema-to-zod 2.8.1 (zod 4.6.6) (ts)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:23:45Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:32:03Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:32:18Z |
 
@@ -61,9 +60,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [\*\*](#notes) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:28:47Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝒱](#notes) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-10-11T18:28:47Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-10-11T18:30:38Z |
-| [json-schema-to-zod 2.8.1 (zod 4.6.6) (ts)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:23:45Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:32:03Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:32:18Z |
 
@@ -102,20 +100,6 @@ and the combinators (`allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`,
 must be an object with `properties` or it refuses outright. Constraints come
 out as attributes for its own validator, which serde ignores, so it's
 measured on the little it does model.
-
-**[json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md)** — json-schema-to-zod rewrites a JSON Schema into zod schema source: one zod
-expression, as a string, for you to paste into a TypeScript project. Its
-design center is developer convenience at the boundary between a published
-schema and a zod-shaped codebase — get a usable validator and an inferred
-TypeScript type out of a schema you didn't write. It is a *constraint*
-translator rather than a type generator, so where quicktype and typify
-model shape and drop the rest, this emits `.min()`, `.max()`, `.regex()`,
-`.strict()` and `superRefine` closures, and keywords it has no parser for
-(`$ref`, `multipleOf` outside a typed number, `propertyNames`,
-`dependencies`) fall through to `z.any()`. Its own README says the output
-is not meant to be used at runtime and recommends Ajv instead; we run it
-anyway, because what it does translate it translates exactly. Deprecated
-since March 2026.
 
 **[jsonschema 0.58.6](results/jsonschema-0.58.6/README.md)** — A Rust validator, not a generator: it interprets the schema at run time, so
 it can enforce every keyword, which a type generator structurally can't. It's
@@ -166,5 +150,5 @@ line is the in-progress rewrite on top of typespace.
 
 ## Notes
 
-\*\* A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.
+𝒱 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.
 
