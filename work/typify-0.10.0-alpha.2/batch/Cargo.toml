@@ -1,0 +1,32 @@
+[package]
+name = "conformance-batch"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+# Keep this crate out of any enclosing workspace.
+[workspace]
+
+[[bin]]
+name = "runner_batch"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+regress = "0.12"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["serde"] }
+
+# Generated code is noisy by construction; none of it is our problem.
+[lints.rust]
+warnings = "allow"
+
+[profile.dev]
+opt-level = 0
+debug = false
+incremental = false
+
+[profile.dev.package."*"]
+opt-level = 0
+debug = false

@@ -1,0 +1,9 @@
+// draft2019-09/unevaluatedProperties.json::dependentSchemas with unevaluatedProperties
+// root type: Root
+
+///`Root`
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
+pub struct Root {
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub foo2: ::std::option::Option<::serde_json::Value>,
+}

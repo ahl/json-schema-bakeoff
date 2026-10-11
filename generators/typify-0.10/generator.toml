@@ -1,0 +1,10 @@
+# Integration for the typify 0.10 line. The exact version comes from the
+# pinned crate (see Cargo.toml) and names the results directory.
+name = "typify-0.10"
+
+[commands]
+# Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
+# {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.
+version  = "cargo run -q -- version"
+generate = "cargo run -q -- generate {out_dir}"
+build    = "cargo run -q --manifest-path {root}/Cargo.toml -p rust-batch -- build {gen_dir} {batch_dir}"
