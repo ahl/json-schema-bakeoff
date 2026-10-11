@@ -38,7 +38,7 @@ enum Cmd {
     Run {
         #[arg(long, value_enum, default_value = "typify1")]
         version: Version,
-        /// Draft directory under suite/tests (e.g. draft7).
+        /// Draft directory under suite/tests (e.g. draft7), or `all`.
         #[arg(long, default_value = "draft7")]
         draft: String,
         /// Substring filter on `<file>::<group>::<case>`.
@@ -68,14 +68,24 @@ enum Cmd {
 fn main() -> Result<()> {
     crashguard::install();
     match Cli::parse().cmd {
-        Cmd::Run { version, draft, filter, no_optional, no_cache, out } => pipeline::run(pipeline::RunOpts {
-            version: version.label(),
-            draft,
-            filter,
-            optional: !no_optional,
-            no_cache,
-            out,
-        }),
+        Cmd::Run { version, draft, filter, no_optional, no_cache, out } => {
+            let drafts: Vec<String> = if draft == "all" {
+                summary::DRAFT_ORDER.iter().map(|d| d.to_string()).collect()
+            } else {
+                vec![draft]
+            };
+            for draft in drafts {
+                pipeline::run(pipeline::RunOpts {
+                    version: version.label(),
+                    draft,
+                    filter: filter.clone(),
+                    optional: !no_optional,
+                    no_cache,
+                    out: out.clone(),
+                })?;
+            }
+            Ok(())
+        }
         Cmd::Diff { a, b } => {
             let a = results::Results::load(&a)?;
             let b = results::Results::load(&b)?;

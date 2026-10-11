@@ -12,7 +12,7 @@ use std::collections::BTreeMap;
 
 /// Canonical draft ordering for display; anything not listed here sorts
 /// after, alphabetically.
-const DRAFT_ORDER: &[&str] = &["draft4", "draft6", "draft7", "draft2019-09", "draft2020-12"];
+pub const DRAFT_ORDER: &[&str] = &["draft4", "draft6", "draft7", "draft2019-09", "draft2020-12"];
 
 /// Display rank of a draft. Shared with `diff` so both reports order
 /// drafts the same way (and not lexically, where draft2019-09 would come

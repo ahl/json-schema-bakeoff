@@ -248,7 +248,7 @@ pub fn run(opts: RunOpts) -> Result<()> {
         fresh += 1;
     }
 
-    let results = Results {
+    let mut results = Results {
         version: opts.version.to_string(),
         typify: typify.to_string(),
         generated_at: chrono_free_timestamp(),
@@ -257,14 +257,28 @@ pub fn run(opts: RunOpts) -> Result<()> {
 
     // A filtered run never overwrites the headline results; it goes to
     // work/<version>/filtered/ unless --out is given.
+    let headline = opts.out.is_none() && filter.is_none();
     let out_dir = match (&opts.out, filter) {
         (Some(o), _) => o.clone(),
         (None, None) => repo_root().join("results").join(opts.version),
         (None, Some(_)) => version_dir.join("filtered"),
     };
+    if headline {
+        // The headline file accumulates drafts: this run replaces only its
+        // own draft's groups, so running drafts one at a time builds up the
+        // full picture. Drafts are kept in canonical order.
+        let path = out_dir.join("results.json");
+        if path.is_file() {
+            let previous = Results::load(&path)?;
+            let mut kept: Vec<GroupResult> = previous.groups.into_iter().filter(|g| g.draft != opts.draft).collect();
+            kept.append(&mut results.groups);
+            kept.sort_by_key(|g| summary::draft_rank(&g.draft));
+            results.groups = kept;
+        }
+    }
     results.save(&out_dir.join("results.json"))?;
     std::fs::write(out_dir.join("summary.md"), summary::render(&results))?;
-    if filter.is_none() && opts.out.is_none() {
+    if headline {
         write_scoreboard()?;
     }
 

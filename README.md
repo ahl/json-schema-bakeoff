@@ -7,13 +7,14 @@ test case and comparing the outcome with the suite's `valid` flag.
 
 ```sh
 git submodule update --init
-cargo run -- run --version typify1 --draft draft7
+cargo run -- run --version typify1 --draft draft7   # or --draft all
 cargo run -- run --version typify1 --filter 'ref.json::relative pointer'
 cargo run -- diff results/typify1/results.json results/typify1-before/results.json
 cargo run -- key
 ```
 
-`run` writes `results/<version>/results.json` and `summary.md`, and regenerates the
+`run` writes `results/<version>/results.json` and `summary.md` (the headline
+file accumulates: each draft run replaces only that draft's groups), and regenerates the
 cross-version scoreboard `RESULTS.md` at the repo root (`cargo run -- scoreboard`
 rebuilds it from whatever is in `results/`). A filtered
 run prints per-case detail (with the path to the generated code) and writes
