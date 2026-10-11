@@ -46,7 +46,7 @@ impl Bucket {
             Bucket::FalseReject => "🚧",
             Bucket::Mixed => "🔀",
             Bucket::RuntimePanic => "🔥",
-            Bucket::CompileFail => "🧱",
+            Bucket::CompileFail => "🦀",
             Bucket::GenerationError => "❌",
             Bucket::GenerationPanic => "💥",
         }

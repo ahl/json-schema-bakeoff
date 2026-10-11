@@ -667,11 +667,11 @@ mod tests {
     #[test]
     fn chart_glyphs_follow_file_order() {
         let out = render(&sample_results());
-        // draft7 non-optional: ✅ 🙈 🧱 💥 count columns, then Total,
+        // draft7 non-optional: ✅ 🙈 🦀 💥 count columns, then Total,
         // then the chart — one glyph per group, in suite order.
         assert_eq!(row(&out, "allOf.json"), ["allOf.json", "1", "1", "0", "0", "2", "✅🙈"]);
         assert_eq!(row(&out, "ref.json"), ["ref.json", "0", "0", "0", "1", "1", "💥"]);
-        assert_eq!(row(&out, "type.json"), ["type.json", "0", "0", "1", "0", "1", "🧱"]);
+        assert_eq!(row(&out, "type.json"), ["type.json", "0", "0", "1", "0", "1", "🦀"]);
     }
 
     #[test]
@@ -679,7 +679,7 @@ mod tests {
         let out = render(&sample_results());
         // draft7 non-optional has Pass, FalseAccept, CompileFail,
         // GenerationPanic — in Bucket::ALL (best-first) order.
-        let header = "| File | ✅ | 🙈 | 🧱 | 💥 | Total | Chart |";
+        let header = "| File | ✅ | 🙈 | 🦀 | 💥 | Total | Chart |";
         let sep = "|---|---:|---:|---:|---:|---:|---|";
         assert!(out.contains(header), "missing header, got:\n{out}");
         assert!(out.contains(sep));
@@ -707,7 +707,7 @@ mod tests {
     #[test]
     fn headline_pass_rate() {
         let out = render(&sample_results());
-        // Non-optional count columns: ✅ 🙈 🔀 🔥 🧱 ❌ 💥 (🚧 only
+        // Non-optional count columns: ✅ 🙈 🔀 🔥 🦀 ❌ 💥 (🚧 only
         // occurs in the optional table), then Total and Pass rate.
         // draft7: 1 pass out of 4 groups.
         assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "1", "0", "1", "4", "25.0%"]);

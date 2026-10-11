@@ -1,6 +1,6 @@
 # Conformance summary — typify1 (typify 0.10.0-alpha.2)
 
-_generated 2026-10-11T03:49:04Z_
+_generated 2026-10-11T03:50:32Z_
 
 **80 of 258 non-optional groups pass (31.0%)**
 
@@ -11,7 +11,7 @@ _generated 2026-10-11T03:49:04Z_
 | 🚧 | `false_reject` | deserialize failed but `valid: true` (too strict) |
 | 🔀 | `mixed` | both false_accept and false_reject cases in one group |
 | 🔥 | `runtime_panic` | a test case panicked during deserialize |
-| 🧱 | `compile_fail` | generated code doesn't compile |
+| 🦀 | `compile_fail` | generated code doesn't compile |
 | ❌ | `generation_error` | typify returned an error |
 | 💥 | `generation_panic` | typify panicked |
 
