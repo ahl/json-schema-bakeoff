@@ -1,7 +1,7 @@
 {
   "version": "typify1",
   "typify": "typify 0.10.0-alpha.2",
-  "generated_at": "2026-10-11T03:52:35Z",
+  "generated_at": "2026-10-11T03:59:01Z",
   "groups": [
     {
       "id": "draft7/additionalItems.json::additionalItems as schema",
@@ -4832,6 +4832,5358 @@
           "valid": false,
           "outcome": "match",
           "error": "invalid type: integer `123`, expected unit"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::integer",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "integer",
+      "bucket": "false_reject",
+      "error": "a bignum is an integer: invalid type: floating point `1.2345678910111214e+52`, expected i64",
+      "cases": [
+        {
+          "description": "a bignum is an integer",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "invalid type: floating point `1.2345678910111214e+52`, expected i64"
+        },
+        {
+          "description": "a negative bignum is an integer",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "invalid type: floating point `-1.2345678910111214e+52`, expected i64"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::number",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "number",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a bignum is a number",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negative bignum is a number",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::string",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "string",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a bignum is not a string",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: floating point `9.82492837492349e+52`, expected a string"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::maximum integer comparison",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "maximum integer comparison",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"maximum\": 1.8446744073709552e+19\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "comparison works for high numbers",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::float comparison with high precision",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "float comparison with high precision",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"exclusiveMaximum\": 9.727837981879871e+26\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "comparison works for high numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::minimum integer comparison",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "minimum integer comparison",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"minimum\": -1.8446744073709552e+19\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "comparison works for very negative numbers",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::float comparison with high precision on negative numbers",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "float comparison with high precision on negative numbers",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"exclusiveMinimum\": -9.727837981879871e+26\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/content.json::validation of string-encoded content based on media type",
+      "draft": "draft7",
+      "file": "optional/content.json",
+      "optional": true,
+      "group": "validation of string-encoded content based on media type",
+      "bucket": "false_accept",
+      "error": "accepted `an invalid JSON document` though valid: false",
+      "cases": [
+        {
+          "description": "a valid JSON document",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an invalid JSON document",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "ignores non-strings",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/content.json::validation of binary string-encoding",
+      "draft": "draft7",
+      "file": "optional/content.json",
+      "optional": true,
+      "group": "validation of binary string-encoding",
+      "bucket": "false_accept",
+      "error": "accepted `an invalid base64 string (% is not a valid character)` though valid: false",
+      "cases": [
+        {
+          "description": "a valid base64 string",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an invalid base64 string (% is not a valid character)",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "ignores non-strings",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/content.json::validation of binary-encoded media type documents",
+      "draft": "draft7",
+      "file": "optional/content.json",
+      "optional": true,
+      "group": "validation of binary-encoded media type documents",
+      "bucket": "false_accept",
+      "error": "accepted `a validly-encoded invalid JSON document` though valid: false",
+      "cases": [
+        {
+          "description": "a valid base64-encoded JSON document",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a validly-encoded invalid JSON document",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an invalid base64 string that is valid JSON",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "ignores non-strings",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/cross-draft.json::refs to future drafts are processed as future drafts",
+      "draft": "draft7",
+      "file": "optional/cross-draft.json",
+      "optional": true,
+      "group": "refs to future drafts are processed as future drafts",
+      "bucket": "generation_panic",
+      "error": "unresolved reference: http://localhost:1234/draft2019-09/dependentRequired.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/merge.rs:125",
+      "cases": [
+        {
+          "description": "missing bar is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "present bar is valid",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 regex $ does not match trailing newline",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 regex $ does not match trailing newline",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "matches in Python, but not in ECMA 262",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^abc$\""
+        },
+        {
+          "description": "matches",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 regex converts \\t to horizontal tab",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 regex converts \\t to horizontal tab",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\t$\""
+        },
+        {
+          "description": "matches",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 regex escapes control codes with \\c and upper letter",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 regex escapes control codes with \\c and upper letter",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\cC$\""
+        },
+        {
+          "description": "matches",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 regex escapes control codes with \\c and lower letter",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 regex escapes control codes with \\c and lower letter",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\cc$\""
+        },
+        {
+          "description": "matches",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 \\d matches ascii digits only",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 \\d matches ascii digits only",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ASCII zero matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "NKO DIGIT ZERO does not match (unlike e.g. Python)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\d$\""
+        },
+        {
+          "description": "NKO DIGIT ZERO (as \\u escape) does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\d$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 \\D matches everything but ascii digits",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 \\D matches everything but ascii digits",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ASCII zero does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\D$\""
+        },
+        {
+          "description": "NKO DIGIT ZERO matches (unlike e.g. Python)",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "NKO DIGIT ZERO (as \\u escape) matches",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 \\w matches ascii letters only",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 \\w matches ascii letters only",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ASCII 'a' matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "latin-1 e-acute does not match (unlike e.g. Python)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\w$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 \\W matches everything but ascii letters",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 \\W matches everything but ascii letters",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ASCII 'a' does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\W$\""
+        },
+        {
+          "description": "latin-1 e-acute matches (unlike e.g. Python)",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 \\s matches whitespace",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 \\s matches whitespace",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ASCII space matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "Character tabulation matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "Line tabulation matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "Form feed matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "latin-1 non-breaking-space matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "zero-width whitespace matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "line feed matches (line terminator)",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "paragraph separator matches (line terminator)",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "EM SPACE matches (Space_Separator)",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "Non-whitespace control does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\s$\""
+        },
+        {
+          "description": "Non-whitespace does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\s$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::ECMA 262 \\S matches everything but whitespace",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 \\S matches everything but whitespace",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ASCII space does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "Character tabulation does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "Line tabulation does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "Form feed does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "latin-1 non-breaking-space does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "zero-width whitespace does not match",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "line feed does not match (line terminator)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "paragraph separator does not match (line terminator)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "EM SPACE does not match (Space_Separator)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\S$\""
+        },
+        {
+          "description": "Non-whitespace control matches",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "Non-whitespace matches",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::patterns always use unicode semantics with pattern",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "patterns always use unicode semantics with pattern",
+      "bucket": "false_reject",
+      "error": "ascii character in json string: doesn't match pattern \"\\p{Letter}cole\"",
+      "cases": [
+        {
+          "description": "ascii character in json string",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        },
+        {
+          "description": "literal unicode character in json string",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        },
+        {
+          "description": "unicode character in hex format in string",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        },
+        {
+          "description": "unicode matching is case-sensitive",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::\\w in patterns matches [A-Za-z0-9_], not unicode letters",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "\\w in patterns matches [A-Za-z0-9_], not unicode letters",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ascii character in json string",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "literal unicode character in json string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\wcole\""
+        },
+        {
+          "description": "unicode character in hex format in string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\wcole\""
+        },
+        {
+          "description": "unicode matching is case-sensitive",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\wcole\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::pattern with ASCII ranges",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "pattern with ASCII ranges",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "literal unicode character in json string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"[a-z]cole\""
+        },
+        {
+          "description": "unicode character in hex format in string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"[a-z]cole\""
+        },
+        {
+          "description": "ascii characters match",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::\\d in pattern matches [0-9], not unicode digits",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "\\d in pattern matches [0-9], not unicode digits",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ascii digits",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "ascii non-digits",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\d+$\""
+        },
+        {
+          "description": "non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\d+$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::pattern with non-ASCII digits",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "pattern with non-ASCII digits",
+      "bucket": "false_reject",
+      "error": "ascii digits: doesn't match pattern \"^\\p{digit}+$\"",
+      "cases": [
+        {
+          "description": "ascii digits",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"^\\p{digit}+$\""
+        },
+        {
+          "description": "ascii non-digits",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\p{digit}+$\""
+        },
+        {
+          "description": "non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO)",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"^\\p{digit}+$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::patterns always use unicode semantics with patternProperties",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "patterns always use unicode semantics with patternProperties",
+      "bucket": "false_reject",
+      "error": "ascii character in json string: doesn't match pattern \"\\p{Letter}cole\"",
+      "cases": [
+        {
+          "description": "ascii character in json string",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        },
+        {
+          "description": "literal unicode character in json string",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        },
+        {
+          "description": "unicode character in hex format in string",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        },
+        {
+          "description": "unicode matching is case-sensitive",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\p{Letter}cole\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::\\w in patternProperties matches [A-Za-z0-9_], not unicode letters",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "\\w in patternProperties matches [A-Za-z0-9_], not unicode letters",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ascii character in json string",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "literal unicode character in json string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\wcole\""
+        },
+        {
+          "description": "unicode character in hex format in string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\wcole\""
+        },
+        {
+          "description": "unicode matching is case-sensitive",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"\\wcole\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::patternProperties with ASCII ranges",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "patternProperties with ASCII ranges",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "literal unicode character in json string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"[a-z]cole\""
+        },
+        {
+          "description": "unicode character in hex format in string",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"[a-z]cole\""
+        },
+        {
+          "description": "ascii characters match",
+          "valid": true,
+          "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::\\d in patternProperties matches [0-9], not unicode digits",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "\\d in patternProperties matches [0-9], not unicode digits",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "ascii digits",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "ascii non-digits",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\d+$\""
+        },
+        {
+          "description": "non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO)",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\d+$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/ecmascript-regex.json::patternProperties with non-ASCII digits",
+      "draft": "draft7",
+      "file": "optional/ecmascript-regex.json",
+      "optional": true,
+      "group": "patternProperties with non-ASCII digits",
+      "bucket": "false_reject",
+      "error": "ascii digits: doesn't match pattern \"^\\p{digit}+$\"",
+      "cases": [
+        {
+          "description": "ascii digits",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"^\\p{digit}+$\""
+        },
+        {
+          "description": "ascii non-digits",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^\\p{digit}+$\""
+        },
+        {
+          "description": "non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO)",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "doesn't match pattern \"^\\p{digit}+$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled",
+      "draft": "draft7",
+      "file": "optional/float-overflow.json",
+      "optional": true,
+      "group": "all integers are multiples of 0.5, if overflow is handled",
+      "bucket": "false_reject",
+      "error": "valid if optional overflow handling is implemented: invalid type: floating point `1e+308`, expected i64",
+      "cases": [
+        {
+          "description": "valid if optional overflow handling is implemented",
+          "valid": true,
+          "outcome": "false_reject",
+          "error": "invalid type: floating point `1e+308`, expected i64"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/date-time.json::validation of date-time strings",
+      "draft": "draft7",
+      "file": "optional/format/date-time.json",
+      "optional": true,
+      "group": "validation of date-time strings",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"date-time\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time string",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time string without second fraction",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time string with plus offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time string with minus offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time with a leap second, UTC",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time with a leap second, with minus offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time past leap second, UTC",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time with leap second on a wrong minute, UTC",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time with leap second on a wrong hour, UTC",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid hour in date-time string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid minute in date-time string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid offset minute in date-time string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid day in date-time string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid offset in date-time string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid closing Z after time-zone offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "case-insensitive T and Z",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "only RFC3339 not all of ISO 8601 are valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-padded month dates",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-padded day dates",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '৪' (a Bengali 4) in date portion",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '৪' (a Bengali 4) in time portion",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid extended year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a numeric offset without minutes is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "hour 24 is invalid even with a leap second",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a second fraction of fifteen nines is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time string without seconds",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time string with trailing content after the offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid minute in date-time string, with a numeric offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date-time string with 28 days in February (normal)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date-time string with 30 days in February (leap)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "2021 is not a leap year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "2020 is a leap year",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "century year 0100 is not a leap year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "century year 0400 is a leap year",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "century year 2100 is not a leap year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a second fraction with no digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a comma decimal separator with a time-offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading whitespace before a valid date-time",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing whitespace after a valid date-time",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/date.json::validation of date strings",
+      "draft": "draft7",
+      "file": "optional/format/date.json",
+      "optional": true,
+      "group": "validation of date strings",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"date\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in January",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in January",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 28 days in February (normal)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 30 days in February (leap)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in March",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in March",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 30 days in April",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 31 days in April",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in May",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in May",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 30 days in June",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 31 days in June",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in July",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in July",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in August",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in August",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 30 days in September",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 31 days in September",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in October",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in October",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 30 days in November",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 31 days in November",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid date string with 31 days in December",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a invalid date string with 32 days in December",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid date string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "only RFC3339 not all of ISO 8601 are valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-padded month dates are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-padded day dates are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid month",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "2021 is not a leap year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "2020 is a leap year",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '৪' (a Bengali 4)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: non-ASCII Bengali digit in month field",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ISO8601 / non-RFC3339: YYYYMMDD without dashes (2023-03-28)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ISO8601 / non-RFC3339: week number implicit day of week (2023-01-02)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ISO8601 / non-RFC3339: week number with day of week (2023-03-28)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ISO8601 / non-RFC3339: week number rollover to next year (2023-01-01)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string in date-time format",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "century year 0100 is not a leap year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "century year 0400 is a leap year",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "century year 2100 is not a leap year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: leading whitespace is not permitted",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: trailing whitespace is not permitted",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: month 00 is not valid per date-month range 01-12",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: day 00 is not valid per date-mday minimum of 01",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: embedded whitespace between year and month",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: trailing character after valid full-date",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: trailing Z after full-date",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: full-date followed by space and time component",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid: four-digit year 0001",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: two-digit year (N-2 digits)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: three-digit year (N-1 digits)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: five-digit year (N+1 digits)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: positive sign prefix on year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: negative sign prefix on year",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: non-ASCII Bengali digit in year field",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: alphabetic characters in year field",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: three-digit month (N+1 digits)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: alphabetic characters in month field",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: three-digit day (N+1 digits)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: alphabetic characters in day field",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: colon separators",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: dot separators",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: space separators",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: mixed slash and hyphen separators",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: duplicated first hyphen",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: duplicated second hyphen",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid: date inside the Julian to Gregorian reform gap",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: year field numerically larger than a 32-bit signed integer",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: character just above '9' as the second digit of the day",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: non-ASCII digit leaving ten UTF-8 bytes but eight characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: en dash separators instead of hyphen-minus",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid: NUL character after an otherwise valid full-date",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ecmascript-regex.json::\\a is not an ECMA 262 control escape",
+      "draft": "draft7",
+      "file": "optional/format/ecmascript-regex.json",
+      "optional": true,
+      "group": "\\a is not an ECMA 262 control escape",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "when used as a pattern",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ecmascript-regex.json::Python-specific regular expression syntax is not valid ECMA 262",
+      "draft": "draft7",
+      "file": "optional/format/ecmascript-regex.json",
+      "optional": true,
+      "group": "Python-specific regular expression syntax is not valid ECMA 262",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "Python named group (?P<name>...) is not ECMA 262",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Python named backreference (?P=name) is not ECMA 262",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "inline comment group (?#...) is not ECMA 262",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ecmascript-regex.json::global inline flag groups are not valid ECMA 262",
+      "draft": "draft7",
+      "file": "optional/format/ecmascript-regex.json",
+      "optional": true,
+      "group": "global inline flag groups are not valid ECMA 262",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "a single global inline flag (?i)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple global inline flags (?ims)",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ecmascript-regex.json::ECMA 262 named groups and backreferences are valid",
+      "draft": "draft7",
+      "file": "optional/format/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 named groups and backreferences are valid",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "an ECMA 262 named group (?<name>...)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an ECMA 262 named backreference \\k<name>",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ecmascript-regex.json::ECMA 262 lookbehind is valid, including variable width",
+      "draft": "draft7",
+      "file": "optional/format/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 lookbehind is valid, including variable width",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "a variable-width lookbehind (ES2018)",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ecmascript-regex.json::ECMA 262 character classes and escapes",
+      "draft": "draft7",
+      "file": "optional/format/ecmascript-regex.json",
+      "optional": true,
+      "group": "ECMA 262 character classes and escapes",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "an empty character class is valid ECMA 262",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated empty character class is valid ECMA 262",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a control escape \\cA is valid ECMA 262",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/email.json::validation of e-mail addresses",
+      "draft": "draft7",
+      "file": "optional/format/email.json",
+      "optional": true,
+      "group": "validation of e-mail addresses",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"email\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid e-mail address",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid e-mail address",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "tilde in local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "tilde before local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "tilde after local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quoted string with a space in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quoted string with a double dot in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quoted string with a @ in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv4-address-literal after the @ is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6-address-literal after the @ is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "dot before local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "dot after local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two separated dots inside local part are valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two subsequent dots inside local part are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid domain",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid IPv4-address-literal",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two email addresses is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "full \"From\" header is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "local part is required",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "domain is required",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unquoted space in local part is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain that looks like an IPv4 address without brackets is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty quoted string in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quoted string containing only a space in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "consecutive hyphens inside a domain label are valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label starting with a digit is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-ASCII character in the local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-ASCII character in the domain is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a fullwidth commercial at is not a valid separator",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-ASCII character in a quoted pair is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing line feed is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing carriage return is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing space is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a leading space is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a tab in the local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a delete character in the local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quoted string with no special characters in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quoted pair in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an escaped double quote in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an escaped backslash in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unescaped double quote in an unquoted local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "text after the closing double quote in the local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unclosed double quote in the local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two unquoted @ signs are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a backslash-escaped @ in an unquoted local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an address literal in the local part position is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty string is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label starting with a hyphen is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label ending with a hyphen is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain starting with a dot is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain ending with a dot is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two subsequent dots inside the domain are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a single-label domain is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unclosed address literal is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty brackets after the @ are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv4-address-literal with three octets is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv4-address-literal with five octets is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "bracketed content that is not an address is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label before the opening bracket is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lowercase IPv6 tag in an address literal is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a comma in an unquoted local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a semicolon in an unquoted local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in an unquoted local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a parenthesis in an unquoted local part is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a parenthesis in the domain is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/hostname.json::validation of host names",
+      "draft": "draft7",
+      "file": "optional/format/hostname.json",
+      "optional": true,
+      "group": "validation of host names",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid host name",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label with digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label starting with digit",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label ending with digit",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single dot",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading dot",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing dot",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "IDN label separator",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label with hyphen",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "starts with hyphen",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ends with hyphen",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "contains underscore",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "exceeds maximum overall length (256)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "maximum label length (63)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "exceeds maximum label length (63)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII KELVIN SIGN (U+212A)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "consecutive hyphens inside a label",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/hostname.json::validation of A-label (punycode) host names",
+      "draft": "draft7",
+      "file": "optional/format/hostname.json",
+      "optional": true,
+      "group": "validation of A-label (punycode) host names",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "invalid Punycode",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid host name (example.test in Hangul)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "contains illegal char U+302E Hangul single dot tone mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Begins with a Spacing Combining Mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Begins with a Nonspacing Mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Begins with an Enclosing Mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are PVALID, left-to-right chars",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are PVALID, right-to-left chars",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are DISALLOWED, right-to-left chars",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are DISALLOWED, left-to-right chars",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with no preceding 'l'",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with nothing preceding",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with no following 'l'",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with nothing following",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with surrounding 'l's",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Greek KERAIA not followed by Greek",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Greek KERAIA not followed by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Greek KERAIA followed by Greek",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERESH not preceded by Hebrew",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERESH not preceded by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERESH preceded by Hebrew",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERSHAYIM not preceded by Hebrew",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERSHAYIM not preceded by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERSHAYIM preceded by Hebrew",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with no Hiragana, Katakana, or Han",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with no other characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with Hiragana",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with Katakana",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with Han",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Arabic-Indic digits mixed with Extended Arabic-Indic digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Arabic-Indic digits not mixed with Extended Arabic-Indic digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Extended Arabic-Indic digits not mixed with Arabic-Indic digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH JOINER not preceded by Virama",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH JOINER not preceded by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH JOINER preceded by Virama",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH NON-JOINER preceded by Virama",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH NON-JOINER not preceded by Virama but matches regexp",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "contains \"--\" in the 3rd and 4th position",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/idn-email.json::validation of an internationalized e-mail addresses",
+      "draft": "draft7",
+      "file": "optional/format/idn-email.json",
+      "optional": true,
+      "group": "validation of an internationalized e-mail addresses",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"idn-email\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid idn e-mail (example@example.test in Hangul)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid e-mail/idn e-mail address",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid e-mail address",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-ASCII local part with an ASCII domain is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-ASCII quoted local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label that is not in Unicode NFC is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a local part that is not in Unicode NFC is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a C1 control in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a noncharacter in the local part is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a local part at the 64-octet limit is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a fullwidth commercial at is not a local-part separator",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a local part with a supplementary-plane character is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label starting with a hyphen is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain label ending with a hyphen is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain starting with a dot is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a domain ending with a dot is not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two subsequent dots inside the domain are not valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "domain is required",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/idn-hostname.json::validation of internationalized host names",
+      "draft": "draft7",
+      "file": "optional/format/idn-hostname.json",
+      "optional": true,
+      "group": "validation of internationalized host names",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"idn-hostname\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid host name (example.test in Hangul)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "illegal first char U+302E Hangul single dot tone mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "contains illegal char U+302E Hangul single dot tone mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a single label of 63 characters is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a single label of 64 characters is too long",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid label, correct Punycode",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid Chinese Punycode",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid Punycode",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "U-label contains \"--\" in the 3rd and 4th position",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "U-label starts with a dash",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "U-label ends with a dash",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "U-label starts and ends with a dash",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Begins with a Spacing Combining Mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Begins with a Nonspacing Mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Begins with an Enclosing Mark",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are PVALID, left-to-right chars",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are PVALID, right-to-left chars",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are DISALLOWED, right-to-left chars",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Exceptions that are DISALLOWED, left-to-right chars",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with no preceding 'l'",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with nothing preceding",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with no following 'l'",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with nothing following",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "MIDDLE DOT with surrounding 'l's",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Greek KERAIA not followed by Greek",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Greek KERAIA not followed by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Greek KERAIA followed by Greek",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERESH not preceded by Hebrew",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERESH not preceded by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERESH preceded by Hebrew",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERSHAYIM not preceded by Hebrew",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERSHAYIM not preceded by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Hebrew GERSHAYIM preceded by Hebrew",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with no Hiragana, Katakana, or Han",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with no other characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with Hiragana",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with Katakana",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "KATAKANA MIDDLE DOT with Han",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Arabic-Indic digits mixed with Extended Arabic-Indic digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Arabic-Indic digits not mixed with Extended Arabic-Indic digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Extended Arabic-Indic digits not mixed with Arabic-Indic digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH JOINER not preceded by Virama",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH JOINER not preceded by anything",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH JOINER preceded by Virama",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH NON-JOINER preceded by Virama",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ZERO WIDTH NON-JOINER not preceded by Virama but matches regexp",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label with hyphen",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label with digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label starting with digit",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single label ending with digit",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "fullwidth digits are mapped to ASCII digits",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a zero width space is ignored by the mapping",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an A-label with an uppercase Punycode body is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the two Arabic-Indic digit blocks may appear in different labels",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a label of only Arabic-Indic digits is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-NFC U-label is valid after UTS 46 normalisation",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a label of 63 fullwidth characters is valid after mapping",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an ACE prefix produced by the mapping step is decoded as an A-label",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "zero width non-joiner must pass at every occurrence",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Bidi domain name with a digit-first label is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "label starting with a digit before a right-to-left letter is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "left-to-right label containing a right-to-left letter is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "right-to-left label mixing both digit types is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "A-label that decodes to a disallowed code point is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "A-label that decodes to a Bidi rule violation is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a U-label whose A-label form is longer than 63 octets is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty label between two dots is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a name longer than 253 characters is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "A-label that decodes to only ASCII is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-canonical Punycode that does not re-encode to itself is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/idn-hostname.json::validation of separators in internationalized host names",
+      "draft": "draft7",
+      "file": "optional/format/idn-hostname.json",
+      "optional": true,
+      "group": "validation of separators in internationalized host names",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"idn-hostname\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "single dot",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single ideographic full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single fullwidth full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single halfwidth ideographic full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "dot as label separator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ideographic full stop as label separator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "fullwidth full stop as label separator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "halfwidth ideographic full stop as label separator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading dot",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading ideographic full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading fullwidth full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading halfwidth ideographic full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing dot",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing ideographic full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing fullwidth full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing halfwidth ideographic full stop",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "label too long if separator ignored (full stop)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "label too long if separator ignored (ideographic full stop)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "label too long if separator ignored (fullwidth full stop)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "label too long if separator ignored (halfwidth ideographic full stop)",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ipv4.json::validation of IP addresses",
+      "draft": "draft7",
+      "file": "optional/format/ipv4.json",
+      "optional": true,
+      "group": "validation of IP addresses",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"ipv4\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IP address",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IP address with too many components",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IP address with out-of-range values",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IP address without 4 components",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a 2-part address resolving to a routable IP (inet_aton shorthand)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a 3-part address resolving to a routable IP (inet_aton shorthand)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IP address as an integer",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IP address as an integer (decimal)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '২' (a Bengali 2)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid fullwidth digits (non-ASCII)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid mathematical bold digits (non-ASCII)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "netmask is not a part of ipv4 address",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading whitespace is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing whitespace is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "hexadecimal notation is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "octal notation explicit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty part (double dot) is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading dot is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing dot is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "minimum valid IPv4 address",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "maximum valid IPv4 address",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid IPv4 with an octet in the 200 to 249 range",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid IPv4 with two-digit octets",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty string is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "plus sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "negative sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "exponential notation is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alpha characters are invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "internal whitespace is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "tab character is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "additional content after an embedded NUL byte",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "with port number is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv4-mapped IPv6 address is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single octet out of range in last position",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/ipv6.json::validation of IPv6 addresses",
+      "draft": "draft7",
+      "file": "optional/format/ipv6.json",
+      "optional": true,
+      "group": "validation of IPv6 addresses",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"ipv6\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IPv6 address",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a group with 5 hex digits is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing 4 hex symbols is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing 5 hex symbols is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address with too many components",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address containing illegal characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "no digits is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading colons is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing colons is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "missing leading octet is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "missing trailing octet is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "missing leading octet with omitted octets later",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "single set of double colons in the middle is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two sets of double colons is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "mixed format with the ipv4 section as decimal octets",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "mixed format with double colons between the sections",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "mixed format with ipv4 section with octet out of range",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "mixed format with ipv4 section with a hex octet",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "mixed format with leading double colons (ipv4-mapped ipv6 address)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "triple colons is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "8 octets",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "insufficient octets without double colons",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "no colons is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ipv4 is not ipv6",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "ipv4 segment must have 4 octets",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading whitespace is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing whitespace is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "netmask is not a part of ipv6 address",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "zone id is not a part of ipv6 address",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a long valid ipv6",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a long invalid ipv6, below length limit, first",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a long invalid ipv6, below length limit, second",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '৪' (a Bengali 4)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '৪' (a Bengali 4) in the IPv4 portion",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bracketed address is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a leading zero in the last IPv4 octet is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "uppercase hex digits are valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading zeros in every group are valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "two groups before '::' and four groups after is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "eight groups alongside '::' is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an out-of-range first octet in the embedded IPv4 is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "one group before '::' and five groups after is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "'::' followed by six groups is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading '::' before five groups and an embedded IPv4 is valid",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/iri-reference.json::validation of IRI References",
+      "draft": "draft7",
+      "file": "optional/format/iri-reference.json",
+      "optional": true,
+      "group": "validation of IRI References",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"iri-reference\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid protocol-relative IRI Reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid relative IRI Reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid IRI Reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI Reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI fragment",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid IRI fragment",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an embedded IPv4 with a leading zero is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid protocol-relative IRI Reference with a compressed IPv6 host",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid relative IRI Reference with a supplementary-plane character",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a query-only IRI Reference with a supplementary private-use char",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing newline after a valid IRI Reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid percent-encoding with non-hex digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "incomplete percent-encoding triplet",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "lone percent sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/iri.json::validation of IRIs",
+      "draft": "draft7",
+      "file": "optional/format/iri.json",
+      "optional": true,
+      "group": "validation of IRIs",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"iri\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with anchor tag",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with anchor tag and parentheses",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with URL-encoded stuff",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid percent-encoding with non-hex digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "incomplete percent-encoding triplet",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "lone percent sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with many special characters",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI based on IPv6",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid relative IRI Reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid IRI",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid IRI though valid IRI reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 host whose embedded IPv4 has a leading zero is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with a compressed IPv6 host",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing newline after a valid IRI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with an IPv4 host",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with no authority and a rootless path",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with no authority and an absolute path",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with a supplementary-plane character in the path",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid IRI with a supplementary-plane private-use char in query",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/json-pointer.json::validation of JSON-pointers (JSON String Representation)",
+      "draft": "draft7",
+      "file": "optional/format/json-pointer.json",
+      "optional": true,
+      "group": "validation of JSON-pointers (JSON String Representation)",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"json-pointer\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid JSON-pointer",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (~ not escaped)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer with empty segment",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer with the last empty segment",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #1",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #2",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #4",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #5",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #6",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #7",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #9",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #10",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #11",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer as stated in RFC 6901 #12",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer used adding to the last array position",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer (- used as object member name)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer (multiple escaped characters)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer (escaped with fraction part) #1",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer (escaped with fraction part) #2",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (URI Fragment Identifier) #1",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (URI Fragment Identifier) #2",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (URI Fragment Identifier) #3",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (some escaped, but not all) #1",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (some escaped, but not all) #2",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (wrong escape character) #1",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (wrong escape character) #2",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (multiple characters not escaped)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (isn't empty nor starts with /) #1",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (isn't empty nor starts with /) #2",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "not a valid JSON-pointer (isn't empty nor starts with /) #3",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer (Unicode characters allowed by RFC 6901)",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid JSON-pointer (control characters allowed after JSON unescaping)",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/regex.json::validation of regular expressions",
+      "draft": "draft7",
+      "file": "optional/format/regex.json",
+      "optional": true,
+      "group": "validation of regular expressions",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid regular expression",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a regular expression with unclosed parens is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a quantifier with nothing to repeat is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a character class range in reverse order is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing backslash is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unmatched closing parenthesis is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unterminated character class is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/relative-json-pointer.json::validation of Relative JSON Pointers (RJP)",
+      "draft": "draft7",
+      "file": "optional/format/relative-json-pointer.json",
+      "optional": true,
+      "group": "validation of Relative JSON Pointers (RJP)",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"relative-json-pointer\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid upwards RJP",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid downwards RJP",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid up and then down RJP, with array index",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid RJP taking the member or index name",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid RJP that is a valid JSON Pointer",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a json-pointer part that does not start with a slash is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "negative prefix",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "explicit positive prefix",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII digit in the prefix is not allowed",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "## is not a valid json-pointer",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "zero cannot be followed by other digits, plus json-pointer",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "zero cannot be followed by other digits, plus octothorpe",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multi-digit integer prefix",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multi-digit prefix with a zero followed by another digit",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "tilde not followed by 0 or 1 in the json-pointer part",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unescaped tilde at the end of the json-pointer part",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "octothorpe followed by a json-pointer",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "empty reference tokens in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline after the non-negative integer",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/time.json::validation of time strings",
+      "draft": "draft7",
+      "file": "optional/format/time.json",
+      "optional": true,
+      "group": "validation of time strings",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"time\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid time string with extra leading zeros",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid time string with no leading zero for single digit",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "hour, minute, second must be two digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with leap second, Zulu",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, Zulu (wrong hour)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, Zulu (wrong minute)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid leap second, zero time-offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, zero time-offset (wrong hour)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, zero time-offset (wrong minute)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid leap second, positive time-offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid leap second, large positive time-offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, positive time-offset (wrong hour)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, positive time-offset (wrong minute)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid leap second, negative time-offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid leap second, large negative time-offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, negative time-offset (wrong hour)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid leap second, negative time-offset (wrong minute)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with second fraction",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with precise second fraction",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with plus offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with minus offset",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "time with unknown local offset is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "hour, minute in time-offset must be two digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with case-insensitive Z",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string with invalid hour",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string with invalid minute",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string with invalid second",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string with invalid time numoffset hour",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string with invalid time numoffset minute",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string with invalid time with both Z and numoffset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid offset indicator",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "only RFC3339 not all of ISO 8601 are valid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "no time offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "no time offset with second fraction",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid non-ASCII '২' (a Bengali 2)",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "offset not starting with plus or minus",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "contains letters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid time string in date-time format",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a numeric time-offset requires the colon separator",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a numeric time-offset requires the minutes component",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing newline after a valid time",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "hour 24 is invalid with a numeric time-offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "minute 60 is invalid with a numeric time-offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid time string with a 15 digit second fraction",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a second fraction with no digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "partial-time requires the seconds component",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a comma decimal separator with a time-offset",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading whitespace before a valid time",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing whitespace after a valid time",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/unknown.json::unknown format",
+      "draft": "draft7",
+      "file": "optional/format/unknown.json",
+      "optional": true,
+      "group": "unknown format",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"unknown\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "unknown formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unknown formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unknown formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unknown formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unknown formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unknown formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unknown formats ignore strings",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/uri-reference.json::validation of URI References",
+      "draft": "draft7",
+      "file": "optional/format/uri-reference.json",
+      "optional": true,
+      "group": "validation of URI References",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri-reference\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URI",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid protocol-relative URI Reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid relative URI Reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI Reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URI Reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URI fragment",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI fragment",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unescaped non US-ASCII characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid backslash character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "URI with leading-zero IPv4 is structurally valid as a reg-name",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "URI with out-of-bounds IPv4 is structurally valid as a reg-name",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty URI reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a query-only reference",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a network-path reference with an empty authority",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an incomplete percent-encoding",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "incomplete percent-encoding triplet",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "lone percent sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a double quote in a path",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets outside an authority",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a leading zero in the IPv4 part of an IPv6 literal",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing line feed",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/uri-template.json::format: uri-template",
+      "draft": "draft7",
+      "file": "optional/format/uri-template.json",
+      "optional": true,
+      "group": "format: uri-template",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri-template\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid uri-template",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid uri-template",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid uri-template without variables",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid relative uri-template",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty expression is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty varspec inside the variable list is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a zero prefix max-length is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a five-digit prefix max-length is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty string is a valid uri-template",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unmatched closing brace is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a percent-encoded triplet in a literal is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a literal with a lone percent sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a literal with an incomplete percent-encoded triplet is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a literal with non-hex percent encoding is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a supplementary plane character in a literal is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a private-use character in a literal is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a supplementary private-use character in a literal is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "reserved expansion operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "fragment expansion operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "label expansion operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "path segment expansion operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "path style parameter expansion operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "form style query expansion operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "form style query continuation operator",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the explode modifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "combined prefix and explode modifiers are invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a variable list with more than one varspec is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a dotted variable name is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing dot in a variable name is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a double dot in a variable name is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a variable name may start with a percent-encoded triplet",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a variable name with a lone percent sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a variable name with an incomplete percent-encoded triplet is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a variable name with non-hex percent encoding is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a four-digit prefix max-length is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a leading zero in the prefix max-length is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a space in a literal is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a delete character in a literal is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing comma in the variable list is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a default value in a varspec is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an operator in place of the first varspec is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an apostrophe in a literal is valid",
+          "valid": true,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/format/uri.json::validation of URIs",
+      "draft": "draft7",
+      "file": "optional/format/uri.json",
+      "optional": true,
+      "group": "validation of URIs",
+      "bucket": "generation_panic",
+      "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri\"\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
+      "cases": [
+        {
+          "description": "all string formats ignore integers",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore floats",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore objects",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore arrays",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore booleans",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "all string formats ignore nulls",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL with anchor tag",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL with anchor tag and parentheses",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL with URL-encoded stuff",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid puny-coded URL ",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL with many special characters",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL based on IPv4",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL with ftp scheme",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL for a simple text file",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URL",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid mailto URI",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid newsgroup URI",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid tel URI",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a valid URN",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid protocol-relative URI Reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid relative URI Reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI though valid URI reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI with spaces",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI with spaces and missing scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an invalid URI with comma in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid userinfo",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "unescaped non US-ASCII characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid backslash character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid \" character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid <> characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid {} characters",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid ^ character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid ` character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid SPACE character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid | character",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "URI with leading-zero IPv4 is structurally valid as a reg-name",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "URI with out-of-bounds IPv4 is structurally valid as a reg-name",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid percent-encoding with non-hex digits",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "incomplete percent-encoding triplet",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "lone percent sign is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme must start with a letter",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading zero in an embedded IPv4 address is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/id.json::id inside an enum is not a real identifier",
+      "draft": "draft7",
+      "file": "optional/id.json",
+      "optional": true,
+      "group": "id inside an enum is not a real identifier",
+      "bucket": "generation_panic",
+      "error": "called `Option::unwrap()` on a `None` value at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/util.rs:588",
+      "cases": [
+        {
+          "description": "exact match to enum, and type matches",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "match $ref to id",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "no match on enum or $ref to id",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/id.json::non-schema object containing a plain-name $id property",
+      "draft": "draft7",
+      "file": "optional/id.json",
+      "optional": true,
+      "group": "non-schema object containing a plain-name $id property",
+      "bucket": "generation_panic",
+      "error": "not implemented: if/then/else schemas are not supported: {\n  \"if\": {\n    \"const\": \"skip not_a_real_anchor\"\n  },\n  \"then\": true,\n  \"else\": {\n    \"$ref\": \"#/definitions/const_not_anchor\"\n  }\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/merge.rs:289",
+      "cases": [
+        {
+          "description": "skip traversing definition for a valid result",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "const at const_not_anchor does not match",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/id.json::non-schema object containing an $id property",
+      "draft": "draft7",
+      "file": "optional/id.json",
+      "optional": true,
+      "group": "non-schema object containing an $id property",
+      "bucket": "generation_panic",
+      "error": "not implemented: if/then/else schemas are not supported: {\n  \"if\": {\n    \"const\": \"skip not_a_real_id\"\n  },\n  \"then\": true,\n  \"else\": {\n    \"$ref\": \"#/definitions/const_not_id\"\n  }\n} at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/merge.rs:289",
+      "cases": [
+        {
+          "description": "skip traversing definition for a valid result",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "const at const_not_id does not match",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/non-bmp-regex.json::Proper UTF-16 surrogate pair handling: pattern",
+      "draft": "draft7",
+      "file": "optional/non-bmp-regex.json",
+      "optional": true,
+      "group": "Proper UTF-16 surrogate pair handling: pattern",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "matches empty",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "matches single",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "matches two",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "doesn't match one",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^🐲*$\""
+        },
+        {
+          "description": "doesn't match two",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^🐲*$\""
+        },
+        {
+          "description": "doesn't match one ASCII",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^🐲*$\""
+        },
+        {
+          "description": "doesn't match two ASCII",
+          "valid": false,
+          "outcome": "match",
+          "error": "doesn't match pattern \"^🐲*$\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/non-bmp-regex.json::Proper UTF-16 surrogate pair handling: patternProperties",
+      "draft": "draft7",
+      "file": "optional/non-bmp-regex.json",
+      "optional": true,
+      "group": "Proper UTF-16 surrogate pair handling: patternProperties",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "matches empty",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "matches single",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "matches two",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "doesn't match one",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: string \"hello\", expected i64"
+        },
+        {
+          "description": "doesn't match two",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: string \"hello\", expected i64"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/unknownKeyword.json::$id inside an unknown keyword is not a real identifier",
+      "draft": "draft7",
+      "file": "optional/unknownKeyword.json",
+      "optional": true,
+      "group": "$id inside an unknown keyword is not a real identifier",
+      "bucket": "generation_panic",
+      "error": "external references are not supported: https://localhost:1234/unknownKeyword/my_identifier.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1452",
+      "cases": [
+        {
+          "description": "type matches second anyOf, which has a real schema in it",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "type matches non-schema in first anyOf",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "type matches non-schema in third anyOf",
+          "valid": false,
+          "outcome": "not_run"
         }
       ]
     },

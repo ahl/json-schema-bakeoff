@@ -44,9 +44,10 @@ enum Cmd {
         /// Substring filter on `<file>::<group>::<case>`.
         #[arg(long)]
         filter: Option<String>,
-        /// Include tests under optional/ (reported separately).
+        /// Skip tests under optional/ (they are reported separately, never
+        /// counted in headline numbers).
         #[arg(long)]
-        optional: bool,
+        no_optional: bool,
         /// Ignore the cache and redo everything.
         #[arg(long)]
         no_cache: bool,
@@ -67,11 +68,11 @@ enum Cmd {
 fn main() -> Result<()> {
     crashguard::install();
     match Cli::parse().cmd {
-        Cmd::Run { version, draft, filter, optional, no_cache, out } => pipeline::run(pipeline::RunOpts {
+        Cmd::Run { version, draft, filter, no_optional, no_cache, out } => pipeline::run(pipeline::RunOpts {
             version: version.label(),
             draft,
             filter,
-            optional,
+            optional: !no_optional,
             no_cache,
             out,
         }),

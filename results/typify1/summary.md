@@ -1,8 +1,8 @@
 # Conformance summary — typify1 (typify 0.10.0-alpha.2)
 
-_generated 2026-10-11T03:52:35Z_
+_generated 2026-10-11T03:59:01Z_
 
-**80 of 258 non-optional groups pass (31.0%)**
+**80 of 258 non-optional groups pass (31.0%)**; 64 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -24,12 +24,26 @@ _generated 2026-10-11T03:52:35Z_
 | draft7 | 80 | 36 | 16 | 5 | 32 | 89 | 258 | 31.0% |
 | **Total** | **80** | **36** | **16** | **5** | **32** | **89** | **258** | **31.0%** |
 
+### Optional groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|
+| draft7 | 20 | 3 | 6 | 35 | 64 | 31.2% |
+| **Total** | **20** | **3** | **6** | **35** | **64** | **31.2%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
 | draft7 | 395 | 516 | 76.6% | 929 | 42.5% |
 | **Total** | **395** | **516** | **76.6%** | **929** | **42.5%** |
+
+### Per-case match rate (optional)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 85 | 102 | 83.3% | 922 | 9.2% |
+| **Total** | **85** | **102** | **83.3%** | **922** | **9.2%** |
 
 ## Chart
 
@@ -76,14 +90,47 @@ _generated 2026-10-11T03:52:35Z_
 | uniqueItems.json | 1 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
 | **Total** | **80** | **36** | **16** | **5** | **32** | **89** | **258** |  |
 
+#### optional
+
+| File | ✅ | 🙈 | 🚧 | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---|
+| optional/bignum.json | 2 | 0 | 1 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
+| optional/content.json | 0 | 3 | 0 | 0 | 3 | 🙈🙈🙈 |
+| optional/cross-draft.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
+| optional/float-overflow.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
+| optional/format/date-time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/date.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
+| optional/format/email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/idn-email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/idn-hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/ipv4.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv6.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/regex.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/unknown.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-template.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/id.json | 0 | 0 | 0 | 3 | 3 | 🤯🤯🤯 |
+| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 2 | ✅✅ |
+| optional/unknownKeyword.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| **Total** | **20** | **3** | **6** | **35** | **64** |  |
+
 ## Failures
 
-### 🤯 `generation_panic` (89)
+### 🤯 `generation_panic` (124)
 
-39 distinct first-line errors; most common:
+42 distinct first-line errors; most common:
 
-- **30×** `not yet implemented: invalid (or unexpected) schema:`
-- **12×** `not implemented: if/then/else schemas are not supported: {`
+- **60×** `not yet implemented: invalid (or unexpected) schema:`
+- **14×** `not implemented: if/then/else schemas are not supported: {`
 - **4×** `internal error: entered unreachable code at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/enums.rs:76`
 - **4×** `not yet implemented: unhandled not schema Object(`
 - **2×** `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at /Users/ahl/.cargo/registr…`
@@ -140,7 +187,7 @@ Per group:
 - `draft7/not.json::not multiple types` — `not yet implemented: unhandled not schema Object(`
 - `draft7/not.json::not more complex schema` — `not yet implemented: unhandled not schema Object(`
 - `draft7/not.json::double negation` — `not yet implemented: unhandled not schema Object(`
-- … and 39 more
+- … and 74 more
 
 ### ❌ `generation_error` (32)
 
@@ -200,15 +247,15 @@ Per group:
 - `draft7/properties.json::properties, patternProperties, additionalProperties interaction` — `accepted 'property invalidates property' though valid: false`
   - cases: property invalidates property (accepted), patternProperty invalidates property (accepted), patternProperty validates nonproperty (rejected)
 
-### 🚧 `false_reject` (16)
+### 🚧 `false_reject` (22)
 
-12 distinct first-line errors; most common:
+16 distinct first-line errors; most common:
 
+- **2×** `ascii character in json string: doesn't match pattern "\p{Letter}cole"`
+- **2×** `ascii digits: doesn't match pattern "^\p{digit}+$"`
 - **2×** `ignores arrays: invalid length 0, expected struct Root with 2 elements`
 - **2×** `ignores arrays: invalid length 0, expected struct Root with 3 elements`
 - **2×** `ignores arrays: invalid type: sequence, expected a map`
-- **2×** `ignores non-arrays: invalid type: map, expected a sequence`
-- **1×** `[0.0] is valid: invalid value`
 
 Per group:
 
@@ -244,10 +291,22 @@ Per group:
   - cases: ignores arrays (rejected), ignores other non-objects (rejected)
 - `draft7/type.json::integer type matches integers` — `a float with zero fractional part is an integer: invalid type: floating point '1.0', expected i64`
   - cases: a float with zero fractional part is an integer (rejected)
+- `draft7/optional/bignum.json::integer` — `a bignum is an integer: invalid type: floating point '1.2345678910111214e+52', expected i64`
+  - cases: a bignum is an integer (rejected), a negative bignum is an integer (rejected)
+- `draft7/optional/ecmascript-regex.json::patterns always use unicode semantics with pattern` — `ascii character in json string: doesn't match pattern "\p{Letter}cole"`
+  - cases: ascii character in json string (rejected), literal unicode character in json string (rejected), unicode character in hex format in string (rejected)
+- `draft7/optional/ecmascript-regex.json::pattern with non-ASCII digits` — `ascii digits: doesn't match pattern "^\p{digit}+$"`
+  - cases: ascii digits (rejected), non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO) (rejected)
+- `draft7/optional/ecmascript-regex.json::patterns always use unicode semantics with patternProperties` — `ascii character in json string: doesn't match pattern "\p{Letter}cole"`
+  - cases: ascii character in json string (rejected), literal unicode character in json string (rejected), unicode character in hex format in string (rejected)
+- `draft7/optional/ecmascript-regex.json::patternProperties with non-ASCII digits` — `ascii digits: doesn't match pattern "^\p{digit}+$"`
+  - cases: ascii digits (rejected), non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO) (rejected)
+- `draft7/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: invalid type: floating point '1e+308', expected i64`
+  - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (36)
+### 🙈 `false_accept` (39)
 
-33 distinct first-line errors; most common:
+36 distinct first-line errors; most common:
 
 - **2×** `accepted 'both oneOf valid' though valid: false`
 - **2×** `accepted 'both valid - invalid' though valid: false`
@@ -329,4 +388,10 @@ Per group:
   - cases: object with any other property is invalid (accepted)
 - `draft7/ref.json::empty tokens in $ref json-pointer` — `accepted 'non-number is invalid' though valid: false`
   - cases: non-number is invalid (accepted)
+- `draft7/optional/content.json::validation of string-encoded content based on media type` — `accepted 'an invalid JSON document' though valid: false`
+  - cases: an invalid JSON document (accepted)
+- `draft7/optional/content.json::validation of binary string-encoding` — `accepted 'an invalid base64 string (% is not a valid character)' though valid: false`
+  - cases: an invalid base64 string (% is not a valid character) (accepted)
+- `draft7/optional/content.json::validation of binary-encoded media type documents` — `accepted 'a validly-encoded invalid JSON document' though valid: false`
+  - cases: a validly-encoded invalid JSON document (accepted), an invalid base64 string that is valid JSON (accepted)
 

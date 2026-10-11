@@ -18,8 +18,7 @@ cross-version scoreboard `RESULTS.md` at the repo root (`cargo run -- scoreboard
 rebuilds it from whatever is in `results/`). A filtered
 run prints per-case detail (with the path to the generated code) and writes
 to `work/<version>/filtered/` instead, so it never clobbers the headline
-results. `--out <dir>` overrides either. `--optional` includes
-`tests/<draft>/optional/`, which the summary reports separately.
+results. `--out <dir>` overrides either. `tests/<draft>/optional/`, which the summary reports separately.
 
 ## Buckets
 
