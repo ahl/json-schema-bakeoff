@@ -64,3 +64,9 @@ section has a paragraph on each tool's design center.
   scoreboard). They calibrate the Rust and Node paths, resolve the suite's
   `localhost:1234` remotes from `suite/remotes/`, and leave `format` at each
   library's default.
+
+## License
+
+MIT; see [LICENSE](LICENSE). The test suite under `suite/` is a submodule
+of [json-schema-org/JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite),
+under its own MIT license.
