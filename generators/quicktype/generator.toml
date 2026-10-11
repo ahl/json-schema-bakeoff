@@ -1,0 +1,12 @@
+# Integration for quicktype's `quicktype-core` library. The exact version
+# comes from the pinned npm package (see package.json) and, with the
+# target, names the results directory: `quicktype 26.0.0 go`.
+name = "quicktype"
+targets = ["rust", "go", "typescript"]
+
+[commands]
+# Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
+# {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.
+version  = "node generate.mjs version {target}"
+generate = "node generate.mjs generate {target} {out_dir}"
+build    = "node build.mjs {target} {gen_dir} {batch_dir}"
