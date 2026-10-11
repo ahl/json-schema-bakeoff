@@ -136,11 +136,11 @@ fn build() -> ::std::result::Result<::jsonschema::Validator, ::std::string::Stri
     // assertion in draft 4/6/7, an annotation from 2019-09 on.
     ::jsonschema::options()
         .with_draft(::jsonschema::Draft::{draft})
-        // Assert formats in every draft. The library's default follows the
-        // spec (asserted through draft 7, annotation-only after), but this
-        // row exists to show the ceiling, and jsonschema has a checker for
-        // every format the suite tests.
-        .should_validate_formats(true)
+        // Formats stay at the library default (asserted through draft 7,
+        // annotation-only after). Asserting them everywhere would pass the
+        // optional format files for 2019-09 and 2020-12 but fail 19 required
+        // 2020-12 groups whose cases say an invalid string "is only an
+        // annotation by default" and mark it valid. Required conformance wins.
         .with_retriever(SuiteRemotes)
         .build(&schema)
         .map_err(|e| e.to_string())
