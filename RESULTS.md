@@ -2,17 +2,6 @@
 
 Each row links to that generator's page, which lists every failing group with its error.
 
-| | bucket | meaning |
-|---|---|---|
-| ✅ | `pass` | every case matched |
-| 🙈 | `false_accept` | deserialize succeeded but `valid: false` (too loose) |
-| 🚧 | `false_reject` | deserialize failed but `valid: true` (too strict) |
-| 🤪 | `mixed` | both false_accept and false_reject cases in one group |
-| 💀 | `runtime_panic` | a test case panicked during deserialize |
-| 🦀 | `compile_fail` | generated code doesn't compile |
-| ❌ | `generation_error` | the generator returned an error |
-| 🤯 | `generation_panic` | the generator crashed or hung |
-
 ## Rust
 
 ### Core

@@ -530,8 +530,6 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     let mut s = String::new();
     s.push_str("# JSON Schema codegen bakeoff\n\n");
     s.push_str("Each row links to that generator's page, which lists every failing group with its error.\n\n");
-    s.push_str(&Bucket::key_markdown());
-    s.push('\n');
 
     let (rust, other): (Vec<&Results>, Vec<&Results>) = all.iter().partition(|r| r.language == "rust");
     for (title, rows, show_language) in [("Rust", rust, false), ("Other languages", other, true)] {
