@@ -1,0 +1,32 @@
+[package]
+name = "jsonschema-0-58"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Standalone: not a member of the repo workspace, so it has its own
+# Cargo.lock and can pin whatever jsonschema it likes.
+[workspace]
+
+[dependencies]
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip", "raw_value"] }
+
+# Pinned, and the pin is the identity: build.rs lifts the version out of
+# Cargo.lock so results are keyed by the exact validator that produced them.
+# The generator doesn't need to validate anything itself (it only writes
+# modules that call this crate), but depending on it both fixes the version
+# and lets the unit tests check the generated code's assumptions.
+#
+# default-features = false drops `resolve-http` (and its reqwest/rustls/TLS
+# stack): remote references are served from suite/remotes by the retriever
+# in the generated code, and with no HTTP resolver compiled in, a reference
+# we don't recognize cannot reach the network even by accident.
+#
+# `idna` is put back by hand. It is a default feature, and it is what backs
+# the `idn-hostname`/`idn-email` formats; without it those two are unknown
+# formats and silently ignored, which would show up in draft 4/6/7
+# `optional/format` as this generator being too loose when in fact we had
+# just compiled the checks out.
+jsonschema = { version = "=0.58.6", default-features = false, features = ["idna"] }

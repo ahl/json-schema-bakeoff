@@ -35,12 +35,15 @@ pub fn repo_root() -> PathBuf {
 }
 
 /// Cache key for a group: everything that determines its record,
-/// including its id (two files can hold byte-identical groups).
-fn group_hash(group: &Group, identity: &str, cases: &[(usize, &suite::Case)]) -> String {
+/// including its id (two files can hold byte-identical groups) and the
+/// generator's own glue sources.
+fn group_hash(group: &Group, identity: &str, glue: &str, cases: &[(usize, &suite::Case)]) -> String {
     let mut h = Sha256::new();
     h.update(HARNESS_REV);
     h.update([0]);
     h.update(identity);
+    h.update([0]);
+    h.update(glue);
     h.update([0]);
     h.update(group.id());
     h.update([0]);
@@ -104,9 +107,10 @@ fn flavors(opts: &RunOpts) -> Result<Vec<Flavor>> {
 pub fn run(opts: RunOpts) -> Result<()> {
     for flavor in flavors(&opts)? {
         let identity = flavor.generator.version(&flavor.target)?;
+        let glue = flavor.generator.source_hash()?;
         let mut last = None;
         for draft in &opts.drafts {
-            last = Some(run_one(&opts, &flavor, &identity, draft)?);
+            last = Some(run_one(&opts, &flavor, &identity, &glue, draft)?);
         }
         // One terminal summary per flavor, covering every draft stored.
         if let Some(results) = last {
@@ -128,7 +132,7 @@ struct Item<'a> {
     result: Option<GroupResult>,
 }
 
-fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Result<Results> {
+fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &str) -> Result<Results> {
     let started = Instant::now();
     let root = repo_root();
     let slug = version_slug(identity);
@@ -153,7 +157,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Resu
         .iter()
         .map(|g| {
             let cases: Vec<_> = g.filtered_cases(filter).collect();
-            let hash = group_hash(g, identity, &cases);
+            let hash = group_hash(g, identity, glue, &cases);
             Item { group: g, cases, key: module_key(g, identity), hash, generated: None, result: None }
         })
         .collect();

@@ -1,6 +1,6 @@
 # Conformance summary — quicktype-26.0.0-rust (quicktype 26.0.0 rust)
 
-_generated 2026-10-11T17:37:58Z_
+_generated 2026-10-11T18:07:12Z_
 
 **545 of 1408 non-optional groups pass (38.7%)**; 301 optional groups reported separately
 

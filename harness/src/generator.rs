@@ -106,6 +106,40 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
 }
 
 impl Generator {
+    /// A hash of the generator's own sources, so an edit to its glue code
+    /// invalidates stored records the way a version bump does. Covers every
+    /// regular file under the generator directory except documentation
+    /// (`*.md`), dotfiles, and `node_modules`/`target`.
+    pub fn source_hash(&self) -> Result<String> {
+        use sha2::{Digest, Sha256};
+        fn walk(dir: &Path, out: &mut Vec<PathBuf>) -> Result<()> {
+            let mut entries: Vec<PathBuf> = std::fs::read_dir(dir)?.filter_map(|e| e.ok()).map(|e| e.path()).collect();
+            entries.sort();
+            for path in entries {
+                let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
+                if name.starts_with('.') || name == "node_modules" || name == "target" {
+                    continue;
+                }
+                if path.is_dir() {
+                    walk(&path, out)?;
+                } else if path.is_file() && !name.ends_with(".md") {
+                    out.push(path);
+                }
+            }
+            Ok(())
+        }
+        let mut files = Vec::new();
+        walk(&self.dir, &mut files)?;
+        let mut h = Sha256::new();
+        for f in files {
+            h.update(f.strip_prefix(&self.dir).unwrap_or(&f).to_string_lossy().as_bytes());
+            h.update([0]);
+            h.update(std::fs::read(&f).with_context(|| format!("reading {}", f.display()))?);
+            h.update([0]);
+        }
+        Ok(hex::encode(h.finalize()))
+    }
+
     /// Identity string for `target`, e.g. `typify 0.10.0-alpha.2`.
     pub fn version(&self, target: &str) -> Result<String> {
         let out = self.run(&self.commands.version, target, &[], None)?;

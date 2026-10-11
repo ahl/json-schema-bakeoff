@@ -1,6 +1,6 @@
 # Conformance summary — quicktype-26.0.0-go (quicktype 26.0.0 go)
 
-_generated 2026-10-11T17:38:07Z_
+_generated 2026-10-11T18:07:21Z_
 
 **302 of 1408 non-optional groups pass (21.4%)**; 301 optional groups reported separately
 
