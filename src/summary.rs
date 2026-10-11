@@ -497,7 +497,8 @@ fn scoreboard_headline(all: &[Results], optional: bool) -> String {
     if rows.is_empty() {
         return rows;
     }
-    let header: Vec<&str> = drafts.iter().map(|d| d.as_str()).collect();
+    // Column headers are just the draft number: 4, 6, 7, 2019-09, 2020-12.
+    let header: Vec<&str> = drafts.iter().map(|d| d.strip_prefix("draft").unwrap_or(d)).collect();
     format!(
         "| | {} | Generated |\n|---|{}---|\n{rows}",
         header.join(" | "),
