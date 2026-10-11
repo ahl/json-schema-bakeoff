@@ -214,10 +214,11 @@ pub fn language_label(language: &str) -> &str {
 pub fn display_name(identity: &str, language: &str) -> String {
     let lower = identity.to_ascii_lowercase();
     for token in [language.to_ascii_lowercase(), language_label(language).to_ascii_lowercase()] {
-        if !token.is_empty() {
-            if let Some(stripped) = lower.strip_suffix(&format!(" {token}")) {
-                return identity[..stripped.len()].to_string();
-            }
+        if token.is_empty() {
+            continue;
+        }
+        if let Some(stripped) = lower.strip_suffix(&format!(" {token}")) {
+            return identity[..stripped.len()].to_string();
         }
     }
     identity.to_string()
