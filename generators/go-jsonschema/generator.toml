@@ -1,6 +1,7 @@
 # Integration for go-jsonschema. The exact version comes from the pinned
 # module (see go.mod) and names the results directory.
 name = "go-jsonschema"
+language = "go"
 
 description = """
 go-jsonschema (github.com/omissis/go-jsonschema, module path

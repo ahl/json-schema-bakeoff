@@ -1,6 +1,6 @@
 # Integration for json-schema-to-zod. The exact versions come from the
 # pinned npm packages (see package.json) and name the results directory:
-# `json-schema-to-zod 2.8.1 (zod 4.6.6)`.
+# `json-schema-to-zod 2.8.1 + zod 4.6.6`.
 name = "json-schema-to-zod"
 
 # The emitted zod expression is erasable TypeScript (`parseOneOf` writes an

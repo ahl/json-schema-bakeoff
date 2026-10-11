@@ -1,20 +1,11 @@
 # json-schema-rs 0.0.6
 
-json-schema-rs turns a JSON Schema into serde structs, and its design center
-is the hand-written schema that describes a configuration object: the root
-must be `type: "object"` with non-empty `properties` or it refuses to
-generate, and each schema object is modelled as one shape with one keyword
-per field, so `type: ["string", "null"]` or a tuple `items` fails to parse
-rather than degrading. It also generates in the other direction — every
-struct it emits derives its `ToJsonSchema` and carries `#[json_schema(...)]`
-attributes, which record the constraints — `minLength`, `pattern`, bounds —
-for that round trip and for the crate's own validator, not for serde, which
-ignores them. It is an early crate (the 0.0 line) that takes 2020-12 as its
-default dialect: applicators are types rather than validation, and a root
-`anyOf`/`oneOf` becomes an externally tagged enum that no plain instance
-deserializes into.
+A young Rust generator (0.0.x) aimed at hand-written config schemas: the root
+must be an object with `properties` or it refuses outright. Constraints come
+out as attributes for its own validator, which serde ignores, so it's
+measured on the little it does model.
 
-_generated 2026-10-11T18:25:16Z_
+_generated 2026-10-11T18:33:48Z_
 
 **16 of 1408 non-optional groups pass (1.1%)**; 301 optional groups reported separately
 

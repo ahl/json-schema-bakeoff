@@ -4,13 +4,12 @@ name = "typify-0.10"
 
 language = "rust"
 description = """
-typify turns JSON Schema into Rust types for serde. It grew out of generating
-OpenAPI clients (progenitor), so its design center is idiomatic Rust that
-round-trips through serde: structs, enums, newtypes, and `deny_unknown_fields`
-where the schema is closed. Validation is whatever the type system expresses;
-constraints it doesn't model are silently absent, and constructs it can't
-represent fail at generation rather than produce a wrong type. The 0.10 line
-is the in-progress rewrite onto the typespace crate.
+Rust types for serde from JSON Schema, built to generate OpenAPI clients
+(progenitor). Its design center is idiomatic Rust: structs, enums, newtypes,
+`deny_unknown_fields` when the schema is closed. Validation is whatever the
+type system can say; anything else is silently absent, and a construct it
+can't model fails at generation rather than producing a wrong type. The 0.10
+line is the in-progress rewrite on top of typespace.
 """
 
 [commands]

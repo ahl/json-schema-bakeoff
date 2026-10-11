@@ -17,7 +17,7 @@ implementations at all, and the `ajv-formats` package that does is
 deliberately not installed here, so every `format` in the suite is an
 annotation.
 
-_generated 2026-10-11T18:22:08Z_
+_generated 2026-10-11T18:28:47Z_
 
 **1348 of 1408 non-optional groups pass (95.7%)**; 301 optional groups reported separately
 
@@ -36,14 +36,14 @@ _generated 2026-10-11T18:22:08Z_
 
 ### Groups
 
-| Draft | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Pass rate |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 156 | 1 | 2 | 1 | 0 | 0 | 160 | 97.5% |
-| draft6 | 229 | 1 | 2 | 1 | 0 | 0 | 233 | 98.3% |
-| draft7 | 254 | 1 | 2 | 1 | 0 | 0 | 258 | 98.4% |
-| draft2019-09 | 361 | 1 | 4 | 3 | 1 | 3 | 373 | 96.8% |
-| draft2020-12 | 348 | 6 | 21 | 2 | 4 | 3 | 384 | 90.6% |
-| **Total** | **1348** | **10** | **31** | **8** | **5** | **6** | **1408** | **95.7%** |
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft4 | 156 | 1 | 2 | 1 | 0 | 0 | 0 | 160 | 97.5% |
+| draft6 | 229 | 1 | 2 | 1 | 0 | 0 | 0 | 233 | 98.3% |
+| draft7 | 254 | 1 | 2 | 1 | 0 | 0 | 0 | 258 | 98.4% |
+| draft2019-09 | 361 | 1 | 4 | 3 | 0 | 1 | 3 | 373 | 96.8% |
+| draft2020-12 | 348 | 6 | 17 | 2 | 4 | 4 | 3 | 384 | 90.6% |
+| **Total** | **1348** | **10** | **27** | **8** | **4** | **5** | **6** | **1408** | **95.7%** |
 
 ### Optional groups
 
@@ -64,8 +64,8 @@ _generated 2026-10-11T18:22:08Z_
 | draft6 | 833 | 841 | 99.0% | 841 | 99.0% |
 | draft7 | 921 | 929 | 99.1% | 929 | 99.1% |
 | draft2019-09 | 1233 | 1247 | 98.9% | 1261 | 97.8% |
-| draft2020-12 | 1243 | 1281 | 97.0% | 1301 | 95.5% |
-| **Total** | **4840** | **4916** | **98.5%** | **4950** | **97.8%** |
+| draft2020-12 | 1239 | 1281 | 96.7% | 1301 | 95.2% |
+| **Total** | **4836** | **4916** | **98.4%** | **4950** | **97.7%** |
 
 ### Per-case match rate (optional)
 
@@ -367,55 +367,55 @@ _generated 2026-10-11T18:22:08Z_
 
 ### draft2020-12
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalProperties.json | 9 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
-| allOf.json | 12 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅✅✅✅✅✅✅✅✅✅ |
-| anchor.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| anyOf.json | 8 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
-| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| const.json | 17 | 0 | 0 | 0 | 0 | 0 | 17 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
-| contains.json | 7 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
-| content.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| default.json | 3 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
-| defs.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| dependentRequired.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| dependentSchemas.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| dynamicRef.json | 2 | 2 | 14 | 0 | 3 | 0 | 21 | 🚧🚧✅🚧🚧🚧🚧🚧🚧❌❌🙈❌✅🚧🚧🚧🚧🙈🚧🚧 |
-| enum.json | 15 | 0 | 0 | 0 | 1 | 0 | 16 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅❌✅ |
-| exclusiveMaximum.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| exclusiveMinimum.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| format.json | 19 | 0 | 0 | 0 | 0 | 0 | 19 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
-| if-then-else.json | 12 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅✅✅✅✅✅✅✅✅✅ |
-| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 10 | 0 | 0 | 0 | 0 | 0 | 10 | ✅✅✅✅✅✅✅✅✅✅ |
-| maxContains.json | 5 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
-| maxItems.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| maxLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| maxProperties.json | 3 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
-| maximum.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| minContains.json | 8 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
-| minItems.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| minLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| minProperties.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| minimum.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
-| not.json | 9 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
-| oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
-| pattern.json | 3 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
-| patternProperties.json | 6 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
-| prefixItems.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| properties.json | 5 | 0 | 1 | 0 | 0 | 0 | 6 | ✅✅✅✅✅🚧 |
-| propertyNames.json | 6 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
-| ref.json | 33 | 0 | 0 | 0 | 0 | 3 | 36 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🤯🤯✅✅✅✅✅✅✅✅✅✅✅🤯✅✅✅✅✅✅✅ |
-| refRemote.json | 15 | 0 | 0 | 0 | 0 | 0 | 15 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
-| required.json | 4 | 1 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅🙈 |
-| type.json | 11 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
-| unevaluatedItems.json | 22 | 3 | 3 | 1 | 0 | 0 | 29 | ✅✅✅✅✅✅✅✅🤪✅✅✅✅✅✅✅✅✅🚧✅✅🙈🙈🙈🚧✅✅🚧✅ |
-| unevaluatedProperties.json | 41 | 0 | 2 | 1 | 0 | 0 | 44 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🤪✅✅✅✅✅🚧✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🚧✅✅✅✅ |
-| uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
-| vocabulary.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚧✅ |
-| **Total** | **348** | **6** | **21** | **2** | **4** | **3** | **384** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| additionalProperties.json | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
+| allOf.json | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅✅✅✅✅✅✅✅✅✅ |
+| anchor.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| anyOf.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
+| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| const.json | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
+| contains.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
+| content.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| default.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
+| defs.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| dependentRequired.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| dependentSchemas.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| dynamicRef.json | 2 | 2 | 12 | 0 | 2 | 3 | 0 | 21 | 🚧🚧✅🚧🚧🚧🚧🚧🚧❌❌🙈❌✅🚧🚧🚧💀🙈🚧💀 |
+| enum.json | 15 | 0 | 0 | 0 | 0 | 1 | 0 | 16 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅❌✅ |
+| exclusiveMaximum.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| exclusiveMinimum.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| format.json | 19 | 0 | 0 | 0 | 0 | 0 | 0 | 19 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
+| if-then-else.json | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅✅✅✅✅✅✅✅✅✅ |
+| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| items.json | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 10 | ✅✅✅✅✅✅✅✅✅✅ |
+| maxContains.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| maxItems.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| maxLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| maxProperties.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
+| maximum.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| minContains.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
+| minItems.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| minLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| minProperties.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| minimum.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| not.json | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
+| oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
+| pattern.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
+| patternProperties.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
+| prefixItems.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| properties.json | 5 | 0 | 1 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅🚧 |
+| propertyNames.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
+| ref.json | 33 | 0 | 0 | 0 | 0 | 0 | 3 | 36 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🤯🤯✅✅✅✅✅✅✅✅✅✅✅🤯✅✅✅✅✅✅✅ |
+| refRemote.json | 15 | 0 | 0 | 0 | 0 | 0 | 0 | 15 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
+| required.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅🙈 |
+| type.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
+| unevaluatedItems.json | 22 | 3 | 2 | 1 | 1 | 0 | 0 | 29 | ✅✅✅✅✅✅✅✅🤪✅✅✅✅✅✅✅✅✅💀✅✅🙈🙈🙈🚧✅✅🚧✅ |
+| unevaluatedProperties.json | 41 | 0 | 1 | 1 | 1 | 0 | 0 | 44 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🤪✅✅✅✅✅💀✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🚧✅✅✅✅ |
+| uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
+| vocabulary.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
+| **Total** | **348** | **6** | **17** | **2** | **4** | **4** | **3** | **384** |  |
 
 #### optional
 
@@ -498,6 +498,17 @@ Per group:
 - `draft2020-12/optional/format-assertion.json::schema that uses custom metaschema with format-assertion: true` — `Error: can't resolve reference https://json-schema.org/draft/2020-12/meta/format-assertion from id http://localhost:1234/draft2020-12/format-assertion-true.json`
 - `draft2020-12/optional/unknownKeyword.json::$id inside an unknown keyword is not a real identifier` — `Error: reference "https://localhost:1234/draft2020-12/unknownKeyword/my_identifier.json" resolves to more than one schema`
 
+### 💀 `runtime_panic` (4)
+
+- `draft2020-12/dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor` — `number is valid: Maximum call stack size exceeded`
+  - cases: number is valid (panicked), non-number is invalid (panicked)
+- `draft2020-12/dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered` — `data is sufficient for schema at second#/$defs/length: Maximum call stack size exceeded`
+  - cases: data is sufficient for schema at second#/$defs/length (panicked), data is not sufficient for schema at second#/$defs/length (panicked)
+- `draft2020-12/unevaluatedItems.json::unevaluatedItems with $dynamicRef` — `with no unevaluated items: Maximum call stack size exceeded`
+  - cases: with no unevaluated items (panicked), with unevaluated items (panicked)
+- `draft2020-12/unevaluatedProperties.json::unevaluatedProperties with $dynamicRef` — `with no unevaluated properties: Maximum call stack size exceeded`
+  - cases: with no unevaluated properties (panicked), with unevaluated properties (panicked)
+
 ### 🤪 `mixed` (8)
 
 4 distinct first-line errors; most common:
@@ -526,9 +537,9 @@ Per group:
 - `draft2020-12/unevaluatedProperties.json::unevaluatedProperties with if/then/else, then not defined` — `when if is true and has no unevaluated properties: data must NOT have unevaluated properties`
   - cases: when if is true and has no unevaluated properties (rejected), when if is false and has unevaluated properties (accepted)
 
-### 🚧 `false_reject` (39)
+### 🚧 `false_reject` (35)
 
-18 distinct first-line errors; most common:
+14 distinct first-line errors; most common:
 
 - **5×** `none of the properties mentioned: data/constructor must be number`
 - **5×** `valid if optional overflow handling is implemented: data must be multiple of 0.5`
@@ -580,22 +591,14 @@ Per group:
   - cases: correct extended schema (rejected)
 - `draft2020-12/dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first` — `correct extended schema: data/elements/0 must have required property 'elements'`
   - cases: correct extended schema (rejected)
-- `draft2020-12/dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor` — `number is valid: Maximum call stack size exceeded`
-  - cases: number is valid (rejected)
 - `draft2020-12/dynamicRef.json::$dynamicRef skips over intermediate resources - direct reference` — `integer property passes: data/bar-item/content must be object`
   - cases: integer property passes (rejected)
-- `draft2020-12/dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered` — `data is sufficient for schema at second#/$defs/length: Maximum call stack size exceeded`
-  - cases: data is sufficient for schema at second#/$defs/length (rejected)
 - `draft2020-12/properties.json::properties whose names are Javascript object property names` — `none of the properties mentioned: data/constructor must be number`
   - cases: none of the properties mentioned (rejected)
-- `draft2020-12/unevaluatedItems.json::unevaluatedItems with $dynamicRef` — `with no unevaluated items: Maximum call stack size exceeded`
-  - cases: with no unevaluated items (rejected)
 - `draft2020-12/unevaluatedItems.json::unevaluatedItems with minContains = 0` — `all items evaluated by contains: data must NOT have more than 0 items`
   - cases: all items evaluated by contains (rejected)
 - `draft2020-12/unevaluatedItems.json::unevaluatedItems can see annotations from if without then and else` — `valid in case if is evaluated: data must NOT have more than 0 items`
   - cases: valid in case if is evaluated (rejected)
-- `draft2020-12/unevaluatedProperties.json::unevaluatedProperties with $dynamicRef` — `with no unevaluated properties: Maximum call stack size exceeded`
-  - cases: with no unevaluated properties (rejected)
 - `draft2020-12/unevaluatedProperties.json::unevaluatedProperties can see annotations from if without then and else` — `valid in case if is evaluated: data must NOT have unevaluated properties`
   - cases: valid in case if is evaluated (rejected)
 - `draft2020-12/vocabulary.json::schema that uses custom metaschema with with no validation vocabulary` — `no validation: invalid number, but it still validates: data/numberProperty must be >= 10`
