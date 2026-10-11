@@ -85,7 +85,10 @@ needs the `float_roundtrip` feature); the suite's bignum tests depend on it.
 `rust-batch build <gen_dir> <batch_dir>` implements the build step for any
 generator whose modules are Rust. Each `<gen_dir>/<key>.rs` must define
 `pub fn __conformance_check(v: ::serde_json::Value) -> Result<(), String>`.
-The batch crate depends on serde, serde_json, regress, chrono and uuid.
+The batch crate depends on serde, serde_json, regress, chrono and uuid; a
+generator whose output needs more writes `<gen_dir>/batch-deps.toml` from
+its generate step (lines for the `[dependencies]` table), and rust-batch
+appends it.
 
 ### Versioning
 
