@@ -104,8 +104,13 @@ fn flavors(opts: &RunOpts) -> Result<Vec<Flavor>> {
 pub fn run(opts: RunOpts) -> Result<()> {
     for flavor in flavors(&opts)? {
         let identity = flavor.generator.version(&flavor.target)?;
+        let mut last = None;
         for draft in &opts.drafts {
-            run_one(&opts, &flavor, &identity, draft)?;
+            last = Some(run_one(&opts, &flavor, &identity, draft)?);
+        }
+        // One terminal summary per flavor, covering every draft stored.
+        if let Some(results) = last {
+            println!("{}", summary::render_terminal(&results));
         }
     }
     Ok(())
@@ -123,7 +128,7 @@ struct Item<'a> {
     result: Option<GroupResult>,
 }
 
-fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Result<()> {
+fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Result<Results> {
     let started = Instant::now();
     let root = repo_root();
     let slug = version_slug(identity);
@@ -334,9 +339,8 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, draft: &str) -> Resu
         let keys: BTreeMap<String, String> = items.iter().map(|i| (i.group.id(), i.key.clone())).collect();
         print_detail(&results, &gen_dir, &keys);
     }
-    println!("{}", summary::render_terminal(&results));
     eprintln!("{fresh} fresh, {cached} cached; wrote {} ({:.1?} total)", out_dir.join("results.json").display(), started.elapsed());
-    Ok(())
+    Ok(results)
 }
 
 /// Every `results/*/results.json`, in directory order, with its directory.
