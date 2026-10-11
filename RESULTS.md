@@ -19,11 +19,14 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T18:14:11Z |
+| [ajv 8.20.0](results/ajv-8.20.0/README.md) | — | — | 98.4% | — | — | 2026-10-11T18:20:06Z |
+| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 1.2% | 0.9% | 0.8% | 1.3% | 1.3% | 2026-10-11T18:19:15Z |
+| [json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:18:02Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T18:14:09Z |
 | [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:13:31Z |
 | [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:13:22Z |
 | [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:13:45Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:20:34Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:13:08Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:12:53Z |
 
@@ -33,15 +36,35 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T18:14:11Z |
+| [ajv 8.20.0](results/ajv-8.20.0/README.md) | — | — | 56.2% | — | — | 2026-10-11T18:20:06Z |
+| [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 2026-10-11T18:19:15Z |
+| [json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:18:02Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T18:14:09Z |
 | [quicktype 26.0.0 go](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:13:31Z |
 | [quicktype 26.0.0 rust](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:13:22Z |
 | [quicktype 26.0.0 typescript](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:13:45Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:20:34Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:13:08Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:12:53Z |
 
 ## The tools
+
+**[ajv 8.20.0](results/ajv-8.20.0/README.md)** — ajv is the JSON Schema validator for JavaScript, and for most of the
+ecosystem it *is* JSON Schema: it compiles a schema into purpose-built
+JavaScript source and runs that, which is why it is fast enough to sit in
+request paths and why it covers draft-04 through 2020-12 keyword for
+keyword. It produces no types — the schema stays the artifact, validation
+happens at the boundary, and what flows past it is a plain parsed value —
+so it answers the opposite question from a code generator: not "what shape
+does this schema describe" but "does this document satisfy it". It is here
+as the reference row for the Node path. It resolves the suite's
+`http://localhost:1234/` remotes from `suite/remotes/`, which the code
+generators are not allowed to do, so the difference between this row and
+theirs on `refRemote.json` is the price of that policy. The one thing ajv
+leaves at the door is `format`: the core package ships no format
+implementations at all, and the `ajv-formats` package that does is
+deliberately not installed here, so every `format` in the suite is an
+annotation.
 
 **[json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md)** — json-schema-rs turns a JSON Schema into serde structs, and its design center
 is the hand-written schema that describes a configuration object: the root
@@ -50,10 +73,26 @@ generate, and each schema object is modelled as one shape with one keyword
 per field, so `type: ["string", "null"]` or a tuple `items` fails to parse
 rather than degrading. It also generates in the other direction — every
 struct it emits derives its `ToJsonSchema` and carries `#[json_schema(...)]`
-attributes, which describe constraints for that round trip and mean nothing
-to serde. It is an early crate (the 0.0 line): applicators are types rather
-than validation, and a root `anyOf`/`oneOf` becomes an externally tagged
-enum that no plain instance deserializes into.
+attributes, which record the constraints — `minLength`, `pattern`, bounds —
+for that round trip and for the crate's own validator, not for serde, which
+ignores them. It is an early crate (the 0.0 line) that takes 2020-12 as its
+default dialect: applicators are types rather than validation, and a root
+`anyOf`/`oneOf` becomes an externally tagged enum that no plain instance
+deserializes into.
+
+**[json-schema-to-zod 2.8.1 (zod 4.6.6)](results/json-schema-to-zod-2.8.1--zod-4.6.6-/README.md)** — json-schema-to-zod rewrites a JSON Schema into zod schema source: one zod
+expression, as a string, for you to paste into a TypeScript project. Its
+design center is developer convenience at the boundary between a published
+schema and a zod-shaped codebase — get a usable validator and an inferred
+TypeScript type out of a schema you didn't write. It is a *constraint*
+translator rather than a type generator, so where quicktype and typify
+model shape and drop the rest, this emits `.min()`, `.max()`, `.regex()`,
+`.strict()` and `superRefine` closures, and keywords it has no parser for
+(`$ref`, `multipleOf` outside a typed number, `propertyNames`,
+`dependencies`) fall through to `z.any()`. Its own README says the output
+is not meant to be used at runtime and recommends Ajv instead; we run it
+anyway, because what it does translate it translates exactly. Deprecated
+since March 2026.
 
 **[jsonschema 0.58.6](results/jsonschema-0.58.6/README.md)** — jsonschema is a Rust validator, not a code generator: it interprets the
 schema at run time instead of compiling it into types, so it can enforce
@@ -88,6 +127,18 @@ Validation beyond type and shape is out of scope, so constraint keywords
 (bounds, lengths, patterns, `const`, `oneOf` exclusivity) are accepted
 silently. The TypeScript target adds a runtime type check; the Go target
 leans on encoding/json's leniency.
+
+**[schemafy 0.6.0](results/schemafy-0.6.0/README.md)** — schemafy is the original Rust JSON Schema → serde generator (2017), usually
+used through the `schemafy!` proc macro that drops types for a schema file
+straight into a module. Its design center is a hand-written draft-4 schema
+you own and keep working: walk `properties` and `definitions`, name a struct
+or an alias for each, and otherwise get out of the way. It models only
+structure — "no checking such as `min_value` is done" — so validation
+keywords become comments at best, unknown keywords are dropped, and anything
+that isn't a plain object graph (`oneOf` without `$ref`s, a boolean schema,
+a `$ref` it can't find) panics rather than degrading. `schemafy_lib` is the
+library behind the macro, and the generator here calls its `Expander`
+directly.
 
 **[typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md)** — typify turns JSON Schema into Rust types for serde. It grew out of generating
 OpenAPI clients (progenitor), so its design center is idiomatic Rust that

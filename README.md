@@ -56,7 +56,12 @@ a `generator.toml` and the three commands it names.
   `type: "object"` with non-empty `properties` — a bare `{"properties": ...}`
   is `CodeGenError::RootNotObject` — so almost the whole suite is a
   `generation_error`. The root type is named from `title`, else the root
-  `$ref`'s def key, else `Root`. See
+  `$ref`'s def key, else `Root`. The suite directory is passed as the
+  crate's `spec_version`, which outranks the schema's own `$schema` but is
+  inert in 0.0.6, so no result depends on the draft. What does compile is
+  mostly 🚧: a root `anyOf`/`oneOf` becomes an externally tagged
+  `enum RootAnyOf { Variant0(..), .. }`, which no plain instance
+  deserializes into. See
   [generators/json-schema-rs-0.0/README.md](generators/json-schema-rs-0.0/README.md)
   for the settings and what the batch crate needed.
 - `jsonschema-0.58`: [jsonschema](https://github.com/Stranger6667/jsonschema)
@@ -73,3 +78,19 @@ a `generator.toml` and the three commands it names.
   2019-09 on — so `optional/format` is 100% for the old drafts and 🙈 for the
   new ones. See
   [generators/jsonschema-0.58/README.md](generators/jsonschema-0.58/README.md).
+- `schemafy-0.6`: [schemafy](https://github.com/Marwes/schemafy) 0.6 line
+  (`schemafy_lib`, the library behind the `schemafy!` macro), pinned in its
+  `Cargo.toml`. The oldest generator here, and the only one whose schema
+  model *is* a Rust struct: its input type was itself generated from the
+  draft-4 meta-schema, so a boolean schema or a numeric `exclusiveMaximum`
+  never reaches the generator at all — it's a ❌ at deserialize. There is no
+  dialect setting and `$schema` is ignored. `Expander::expand` returns a
+  token stream rather than a `Result`, so every other problem — a `$ref`
+  `allOf` can't resolve, a non-string `enum`, a schema deep enough to
+  overflow the stack — is 🤯; `generate` supervises a worker subprocess so a
+  stack overflow costs one group instead of the draft. A `$ref` in a field
+  becomes a type *name* from the last path component without being
+  resolved, which makes most of `ref.json` and all of `refRemote.json` 🦀 or
+  🤯. What does generate models required-ness and nothing else, so 🙈
+  dominates. See
+  [generators/schemafy-0.6/README.md](generators/schemafy-0.6/README.md).

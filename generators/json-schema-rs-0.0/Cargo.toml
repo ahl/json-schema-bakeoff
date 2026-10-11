@@ -1,0 +1,15 @@
+[package]
+name = "json-schema-rs-0-0"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Standalone: not a member of the repo workspace, so it has its own
+# Cargo.lock and can pin whatever json-schema-rs it likes.
+[workspace]
+
+[dependencies]
+anyhow = "1"
+json-schema-rs = "=0.0.6"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
