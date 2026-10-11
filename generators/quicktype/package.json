@@ -6,6 +6,6 @@
   "description": "quicktype integration for the JSON Schema codegen bakeoff",
   "dependencies": {
     "quicktype-core": "26.0.0",
-    "typescript": "5.9.3"
+    "typescript": "7.0.2"
   }
 }

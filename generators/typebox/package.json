@@ -7,6 +7,6 @@
   "dependencies": {
     "@sinclair/typebox": "0.34.52",
     "schema2typebox": "1.7.8",
-    "typescript": "5.9.3"
+    "typescript": "7.0.2"
   }
 }
