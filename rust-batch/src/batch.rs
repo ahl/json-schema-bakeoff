@@ -63,7 +63,7 @@ const MAX_DIAGS_PER_MODULE: usize = 3;
 /// Inputs that repeat a key with byte-identical code collapse into one
 /// module (and one entry in `outcomes`); a key reused for different code
 /// is an error.
-pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput]) -> Result<CompiledBatch> {
+pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput], extra_deps: &str) -> Result<CompiledBatch> {
     let src = crate_dir.join("src");
     // Clear the sources but keep the crate directory: Cargo.lock lives
     // there, and re-resolving dependencies on every run both costs a
@@ -79,7 +79,7 @@ pub fn compile_batch(crate_dir: &Path, target_dir: &Path, inputs: &[BatchInput])
     // to `<target>/debug/<bin name>`, so the name has to be per-batch or
     // concurrent batches overwrite each other's runner.
     let bin = bin_name(crate_dir);
-    std::fs::write(crate_dir.join("Cargo.toml"), cargo_toml(&bin))?;
+    std::fs::write(crate_dir.join("Cargo.toml"), cargo_toml(&bin, extra_deps))?;
 
     // Keys are content-derived upstream, so two identical groups (the same
     // schema in two different suite files, say) can share one. That's
@@ -450,7 +450,10 @@ fn write_main(crate_dir: &Path, alive: &BTreeSet<String>) -> Result<()> {
     Ok(())
 }
 
-fn cargo_toml(bin: &str) -> String {
+/// The batch crate's manifest. `extra_deps` is the generator's
+/// `batch-deps.toml` (lines for the `[dependencies]` table), so each
+/// generator declares what its own output needs.
+fn cargo_toml(bin: &str, extra_deps: &str) -> String {
     format!(
         r#"[package]
 name = "conformance-batch"
@@ -464,18 +467,19 @@ publish = false
 [[bin]]
 name = "{bin}"
 path = "src/main.rs"
+
+[dependencies]
+serde = {{ version = "1", features = ["derive"] }}
+serde_json = {{ version = "1", features = ["float_roundtrip"] }}
+regress = "0.12"
+chrono = {{ version = "0.4", features = ["serde"] }}
+uuid = {{ version = "1", features = ["serde"] }}
+{extra_deps}
 {CARGO_TOML_TAIL}"#
     )
 }
 
 const CARGO_TOML_TAIL: &str = r#"
-[dependencies]
-serde = { version = "1", features = ["derive"] }
-serde_json = { version = "1", features = ["float_roundtrip"] }
-regress = "0.12"
-chrono = { version = "0.4", features = ["serde"] }
-uuid = { version = "1", features = ["serde"] }
-
 # Generated code is noisy by construction; none of it is our problem.
 [lints.rust]
 warnings = "allow"
@@ -483,6 +487,10 @@ warnings = "allow"
 [profile.dev]
 opt-level = 0
 debug = false
+# With debug = false cargo would default to strip = "debuginfo", which makes
+# rustc shell out to rust-objcopy; that's wasted work here and, on a
+# toolchain whose llvm-tools are broken, a crash dialog per build.
+strip = "none"
 incremental = false
 
 [profile.dev.package."*"]
@@ -646,7 +654,7 @@ mod tests {
         // A content-derived key can repeat when two suite groups are
         // identical; that must collapse rather than break the batch.
         inputs.push(inputs[0].clone());
-        let batch = compile_batch(&crate_dir, &target_dir, &inputs).expect("compile batch");
+        let batch = compile_batch(&crate_dir, &target_dir, &inputs, "").expect("compile batch");
 
         assert_eq!(batch.outcomes.len(), 5);
         assert_eq!(batch.outcomes.get("g_ok"), Some(&CompileOutcome::Ok));
@@ -719,7 +727,7 @@ mod tests {
                  pub fn oops() -> i64 {\n    \"not an integer\"\n}\n",
             ),
         ];
-        let batch = compile_batch(&crate_dir, &target_dir, &inputs).expect("compile batch");
+        let batch = compile_batch(&crate_dir, &target_dir, &inputs, "").expect("compile batch");
         assert_eq!(batch.outcomes.get("g_ok"), Some(&CompileOutcome::Ok));
         for key in ["g_parse", "g_resolve", "g_typeck"] {
             match batch.outcomes.get(key) {

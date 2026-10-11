@@ -9,6 +9,11 @@
 //! `{"outcomes": {key: "ok" | {"fail": diagnostic}}, "runner": [exe]}`
 //! on stdout. The runner speaks the harness's JSON-lines protocol.
 //!
+//! If `<gen_dir>/batch-deps.toml` exists, its contents are appended to the
+//! batch crate's `[dependencies]` table, so a generator whose output needs
+//! more than serde/serde_json/regress/chrono/uuid declares it there (one
+//! `name = "version"` line per crate, written by its generate step).
+//!
 //! The crate's target dir is `$CARGO_TARGET_DIR` when set (the harness
 //! points every generator at the repo's shared `target/`), else
 //! `<batch_dir>/target`.
@@ -36,7 +41,8 @@ fn main() -> Result<()> {
         .collect::<Result<Vec<_>>>()?;
     let target_dir = std::env::var_os("CARGO_TARGET_DIR").map(PathBuf::from).unwrap_or_else(|| batch_dir.join("target"));
 
-    let compiled = batch::compile_batch(&batch_dir, &target_dir, &inputs)?;
+    let extra_deps = std::fs::read_to_string(gen_dir.join("batch-deps.toml")).unwrap_or_default();
+    let compiled = batch::compile_batch(&batch_dir, &target_dir, &inputs, &extra_deps)?;
     let outcomes: BTreeMap<String, serde_json::Value> = compiled
         .outcomes
         .into_iter()
