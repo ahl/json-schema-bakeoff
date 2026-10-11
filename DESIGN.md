@@ -82,6 +82,14 @@ and restarts the runner from the next index.
 
 Every generator should parse JSON with correctly rounded floats (serde_json
 needs the `float_roundtrip` feature); the suite's bignum tests depend on it.
+The harness itself keeps numbers as their original text (serde_json's
+`arbitrary_precision`), so `cases.json` carries the suite's digits exactly
+and what a runner does with a 50-digit integer is the tool's behavior, not
+the harness's.
+
+Protocol payloads are unbounded (a build result can hold hundreds of 4 KB
+diagnostics). Write them with a loop that handles short writes; a single
+`write` syscall to a pipe can stop at 64 KiB without an error.
 
 ### Generators that emit Rust
 
