@@ -1,0 +1,19 @@
+[package]
+name = "schemafy-0-6"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Standalone: not a member of the repo workspace, so it has its own
+# Cargo.lock and can pin whatever schemafy it likes.
+[workspace]
+
+[dependencies]
+anyhow = "1"
+prettyplease = "0.3"
+quote = "1"
+proc-macro2 = "1"
+schemafy_lib = "=0.6.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+syn = { version = "3", features = ["full"] }

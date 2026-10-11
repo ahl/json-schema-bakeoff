@@ -67,8 +67,10 @@ fn pass_rate(pass: usize, total: usize) -> String {
 /// Buckets that actually occur in `groups`, in `Bucket::ALL` (best-first)
 /// order. Used to pick the count columns for a table so the glyph headers
 /// always line up with the values underneath.
-fn active_buckets(groups: &[&GroupResult]) -> Vec<Bucket> {
-    Bucket::ALL.iter().copied().filter(|b| groups.iter().any(|g| g.bucket == *b)).collect()
+/// Every bucket, always: tables keep the same columns everywhere so pages
+/// and drafts compare side by side, zero columns included.
+fn active_buckets(_groups: &[&GroupResult]) -> Vec<Bucket> {
+    Bucket::ALL.to_vec()
 }
 
 fn count(groups: &[&GroupResult], bucket: Bucket) -> usize {
@@ -737,20 +739,20 @@ mod tests {
     #[test]
     fn chart_glyphs_follow_file_order() {
         let out = render(&sample_results());
-        // draft7 non-optional: ✅ 🙈 🦀 🤯 count columns, then Total,
+        // Every bucket column, always (✅ 🙈 🚧 🤪 💀 🦀 ❌ 🤯), then Total,
         // then the chart — one glyph per group, in suite order.
-        assert_eq!(row(&out, "allOf.json"), ["allOf.json", "1", "1", "0", "0", "2", "✅🙈"]);
-        assert_eq!(row(&out, "ref.json"), ["ref.json", "0", "0", "0", "1", "1", "🤯"]);
-        assert_eq!(row(&out, "type.json"), ["type.json", "0", "0", "1", "0", "1", "🦀"]);
+        assert_eq!(row(&out, "allOf.json"), ["allOf.json", "1", "1", "0", "0", "0", "0", "0", "0", "2", "✅🙈"]);
+        assert_eq!(row(&out, "ref.json"), ["ref.json", "0", "0", "0", "0", "0", "0", "0", "1", "1", "🤯"]);
+        assert_eq!(row(&out, "type.json"), ["type.json", "0", "0", "0", "0", "0", "1", "0", "0", "1", "🦀"]);
     }
 
     #[test]
     fn chart_table_headers_line_up_with_counts() {
         let out = render(&sample_results());
-        // draft7 non-optional has Pass, FalseAccept, CompileFail,
-        // GenerationPanic — in Bucket::ALL (best-first) order.
-        let header = "| File | ✅ | 🙈 | 🦀 | 🤯 | Total | Chart |";
-        let sep = "|---|---:|---:|---:|---:|---:|---|";
+        // All eight bucket columns in Bucket::ALL (best-first) order,
+        // zero columns included so tables compare side by side.
+        let header = "| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |";
+        let sep = "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|";
         assert!(out.contains(header), "missing header, got:\n{out}");
         assert!(out.contains(sep));
         // Every row of that table must have the same number of cells as
@@ -766,33 +768,31 @@ mod tests {
     fn optional_chart_is_separate() {
         let out = render(&sample_results());
         assert!(out.contains("#### optional"));
-        // The only optional group is a false_reject, so that table has a
-        // single 🚧 count column.
+        // The only optional group is a false_reject.
         assert_eq!(
             row(&out, "optional/format/date.json"),
-            ["optional/format/date.json", "1", "1", "🚧"]
+            ["optional/format/date.json", "0", "0", "1", "0", "0", "0", "0", "0", "1", "🚧"]
         );
     }
 
     #[test]
     fn headline_pass_rate() {
         let out = render(&sample_results());
-        // Non-optional count columns: ✅ 🙈 🤪 💀 🦀 ❌ 🤯 (🚧 only
-        // occurs in the optional table), then Total and Pass rate.
+        // Count columns ✅ 🙈 🚧 🤪 💀 🦀 ❌ 🤯, then Total and Pass rate.
         // draft7: 1 pass out of 4 groups.
-        assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "1", "0", "1", "4", "25.0%"]);
+        assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "0", "1", "0", "1", "4", "25.0%"]);
         assert_eq!(
             row(&out, "draft2019-09"),
-            ["draft2019-09", "0", "0", "1", "1", "0", "1", "0", "3", "0.0%"]
+            ["draft2019-09", "0", "0", "0", "1", "1", "0", "1", "0", "3", "0.0%"]
         );
         assert_eq!(
             row(&out, "**Total**"),
-            ["**Total**", "**1**", "**1**", "**1**", "**1**", "**1**", "**1**", "**1**", "**7**", "**14.3%**"]
+            ["**Total**", "**1**", "**1**", "**0**", "**1**", "**1**", "**1**", "**1**", "**1**", "**7**", "**14.3%**"]
         );
         assert!(out.contains("**1 of 7 non-optional groups pass (14.3%)**"));
         // Optional groups get their own table: draft7, 0 of 1.
         let opt = out.split("### Optional groups\n\n").nth(1).unwrap();
-        assert_eq!(row(opt, "draft7"), ["draft7", "1", "1", "0.0%"]);
+        assert_eq!(row(opt, "draft7"), ["draft7", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0.0%"]);
     }
 
     #[test]

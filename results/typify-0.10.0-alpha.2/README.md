@@ -7,7 +7,7 @@ type system can say; anything else is silently absent, and a construct it
 can't model fails at generation rather than producing a wrong type. The 0.10
 line is the in-progress rewrite on top of typespace.
 
-_generated 2026-10-11T18:44:37Z_
+_generated 2026-10-11T18:51:12Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
@@ -26,25 +26,25 @@ _generated 2026-10-11T18:44:37Z_
 
 ### Groups
 
-| Draft | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Pass rate |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 61 | 15 | 13 | 5 | 22 | 44 | 160 | 38.1% |
-| draft6 | 80 | 36 | 16 | 5 | 31 | 65 | 233 | 34.3% |
-| draft7 | 80 | 36 | 16 | 5 | 32 | 89 | 258 | 31.0% |
-| draft2019-09 | 103 | 75 | 16 | 5 | 63 | 111 | 373 | 27.6% |
-| draft2020-12 | 107 | 83 | 25 | 5 | 32 | 132 | 384 | 27.9% |
-| **Total** | **431** | **245** | **86** | **25** | **180** | **441** | **1408** | **30.6%** |
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft4 | 61 | 15 | 13 | 5 | 0 | 0 | 22 | 44 | 160 | 38.1% |
+| draft6 | 80 | 36 | 16 | 5 | 0 | 0 | 31 | 65 | 233 | 34.3% |
+| draft7 | 80 | 36 | 16 | 5 | 0 | 0 | 32 | 89 | 258 | 31.0% |
+| draft2019-09 | 103 | 75 | 16 | 5 | 0 | 0 | 63 | 111 | 373 | 27.6% |
+| draft2020-12 | 107 | 83 | 25 | 5 | 0 | 0 | 32 | 132 | 384 | 27.9% |
+| **Total** | **431** | **245** | **86** | **25** | **0** | **0** | **180** | **441** | **1408** | **30.6%** |
 
 ### Optional groups
 
-| Draft | ✅ | 🙈 | 🚧 | ❌ | 🤯 | Total | Pass rate |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 22 | 0 | 5 | 2 | 10 | 39 | 56.4% |
-| draft6 | 20 | 2 | 6 | 0 | 16 | 44 | 45.5% |
-| draft7 | 20 | 3 | 6 | 0 | 35 | 64 | 31.2% |
-| draft2019-09 | 21 | 6 | 7 | 0 | 42 | 76 | 27.6% |
-| draft2020-12 | 21 | 6 | 7 | 0 | 44 | 78 | 26.9% |
-| **Total** | **104** | **17** | **31** | **2** | **147** | **301** | **34.6%** |
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft4 | 22 | 0 | 5 | 0 | 0 | 0 | 2 | 10 | 39 | 56.4% |
+| draft6 | 20 | 2 | 6 | 0 | 0 | 0 | 0 | 16 | 44 | 45.5% |
+| draft7 | 20 | 3 | 6 | 0 | 0 | 0 | 0 | 35 | 64 | 31.2% |
+| draft2019-09 | 21 | 6 | 7 | 0 | 0 | 0 | 0 | 42 | 76 | 27.6% |
+| draft2020-12 | 21 | 6 | 7 | 0 | 0 | 0 | 0 | 44 | 78 | 26.9% |
+| **Total** | **104** | **17** | **31** | **0** | **0** | **0** | **2** | **147** | **301** | **34.6%** |
 
 ### Per-case match rate
 
@@ -72,380 +72,380 @@ _generated 2026-10-11T18:44:37Z_
 
 ### draft4
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalItems.json | 2 | 0 | 1 | 0 | 6 | 0 | 9 | ❌✅❌🚧❌❌❌❌✅ |
-| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
-| allOf.json | 7 | 0 | 0 | 0 | 0 | 2 | 9 | ✅✅🤯✅✅✅✅✅🤯 |
-| anyOf.json | 1 | 1 | 0 | 0 | 2 | 1 | 5 | 🤯❌🙈❌✅ |
-| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
-| definitions.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| dependencies.json | 0 | 5 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈🙈🙈 |
-| enum.json | 12 | 0 | 2 | 0 | 0 | 2 | 16 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅✅ |
-| format.json | 0 | 0 | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
-| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 2 | 0 | 1 | 0 | 3 | 0 | 6 | 🚧❌❌✅✅❌ |
-| maxItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🤪 |
-| maxLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 🚧 |
-| maxProperties.json | 0 | 1 | 0 | 1 | 0 | 0 | 2 | 🤪🙈 |
-| maximum.json | 0 | 0 | 0 | 0 | 2 | 2 | 4 | 🤯🤯❌❌ |
-| minItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🤪 |
-| minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 🚧 |
-| minProperties.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🤪 |
-| minimum.json | 0 | 0 | 0 | 0 | 2 | 2 | 4 | 🤯❌❌🤯 |
-| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
-| not.json | 2 | 0 | 0 | 0 | 0 | 4 | 6 | 🤯🤯🤯✅✅🤯 |
-| oneOf.json | 2 | 4 | 0 | 0 | 0 | 1 | 7 | 🤯🙈✅🙈🙈🙈✅ |
-| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚧✅ |
-| patternProperties.json | 1 | 2 | 1 | 0 | 0 | 0 | 4 | 🚧🙈🙈✅ |
-| properties.json | 1 | 0 | 2 | 1 | 0 | 1 | 5 | 🚧🤪🤯✅🚧 |
-| ref.json | 7 | 1 | 0 | 0 | 1 | 10 | 19 | 🤯🤯❌🤯✅✅🤯🤯✅✅🤯🤯🤯🤯✅🤯✅✅🙈 |
-| refRemote.json | 0 | 0 | 0 | 0 | 0 | 8 | 8 | 🤯🤯🤯🤯🤯🤯🤯🤯 |
-| required.json | 1 | 0 | 2 | 0 | 0 | 1 | 4 | 🚧✅🤯🚧 |
-| type.json | 11 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
-| uniqueItems.json | 1 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
-| **Total** | **61** | **15** | **13** | **5** | **22** | **44** | **160** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| additionalItems.json | 2 | 0 | 1 | 0 | 0 | 0 | 6 | 0 | 9 | ❌✅❌🚧❌❌❌❌✅ |
+| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
+| allOf.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 9 | ✅✅🤯✅✅✅✅✅🤯 |
+| anyOf.json | 1 | 1 | 0 | 0 | 0 | 0 | 2 | 1 | 5 | 🤯❌🙈❌✅ |
+| default.json | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
+| definitions.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| dependencies.json | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈🙈🙈 |
+| enum.json | 12 | 0 | 2 | 0 | 0 | 0 | 0 | 2 | 16 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅✅ |
+| format.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
+| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| items.json | 2 | 0 | 1 | 0 | 0 | 0 | 3 | 0 | 6 | 🚧❌❌✅✅❌ |
+| maxItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 🤪 |
+| maxLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| maxProperties.json | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 2 | 🤪🙈 |
+| maximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 4 | 🤯🤯❌❌ |
+| minItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 🤪 |
+| minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| minProperties.json | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 🤪 |
+| minimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 4 | 🤯❌❌🤯 |
+| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
+| not.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 6 | 🤯🤯🤯✅✅🤯 |
+| oneOf.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 1 | 7 | 🤯🙈✅🙈🙈🙈✅ |
+| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
+| patternProperties.json | 1 | 2 | 1 | 0 | 0 | 0 | 0 | 0 | 4 | 🚧🙈🙈✅ |
+| properties.json | 1 | 0 | 2 | 1 | 0 | 0 | 0 | 1 | 5 | 🚧🤪🤯✅🚧 |
+| ref.json | 7 | 1 | 0 | 0 | 0 | 0 | 1 | 10 | 19 | 🤯🤯❌🤯✅✅🤯🤯✅✅🤯🤯🤯🤯✅🤯✅✅🙈 |
+| refRemote.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 8 | 🤯🤯🤯🤯🤯🤯🤯🤯 |
+| required.json | 1 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 4 | 🚧✅🤯🚧 |
+| type.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
+| uniqueItems.json | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
+| **Total** | **61** | **15** | **13** | **5** | **0** | **0** | **22** | **44** | **160** |  |
 
 #### optional
 
-| File | ✅ | 🚧 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 2 | 1 | 2 | 2 | 7 | 🚧✅✅🤯❌🤯❌ |
-| optional/ecmascript-regex.json | 16 | 4 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
-| optional/float-overflow.json | 1 | 0 | 0 | 0 | 1 | ✅ |
-| optional/format/date-time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/hostname.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv4.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv6.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/unknown.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/id.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 2 | ✅✅ |
-| optional/zeroTerminatedFloats.json | 1 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **22** | **5** | **2** | **10** | **39** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 0 | 2 | 2 | 7 | 🚧✅✅🤯❌🤯❌ |
+| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
+| optional/float-overflow.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv4.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv6.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/unknown.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/id.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| optional/zeroTerminatedFloats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| **Total** | **22** | **0** | **5** | **0** | **0** | **0** | **2** | **10** | **39** |  |
 
 ### draft6
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalItems.json | 3 | 0 | 1 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
-| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
-| allOf.json | 10 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
-| anyOf.json | 1 | 1 | 1 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
-| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
-| contains.json | 0 | 0 | 0 | 0 | 6 | 0 | 6 | ❌❌❌❌❌❌ |
-| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
-| definitions.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| dependencies.json | 1 | 6 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
-| enum.json | 11 | 0 | 2 | 0 | 0 | 2 | 15 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅ |
-| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| format.json | 0 | 0 | 0 | 0 | 0 | 9 | 9 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 4 | 0 | 1 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
-| maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🤪❌🙈 |
-| maximum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
-| not.json | 4 | 0 | 0 | 0 | 0 | 4 | 8 | 🤯🤯🤯✅✅✅✅🤯 |
-| oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
-| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚧✅ |
-| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
-| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
-| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
-| ref.json | 13 | 1 | 0 | 0 | 1 | 16 | 31 | 🤯🤯❌🤯✅✅🤯🤯✅✅✅✅🤯🤯🤯🤯🤯✅🤯🤯🤯✅✅✅✅🤯🤯🤯✅✅🙈 |
-| refRemote.json | 0 | 0 | 0 | 0 | 0 | 11 | 11 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| required.json | 2 | 0 | 2 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
-| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
-| uniqueItems.json | 1 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
-| **Total** | **80** | **36** | **16** | **5** | **31** | **65** | **233** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| additionalItems.json | 3 | 0 | 1 | 0 | 0 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
+| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
+| allOf.json | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
+| anyOf.json | 1 | 1 | 1 | 0 | 0 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
+| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
+| contains.json | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 6 | ❌❌❌❌❌❌ |
+| default.json | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
+| definitions.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| dependencies.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
+| enum.json | 11 | 0 | 2 | 0 | 0 | 0 | 0 | 2 | 15 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅ |
+| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| format.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | 9 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| items.json | 4 | 0 | 1 | 0 | 0 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
+| maxItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| maxLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| maxProperties.json | 0 | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 3 | 🤪❌🙈 |
+| maximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| minItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| minProperties.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
+| not.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 8 | 🤯🤯🤯✅✅✅✅🤯 |
+| oneOf.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
+| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
+| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
+| properties.json | 1 | 1 | 2 | 1 | 0 | 0 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
+| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
+| ref.json | 13 | 1 | 0 | 0 | 0 | 0 | 1 | 16 | 31 | 🤯🤯❌🤯✅✅🤯🤯✅✅✅✅🤯🤯🤯🤯🤯✅🤯🤯🤯✅✅✅✅🤯🤯🤯✅✅🙈 |
+| refRemote.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | 11 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| required.json | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
+| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
+| uniqueItems.json | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
+| **Total** | **80** | **36** | **16** | **5** | **0** | **0** | **31** | **65** | **233** |  |
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 2 | 0 | 1 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
-| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
-| optional/float-overflow.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
-| optional/format/date-time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/hostname.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv4.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv6.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/unknown.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-template.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/id.json | 0 | 2 | 0 | 1 | 3 | 🤯🙈🙈 |
-| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 2 | ✅✅ |
-| optional/unknownKeyword.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| **Total** | **20** | **2** | **6** | **16** | **44** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
+| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
+| optional/float-overflow.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv4.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv6.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/unknown.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-template.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/id.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 1 | 3 | 🤯🙈🙈 |
+| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| **Total** | **20** | **2** | **6** | **0** | **0** | **0** | **0** | **16** | **44** |  |
 
 ### draft7
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalItems.json | 3 | 0 | 1 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
-| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
-| allOf.json | 10 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
-| anyOf.json | 1 | 1 | 1 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
-| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
-| contains.json | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
-| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
-| definitions.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| dependencies.json | 1 | 6 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
-| enum.json | 11 | 0 | 2 | 0 | 0 | 2 | 15 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅ |
-| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| format.json | 0 | 0 | 0 | 0 | 0 | 17 | 17 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 4 | 0 | 1 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
-| maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🤪❌🙈 |
-| maximum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
-| not.json | 4 | 0 | 0 | 0 | 0 | 4 | 8 | 🤯🤯🤯✅✅✅✅🤯 |
-| oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
-| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚧✅ |
-| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
-| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
-| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
-| ref.json | 13 | 1 | 0 | 0 | 1 | 20 | 35 | 🤯🤯❌🤯✅✅🤯🤯✅✅✅✅🤯🤯🤯🤯🤯✅🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯✅✅🙈 |
-| refRemote.json | 0 | 0 | 0 | 0 | 0 | 11 | 11 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| required.json | 2 | 0 | 2 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
-| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
-| uniqueItems.json | 1 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
-| **Total** | **80** | **36** | **16** | **5** | **32** | **89** | **258** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| additionalItems.json | 3 | 0 | 1 | 0 | 0 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
+| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
+| allOf.json | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
+| anyOf.json | 1 | 1 | 1 | 0 | 0 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
+| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
+| contains.json | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
+| default.json | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
+| definitions.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| dependencies.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
+| enum.json | 11 | 0 | 2 | 0 | 0 | 0 | 0 | 2 | 15 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅ |
+| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| format.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | 17 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| items.json | 4 | 0 | 1 | 0 | 0 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
+| maxItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| maxLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| maxProperties.json | 0 | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 3 | 🤪❌🙈 |
+| maximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| minItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| minProperties.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
+| not.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 8 | 🤯🤯🤯✅✅✅✅🤯 |
+| oneOf.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
+| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
+| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
+| properties.json | 1 | 1 | 2 | 1 | 0 | 0 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
+| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
+| ref.json | 13 | 1 | 0 | 0 | 0 | 0 | 1 | 20 | 35 | 🤯🤯❌🤯✅✅🤯🤯✅✅✅✅🤯🤯🤯🤯🤯✅🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯✅✅🙈 |
+| refRemote.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | 11 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| required.json | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
+| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
+| uniqueItems.json | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
+| **Total** | **80** | **36** | **16** | **5** | **0** | **0** | **32** | **89** | **258** |  |
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 2 | 0 | 1 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
-| optional/content.json | 0 | 3 | 0 | 0 | 3 | 🙈🙈🙈 |
-| optional/cross-draft.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
-| optional/float-overflow.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
-| optional/format/date-time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/date.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
-| optional/format/email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/idn-email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/idn-hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/ipv4.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv6.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/iri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/iri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/regex.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/unknown.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-template.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/id.json | 0 | 0 | 0 | 3 | 3 | 🤯🤯🤯 |
-| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 2 | ✅✅ |
-| optional/unknownKeyword.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| **Total** | **20** | **3** | **6** | **35** | **64** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
+| optional/content.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈🙈🙈 |
+| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
+| optional/float-overflow.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/date.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
+| optional/format/email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/idn-email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/idn-hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/ipv4.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv6.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/regex.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/unknown.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-template.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/id.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 🤯🤯🤯 |
+| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| **Total** | **20** | **3** | **6** | **0** | **0** | **0** | **0** | **35** | **64** |  |
 
 ### draft2019-09
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalItems.json | 3 | 0 | 1 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
-| additionalProperties.json | 8 | 0 | 1 | 0 | 0 | 0 | 9 | 🚧✅✅✅✅✅✅✅✅ |
-| allOf.json | 10 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
-| anchor.json | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 🤯🤯🤯🤯 |
-| anyOf.json | 1 | 1 | 1 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
-| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
-| contains.json | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
-| content.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
-| defs.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| dependentRequired.json | 1 | 3 | 0 | 0 | 0 | 0 | 4 | 🙈✅🙈🙈 |
-| dependentSchemas.json | 0 | 4 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
-| enum.json | 12 | 0 | 2 | 0 | 0 | 2 | 16 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅✅ |
-| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| format.json | 0 | 0 | 0 | 0 | 0 | 19 | 19 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 4 | 0 | 1 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
-| maxContains.json | 1 | 0 | 0 | 0 | 4 | 0 | 5 | ✅❌❌❌❌ |
-| maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🤪❌🙈 |
-| maximum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| minContains.json | 1 | 0 | 0 | 0 | 7 | 0 | 8 | ✅❌❌❌❌❌❌❌ |
-| minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
-| not.json | 4 | 0 | 0 | 0 | 0 | 5 | 9 | 🤯🤯🤯✅✅✅✅🤯🤯 |
-| oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
-| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚧✅ |
-| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
-| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
-| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
-| recursiveRef.json | 0 | 3 | 0 | 0 | 4 | 2 | 9 | 🙈❌❌❌❌🙈🙈🤯🤯 |
-| ref.json | 12 | 3 | 0 | 0 | 2 | 20 | 37 | 🤯🤯❌🤯✅🙈🤯✅✅✅✅🤯🤯🙈✅🤯🤯🤯🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯🤯✅✅🙈❌ |
-| refRemote.json | 0 | 0 | 0 | 0 | 0 | 15 | 15 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| required.json | 2 | 0 | 2 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
-| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
-| unevaluatedItems.json | 4 | 5 | 0 | 0 | 15 | 2 | 26 | ✅🙈🙈✅❌❌🙈🙈❌❌❌❌❌❌❌🤯🙈❌❌❌❌❌✅✅🤯❌ |
-| unevaluatedProperties.json | 10 | 28 | 0 | 0 | 0 | 6 | 44 | ✅🙈🙈🙈✅✅✅🙈🤯✅✅🙈🙈🙈🤯🤯🤯🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🤯🙈🙈✅✅🙈🤯🙈🙈🙈🙈 |
-| uniqueItems.json | 1 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
-| vocabulary.json | 1 | 0 | 0 | 0 | 0 | 1 | 2 | 🤯✅ |
-| **Total** | **103** | **75** | **16** | **5** | **63** | **111** | **373** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| additionalItems.json | 3 | 0 | 1 | 0 | 0 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
+| additionalProperties.json | 8 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 9 | 🚧✅✅✅✅✅✅✅✅ |
+| allOf.json | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
+| anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 🤯🤯🤯🤯 |
+| anyOf.json | 1 | 1 | 1 | 0 | 0 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
+| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
+| contains.json | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
+| content.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| default.json | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
+| defs.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| dependentRequired.json | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈✅🙈🙈 |
+| dependentSchemas.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
+| enum.json | 12 | 0 | 2 | 0 | 0 | 0 | 0 | 2 | 16 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅✅ |
+| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| format.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 19 | 19 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| items.json | 4 | 0 | 1 | 0 | 0 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
+| maxContains.json | 1 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 5 | ✅❌❌❌❌ |
+| maxItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| maxLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| maxProperties.json | 0 | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 3 | 🤪❌🙈 |
+| maximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| minContains.json | 1 | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 8 | ✅❌❌❌❌❌❌❌ |
+| minItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| minProperties.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
+| not.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 9 | 🤯🤯🤯✅✅✅✅🤯🤯 |
+| oneOf.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
+| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
+| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
+| properties.json | 1 | 1 | 2 | 1 | 0 | 0 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
+| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
+| recursiveRef.json | 0 | 3 | 0 | 0 | 0 | 0 | 4 | 2 | 9 | 🙈❌❌❌❌🙈🙈🤯🤯 |
+| ref.json | 12 | 3 | 0 | 0 | 0 | 0 | 2 | 20 | 37 | 🤯🤯❌🤯✅🙈🤯✅✅✅✅🤯🤯🙈✅🤯🤯🤯🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯🤯✅✅🙈❌ |
+| refRemote.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 15 | 15 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| required.json | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
+| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
+| unevaluatedItems.json | 4 | 5 | 0 | 0 | 0 | 0 | 15 | 2 | 26 | ✅🙈🙈✅❌❌🙈🙈❌❌❌❌❌❌❌🤯🙈❌❌❌❌❌✅✅🤯❌ |
+| unevaluatedProperties.json | 10 | 28 | 0 | 0 | 0 | 0 | 0 | 6 | 44 | ✅🙈🙈🙈✅✅✅🙈🤯✅✅🙈🙈🙈🤯🤯🤯🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🤯🙈🙈✅✅🙈🤯🙈🙈🙈🙈 |
+| uniqueItems.json | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
+| vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 🤯✅ |
+| **Total** | **103** | **75** | **16** | **5** | **0** | **0** | **63** | **111** | **373** |  |
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---|
-| optional/anchor.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/bignum.json | 2 | 0 | 1 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
-| optional/cross-draft.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
-| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
-| optional/float-overflow.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
-| optional/format/date-time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/date.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/duration.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
-| optional/format/email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/idn-email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/idn-hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/ipv4.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv6.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/iri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/iri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/regex.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/unknown.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-template.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uuid.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/id.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/no-schema.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
-| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 2 | ✅✅ |
-| optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 5 | 5 | 🤯🤯🤯🤯🤯 |
-| optional/unknownKeyword.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| **Total** | **21** | **6** | **7** | **42** | **76** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| optional/anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
+| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
+| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
+| optional/float-overflow.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/date.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/duration.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
+| optional/format/email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/idn-email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/idn-hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/ipv4.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv6.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/regex.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/unknown.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-template.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uuid.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/id.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/no-schema.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 5 | 🤯🤯🤯🤯🤯 |
+| optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| **Total** | **21** | **6** | **7** | **0** | **0** | **0** | **0** | **42** | **76** |  |
 
 ### draft2020-12
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalProperties.json | 8 | 0 | 1 | 0 | 0 | 0 | 9 | 🚧✅✅✅✅✅✅✅✅ |
-| allOf.json | 10 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
-| anchor.json | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 🤯🤯🤯🤯 |
-| anyOf.json | 1 | 1 | 1 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
-| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
-| contains.json | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
-| content.json | 4 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
-| defs.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| dependentRequired.json | 1 | 3 | 0 | 0 | 0 | 0 | 4 | 🙈✅🙈🙈 |
-| dependentSchemas.json | 0 | 4 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
-| dynamicRef.json | 0 | 3 | 0 | 0 | 0 | 18 | 21 | 🙈🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🙈🤯🤯 |
-| enum.json | 12 | 0 | 2 | 0 | 0 | 2 | 16 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅✅ |
-| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| format.json | 0 | 0 | 0 | 0 | 0 | 19 | 19 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 4 | 0 | 5 | 0 | 0 | 1 | 10 | 🚧✅✅🚧✅🚧🤯🚧🚧✅ |
-| maxContains.json | 1 | 0 | 0 | 0 | 4 | 0 | 5 | ✅❌❌❌❌ |
-| maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🤪❌🙈 |
-| maximum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| minContains.json | 1 | 0 | 0 | 0 | 7 | 0 | 8 | ✅❌❌❌❌❌❌❌ |
-| minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
-| minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
-| not.json | 4 | 0 | 0 | 0 | 0 | 5 | 9 | 🤯🤯🤯✅✅✅✅🤯🤯 |
-| oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
-| pattern.json | 1 | 0 | 2 | 0 | 0 | 0 | 3 | 🚧✅🚧 |
-| patternProperties.json | 1 | 3 | 2 | 0 | 0 | 0 | 6 | 🚧🙈🙈🙈✅🚧 |
-| prefixItems.json | 2 | 2 | 0 | 0 | 0 | 0 | 4 | 🙈🙈✅✅ |
-| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
-| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
-| ref.json | 12 | 4 | 0 | 0 | 0 | 20 | 36 | 🤯🤯🙈🤯✅🙈🤯✅✅✅✅🤯🤯🙈✅🤯🤯🤯🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯🤯✅✅🙈 |
-| refRemote.json | 0 | 0 | 0 | 0 | 0 | 15 | 15 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
-| required.json | 2 | 0 | 2 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
-| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
-| unevaluatedItems.json | 8 | 11 | 2 | 0 | 3 | 5 | 29 | ✅🙈🙈✅🙈✅✅🙈❌✅✅🚧🙈🤯🤯🙈🙈🙈🤯🙈🙈❌🚧🤯❌✅✅🤯🙈 |
-| unevaluatedProperties.json | 10 | 27 | 0 | 0 | 0 | 7 | 44 | ✅🙈🙈🙈✅✅✅🙈🤯✅✅🙈🙈🙈🤯🤯🤯🙈🙈🙈🙈🤯🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🤯🙈🙈✅✅🙈🤯🙈🙈🙈🙈 |
-| uniqueItems.json | 2 | 0 | 2 | 0 | 2 | 0 | 6 | ❌❌🚧✅✅🚧 |
-| vocabulary.json | 1 | 0 | 0 | 0 | 0 | 1 | 2 | 🤯✅ |
-| **Total** | **107** | **83** | **25** | **5** | **32** | **132** | **384** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| additionalProperties.json | 8 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 9 | 🚧✅✅✅✅✅✅✅✅ |
+| allOf.json | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅🤯✅✅✅✅✅✅✅✅🤯 |
+| anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 4 | 🤯🤯🤯🤯 |
+| anyOf.json | 1 | 1 | 1 | 0 | 0 | 0 | 2 | 3 | 8 | 🤯❌🚧🤯🤯🙈❌✅ |
+| boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
+| contains.json | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
+| content.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| default.json | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
+| defs.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| dependentRequired.json | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈✅🙈🙈 |
+| dependentSchemas.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
+| dynamicRef.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 18 | 21 | 🙈🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🙈🤯🤯 |
+| enum.json | 12 | 0 | 2 | 0 | 0 | 0 | 0 | 2 | 16 | ✅🤯✅✅🤯✅✅✅✅✅🚧✅🚧✅✅✅ |
+| exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| format.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 19 | 19 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
+| items.json | 4 | 0 | 5 | 0 | 0 | 0 | 0 | 1 | 10 | 🚧✅✅🚧✅🚧🤯🚧🚧✅ |
+| maxContains.json | 1 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 5 | ✅❌❌❌❌ |
+| maxItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| maxLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| maxProperties.json | 0 | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 3 | 🤪❌🙈 |
+| maximum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| minContains.json | 1 | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 8 | ✅❌❌❌❌❌❌❌ |
+| minItems.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 🚧❌ |
+| minProperties.json | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 2 | 🤪❌ |
+| minimum.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| multipleOf.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
+| not.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 9 | 🤯🤯🤯✅✅✅✅🤯🤯 |
+| oneOf.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
+| pattern.json | 1 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 3 | 🚧✅🚧 |
+| patternProperties.json | 1 | 3 | 2 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧🙈🙈🙈✅🚧 |
+| prefixItems.json | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈✅✅ |
+| properties.json | 1 | 1 | 2 | 1 | 0 | 0 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
+| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
+| ref.json | 12 | 4 | 0 | 0 | 0 | 0 | 0 | 20 | 36 | 🤯🤯🙈🤯✅🙈🤯✅✅✅✅🤯🤯🙈✅🤯🤯🤯🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯🤯✅✅🙈 |
+| refRemote.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 15 | 15 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
+| required.json | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 5 | 🚧✅✅🤯🚧 |
+| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅✅ |
+| unevaluatedItems.json | 8 | 11 | 2 | 0 | 0 | 0 | 3 | 5 | 29 | ✅🙈🙈✅🙈✅✅🙈❌✅✅🚧🙈🤯🤯🙈🙈🙈🤯🙈🙈❌🚧🤯❌✅✅🤯🙈 |
+| unevaluatedProperties.json | 10 | 27 | 0 | 0 | 0 | 0 | 0 | 7 | 44 | ✅🙈🙈🙈✅✅✅🙈🤯✅✅🙈🙈🙈🤯🤯🤯🙈🙈🙈🙈🤯🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🤯🙈🙈✅✅🙈🤯🙈🙈🙈🙈 |
+| uniqueItems.json | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 6 | ❌❌🚧✅✅🚧 |
+| vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 🤯✅ |
+| **Total** | **107** | **83** | **25** | **5** | **0** | **0** | **32** | **132** | **384** |  |
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤯 | Total | Chart |
-|---|---:|---:|---:|---:|---:|---|
-| optional/anchor.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/bignum.json | 2 | 0 | 1 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
-| optional/cross-draft.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
-| optional/dynamicRef.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
-| optional/float-overflow.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
-| optional/format-assertion.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/date-time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/date.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/duration.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
-| optional/format/email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/idn-email.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/idn-hostname.json | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| optional/format/ipv4.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/ipv6.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/iri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/iri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/regex.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/time.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/unknown.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-reference.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri-template.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uri.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/format/uuid.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/id.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| optional/no-schema.json | 0 | 0 | 1 | 0 | 1 | 🚧 |
-| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 2 | ✅✅ |
-| optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 5 | 5 | 🤯🤯🤯🤯🤯 |
-| optional/unknownKeyword.json | 0 | 0 | 0 | 1 | 1 | 🤯 |
-| **Total** | **21** | **6** | **7** | **44** | **78** |  |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| optional/anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 4 | 7 | 🚧✅✅🤯🤯🤯🤯 |
+| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
+| optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/ecmascript-regex.json | 16 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🚧✅✅✅🚧🚧✅✅✅🚧 |
+| optional/float-overflow.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| optional/format-assertion.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/date.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/duration.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ecmascript-regex.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 6 | 🤯🤯🤯🤯🤯🤯 |
+| optional/format/email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/idn-email.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/idn-hostname.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
+| optional/format/ipv4.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/ipv6.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/iri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/regex.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/relative-json-pointer.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/time.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/unknown.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-reference.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri-template.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uri.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/format/uuid.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/id.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| optional/no-schema.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
+| optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
+| optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 5 | 🤯🤯🤯🤯🤯 |
+| optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
+| **Total** | **21** | **6** | **7** | **0** | **0** | **0** | **0** | **44** | **78** |  |
 
 ## Failures
 
@@ -456,15 +456,15 @@ _generated 2026-10-11T18:44:37Z_
 - **258×** `not yet implemented: invalid (or unexpected) schema:`
 - **54×** `not implemented: if/then/else schemas are not supported: {`
 - **23×** `not yet implemented: unhandled not schema Object(`
-- **16×** `internal error: entered unreachable code at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/enums.rs:76`
-- **10×** `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at /Users/ahl/.cargo/registr…`
+- **16×** `internal error: entered unreachable code at <registry>/typify-impl-0.10.0-alpha.2/src/enums.rs:76`
+- **10×** `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at <registry>/typify-impl-0.…`
 
 Per group:
 
 - `draft4/allOf.json::allOf simple types` — `not yet implemented: invalid (or unexpected) schema:`
-- `draft4/allOf.json::allOf combined with anyOf, oneOf` — `assertion failed: any_of.is_none() || one_of.is_none() at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/merge.r…`
+- `draft4/allOf.json::allOf combined with anyOf, oneOf` — `assertion failed: any_of.is_none() || one_of.is_none() at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:312`
 - `draft4/anyOf.json::anyOf` — `not yet implemented: invalid (or unexpected) schema:`
-- `draft4/definitions.json::validate definition against metaschema` — `external references are not supported: http://json-schema.org/draft-04/schema# at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.…`
+- `draft4/definitions.json::validate definition against metaschema` — `external references are not supported: http://json-schema.org/draft-04/schema# at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
 - `draft4/enum.json::heterogeneous enum validation` — `multiple implied types for an un-typed enum {Boolean, Object, Array, Number, String} [Number(6), String("foo"), Array [], Bool(true), Object {"foo": Number(12)}…`
 - `draft4/enum.json::enum with escaped characters` — `Failed to make unique variant names for [foo`
 - `draft4/format.json::email format` — `not yet implemented: invalid (or unexpected) schema:`
@@ -485,32 +485,32 @@ Per group:
 - `draft4/not.json::not more complex schema` — `not yet implemented: unhandled not schema Object(`
 - `draft4/not.json::double negation` — `not yet implemented: unhandled not schema Object(`
 - `draft4/oneOf.json::oneOf` — `not yet implemented: invalid (or unexpected) schema:`
-- `draft4/properties.json::properties with escaped characters` — `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at /Users/ahl/.cargo/registr…`
-- `draft4/ref.json::root pointer ref` — `$ref # is missing at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
-- `draft4/ref.json::relative pointer ref to object` — `$ref #/properties/foo is missing at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
-- `draft4/ref.json::escaped pointer ref` — `$ref #/definitions/percent%25field is missing at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
-- `draft4/ref.json::$ref prevents a sibling id from changing the base uri` — `external references are not supported: foo.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:145…`
-- `draft4/ref.json::remote ref, containing refs itself` — `external references are not supported: http://json-schema.org/draft-04/schema# at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.…`
-- `draft4/ref.json::Recursive references between schemas` — `external references are not supported: tree at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
-- `draft4/ref.json::refs with quote` — `$ref #/definitions/foo%22bar is missing at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
-- `draft4/ref.json::Location-independent identifier` — `expected a '/' in $ref: #foo at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/util.rs:565`
-- `draft4/ref.json::Location-independent identifier with base URI change in subschema` — `external references are not supported: http://localhost:1234/nested.json#foo at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10…`
-- `draft4/ref.json::id must be resolved against nearest parent, not just immediate parent` — `external references are not supported: http://example.com/b/d.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2…`
-- `draft4/refRemote.json::remote ref` — `external references are not supported: http://localhost:1234/integer.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-…`
-- `draft4/refRemote.json::fragment within remote ref` — `external references are not supported: http://localhost:1234/draft4/subSchemas.json#/definitions/integer at /Users/ahl/.cargo/registry/src/index.crates.io-1949c…`
-- `draft4/refRemote.json::ref within remote ref` — `external references are not supported: http://localhost:1234/draft4/subSchemas.json#/definitions/refToInteger at /Users/ahl/.cargo/registry/src/index.crates.io-…`
-- `draft4/refRemote.json::base URI change` — `external references are not supported: folderInteger.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/conv…`
-- `draft4/refRemote.json::base URI change - change folder` — `external references are not supported: folderInteger.json at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/conv…`
-- `draft4/refRemote.json::base URI change - change folder in subschema` — `$ref #/definitions/baz/definitions/bar is missing at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/convert.rs:1…`
-- `draft4/refRemote.json::root ref in remote ref` — `external references are not supported: draft4/name.json#/definitions/orNull at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.…`
-- `draft4/refRemote.json::Location-independent identifier in remote ref` — `external references are not supported: http://localhost:1234/draft4/locationIndependentIdentifier.json#/definitions/refToInteger at /Users/ahl/.cargo/registry/s…`
-- `draft4/required.json::required with escaped characters` — `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at /Users/ahl/.cargo/registr…`
+- `draft4/properties.json::properties with escaped characters` — `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at <registry>/typify-impl-0.…`
+- `draft4/ref.json::root pointer ref` — `$ref # is missing at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
+- `draft4/ref.json::relative pointer ref to object` — `$ref #/properties/foo is missing at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
+- `draft4/ref.json::escaped pointer ref` — `$ref #/definitions/percent%25field is missing at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
+- `draft4/ref.json::$ref prevents a sibling id from changing the base uri` — `external references are not supported: foo.json at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/ref.json::remote ref, containing refs itself` — `external references are not supported: http://json-schema.org/draft-04/schema# at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/ref.json::Recursive references between schemas` — `external references are not supported: tree at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/ref.json::refs with quote` — `$ref #/definitions/foo%22bar is missing at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
+- `draft4/ref.json::Location-independent identifier` — `expected a '/' in $ref: #foo at <registry>/typify-impl-0.10.0-alpha.2/src/util.rs:565`
+- `draft4/ref.json::Location-independent identifier with base URI change in subschema` — `external references are not supported: http://localhost:1234/nested.json#foo at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/ref.json::id must be resolved against nearest parent, not just immediate parent` — `external references are not supported: http://example.com/b/d.json at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/refRemote.json::remote ref` — `external references are not supported: http://localhost:1234/integer.json at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/refRemote.json::fragment within remote ref` — `external references are not supported: http://localhost:1234/draft4/subSchemas.json#/definitions/integer at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs…`
+- `draft4/refRemote.json::ref within remote ref` — `external references are not supported: http://localhost:1234/draft4/subSchemas.json#/definitions/refToInteger at <registry>/typify-impl-0.10.0-alpha.2/src/conve…`
+- `draft4/refRemote.json::base URI change` — `external references are not supported: folderInteger.json at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/refRemote.json::base URI change - change folder` — `external references are not supported: folderInteger.json at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/refRemote.json::base URI change - change folder in subschema` — `$ref #/definitions/baz/definitions/bar is missing at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1458`
+- `draft4/refRemote.json::root ref in remote ref` — `external references are not supported: draft4/name.json#/definitions/orNull at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
+- `draft4/refRemote.json::Location-independent identifier in remote ref` — `external references are not supported: http://localhost:1234/draft4/locationIndependentIdentifier.json#/definitions/refToInteger at <registry>/typify-impl-0.10.…`
+- `draft4/required.json::required with escaped characters` — `called 'Result::unwrap()' on an 'Err' value: DuplicateItemName { kind: "property", type_name: "Root", name: "foo_bar", axis: Rust } at <registry>/typify-impl-0.…`
 - `draft6/allOf.json::allOf simple types` — `not yet implemented: invalid (or unexpected) schema:`
-- `draft6/allOf.json::allOf combined with anyOf, oneOf` — `assertion failed: any_of.is_none() || one_of.is_none() at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/merge.r…`
+- `draft6/allOf.json::allOf combined with anyOf, oneOf` — `assertion failed: any_of.is_none() || one_of.is_none() at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:312`
 - `draft6/anyOf.json::anyOf` — `not yet implemented: invalid (or unexpected) schema:`
-- `draft6/anyOf.json::anyOf with boolean schemas, some true` — `internal error: entered unreachable code at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/enums.rs:76`
-- `draft6/anyOf.json::anyOf with boolean schemas, all false` — `not yet implemented at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.10.0-alpha.2/src/enums.rs:80`
-- `draft6/definitions.json::validate definition against metaschema` — `external references are not supported: http://json-schema.org/draft-06/schema# at /Users/ahl/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typify-impl-0.…`
+- `draft6/anyOf.json::anyOf with boolean schemas, some true` — `internal error: entered unreachable code at <registry>/typify-impl-0.10.0-alpha.2/src/enums.rs:76`
+- `draft6/anyOf.json::anyOf with boolean schemas, all false` — `not yet implemented at <registry>/typify-impl-0.10.0-alpha.2/src/enums.rs:80`
+- `draft6/definitions.json::validate definition against metaschema` — `external references are not supported: http://json-schema.org/draft-06/schema# at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452`
 - … and 538 more
 
 ### ❌ `generation_error` (182)
