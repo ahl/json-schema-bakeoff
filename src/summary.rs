@@ -71,15 +71,6 @@ fn active_buckets(groups: &[&GroupResult]) -> Vec<Bucket> {
     Bucket::ALL.iter().copied().filter(|b| groups.iter().any(|g| g.bucket == *b)).collect()
 }
 
-/// Groups that never produced runnable code: typify panicked, typify
-/// errored, or the generated code didn't compile.
-fn no_code(groups: &[&GroupResult]) -> usize {
-    groups
-        .iter()
-        .filter(|g| matches!(g.bucket, Bucket::GenerationPanic | Bucket::GenerationError | Bucket::CompileFail))
-        .count()
-}
-
 fn count(groups: &[&GroupResult], bucket: Bucket) -> usize {
     groups.iter().filter(|g| g.bucket == bucket).count()
 }
@@ -142,11 +133,11 @@ fn groups_table(results: &Results, drafts: &[String], optional: bool) -> Option<
     for b in &active {
         s.push_str(&format!(" {} |", b.glyph()));
     }
-    s.push_str(" Total | Pass rate | No code (🤯❌🦀) |\n|---|");
+    s.push_str(" Total | Pass rate |\n|---|");
     for _ in &active {
         s.push_str("---:|");
     }
-    s.push_str("---:|---:|---:|\n");
+    s.push_str("---:|---:|\n");
 
     for draft in drafts {
         let groups = groups_for(results, draft, optional);
@@ -158,10 +149,9 @@ fn groups_table(results: &Results, drafts: &[String], optional: bool) -> Option<
             s.push_str(&format!(" {} |", count(&groups, *b)));
         }
         s.push_str(&format!(
-            " {} | {} | {} |\n",
+            " {} | {} |\n",
             groups.len(),
-            pass_rate(count(&groups, Bucket::Pass), groups.len()),
-            pass_rate(no_code(&groups), groups.len())
+            pass_rate(count(&groups, Bucket::Pass), groups.len())
         ));
     }
 
@@ -170,10 +160,9 @@ fn groups_table(results: &Results, drafts: &[String], optional: bool) -> Option<
         s.push_str(&format!(" **{}** |", count(&all, *b)));
     }
     s.push_str(&format!(
-        " **{}** | **{}** | **{}** |\n",
+        " **{}** | **{}** |\n",
         all.len(),
-        pass_rate(count(&all, Bucket::Pass), all.len()),
-        pass_rate(no_code(&all), all.len())
+        pass_rate(count(&all, Bucket::Pass), all.len())
     ));
     Some(s)
 }
@@ -481,34 +470,40 @@ pub fn render_terminal(results: &Results) -> String {
     s
 }
 
-/// One headline row per (version, draft); empty if nothing qualifies.
+/// One row per version, one column per draft (pass rate with pass/total),
+/// plus the generation date; empty if nothing qualifies.
 fn scoreboard_headline(all: &[Results], optional: bool) -> String {
+    let mut drafts: Vec<String> = all.iter().flat_map(sorted_drafts).collect();
+    drafts.sort_by_key(|d| draft_rank(d));
+    drafts.dedup();
     let mut rows = String::new();
     for r in all {
-        for draft in sorted_drafts(r) {
-            let groups = groups_for(r, &draft, optional);
-            if groups.is_empty() {
-                continue;
-            }
-            let (matched, _reached, total_cases) = case_stats(&groups);
-            rows.push_str(&format!(
-                "| {} ({}) | {} | {} | {} | {} | {} | {} | {} |\n",
-                escape_cell(&r.version),
-                escape_cell(&r.typify),
-                draft,
-                count(&groups, Bucket::Pass),
-                groups.len(),
-                pass_rate(count(&groups, Bucket::Pass), groups.len()),
-                pass_rate(no_code(&groups), groups.len()),
-                pass_rate(matched, total_cases),
-                r.generated_at,
-            ));
+        let cells: Vec<String> = drafts
+            .iter()
+            .map(|draft| {
+                let groups = groups_for(r, draft, optional);
+                if groups.is_empty() {
+                    "—".to_string()
+                } else {
+                    let pass = count(&groups, Bucket::Pass);
+                    format!("{} ({pass}/{})", pass_rate(pass, groups.len()), groups.len())
+                }
+            })
+            .collect();
+        if cells.iter().all(|c| c == "—") {
+            continue;
         }
+        rows.push_str(&format!("| {} | {} | {} |\n", escape_cell(&r.typify), cells.join(" | "), r.generated_at));
     }
     if rows.is_empty() {
         return rows;
     }
-    format!("| Version | Draft | Pass | Total | Pass rate | No code (🤯❌🦀) | Cases matched | Generated |\n|---|---|---:|---:|---:|---:|---:|---|\n{rows}")
+    let header: Vec<&str> = drafts.iter().map(|d| d.as_str()).collect();
+    format!(
+        "| | {} | Generated |\n|---|{}---|\n{rows}",
+        header.join(" | "),
+        "---:|".repeat(drafts.len())
+    )
 }
 
 /// `RESULTS.md`: the cross-version scoreboard at the repo root. One
@@ -522,7 +517,7 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     s.push('\n');
 
     s.push_str("## Headline (non-optional groups)\n\n");
-    s.push_str("\"No code\" is the share of groups that never produced runnable code: typify panicked (🤯), typify returned an error (❌), or the generated code didn't compile (🦀).\n\n");
+    s.push_str("Pass rate per draft: groups where every test case matched, over all groups in the draft.\n\n");
     s.push_str(&scoreboard_headline(all, false));
     s.push('\n');
     let opt_table = scoreboard_headline(all, true);
@@ -739,20 +734,19 @@ mod tests {
         // Non-optional count columns: ✅ 🙈 🤪 💀 🦀 ❌ 🤯 (🚧 only
         // occurs in the optional table), then Total and Pass rate.
         // draft7: 1 pass out of 4 groups.
-        // The last column is the no-code rate (🤯 + ❌ + 🦀 over total).
-        assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "1", "0", "1", "4", "25.0%", "50.0%"]);
+        assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "1", "0", "1", "4", "25.0%"]);
         assert_eq!(
             row(&out, "draft2019-09"),
-            ["draft2019-09", "0", "0", "1", "1", "0", "1", "0", "3", "0.0%", "33.3%"]
+            ["draft2019-09", "0", "0", "1", "1", "0", "1", "0", "3", "0.0%"]
         );
         assert_eq!(
             row(&out, "**Total**"),
-            ["**Total**", "**1**", "**1**", "**1**", "**1**", "**1**", "**1**", "**1**", "**7**", "**14.3%**", "**42.9%**"]
+            ["**Total**", "**1**", "**1**", "**1**", "**1**", "**1**", "**1**", "**1**", "**7**", "**14.3%**"]
         );
         assert!(out.contains("**1 of 7 non-optional groups pass (14.3%)**"));
         // Optional groups get their own table: draft7, 0 of 1.
         let opt = out.split("### Optional groups\n\n").nth(1).unwrap();
-        assert_eq!(row(opt, "draft7"), ["draft7", "1", "1", "0.0%", "0.0%"]);
+        assert_eq!(row(opt, "draft7"), ["draft7", "1", "1", "0.0%"]);
     }
 
     #[test]

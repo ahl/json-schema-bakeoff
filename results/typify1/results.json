@@ -1,7 +1,7 @@
 {
   "version": "typify1",
   "typify": "typify 0.10.0-alpha.2",
-  "generated_at": "2026-10-11T04:10:39Z",
+  "generated_at": "2026-10-11T04:14:00Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
