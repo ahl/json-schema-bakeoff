@@ -1,61 +1,71 @@
-# typify conformance harness
+# JSON Schema codegen bakeoff
 
-Run the JSON Schema org's official test suite through typify and report, per test, how far the generated code gets. The goal is a repeatable scoreboard for typify 1 and typify 2, not a fix to typify itself. Don't change typify source in this repo.
+A scoreboard for JSON Schema code generators (and two validators as
+reference rows), scored against the official JSON Schema Test Suite. The
+repo started as a typify-only conformance harness; it is now a place to keep
+evaluation glue for any generator, in any language, without re-running
+stored results when a new tool is added. Adam reads `RESULTS.md`.
 
-## Inputs
+Don't change any tool's source here; the point is to measure tools as
+shipped, with their default behavior. Don't make a row look better by
+enabling stricter modes or stripping output a tool really produces.
 
-- **Test suite:** https://github.com/json-schema-org/JSON-Schema-Test-Suite, vendored as a git submodule at `suite/`.
-  - `tests/<draft>/*.json`: one file per keyword (e.g. `allOf.json`, `ref.json`). Each file is an array of groups: `{ description, schema, tests: [{ description, data, valid }] }`.
-  - Drafts: `draft4`, `draft6`, `draft7`, `draft2019-09`, `draft2020-12`.
-  - `tests/<draft>/optional/`: optional behavior (formats, bignum, etc.). Run it but report it separately; don't count it in headline numbers.
-  - `remotes/`: schemas that tests reference as `http://localhost:1234/...`. Map that URL prefix to this directory when resolving references; never hit the network.
-- **typify 1:** the published `typify` crate (pin the version in `Cargo.toml`).
-- **typify 2:** in-progress rewrite. Ask Adam for the repo/branch/path before wiring it up; don't guess.
+## Two actions
 
-## Pipeline per schema group
+- `cargo run -- run [--generator <name>] [--target <t>] [--draft <d>|all] [--filter <s>] [--no-cache]`
+  executes the suite and stores `results/<tool version>/results.json`, then
+  renders. A filtered run prints per-case detail and writes under `target/`.
+- `cargo run -- render` regenerates every `results/*/README.md` and
+  `RESULTS.md` from stored data. Nothing else writes to `results/`.
 
-For each `(draft, file, group)`, for each typify version:
+`cargo run -- diff A B` compares two results files; `cargo run -- key`
+prints the bucket glyphs; `cargo run -- generators` lists what's installed.
 
-1. **Generate.** Feed the group's `schema` to typify as the root, with a fixed root type name (e.g. `Root`). Run generation in a subprocess or under `catch_unwind` so a panic is recorded, not fatal.
-2. **Compile.** Emit the generated code into a small crate whose test binary reads the group's test cases and calls `serde_json::from_value::<Root>(data)` on each. (ahl edit: Adding a little bit of complexity here. I think we want to generate a FILE for each, and then maybe we run it through trybuild or something as a pass; anything that fails to build we exclude, but then we can run all of the ones that do build in a single crate; we'll just need to wrap each test in a panic handler--I'd like to discuss this point)
-3. **Run.** For each test case, compare deserialize success/failure with the test's `valid` field.
+## Layout and contract
 
-## Outcome buckets
+`DESIGN.md` is the contract: the generator directory shape
+(`generators/<name>/generator.toml` with `version`, `generate`, `build`
+commands run as subprocesses), the runner protocol, the buckets, the record
+cache (hash of harness revision, tool identity, generator sources, group,
+schema, cases), and the policies (remote refs left to fail for generators,
+resolved from `suite/remotes/` only by validator rows; `format` at library
+defaults; dialect passed as `draft`).
 
-Record exactly one per schema group per version, plus per-case detail when it gets to step 3:
+`harness/` orchestrates. `rust-batch/` is the shared build step for Rust
+output. Everything scratch is under `target/`; Adam deletes it freely.
 
-| Bucket | Meaning |
-|---|---|
-| `generation_panic` | typify panicked |
-| `generation_error` | typify returned an error (e.g. unsupported construct) |
-| `compile_fail` | generated code doesn't compile |
-| `runtime_panic` | a test case panicked during deserialize |
-| `false_accept` | deserialize succeeded but `valid: false` |
-| `false_reject` | deserialize failed but `valid: true` |
-| `pass` | every case matched |
+To add a tool, use the `add-generator` skill (`.claude/skills/add-generator/`):
+it is the checklist plus every trap found so far. Every generator so far had
+at least one real bug found by a second agent reviewing it against that
+checklist; keep doing that.
 
-Keep `false_accept` and `false_reject` separate: they mean different things (typify too loose vs. too strict) and get fixed differently. Store the first error message or panic text for every non-pass bucket.
+## Conventions that are settled
 
-I'd like you to come up with a key perhaps using emojis to fill out a chart.
+- Buckets, worst to best: 🤯 generation_panic, ❌ generation_error,
+  🦀 compile_fail, 💀 runtime_panic, 🤪 mixed, 🚧 false_reject,
+  🙈 false_accept, ✅ pass. A tool that succeeds but emits no root type is
+  `compile_fail`, not `generation_error`.
+- `RESULTS.md`: Rust section then Other languages, each with Core and
+  Optional tables; rows are "name (lang)" outside Rust; validator rows carry
+  𝓥 linking to a Notes footnote; "The tools" has one paragraph per tool with
+  a homepage link; no bucket key and no regeneration instructions there
+  (the key is on each per-tool page; the README has the commands). Rows sort
+  by tool name, then newest version first. Manifest `hidden = true` keeps a
+  row off the tables.
+- Per-tool pages show all eight bucket columns in every table; the
+  per-group glyph column is "Per group".
+- Descriptions in `generator.toml` are short and in Adam's voice (the
+  `writing-like-ahl` skill); manifest metadata doesn't feed the record hash.
+- Results are keyed by the exact tool version; bumping a pin starts a new
+  directory and old results stay. A results directory may outlive its
+  generator (typify 0.3.0).
+- `.github/`: Dependabot bumps generator pins; `results.yml` reruns the
+  changed generator on the PR and commits the results; `ci.yml` checks that
+  stored results are current. Needs a `RESULTS_TOKEN` secret on GitHub.
 
-## Performance
+## Working style
 
-There are a few thousand schema groups. Don't run one `cargo build` per group serially.
-
-- Share one `CARGO_TARGET_DIR` across all generated crates so dependencies (serde, serde_json, regress, chrono, uuid) build once.
-- Batch many groups into one crate as separate modules for speed, but when a batch fails to compile, bisect or fall back to per-group crates so one bad schema doesn't sink its neighbors.
-- Parallelize across batches.
-- Cache by hash of (schema, typify version) so reruns only redo what changed.
-
-## Output
-
-- `results/<version>/results.json`: one record per group with draft, file, group description, bucket, error text, and per-case results.
-- `results/<version>/summary.md`: pass rate per draft, and a table of buckets per keyword file. This is what Adam will read.
-- A `diff` command comparing two results files (typify 1 vs. 2, or one version before vs. after a change), listing groups that moved between buckets.
-
-## Notes
-
-- Serde deserialize only enforces what typify encodes in types. Validation keywords typify doesn't model (formats, some numeric bounds) will show up as `false_accept`. That's a real finding; record it, don't paper over it.
-- The `$schema` / draft matters for semantics. Pass the draft through to typify where it supports that; note where it doesn't.
-- Commands should be runnable as `cargo run -- run --version typify1 [--draft draft2020-12] [--filter ref]` and `cargo run -- diff A B`.
-- Start with typify 1 on `draft7` end-to-end before broadening.
+Delegate builds and reviews to agents and pick the model per task: opus for
+anything with protocol or correctness subtlety, sonnet for mechanical or
+well-specified work. Commit as you go. Keep the full-suite run fast (today
+about ten seconds per generator cached, a few minutes cold).
