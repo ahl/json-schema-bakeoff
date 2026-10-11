@@ -136,6 +136,11 @@ fn build() -> ::std::result::Result<::jsonschema::Validator, ::std::string::Stri
     // assertion in draft 4/6/7, an annotation from 2019-09 on.
     ::jsonschema::options()
         .with_draft(::jsonschema::Draft::{draft})
+        // Assert formats in every draft. The library's default follows the
+        // spec (asserted through draft 7, annotation-only after), but this
+        // row exists to show the ceiling, and jsonschema has a checker for
+        // every format the suite tests.
+        .should_validate_formats(true)
         .with_retriever(SuiteRemotes)
         .build(&schema)
         .map_err(|e| e.to_string())
