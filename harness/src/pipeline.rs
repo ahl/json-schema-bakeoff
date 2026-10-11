@@ -14,7 +14,7 @@ use std::time::{Duration, Instant};
 
 /// Bump when the pipeline changes in a way that invalidates stored results
 /// (e.g. the runner protocol semantics or the bucket rules).
-const HARNESS_REV: &str = "2";
+const HARNESS_REV: &str = "3";
 
 const RUN_TIMEOUT: Duration = Duration::from_secs(120);
 
