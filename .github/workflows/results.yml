@@ -1,0 +1,124 @@
+# Rerun the bakeoff for whatever a pull request changed and commit the
+# results onto the PR branch.
+#
+# - A change under generators/<name>/ reruns that generator (a Dependabot
+#   version bump lands in a new results/<version>/ directory; old results
+#   stay).
+# - A change to suite/ (the test-suite submodule) reruns every generator;
+#   the record cache recomputes only groups whose schema or cases changed.
+# - A change to harness/ or rust-batch/ reruns everything too, since the
+#   harness revision may have moved.
+#
+# pull_request_target runs with a write token so results can be pushed back
+# to Dependabot's branches; the job is limited to Dependabot and same-repo
+# branches so that token never runs code from a fork.
+name: results
+
+on:
+  pull_request_target:
+    paths:
+      - "generators/**"
+      - "harness/**"
+      - "rust-batch/**"
+      - "suite"
+      - ".gitmodules"
+  workflow_dispatch:
+    inputs:
+      generator:
+        description: "Generator to rerun (empty = all)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: results-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rerun:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.pull_request.head.repo.full_name == github.repository ||
+      github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The PR's head branch, so results can be committed onto it.
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          submodules: true
+          fetch-depth: 0
+          token: ${{ secrets.RESULTS_TOKEN || github.token }}
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          # Generators are standalone crates sharing the repo's target dir.
+          workspaces: |
+            . -> target
+            generators/typify-0.10 -> target
+            generators/typify-0.8 -> target
+            generators/jsonschema-0.58 -> target
+            generators/schemafy-0.6 -> target
+            generators/json-schema-rs-0.0 -> target
+          cache-targets: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+          cache-dependency-path: generators/*/go.sum
+
+      - name: Decide what to rerun
+        id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "generators=${{ github.event.inputs.generator }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
+          changed=$(git diff --name-only "$base" "$head")
+          if echo "$changed" | grep -qE '^(harness/|rust-batch/|suite$|\.gitmodules$)'; then
+            echo "generators=" >> "$GITHUB_OUTPUT"   # all
+          else
+            gens=$(echo "$changed" | grep -E '^generators/[^/]+/' | cut -d/ -f2 | sort -u | tr '\n' ' ')
+            echo "generators=$gens" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run the bakeoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          gens="${{ steps.plan.outputs.generators }}"
+          if [ -z "$gens" ]; then
+            cargo run --release -- run
+          else
+            for g in $gens; do
+              [ -f "generators/$g/generator.toml" ] || continue
+              cargo run --release -- run --generator "$g"
+            done
+          fi
+          cargo run --release -- render
+
+      - name: Commit results onto the PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A results RESULTS.md README.md
+          if git diff --cached --quiet; then
+            echo "no result changes"
+            exit 0
+          fi
+          git config user.name "bakeoff results"
+          git config user.email "noreply@github.com"
+          git commit -m "Results for ${{ steps.plan.outputs.generators || 'all generators' }}"
+          git push

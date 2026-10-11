@@ -1,0 +1,33 @@
+# Build, test, lint, and prove the committed results are current: a rerun of
+# the fastest generator must be all cache hits with nothing to commit.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target
+            generators/typify-0.10 -> target
+          cache-targets: false
+      - run: cargo test --workspace
+      - run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Stored results are current
+        run: |
+          cargo run --release -- run --generator typify-0.10 --draft draft7 | tee run.log
+          grep -q "cache: 322 hit, 0 to run" run.log
+          git diff --exit-code -- results RESULTS.md
