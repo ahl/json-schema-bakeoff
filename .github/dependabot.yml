@@ -1,0 +1,55 @@
+# Every generator pins its tool in a standard manifest, so Dependabot does the
+# "is there a new version" half. The results workflow does the other half:
+# on a PR that touches a generator, it reruns that generator and commits the
+# new results/<version>/ directory onto the PR.
+version: 2
+updates:
+  # Rust generators: typify, jsonschema, schemafy, json-schema-rs.
+  - package-ecosystem: cargo
+    directories:
+      - "/generators/*"
+    schedule:
+      interval: weekly
+    # One PR per bump so each becomes its own results directory.
+    open-pull-requests-limit: 10
+
+  # Node generators: quicktype, json-schema-to-zod, ajv, typebox.
+  - package-ecosystem: npm
+    directories:
+      - "/generators/*"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    # Dev tooling (typescript) rides along with the tool it serves.
+    groups:
+      tooling:
+        patterns: ["typescript"]
+
+  # Go generators: go-jsonschema, ogen.
+  - package-ecosystem: gomod
+    directories:
+      - "/generators/*"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+
+  # The test suite itself. A bump reruns every generator; the cache means
+  # only groups whose schema or cases changed are recomputed.
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    schedule:
+      interval: weekly
+
+  # The harness's own dependencies, grouped: they don't change results.
+  - package-ecosystem: cargo
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      harness:
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
