@@ -222,6 +222,25 @@ pub fn language_label(language: &str) -> &str {
     }
 }
 
+/// Order key for scoreboard rows: tool name ascending, then version
+/// descending (newest first), so `typify 0.10.0-alpha.2` precedes
+/// `typify 0.8.0` precedes `typify 0.3.0`. Versions compare by numeric
+/// segments; a prerelease sorts before its release.
+pub fn row_order(identity: &str) -> (String, Vec<i64>, String) {
+    let mut words = identity.split_whitespace();
+    let tool = words.next().unwrap_or("").to_ascii_lowercase();
+    let version = words.next().unwrap_or("").trim_start_matches('v');
+    let (core, pre) = match version.split_once('-') {
+        Some((c, p)) => (c, p.to_string()),
+        None => (version, String::new()),
+    };
+    let mut nums: Vec<i64> = core.split('.').map(|n| n.parse::<i64>().unwrap_or(0)).collect();
+    nums.resize(4, 0);
+    // Descending version: negate. A prerelease is older than the release.
+    let key: Vec<i64> = nums.iter().map(|n| -n).chain([if pre.is_empty() { 0 } else { 1 }]).collect();
+    (tool, key, pre)
+}
+
 /// A short link label for a homepage URL: `crates.io`, `npm`, `GitHub`,
 /// or the host name.
 pub fn homepage_label(url: &str) -> String {

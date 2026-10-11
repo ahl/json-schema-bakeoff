@@ -14,8 +14,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T18:53:33Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:51:12Z |
-| [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | — | — | — | 2026-10-11T19:26:33Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-10-11T18:50:57Z |
+| [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | 30.2% | 26.8% | 27.1% | 2026-10-11T19:27:54Z |
 
 ### Optional tests
 
@@ -27,8 +27,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T18:53:33Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:51:12Z |
-| [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | — | — | — | 2026-10-11T19:26:33Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T18:50:57Z |
+| [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T19:27:54Z |
 
 ## Other languages
 
@@ -123,21 +123,13 @@ and anything that isn't a plain object graph panics. The last release
 (0.6.0) is from October 2021.
 
 **typebox 0.34.52 + schema2typebox 1.7.8** — [GitHub](https://github.com/sinclairzx81/typebox)  
-TypeBox is a TypeScript type builder: `Type.Object({ x: Type.Number() })`
-returns a value that is at once a draft-7 Json Schema fragment and a static
-TypeScript type, and `TypeCompiler`/`Value` check instances against it. Its
-design center is the TypeScript end of the wire — one definition, written
-in TypeScript, yielding both inference and validation — so its checkers
-dispatch on a `Kind` symbol its own constructors attach and refuse a Json
-Schema they didn't build (`Value.Check({ type: 'string' }, 'x')` throws
-"Unknown type"; `Type.Unsafe` only relabels the problem). Coming the other
-way needs a code generator, and `@sinclair/typebox-codegen` has no Json
-Schema front end, so this row uses the one TypeBox's own readme points at:
-schema2typebox emits the `Type.*` source, tsc compiles it, TypeBox's
-compiler checks the cases. That measures both halves of the claim — types
-generated from the schema, validation by the type — at the cost of
-schema2typebox's narrow front end, which wants a recognizable `type` or
-combinator at every level and refuses most of the suite outright.
+TypeBox is a TypeScript type builder: one `Type.Object({...})` definition is
+both a JSON Schema fragment and a static type, and `TypeCompiler` checks
+instances against it. Its design center is the TypeScript end of the wire,
+so its checker refuses schemas it didn't build. Going from JSON Schema to
+TypeBox needs a separate generator; this row uses schema2typebox, the one
+TypeBox's readme points at. Most of what it can't express becomes
+`Type.Unknown()`.
 
 **typify 0.10.0-alpha.2** — [crates.io](https://crates.io/crates/typify)  
 Rust types for serde from JSON Schema, built to generate OpenAPI clients
@@ -147,14 +139,14 @@ type system can say; anything else is silently absent, and a construct it
 can't model fails at generation rather than producing a wrong type. The 0.10
 line is the in-progress rewrite on top of typespace.
 
+**typify 0.8.0** — [crates.io](https://crates.io/crates/typify)  
+The last typify release before the typespace rewrite. Same design center as
+0.10; it's here so the rewrite has something to be measured against.
+
 **typify 0.3.0** — [crates.io](https://crates.io/crates/typify)  
 typify 0.3.0, from December 2024: the version most typify users were on
 before the 0.4 through 0.8 releases and well before the rewrite. Same design
 center; it's here to show how much the last two years moved.
-
-**typify 0.8.0** — [crates.io](https://crates.io/crates/typify)  
-The last typify release before the typespace rewrite. Same design center as
-0.10; it's here so the rewrite has something to be measured against.
 
 ## Notes
 

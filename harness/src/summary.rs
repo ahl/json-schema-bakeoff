@@ -533,7 +533,8 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     s.push_str("# JSON Schema codegen bakeoff\n\n");
     s.push_str("Each row links to that generator's page, which lists every failing group with its error.\n\n");
 
-    let shown: Vec<&Results> = all.iter().filter(|r| !r.hidden).collect();
+    let mut shown: Vec<&Results> = all.iter().filter(|r| !r.hidden).collect();
+    shown.sort_by_key(|r| crate::results::row_order(&r.typify));
     let (rust, other): (Vec<&Results>, Vec<&Results>) = shown.iter().partition(|r| r.language == "rust");
     for (title, rows, show_language) in [("Rust", rust, false), ("Other languages", other, true)] {
         if rows.is_empty() {

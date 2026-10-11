@@ -36,6 +36,10 @@ a `generator.toml` and the three commands it names.
 
 - `typify-0.8`: typify 0.8.0, the last stable release before the typespace
   rewrite. Same integration as `typify-0.10` against the 0.8 API.
+- typify 0.3.0 (December 2024) has a results directory but no generator:
+  it was measured once with a copy of `typify-0.8` pinned to `=0.3.0`, plus a
+  redirect of the tool's stray stdout to stderr, and the glue was then
+  removed. Recreate it that way if it ever needs rerunning.
 - `typify-0.10`: [typify](https://github.com/oxidecomputer/typify) 0.10 line,
   pinned in its `Cargo.toml`. The group's `definitions` are registered with
   `add_ref_types`, then the schema is added with the suggested name `Root`;
@@ -145,3 +149,56 @@ a `generator.toml` and the three commands it names.
   `type: object`, not arbitrary schemas. `$ref` support stops at top-level
   definitions in the same file. See
   [generators/go-jsonschema/README.md](generators/go-jsonschema/README.md).
+- `typebox`: [TypeBox](https://github.com/sinclairzx81/typebox) 0.34 driven
+  by [schema2typebox](https://github.com/xddq/schema2typebox) 1.7, both
+  pinned in its `package.json`. The TypeScript row where the generated
+  artifact *is* the validator: `Type.Object({...})` is simultaneously a
+  draft-7 schema fragment and a static type, and `TypeCompiler` checks
+  instances against it. TypeBox can only check types it built — a raw
+  schema throws `Unknown type`, and `Type.Unsafe` just moves the hole — and
+  `@sinclair/typebox-codegen` has no JSON Schema front end (it maps
+  TypeScript *source* to TypeBox), so the schema goes through
+  schema2typebox, the generator TypeBox's own readme points at. That makes
+  the row **codegen, not raw**: ❌ is schema2typebox declining, and
+  everything from 🦀 on is TypeBox. Its `collect` needs a recognizable
+  `type` or combinator at every level, so only 486 of the 1709 groups
+  produce a module at all — the same wall `json-schema-to-zod` hits,
+  except zod falls through to `z.any()` and accepts (🙈) where this
+  errors. Of the 304 core groups that do compile, 227 pass: every
+  constraint keyword schema2typebox doesn't consume is passed through to
+  the TypeBox options, so lengths, bounds, `pattern`, `uniqueItems`,
+  `additionalProperties: false`, `required` and the combinators are all
+  really enforced. The hole is `type: "object"` with no `properties`,
+  which becomes a bare `Type.Unknown()` and silently discards the rest of
+  the schema — 49 of the 469 modules, and a third of the row's 🙈.
+  No dialect setting; `format` is left unregistered
+  (TypeBox then rejects every value, but no suite group reaches it).
+  Compiled with `tsc`, because the output's `@sinclair/typebox` import
+  mixes type-only and value names and so isn't erasable. See
+  [generators/typebox/README.md](generators/typebox/README.md).
+- `ogen`: [ogen](https://ogen.dev) 1.24 line, pinned in its `go.mod`. An
+  OpenAPI v3 generator, so the odd row out: it has no bare-schema entry
+  point, and each group is wrapped as an OpenAPI **3.1** document whose
+  `components.schemas.Root` is the group's schema (3.1 schema objects *are*
+  JSON Schema 2020-12, so nothing is translated) with one synthetic `POST /`
+  operation taking it as a request body — a component nothing references
+  generates no type. The schema's own top-level members are copied to the
+  document root too, so `#/definitions/x`, `#/$defs/x` and `#` still point
+  where the suite meant; measured, that moves ~15 groups per draft out of ❌
+  and changes the pass count by zero. The check is ogen's own request-body
+  path: decode with the generated `jx` decoder, insist on EOF, then call the
+  generated `Validate()` — ogen splits the work, so skipping the second
+  method would measure half the tool. Client, server and otel generation are
+  off (they change no decision about the schema and cost 25 KB of `net/http`
+  per group); `--infer-types` is left at its default off, which is the single
+  biggest lever here — turning it on takes draft 7 from 19.8% to 32.2%,
+  because the suite's dominant `{"properties": …}` with no `type` is
+  otherwise just `jx.Raw` and accepts everything. That is most of the 645 🙈.
+  No dialect setting: `$schema`, `$id`, `$defs`, `not`, `if`/`then`/`else`,
+  `contains`, `propertyNames` and the `dependent*`/`unevaluated*` families
+  have no field in its schema model at all. `exclusiveMaximum` is a **bool**,
+  so draft 4's spelling is the one it takes and drafts 6+ are a ❌ — the
+  reverse of every other row. The 🦀 are real ogen bugs: a `format` on an
+  untyped schema emits `type Root jx.Raw` plus a decoder returning
+  `netip.Addr`/`time.Time`/`url.URL`. See
+  [generators/ogen/README.md](generators/ogen/README.md).

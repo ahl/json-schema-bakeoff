@@ -1,0 +1,12 @@
+{
+  "name": "bakeoff-typebox",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "TypeBox integration for the JSON Schema codegen bakeoff",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.52",
+    "schema2typebox": "1.7.8",
+    "typescript": "5.9.3"
+  }
+}
