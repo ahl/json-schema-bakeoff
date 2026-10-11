@@ -4,7 +4,9 @@
 # new results/<version>/ directory onto the PR.
 version: 2
 updates:
-  # Rust generators: typify, jsonschema, schemafy, json-schema-rs.
+  # Rust generators: typify, jsonschema, schemafy, json-schema-rs. Only the
+  # tool itself: a generator's other dependencies (schemars, serde) are
+  # pinned to what the tool needs and must not be bumped independently.
   - package-ecosystem: cargo
     directories:
       - "/generators/*"
@@ -12,26 +14,39 @@ updates:
       interval: weekly
     # One PR per bump so each becomes its own results directory.
     open-pull-requests-limit: 10
+    allow:
+      - dependency-name: typify
+      - dependency-name: jsonschema
+      - dependency-name: schemafy_lib
+      - dependency-name: json-schema-rs
 
-  # Node generators: quicktype, json-schema-to-zod, ajv, typebox.
+  # Node generators: quicktype, json-schema-to-zod, ajv, typebox. Tool
+  # packages only; `typescript` is pinned to what each tool's output needs.
   - package-ecosystem: npm
     directories:
       - "/generators/*"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
-    # Dev tooling (typescript) rides along with the tool it serves.
-    groups:
-      tooling:
-        patterns: ["typescript"]
+    allow:
+      - dependency-name: quicktype-core
+      - dependency-name: json-schema-to-zod
+      - dependency-name: zod
+      - dependency-name: ajv
+      - dependency-name: ajv-draft-04
+      - dependency-name: "@sinclair/typebox"
+      - dependency-name: schema2typebox
 
-  # Go generators: go-jsonschema, ogen.
+  # Go generators: go-jsonschema, ogen. Tool modules only.
   - package-ecosystem: gomod
     directories:
       - "/generators/*"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    allow:
+      - dependency-name: github.com/atombender/go-jsonschema
+      - dependency-name: github.com/ogen-go/ogen
 
   # The test suite itself. A bump reruns every generator; the cache means
   # only groups whose schema or cases changed are recomputed.
