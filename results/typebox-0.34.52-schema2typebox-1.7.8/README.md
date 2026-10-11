@@ -1,22 +1,14 @@
 # typebox 0.34.52 + schema2typebox 1.7.8
 
-TypeBox is a TypeScript type builder: `Type.Object({ x: Type.Number() })`
-returns a value that is at once a draft-7 Json Schema fragment and a static
-TypeScript type, and `TypeCompiler`/`Value` check instances against it. Its
-design center is the TypeScript end of the wire — one definition, written
-in TypeScript, yielding both inference and validation — so its checkers
-dispatch on a `Kind` symbol its own constructors attach and refuse a Json
-Schema they didn't build (`Value.Check({ type: 'string' }, 'x')` throws
-"Unknown type"; `Type.Unsafe` only relabels the problem). Coming the other
-way needs a code generator, and `@sinclair/typebox-codegen` has no Json
-Schema front end, so this row uses the one TypeBox's own readme points at:
-schema2typebox emits the `Type.*` source, tsc compiles it, TypeBox's
-compiler checks the cases. That measures both halves of the claim — types
-generated from the schema, validation by the type — at the cost of
-schema2typebox's narrow front end, which wants a recognizable `type` or
-combinator at every level and refuses most of the suite outright.
+TypeBox is a TypeScript type builder: one `Type.Object({...})` definition is
+both a JSON Schema fragment and a static type, and `TypeCompiler` checks
+instances against it. Its design center is the TypeScript end of the wire,
+so its checker refuses schemas it didn't build. Going from JSON Schema to
+TypeBox needs a separate generator; this row uses schema2typebox, the one
+TypeBox's readme points at. Most of what it can't express becomes
+`Type.Unknown()`.
 
-_generated 2026-10-11T18:56:42Z_
+_generated 2026-10-11T19:24:11Z_
 
 **227 of 1408 non-optional groups pass (16.1%)**; 301 optional groups reported separately
 
@@ -481,7 +473,7 @@ Per group:
 
 - **16×** `SyntaxError: Argument expression expected. (6:28)`
 - **15×** `Error: Unsupported schema. Did not match any type of the parsers. Schema was: {"properties":{"bar":{"type":"integer"}},"required":["bar"]}`
-- **15×** `ResolverError: Error opening file "<repo>/generators/typebox/folderInteger.json"`
+- **15×** `ResolverError: Error reading "<repo>/generators/typebox/folderInteger.json": the bakeoff forbids filesystem access`
 - **11×** `Error: Unsupported schema. Did not match any type of the parsers. Schema was: {"$schema":"https://json-schema.org/draft/2019-09/schema","contains":{"const":1},"…`
 - **11×** `Error: Unsupported schema. Did not match any type of the parsers. Schema was: {"$schema":"https://json-schema.org/draft/2020-12/schema","contains":{"const":1},"…`
 

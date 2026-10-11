@@ -34,6 +34,25 @@ struct Status {
 
 const TIMEOUT: Duration = Duration::from_secs(60);
 
+// typify 0.3 prints schemas to stdout while converting (a stray debug
+// println in if/then/else handling), which would corrupt the protocol. Send
+// fd 1 to stderr for the whole run and keep a private copy of the real
+// stdout for the status array.
+unsafe extern "C" {
+    fn dup(fd: i32) -> i32;
+    fn dup2(src: i32, dst: i32) -> i32;
+}
+
+fn protocol_stdout() -> std::fs::File {
+    use std::os::fd::FromRawFd;
+    unsafe {
+        let saved = dup(1);
+        assert!(saved >= 0, "dup(1) failed");
+        assert!(dup2(2, 1) >= 0, "dup2(2, 1) failed");
+        std::fs::File::from_raw_fd(saved)
+    }
+}
+
 fn main() -> Result<()> {
     crashguard::install();
     let args: Vec<String> = std::env::args().collect();
@@ -42,12 +61,15 @@ fn main() -> Result<()> {
             println!("{}", generate::VERSION);
             Ok(())
         }
-        [_, "generate", out_dir] => generate_all(PathBuf::from(out_dir)),
+        [_, "generate", out_dir] => {
+            let mut out = protocol_stdout();
+            generate_all(PathBuf::from(out_dir), &mut out)
+        }
         _ => anyhow::bail!("usage: version | generate <out_dir>"),
     }
 }
 
-fn generate_all(out_dir: PathBuf) -> Result<()> {
+fn generate_all(out_dir: PathBuf, out: &mut std::fs::File) -> Result<()> {
     std::fs::create_dir_all(&out_dir)?;
     let groups: Vec<Group> = serde_json::from_reader(std::io::stdin().lock()).context("reading groups from stdin")?;
     let mut statuses = Vec::with_capacity(groups.len());
@@ -68,6 +90,7 @@ fn generate_all(out_dir: PathBuf) -> Result<()> {
         };
         statuses.push(status);
     }
-    println!("{}", serde_json::to_string(&statuses)?);
+    use std::io::Write;
+    writeln!(out, "{}", serde_json::to_string(&statuses)?)?;
     Ok(())
 }

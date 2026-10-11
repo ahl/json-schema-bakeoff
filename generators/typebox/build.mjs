@@ -1,0 +1,509 @@
+//! `build.mjs <gen_dir> <batch_dir>`: the build step of the generator
+//! contract.
+//!
+//! Reads a JSON array of module keys on stdin, compiles them together with
+//! `tsc`, attributes diagnostics back to keys, drops the failures, probes
+//! what is left for modules that throw on load, and prints
+//! `{"outcomes": {key: "ok" | {"fail": diagnostic}}, "runner": [exe, ...]}`
+//! on stdout. Everything else goes to stderr.
+//!
+//! ## Two failure gates, both `compile_fail`
+//!
+//! 1. **`tsc`.** schema2typebox's output is *not* erasable TypeScript — it
+//!    writes `import { Kind, SchemaOptions, Static, TSchema, TUnion, Type,
+//!    TypeRegistry } from "@sinclair/typebox"` with the type-only names on
+//!    the same value import, which node's type stripping would turn into a
+//!    runtime `SyntaxError: ... does not provide an export named
+//!    'SchemaOptions'`. So there is a real compiler here, unlike the
+//!    `json-schema-to-zod` row. That is also the right measurement for
+//!    this tool: the whole point of TypeBox is that the generated value
+//!    *is* a static type, so a type error in the generated code is a
+//!    result, not a harness artifact. `Type.Array([])` and `const T =
+//!    true` are both caught here.
+//! 2. **the load probe** (probe.mjs). TypeBox validates at type
+//!    construction and again in `TypeCompiler.Compile`, and the generated
+//!    modules do both in their body.
+//!
+//! `tsc` is configured the way the `quicktype` typescript target
+//! configures it — `strict: false`, `noImplicitAny: false`, `types: []`,
+//! `skipLibCheck: true` — so the diagnostics that survive are about the
+//! generated code and not about the strictness dial.
+//!
+//! The pass loop is rust-batch's shape: a compiler only reports so much
+//! before it gives up, so one pass can't find every broken module. Blame
+//! each diagnostic on the file it names, drop those modules, compile
+//! again.
+//!
+//! The runner is plain CommonJS written straight into `out/`, not
+//! TypeScript: it needs no types, and keeping it out of the `tsc` graph
+//! means the surviving set can be fixed up after the probe without another
+//! compile. It loads its modules by `require`, so a key that isn't there
+//! is reported as a panic rather than taking the process down.
+
+import { ensureDeps, quietStdout, writeAll, HERE } from "./deps.mjs";
+import { spawnSync } from "node:child_process";
+import { existsSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { basename, join } from "node:path";
+
+/** How many compile passes we'll spend shaking out broken modules. */
+const MAX_PASSES = 10;
+
+/** Cap on stored diagnostic text per module; these end up in results.json. */
+const MAX_DIAG_LEN = 4000;
+
+/**
+ * How long a probe process gets, as a function of how many modules it
+ * still has to load.
+ *
+ * `spawnSync` can only bound the whole process, not the gap between two
+ * lines, so the cap has to cover a whole draft's worth of loads. Each one
+ * is a `require` plus a `TypeCompiler.Compile`, i.e. milliseconds, so this
+ * is two orders of magnitude of slack: a loaded machine must not turn into
+ * a spurious `compile_fail`.
+ */
+const PROBE_BASE_MS = 60_000;
+const PROBE_PER_MODULE_MS = 250;
+
+/**
+ * How long one `tsc` pass gets. A whole draft compiles in a second or two;
+ * the point of the bound is that a hung compiler must not hang the run
+ * with nothing to show for it.
+ */
+const COMPILE_BASE_MS = 120_000;
+const COMPILE_PER_MODULE_MS = 500;
+
+/** How long the canary module gets to prove the batch dir works. */
+const CANARY_TIMEOUT_MS = 60_000;
+
+/** How much of a dead probe's stderr to keep. */
+const STDERR_TAIL = 800;
+
+const [, , genDir, batchDir] = process.argv;
+if (!genDir || !batchDir) {
+  process.stderr.write("usage: build.mjs <gen_dir> <batch_dir>\n");
+  process.exit(2);
+}
+
+const chunks = [];
+for await (const chunk of process.stdin) chunks.push(chunk);
+const keys = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+
+// stdout is the protocol from here on.
+quietStdout();
+ensureDeps();
+
+const outDir = join(batchDir, "out");
+
+function truncate(s, max = MAX_DIAG_LEN) {
+  return s.length <= max ? s : `${s.slice(0, max)}\n... (truncated)`;
+}
+
+function tail(s, max = STDERR_TAIL) {
+  const t = s.trim();
+  return t.length <= max ? t : `...${t.slice(t.length - max)}`;
+}
+
+/**
+ * The runner, as the protocol in DESIGN.md defines it.
+ *
+ * Numbers come in through `JSON.parse`'s reviver `source`, which hands
+ * over the literal text the suite wrote, and go back out through
+ * `rawStringify`, so `__conformanceCheck` receives the original digits and
+ * does its own `JSON.parse`. Where precision stops is then JavaScript's
+ * business — a 50-digit integer is a float64 by the time TypeBox sees it,
+ * which is exactly what a user of this tool would get.
+ */
+function runnerSource(alive) {
+  return `// Generated by the bakeoff harness. See DESIGN.md for the runner protocol.
+"use strict";
+const fs = require("fs");
+const path = require("path");
+
+/**
+ * Stdout is the protocol. The modules below are the tool's code running in
+ * this process, and an asynchronous \`process.stdout.write\` from one of
+ * them could interleave inside a \`writeSync\` line and split it in half,
+ * which the harness would read as a missing outcome. Send stray writes to
+ * stderr instead.
+ */
+process.stdout.write = function (chunk, enc, cb) {
+  return process.stderr.write(chunk, enc, cb);
+};
+
+const KEYS = ${JSON.stringify(alive)};
+
+/**
+ * Load every surviving module. The build step already dropped the ones
+ * that throw on load, so this should be quiet; a key that fails anyway is
+ * left out of the table and reported per case instead of killing the run.
+ */
+const MODULES = Object.create(null);
+for (const key of KEYS) {
+  try {
+    MODULES[key] = require(path.join(__dirname, key + ".js")).__conformanceCheck;
+  } catch (e) {
+    fs.writeSync(2, "runner: " + key + " failed to load: " + (e && e.message) + "\\n");
+  }
+}
+
+/** A number kept as the text the suite wrote, not as a float64. */
+class RawNumber {
+  constructor(text) {
+    this.text = text;
+  }
+}
+
+function parseCases(text) {
+  return JSON.parse(text, function (_key, value, context) {
+    if (typeof value === "number" && context && typeof context.source === "string") {
+      return new RawNumber(context.source);
+    }
+    return value;
+  });
+}
+
+/** JSON.stringify, but numbers come back out exactly as they went in. */
+function rawStringify(value) {
+  if (value instanceof RawNumber) return value.text;
+  if (value === null) return "null";
+  if (Array.isArray(value)) return "[" + value.map(rawStringify).join(",") + "]";
+  if (typeof value === "object") {
+    const parts = [];
+    for (const key of Object.keys(value)) {
+      parts.push(JSON.stringify(key) + ":" + rawStringify(value[key]));
+    }
+    return "{" + parts.join(",") + "}";
+  }
+  return JSON.stringify(value);
+}
+
+function emit(value) {
+  // stdout is a pipe, where process.stdout.write is asynchronous and the
+  // harness may be waiting on this very line. writeSync on a pipe can
+  // stop short (and raise EAGAIN once the pipe is full), so loop: half a
+  // line of JSON is a line the harness can't parse.
+  const buf = Buffer.from(JSON.stringify(value) + "\\n", "utf8");
+  let off = 0;
+  while (off < buf.length) {
+    try {
+      off += fs.writeSync(1, buf, off, buf.length - off);
+    } catch (e) {
+      if (!e || e.code !== "EAGAIN") throw e;
+    }
+  }
+}
+
+function describe(e) {
+  const text = e && e.message ? String(e.message) : String(e);
+  return text.length > 1000 ? text.slice(0, 1000) + "..." : text;
+}
+
+function main() {
+  if (process.argv.length !== 4) {
+    fs.writeSync(2, "usage: runner <cases.json> <start-index>\\n");
+    process.exit(2);
+  }
+  const cases = parseCases(fs.readFileSync(process.argv[2], "utf8"));
+  const start = Number.parseInt(process.argv[3], 10);
+
+  emit({ ready: start });
+  for (let i = start; i < cases.length; i++) {
+    const check = MODULES[cases[i].key];
+    let outcome;
+    if (typeof check !== "function") {
+      outcome = { panic: "module not compiled" };
+    } else {
+      try {
+        check(rawStringify(cases[i].data));
+        outcome = "accept";
+      } catch (e) {
+        // Nothing \`__conformanceCheck\` throws is distinguishable from an
+        // ordinary mismatch, so everything caught here is a reject; only a
+        // dead process counts as a panic, and that one the harness sees
+        // for itself.
+        outcome = { reject: describe(e) };
+      }
+    }
+    emit({ case: { i: i, r: outcome } });
+  }
+}
+
+main();
+`;
+}
+
+function tsconfig(alive) {
+  return JSON.stringify(
+    {
+      compilerOptions: {
+        target: "es2020",
+        lib: ["es2020"],
+        module: "commonjs",
+        moduleResolution: "node",
+        outDir: "out",
+        rootDir: ".",
+        strict: false,
+        noImplicitAny: false,
+        skipLibCheck: true,
+        // No ambient type packages: the generated modules import only
+        // @sinclair/typebox and the runner isn't in this graph.
+        types: [],
+        forceConsistentCasingInFileNames: false,
+      },
+      files: alive.map((k) => `${k}.ts`),
+    },
+    null,
+    2,
+  );
+}
+
+/** `g_abc.ts(12,3): error TS2322: ...`, blamed on the file's stem. */
+function attributeTs(output, alive) {
+  const live = new Set(alive);
+  const errors = {};
+  const unattributed = [];
+  let current = null;
+  for (const raw of output.split("\n")) {
+    const line = raw.trimEnd();
+    if (!line) continue;
+    const span = line.match(/^(?:\.[\\/])?(\S+?)\.ts\((\d+),(\d+)\):/);
+    if (span) {
+      const key = basename(span[1]);
+      current = live.has(key) ? key : null;
+    } else if (/^\S/.test(line)) {
+      // A diagnostic with no file (TS18003, option errors) ends the run
+      // of continuation lines belonging to the previous one.
+      current = null;
+    }
+    if (current) {
+      errors[current] = (errors[current] ?? "") + line + "\n";
+    } else if (!/^(error TS18003|\s)/.test(line)) {
+      unattributed.push(line);
+    }
+  }
+  return { errors, unattributed };
+}
+
+/**
+ * Stage the batch: the emitted modules, a `node_modules/@sinclair` symlink
+ * so `@sinclair/typebox` resolves from a directory under `target/` that
+ * has no install of its own, and a `"type": "commonjs"` marker in `out/`
+ * so node reads what tsc emits as CommonJS.
+ */
+function stage() {
+  rmSync(batchDir, { recursive: true, force: true });
+  mkdirSync(join(batchDir, "node_modules"), { recursive: true });
+  symlinkSync(join(HERE, "node_modules", "@sinclair"), join(batchDir, "node_modules", "@sinclair"), "dir");
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(join(outDir, "package.json"), '{ "type": "commonjs" }\n');
+  for (const key of keys) {
+    writeFileSync(join(batchDir, `${key}.ts`), readFileSync(join(genDir, `${key}.ts`)));
+  }
+  // keys.json is the probe's input and is written by `probe()`, which
+  // knows which modules survived the compiler.
+}
+
+/**
+ * Prove that the batch directory can compile and run a TypeBox module at
+ * all, before blaming any of the tool's output for failing.
+ *
+ * Every module imports `@sinclair/typebox` and compiles a checker, so a
+ * broken install, a missing symlink or a bad tsconfig fails all of them
+ * identically — and the pass loop would dutifully record a few thousand
+ * `compile_fail`s that say nothing about the tool. An error we can't
+ * attribute to a module has to be a hard failure instead.
+ */
+function canary(tsc) {
+  const name = "__canary";
+  writeFileSync(
+    join(batchDir, `${name}.ts`),
+    // The tail is the block generate.mjs appends to every module, over a
+    // trivial Root. It is in here so that a TypeBox release that renamed
+    // `Errors()`/`First()` or changed `ValueError` fails the build step
+    // once, loudly, instead of producing one identical tsc diagnostic per
+    // generated module — which is precisely the unattributable failure
+    // the canary exists to catch.
+    `// Written by build.mjs: proof that this directory can build a module.
+import { Type } from "@sinclair/typebox";
+import { TypeCompiler as __TypeCompiler } from "@sinclair/typebox/compiler";
+
+export const Root = Type.String({ maxLength: 2 });
+
+const __checker = __TypeCompiler.Compile(Root);
+
+export function __conformanceCheck(json: string): void {
+  const value: unknown = JSON.parse(json);
+  if (__checker.Check(value)) return;
+  const first: any = __checker.Errors(value).First();
+  if (first === undefined) throw new Error("the value does not match the type");
+  throw new Error(\`\${first.message} at \${first.path === "" ? "<root>" : first.path}\`);
+}
+
+__conformanceCheck('"ab"');
+try {
+  __conformanceCheck('"abc"');
+  throw new Error("TypeBox accepted a string longer than maxLength");
+} catch (e: any) {
+  if (!/expected string length/i.test(String(e && e.message))) throw e;
+}
+`,
+  );
+  writeFileSync(join(batchDir, "tsconfig.canary.json"), tsconfig([name]));
+  const built = spawnSync(tsc, ["--pretty", "false", "-p", join(batchDir, "tsconfig.canary.json")], {
+    cwd: batchDir,
+    encoding: "utf8",
+    timeout: CANARY_TIMEOUT_MS,
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (built.error) throw built.error;
+  if (built.status !== 0) {
+    throw new Error(
+      `${name}.ts does not compile in ${batchDir}, so no generated module there could either: ` +
+        `that's a broken install, symlink or tsconfig, not a bad schema.\n${tail(`${built.stdout ?? ""}\n${built.stderr ?? ""}`, 4000)}`,
+    );
+  }
+  const ran = spawnSync(process.execPath, [join(outDir, `${name}.js`)], {
+    cwd: outDir,
+    encoding: "utf8",
+    timeout: CANARY_TIMEOUT_MS,
+  });
+  if (ran.error) throw ran.error;
+  if (ran.status !== 0) {
+    throw new Error(
+      `${name}.js does not run (status ${ran.status}, signal ${ran.signal}): that's the install, not a bad schema.\n` +
+        tail(ran.stderr ?? "", 4000),
+    );
+  }
+}
+
+/**
+ * Compile every module, dropping whatever tsc blames, until it is clean.
+ * Returns `{key: diagnostic}` for the modules that didn't make it.
+ */
+function compile(tsc) {
+  const failures = {};
+  let alive = [...keys];
+  for (let pass = 0; pass < MAX_PASSES; pass++) {
+    if (alive.length === 0) return failures;
+    writeFileSync(join(batchDir, "tsconfig.json"), tsconfig(alive));
+    const out = spawnSync(tsc, ["--pretty", "false", "-p", join(batchDir, "tsconfig.json")], {
+      cwd: batchDir,
+      encoding: "utf8",
+      timeout: COMPILE_BASE_MS + alive.length * COMPILE_PER_MODULE_MS,
+      maxBuffer: 256 * 1024 * 1024,
+    });
+    if (out.error) throw out.error;
+    if (out.status === 0) return failures;
+    const text = `${out.stdout ?? ""}\n${out.stderr ?? ""}`;
+    const { errors, unattributed } = attributeTs(text, alive);
+    if (Object.keys(errors).length === 0) {
+      throw new Error(`tsc failed with no attributable errors:\n${unattributed.join("\n")}`);
+    }
+    // Diagnostics that name no module are not a module's fault; they may
+    // be a global problem that happens to coincide with a bad module, so
+    // say so rather than dropping them on the floor.
+    if (unattributed.length > 0) {
+      process.stderr.write(`typebox: tsc said, with no module to blame:\n${unattributed.join("\n")}\n`);
+    }
+    process.stderr.write(`typebox: tsc dropping ${Object.keys(errors).length} module(s) after pass ${pass + 1}\n`);
+    for (const [key, diag] of Object.entries(errors)) {
+      // Capped like the probe's: a TObject/TIntersect mismatch prints
+      // expanded types and these end up in committed results.json.
+      failures[key] ??= truncate(diag.trimEnd());
+    }
+    alive = alive.filter((k) => !(k in errors));
+  }
+  throw new Error(`tsc still failing after ${MAX_PASSES} passes (${alive.length} modules left)`);
+}
+
+/**
+ * Load every compiled module once and return `{key: diagnostic}` for the
+ * ones that don't load.
+ *
+ * The probe reports an absolute index per module and flushes, so a key
+ * that never reports is the one that killed the process; restart past it.
+ * A probe that doesn't even print `ready` never reached its first load, so
+ * there is nothing to blame a module for — that one is ours.
+ */
+function probe(compiled) {
+  writeFileSync(join(batchDir, "keys.json"), JSON.stringify(compiled));
+  const failures = {};
+  let next = 0;
+  while (next < compiled.length) {
+    const limit = PROBE_BASE_MS + (compiled.length - next) * PROBE_PER_MODULE_MS;
+    const out = spawnSync(process.execPath, [join(HERE, "probe.mjs"), batchDir, String(next)], {
+      cwd: batchDir,
+      encoding: "utf8",
+      timeout: limit,
+      maxBuffer: 256 * 1024 * 1024,
+    });
+    const timedOut = out.error !== undefined && out.error !== null && out.error.code === "ETIMEDOUT";
+    if (out.error && !timedOut) throw out.error;
+
+    let ready = false;
+    let last = next - 1;
+    for (const line of (out.stdout ?? "").split("\n")) {
+      if (!line.trim()) continue;
+      let rec;
+      try {
+        rec = JSON.parse(line);
+      } catch {
+        continue;
+      }
+      if (rec.ready === next) ready = true;
+      if (typeof rec.i !== "number" || rec.i < next || rec.i >= compiled.length) continue;
+      // Anything but a literal "ok" is a failure, including a line whose
+      // shape we don't recognize: reading `.fail` off it unguarded would
+      // throw out of the build step and cost the whole draft.
+      if (rec.r !== "ok") {
+        const fail = rec.r !== null && typeof rec.r === "object" ? rec.r.fail : undefined;
+        failures[compiled[rec.i]] = truncate(String(fail ?? `probe reported ${JSON.stringify(rec.r)}`));
+      }
+      if (rec.i > last) last = rec.i;
+    }
+    if (!ready) {
+      throw new Error(
+        `probe.mjs never started on ${batchDir} from index ${next} ` +
+          `(${timedOut ? `no output within ${limit}ms` : `status ${out.status}, signal ${out.signal}`}): ` +
+          `that's the probe, not a module.\n${tail(out.stderr ?? "", 4000)}`,
+      );
+    }
+
+    if (last >= compiled.length - 1) break;
+    // Whatever comes after the last module that reported is the one that
+    // took the process down.
+    const dead = last + 1;
+    const how = timedOut
+      ? `no progress within ${limit}ms`
+      : out.signal
+        ? `killed by ${out.signal}`
+        : `exit status ${out.status}`;
+    failures[compiled[dead]] = truncate(
+      `loading this module killed the probe process (${how}); stderr: ${tail(out.stderr ?? "")}`,
+    );
+    process.stderr.write(`typebox: probe died on ${compiled[dead]} (${how}), restarting\n`);
+    next = dead + 1;
+  }
+  return failures;
+}
+
+const tsc = join(HERE, "node_modules", ".bin", "tsc");
+if (!existsSync(tsc)) throw new Error(`no tsc at ${tsc}`);
+
+stage();
+canary(tsc);
+const failures = compile(tsc);
+const compiled = keys.filter((k) => !(k in failures));
+process.stderr.write(`typebox: ${compiled.length} of ${keys.length} module(s) compile\n`);
+Object.assign(failures, probe(compiled));
+const alive = compiled.filter((k) => !(k in failures));
+process.stderr.write(`typebox: ${alive.length} of ${keys.length} module(s) load\n`);
+
+const runnerPath = join(outDir, "runner.js");
+writeFileSync(runnerPath, runnerSource(alive));
+
+const outcomes = {};
+for (const key of keys) {
+  outcomes[key] = key in failures ? { fail: failures[key] } : "ok";
+}
+writeAll(1, JSON.stringify({ outcomes, runner: alive.length ? [process.execPath, runnerPath] : [] }) + "\n");

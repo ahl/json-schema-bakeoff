@@ -1,0 +1,25 @@
+# Integration for TypeBox. The exact versions come from the pinned npm
+# packages (see package.json) and name the results directory:
+# `typebox 0.34.52 + schema2typebox 1.7.8`.
+name = "typebox"
+
+# The generated modules are TypeScript and are compiled with tsc, because
+# schema2typebox's output is not erasable (its `@sinclair/typebox` import
+# mixes type-only and value names) — see build.mjs.
+language = "typescript"
+homepage = "https://github.com/sinclairzx81/typebox"
+description = """
+TypeBox is a TypeScript type builder: one `Type.Object({...})` definition is
+both a JSON Schema fragment and a static type, and `TypeCompiler` checks
+instances against it. Its design center is the TypeScript end of the wire,
+so its checker refuses schemas it didn't build. Going from JSON Schema to
+TypeBox needs a separate generator; this row uses schema2typebox, the one
+TypeBox's readme points at. Most of what it can't express becomes
+`Type.Unknown()`.
+"""
+
+[commands]
+# Run with cwd = this directory. {out_dir}/{gen_dir}/{batch_dir} are absolute.
+version  = "node generate.mjs version"
+generate = "node generate.mjs generate {out_dir}"
+build    = "node build.mjs {gen_dir} {batch_dir}"
