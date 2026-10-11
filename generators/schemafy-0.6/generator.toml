@@ -4,18 +4,14 @@
 name = "schemafy-0.6"
 
 language = "rust"
+homepage = "https://crates.io/crates/schemafy_lib"
 description = """
-schemafy is the original Rust JSON Schema → serde generator (2017), usually
-used through the `schemafy!` proc macro that drops types for a schema file
-straight into a module. Its design center is a hand-written draft-4 schema
-you own and keep working: walk `properties` and `definitions`, name a struct
-or an alias for each, and otherwise get out of the way. It models only
-structure — "no checking such as `min_value` is done" — so validation
-keywords become comments at best, unknown keywords are dropped, and anything
-that isn't a plain object graph (`oneOf` without `$ref`s, a boolean schema,
-a `$ref` it can't find) panics rather than degrading. `schemafy_lib` is the
-library behind the macro, and the generator here calls its `Expander`
-directly.
+The original Rust JSON Schema → serde generator, usually used through the
+`schemafy!` macro. Its design center is a hand-written draft-4 schema you own:
+walk `properties` and `definitions`, name a struct or alias for each, and
+get out of the way. It models structure only, so validation keywords vanish
+and anything that isn't a plain object graph panics. The last release
+(0.6.0) is from October 2021.
 """
 
 [commands]

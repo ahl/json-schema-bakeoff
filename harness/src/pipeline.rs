@@ -14,7 +14,7 @@ use std::time::{Duration, Instant};
 
 /// Bump when the pipeline changes in a way that invalidates stored results
 /// (e.g. the runner protocol semantics or the bucket rules).
-const HARNESS_REV: &str = "3";
+const HARNESS_REV: &str = "4";
 
 const RUN_TIMEOUT: Duration = Duration::from_secs(120);
 
@@ -118,6 +118,45 @@ pub fn run(opts: RunOpts) -> Result<()> {
         }
     }
     Ok(())
+}
+
+/// Make stored error text machine-independent and deterministic: the
+/// cargo registry path and the repo root become placeholders, and the Rust
+/// runtime's thread id in "thread 'x' (12345) panicked" is dropped.
+fn scrub(text: &str, root: &Path) -> String {
+    let mut out = text.to_string();
+    if let Some(home) = std::env::var_os("HOME") {
+        let registry = Path::new(&home).join(".cargo").join("registry").join("src");
+        let prefix = registry.to_string_lossy().into_owned();
+        // <registry>/index.crates.io-<hash>/crate-1.2.3/... -> <registry>/crate-1.2.3/...
+        while let Some(i) = out.find(&prefix) {
+            let rest = &out[i + prefix.len()..];
+            let rest = rest.strip_prefix('/').unwrap_or(rest);
+            let after_index = match rest.find('/') {
+                Some(j) if rest.starts_with("index.") => &rest[j + 1..],
+                _ => rest,
+            };
+            out = format!("{}<registry>/{}", &out[..i], after_index);
+        }
+    }
+    let root_s = root.to_string_lossy().into_owned();
+    out = out.replace(&root_s, "<repo>");
+    // thread 'name' (123456) panicked -> thread 'name' panicked
+    let mut result = String::with_capacity(out.len());
+    let mut rest = out.as_str();
+    while let Some(i) = rest.find("' (") {
+        let tail = &rest[i + 3..];
+        let digits = tail.chars().take_while(|c| c.is_ascii_digit()).count();
+        if digits > 0 && tail[digits..].starts_with(") panicked") {
+            result.push_str(&rest[..i + 1]);
+            rest = &tail[digits + 1..];
+        } else {
+            result.push_str(&rest[..i + 3]);
+            rest = tail;
+        }
+    }
+    result.push_str(rest);
+    result
 }
 
 /// Per-group state as it flows through the pipeline.
@@ -292,6 +331,14 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
             }
             other => anyhow::bail!("{}: unknown generate status {other:?} for {}", flavor.generator.name, group.id()),
         };
+        let error = error.map(|e| scrub(&e, &root));
+        let cases = cases
+            .into_iter()
+            .map(|mut c| {
+                c.error = c.error.map(|e| scrub(&e, &root));
+                c
+            })
+            .collect();
         item.result = Some(GroupResult {
             id: group.id(),
             draft: group.draft.clone(),
@@ -455,4 +502,22 @@ fn chrono_free_timestamp() -> String {
     let mo = if mp < 10 { mp + 3 } else { mp - 9 };
     let y = if mo <= 2 { y + 1 } else { y };
     format!("{y:04}-{mo:02}-{d:02}T{h:02}:{m:02}:{s:02}Z")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn scrub_makes_text_portable() {
+        let home = std::env::var("HOME").unwrap();
+        let text = format!(
+            "thread 'generate' (44836953) panicked at {home}/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/schemafy_lib-0.6.0/src/lib.rs:696 in /tmp/repo/x"
+        );
+        assert_eq!(
+            scrub(&text, Path::new("/tmp/repo")),
+            "thread 'generate' panicked at <registry>/schemafy_lib-0.6.0/src/lib.rs:696 in <repo>/x"
+        );
+        assert_eq!(scrub("plain", Path::new("/nowhere")), "plain");
+    }
 }
