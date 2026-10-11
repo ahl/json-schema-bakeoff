@@ -130,7 +130,11 @@ One per group, worst to best. `cargo run -- key` prints the glyphs.
 | ✅ | pass | every case matched |
 
 `false_accept` and `false_reject` stay separate because they have different
-causes and fixes. The first error message or panic text is stored for every
+causes and fixes. A tool that reports success but emits no root type (Go
+tools that skip an untyped root, schemafy on a self-referential root) is
+not a `generation_error`: the generator writes the module as emitted, and
+the missing `Root` lands in `compile_fail` with the compiler's own
+diagnostic. Two generators chose this independently; keep it consistent. The first error message or panic text is stored for every
 non-pass group, plus per-case detail.
 
 ## Caching and idempotence

@@ -2,19 +2,16 @@
 # module (see go.mod) and names the results directory.
 name = "go-jsonschema"
 language = "go"
+homepage = "https://github.com/omissis/go-jsonschema"
 
 description = """
-go-jsonschema (github.com/omissis/go-jsonschema, module path
-github.com/atombender/go-jsonschema) turns JSON Schema into Go structs plus
-hand-rolled `UnmarshalJSON` methods that re-check the schema's validation
-keywords as they decode. Its design center is a configuration file with a
-known shape: a schema whose root declares `type: object` becomes a struct
-whose fields carry `json`/`yaml`/`mapstructure` tags, and required fields,
-enums, string lengths, patterns and numeric bounds are enforced in the
-generated unmarshaller rather than left to the type system. The flip side is
-that a schema whose root has no `type` keyword produces no root type at all,
-and the combinators (`allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`,
-`const`) are reduced to `interface{}`.
+Go structs from JSON Schema, plus hand-written `UnmarshalJSON` methods that
+re-check the schema's keywords while decoding. Its design center is a config
+file with a known shape: a root that declares `type: object` becomes a tagged
+struct, and `required`, `enum`, lengths, patterns and bounds are enforced in
+the unmarshaller rather than left to the type system. The flip side is that a
+root with no `type` keyword produces no root type at all, and the combinators
+collapse into a merged type or `interface{}`.
 """
 
 [commands]
