@@ -183,6 +183,10 @@ pub struct Results {
     /// time and generates no types).
     #[serde(default)]
     pub kind: String,
+    /// Kept out of the scoreboard tables; the page is still rendered.
+    /// Set in generator.toml, or by hand in this file (a rerun keeps it).
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub hidden: bool,
     /// The newest `generated_at` among the groups.
     pub generated_at: String,
     pub groups: Vec<GroupResult>,

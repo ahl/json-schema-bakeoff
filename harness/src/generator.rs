@@ -8,6 +8,7 @@
 //! description = "What the tool is and what it's designed for."
 //! language = "rust"                         # or per target via [languages]
 //! kind = "validator"                        # optional; default "generator"
+//! hidden = true                             # optional; keep off the scoreboard tables
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
@@ -51,6 +52,10 @@ struct Manifest {
     /// instances against the schema at run time and generates no types.
     #[serde(default)]
     kind: Option<String>,
+    /// Keep the row out of the scoreboard tables (its page is still
+    /// rendered and linked from the bottom of RESULTS.md).
+    #[serde(default)]
+    hidden: bool,
     commands: Commands,
 }
 
@@ -67,6 +72,7 @@ pub struct Generator {
     pub description: String,
     /// `generator` or `validator`.
     pub kind: String,
+    pub hidden: bool,
     language: Option<String>,
     languages: BTreeMap<String, String>,
     pub dir: PathBuf,
@@ -129,6 +135,7 @@ fn load_dir(root: &Path, dir: &Path) -> Result<Generator> {
         name: m.name,
         description: m.description.trim().to_string(),
         kind: m.kind.unwrap_or_else(|| "generator".to_string()),
+        hidden: m.hidden,
         language: m.language,
         languages: m.languages,
         dir: dir.to_path_buf(),
