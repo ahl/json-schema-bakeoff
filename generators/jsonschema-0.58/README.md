@@ -110,13 +110,16 @@ by not resolving them.
 
 ## Formats
 
-Asserted in every draft with `should_validate_formats(true)`. The crate's
-default follows the spec (an assertion in draft 4/6/7, an annotation from
-2019-09 on), and with the default the row read 100% on `optional/format` for
-the old drafts and 🙈 on 24 groups in each of the new ones. The row exists to
-show the ceiling rather than the default, and jsonschema has a checker for
-every format the suite tests, so the option is on and the optional column is
-100% across the board.
+Left at the crate's default, which is the spec's: `format` is an assertion in
+draft 4/6/7 and an annotation from 2019-09 on. That split shows in the
+results: `optional/format` is 100% for the old drafts and 🙈 on 24 groups in
+each of the new ones, where an invalid string passes because `format` is only
+an annotation there.
+
+`should_validate_formats(true)` was tried. It clears those 48 optional groups
+but fails 19 *required* 2020-12 groups: `format.json` there has a case per
+format, "invalid X string is only an annotation by default", marked valid.
+Required conformance wins, so the option is off.
 
 Unknown formats are ignored, also the default. One wrinkle worth knowing:
 `idn-hostname` and `idn-email` are backed by the crate's `idna` feature, so

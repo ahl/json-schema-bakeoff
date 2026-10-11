@@ -160,9 +160,9 @@ section, never in headline numbers. `--no-optional` skips it.
 generators; a generator records whatever its tool does with them (typify
 panics, quicktype reports a fetch error). A validator row may resolve them
 from `suite/remotes/`, never from the network, precisely to show what that
-policy costs the generators. A validator row may also turn on behavior the
-spec leaves optional (format assertion) when the library implements it: its
-job is the ceiling, not the default.
+policy costs the generators. Validator rows leave `format` at the library
+default: asserting it everywhere fails 19 required 2020-12 groups whose
+cases state that an invalid string is only an annotation by default.
 
 ## Where number precision stops
 
