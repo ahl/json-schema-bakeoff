@@ -225,7 +225,7 @@ fn chart_table(file_groups: &[FileGroup]) -> String {
     for b in &active {
         s.push_str(&format!(" {} |", b.glyph()));
     }
-    s.push_str(" Total | Chart |\n|---|");
+    s.push_str(" Total | Per group |\n|---|");
     for _ in &active {
         s.push_str("---:|");
     }
@@ -751,7 +751,7 @@ mod tests {
         let out = render(&sample_results());
         // All eight bucket columns in Bucket::ALL (best-first) order,
         // zero columns included so tables compare side by side.
-        let header = "| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |";
+        let header = "| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |";
         let sep = "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|";
         assert!(out.contains(header), "missing header, got:\n{out}");
         assert!(out.contains(sep));

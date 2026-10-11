@@ -71,7 +71,7 @@ _generated 2026-10-11T18:51:51Z_
 
 ### draft4
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalItems.json | 3 | 4 | 1 | 1 | 0 | 0 | 0 | 0 | 9 | 🙈✅🙈✅🚧🙈🤪🙈✅ |
 | additionalProperties.json | 4 | 0 | 2 | 0 | 0 | 1 | 0 | 0 | 7 | 🚧🚧🦀✅✅✅✅ |
@@ -107,7 +107,7 @@ _generated 2026-10-11T18:51:51Z_
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/bignum.json | 5 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅🙈✅🙈 |
 | optional/ecmascript-regex.json | 0 | 15 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🚧🚧🚧🚧🚧 |
@@ -126,7 +126,7 @@ _generated 2026-10-11T18:51:51Z_
 
 ### draft6
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalItems.json | 4 | 4 | 1 | 1 | 0 | 0 | 0 | 0 | 10 | 🙈✅✅🙈✅🚧🙈🤪🙈✅ |
 | additionalProperties.json | 4 | 0 | 2 | 0 | 0 | 1 | 0 | 0 | 7 | 🚧🚧🦀✅✅✅✅ |
@@ -168,7 +168,7 @@ _generated 2026-10-11T18:51:51Z_
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/bignum.json | 5 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅🙈✅🙈 |
 | optional/ecmascript-regex.json | 0 | 15 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🚧🚧🚧🚧🚧 |
@@ -190,7 +190,7 @@ _generated 2026-10-11T18:51:51Z_
 
 ### draft7
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalItems.json | 4 | 4 | 1 | 1 | 0 | 0 | 0 | 0 | 10 | 🙈✅✅🙈✅🚧🙈🤪🙈✅ |
 | additionalProperties.json | 4 | 0 | 2 | 0 | 0 | 1 | 0 | 0 | 7 | 🚧🚧🦀✅✅✅✅ |
@@ -233,7 +233,7 @@ _generated 2026-10-11T18:51:51Z_
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/bignum.json | 5 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅🙈✅🙈 |
 | optional/content.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈🙈🙈 |
@@ -266,7 +266,7 @@ _generated 2026-10-11T18:51:51Z_
 
 ### draft2019-09
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalItems.json | 4 | 4 | 1 | 1 | 0 | 0 | 0 | 0 | 10 | 🙈✅✅🙈✅🚧🙈🤪🙈✅ |
 | additionalProperties.json | 6 | 0 | 2 | 0 | 0 | 1 | 0 | 0 | 9 | 🚧🚧🦀✅✅✅✅✅✅ |
@@ -318,7 +318,7 @@ _generated 2026-10-11T18:51:51Z_
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/bignum.json | 5 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅🙈✅🙈 |
@@ -356,7 +356,7 @@ _generated 2026-10-11T18:51:51Z_
 
 ### draft2020-12
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalProperties.json | 6 | 0 | 2 | 0 | 0 | 1 | 0 | 0 | 9 | 🚧🚧🦀✅✅✅✅✅✅ |
 | allOf.json | 8 | 2 | 0 | 0 | 0 | 0 | 2 | 0 | 12 | ✅✅🙈✅❌❌✅✅✅✅✅🙈 |
@@ -408,7 +408,7 @@ _generated 2026-10-11T18:51:51Z_
 
 #### optional
 
-| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/bignum.json | 5 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅🙈✅🙈 |
