@@ -502,7 +502,7 @@ fn scoreboard_headline(all: &[Results], optional: bool) -> String {
     format!(
         "| | {} | Generated |\n|---|{}---|\n{rows}",
         header.join(" | "),
-        "---:|".repeat(drafts.len())
+        ":---:|".repeat(drafts.len())
     )
 }
 
