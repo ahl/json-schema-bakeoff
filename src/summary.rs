@@ -723,7 +723,7 @@ mod tests {
     #[test]
     fn headline_pass_rate() {
         let out = render(&sample_results());
-        // Non-optional count columns: ✅ 🙈 🔀 💀 🦀 ❌ 🤯 (🚧 only
+        // Non-optional count columns: ✅ 🙈 🤪 💀 🦀 ❌ 🤯 (🚧 only
         // occurs in the optional table), then Total and Pass rate.
         // draft7: 1 pass out of 4 groups.
         assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "1", "0", "1", "4", "25.0%"]);
@@ -759,7 +759,7 @@ mod tests {
         assert!(out.contains("cases: extra property (accepted)"));
         assert!(out.contains("### 🚧 `false_reject` (1)"));
         assert!(out.contains("cases: valid date (rejected)"));
-        assert!(out.contains("### 🔀 `mixed` (1)"));
+        assert!(out.contains("### 🤪 `mixed` (1)"));
         assert!(out.contains("cases: accepted bad (accepted), rejected good (rejected)"));
         // generation_panic doesn't get a case list, just the error.
         assert!(out.contains("### 🤯 `generation_panic` (1)"));

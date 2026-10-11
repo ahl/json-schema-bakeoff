@@ -1,6 +1,6 @@
 # Conformance summary — typify1 (typify 0.10.0-alpha.2)
 
-_generated 2026-10-11T03:59:01Z_
+_generated 2026-10-11T04:02:06Z_
 
 **80 of 258 non-optional groups pass (31.0%)**; 64 optional groups reported separately
 
@@ -9,7 +9,7 @@ _generated 2026-10-11T03:59:01Z_
 | ✅ | `pass` | every case matched |
 | 🙈 | `false_accept` | deserialize succeeded but `valid: false` (too loose) |
 | 🚧 | `false_reject` | deserialize failed but `valid: true` (too strict) |
-| 🔀 | `mixed` | both false_accept and false_reject cases in one group |
+| 🤪 | `mixed` | both false_accept and false_reject cases in one group |
 | 💀 | `runtime_panic` | a test case panicked during deserialize |
 | 🦀 | `compile_fail` | generated code doesn't compile |
 | ❌ | `generation_error` | typify returned an error |
@@ -19,7 +19,7 @@ _generated 2026-10-11T03:59:01Z_
 
 ### Groups
 
-| Draft | ✅ | 🙈 | 🚧 | 🔀 | ❌ | 🤯 | Total | Pass rate |
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | draft7 | 80 | 36 | 16 | 5 | 32 | 89 | 258 | 31.0% |
 | **Total** | **80** | **36** | **16** | **5** | **32** | **89** | **258** | **31.0%** |
@@ -49,7 +49,7 @@ _generated 2026-10-11T03:59:01Z_
 
 ### draft7
 
-| File | ✅ | 🙈 | 🚧 | 🔀 | ❌ | 🤯 | Total | Chart |
+| File | ✅ | 🙈 | 🚧 | 🤪 | ❌ | 🤯 | Total | Chart |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalItems.json | 3 | 0 | 1 | 0 | 6 | 0 | 10 | ❌✅✅❌🚧❌❌❌❌✅ |
 | additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 7 | 🚧✅✅✅✅✅✅ |
@@ -68,20 +68,20 @@ _generated 2026-10-11T03:59:01Z_
 | if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
 | infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | items.json | 4 | 0 | 1 | 0 | 4 | 0 | 9 | 🚧❌✅✅❌❌✅✅❌ |
-| maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🔀❌ |
+| maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
 | maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🔀❌🙈 |
+| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🤪❌🙈 |
 | maximum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
-| minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🔀❌ |
+| minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
 | minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚧❌ |
-| minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🔀❌ |
+| minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🤪❌ |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 🤯🤯 |
 | multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 🤯🤯🤯✅✅ |
 | not.json | 4 | 0 | 0 | 0 | 0 | 4 | 8 | 🤯🤯🤯✅✅✅✅🤯 |
 | oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 🤯🙈🤯🤯🤯🤯✅🙈🙈🙈✅ |
 | pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚧✅ |
 | patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 5 | 🚧🙈🙈🙈✅ |
-| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚧🔀🙈🤯✅🚧 |
+| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚧🤪🙈🤯✅🚧 |
 | propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🚧✅✅🤯🙈✅ |
 | ref.json | 13 | 1 | 0 | 0 | 1 | 20 | 35 | 🤯🤯❌🤯✅✅🤯🤯✅✅✅✅🤯🤯🤯🤯🤯✅🤯🤯🤯🤯✅✅✅✅🤯🤯🤯🤯🤯🤯✅✅🙈 |
 | refRemote.json | 0 | 0 | 0 | 0 | 0 | 11 | 11 | 🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯 |
@@ -234,7 +234,7 @@ Per group:
 - `draft7/uniqueItems.json::uniqueItems=false with an array of items` — `invalid schema for Root: unhandled array validation ArrayValidation {`
 - `draft7/uniqueItems.json::uniqueItems=false with an array of items and additionalItems=false` — `invalid schema for Root: unhandled array validation ArrayValidation {`
 
-### 🔀 `mixed` (5)
+### 🤪 `mixed` (5)
 
 - `draft7/maxItems.json::maxItems validation` — `accepted 'too long is invalid' though valid: false`
   - cases: too long is invalid (accepted), ignores non-arrays (rejected)
