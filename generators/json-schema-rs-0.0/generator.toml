@@ -3,8 +3,12 @@
 name = "json-schema-rs-0.0"
 
 language = "rust"
-# Too thin to be worth a row; its page is still linked from RESULTS.md.
+# Hidden from the scoreboard tables because its results are currently so poor
+# (about 1% of groups pass; the root must be an object with properties) that
+# a row adds noise, not information. Everything is still measured and its page
+# is linked from the bottom of RESULTS.md.
 hidden = true
+homepage = "https://crates.io/crates/json-schema-rs"
 description = """
 A young Rust generator (0.0.x) aimed at hand-written config schemas: the root
 must be an object with `properties` or it refuses outright. Constraints come

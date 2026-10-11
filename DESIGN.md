@@ -65,6 +65,11 @@ build noise reaches the terminal.
    compiles those modules together, attributes compiler diagnostics back
    to keys, drops the failures, repeats until clean, and prints
    `{"outcomes": {key: "ok" | {"fail": diagnostic}}, "runner": [exe, args]}`.
+   A failure that can't be attributed to one module (a missing toolchain,
+   a broken dependency install, a bug in the runner source) must be a
+   non-zero exit with nothing on stdout, never N `compile_fail`s. Probe-style
+   builds should prove the environment first (a canary module) and emit a
+   ready signal before attributing anything.
 
 The runner the build step names speaks the harness's runner protocol:
 

@@ -12,7 +12,7 @@ that a schema whose root has no `type` keyword produces no root type at all,
 and the combinators (`allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`,
 `const`) are reduced to `interface{}`.
 
-_generated 2026-10-11T18:30:38Z_
+_generated 2026-10-11T18:41:27Z_
 
 **28 of 1408 non-optional groups pass (2.0%)**; 301 optional groups reported separately
 

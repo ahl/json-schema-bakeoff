@@ -546,23 +546,32 @@ pub fn render_scoreboard(all: &[Results]) -> String {
         let opt_table = scoreboard_headline(&rows, true, show_language);
         if !opt_table.is_empty() {
             s.push_str("### Optional tests\n\n");
-            s.push_str("`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...). Reported here, never counted above.\n\n");
+            s.push_str("`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...).\n\n");
             s.push_str(&opt_table);
             s.push('\n');
         }
     }
     if shown.iter().any(|r| !r.description.is_empty()) {
         s.push_str("## The tools\n\n");
+        // One entry per tool: a generator with several targets (quicktype)
+        // gets one paragraph with a link to each target's page.
+        let mut seen: Vec<&str> = Vec::new();
         for r in &shown {
-            s.push_str(&format!("**[{}](results/{}/README.md)**", escape_cell(&r.typify), r.version));
-            if r.description.is_empty() {
-                s.push_str("\n\n");
-            } else {
-                s.push_str(&format!(" — {}\n\n", r.description));
+            let tool = if r.generator.is_empty() { r.version.as_str() } else { r.generator.as_str() };
+            if seen.contains(&tool) {
+                continue;
             }
+            seen.push(tool);
+            let name = crate::results::display_name(&r.typify, &r.language);
+            s.push_str(&format!("**{}**", escape_cell(&name)));
+            if !r.homepage.is_empty() {
+                s.push_str(&format!(" — [{}]({})", crate::results::homepage_label(&r.homepage), r.homepage));
+            }
+            s.push_str("  \n");
+            s.push_str(&r.description);
+            s.push_str("\n\n");
         }
     }
-
     if shown.iter().any(|r| r.kind == "validator") || !hidden.is_empty() {
         s.push_str("## Notes\n\n");
     }
@@ -619,6 +628,8 @@ mod tests {
             language: String::new(),
             kind: String::new(),
             hidden: false,
+            generator: String::new(),
+            homepage: String::new(),
             version: "typify1".to_string(),
             typify: "typify 0.10.0-alpha.2".to_string(),
             generated_at: "2026-10-10T00:00:00Z".to_string(),
@@ -869,6 +880,8 @@ mod tests {
             language: String::new(),
             kind: String::new(),
             hidden: false,
+            generator: String::new(),
+            homepage: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),
@@ -897,6 +910,8 @@ mod tests {
             language: String::new(),
             kind: String::new(),
             hidden: false,
+            generator: String::new(),
+            homepage: String::new(),
             version: "typify1".to_string(),
             typify: "t".to_string(),
             generated_at: "now".to_string(),

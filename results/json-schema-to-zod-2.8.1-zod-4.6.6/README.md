@@ -1,20 +1,13 @@
-# json-schema-to-zod 2.8.1 (zod 4.6.6)
+# json-schema-to-zod 2.8.1 + zod 4.6.6
 
-json-schema-to-zod rewrites a JSON Schema into zod schema source: one zod
-expression, as a string, for you to paste into a TypeScript project. Its
-design center is developer convenience at the boundary between a published
-schema and a zod-shaped codebase — get a usable validator and an inferred
-TypeScript type out of a schema you didn't write. It is a *constraint*
-translator rather than a type generator, so where quicktype and typify
-model shape and drop the rest, this emits `.min()`, `.max()`, `.regex()`,
-`.strict()` and `superRefine` closures, and keywords it has no parser for
-(`$ref`, `multipleOf` outside a typed number, `propertyNames`,
-`dependencies`) fall through to `z.any()`. Its own README says the output
-is not meant to be used at runtime and recommends Ajv instead; we run it
-anyway, because what it does translate it translates exactly. Deprecated
-since March 2026.
+Turns a JSON Schema into a zod schema expression, so you get a static
+TypeScript type and a runtime parser from one artifact. Its dispatcher keys
+on `type`: a typed schema picks up bounds, lengths, patterns, enums and
+`const`, while a schema without `type` becomes `z.any()` whatever else it
+says. It has no `$ref` resolver. Unmaintained since March 2026; 2.8.1 is the
+last release, and it runs on zod 4 here.
 
-_generated 2026-10-11T18:23:45Z_
+_generated 2026-10-11T18:47:53Z_
 
 **538 of 1408 non-optional groups pass (38.2%)**; 301 optional groups reported separately
 

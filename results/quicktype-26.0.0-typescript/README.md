@@ -6,7 +6,7 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-10-11T18:32:18Z_
+_generated 2026-10-11T18:45:21Z_
 
 **591 of 1408 non-optional groups pass (42.0%)**; 301 optional groups reported separately
 
