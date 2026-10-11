@@ -650,8 +650,8 @@ mod tests {
         assert!(out.contains("false_accept"));
         assert!(out.contains("false_reject"));
         assert!(out.contains("💥"));
-        assert!(out.contains("🔓"));
-        assert!(out.contains("🔒"));
+        assert!(out.contains("🙈"));
+        assert!(out.contains("🚫"));
     }
 
     /// The cells of the first table row whose first cell is `first`.
@@ -667,9 +667,9 @@ mod tests {
     #[test]
     fn chart_glyphs_follow_file_order() {
         let out = render(&sample_results());
-        // draft7 non-optional: ✅ 🔓 🧱 💥 count columns, then Total,
+        // draft7 non-optional: ✅ 🙈 🧱 💥 count columns, then Total,
         // then the chart — one glyph per group, in suite order.
-        assert_eq!(row(&out, "allOf.json"), ["allOf.json", "1", "1", "0", "0", "2", "✅🔓"]);
+        assert_eq!(row(&out, "allOf.json"), ["allOf.json", "1", "1", "0", "0", "2", "✅🙈"]);
         assert_eq!(row(&out, "ref.json"), ["ref.json", "0", "0", "0", "1", "1", "💥"]);
         assert_eq!(row(&out, "type.json"), ["type.json", "0", "0", "1", "0", "1", "🧱"]);
     }
@@ -679,7 +679,7 @@ mod tests {
         let out = render(&sample_results());
         // draft7 non-optional has Pass, FalseAccept, CompileFail,
         // GenerationPanic — in Bucket::ALL (best-first) order.
-        let header = "| File | ✅ | 🔓 | 🧱 | 💥 | Total | Chart |";
+        let header = "| File | ✅ | 🙈 | 🧱 | 💥 | Total | Chart |";
         let sep = "|---|---:|---:|---:|---:|---:|---|";
         assert!(out.contains(header), "missing header, got:\n{out}");
         assert!(out.contains(sep));
@@ -697,17 +697,17 @@ mod tests {
         let out = render(&sample_results());
         assert!(out.contains("#### optional"));
         // The only optional group is a false_reject, so that table has a
-        // single 🔒 count column.
+        // single 🚫 count column.
         assert_eq!(
             row(&out, "optional/format/date.json"),
-            ["optional/format/date.json", "1", "1", "🔒"]
+            ["optional/format/date.json", "1", "1", "🚫"]
         );
     }
 
     #[test]
     fn headline_pass_rate() {
         let out = render(&sample_results());
-        // Non-optional count columns: ✅ 🔓 🔀 🔥 🧱 ❌ 💥 (🔒 only
+        // Non-optional count columns: ✅ 🙈 🔀 🔥 🧱 ❌ 💥 (🚫 only
         // occurs in the optional table), then Total and Pass rate.
         // draft7: 1 pass out of 4 groups.
         assert_eq!(row(&out, "draft7"), ["draft7", "1", "1", "0", "0", "1", "0", "1", "4", "25.0%"]);
@@ -739,9 +739,9 @@ mod tests {
     #[test]
     fn failures_section_lists_cases_for_false_accept_reject_mixed() {
         let out = render(&sample_results());
-        assert!(out.contains("### 🔓 `false_accept` (1)"));
+        assert!(out.contains("### 🙈 `false_accept` (1)"));
         assert!(out.contains("cases: extra property (accepted)"));
-        assert!(out.contains("### 🔒 `false_reject` (1)"));
+        assert!(out.contains("### 🚫 `false_reject` (1)"));
         assert!(out.contains("cases: valid date (rejected)"));
         assert!(out.contains("### 🔀 `mixed` (1)"));
         assert!(out.contains("cases: accepted bad (accepted), rejected good (rejected)"));
@@ -859,7 +859,7 @@ mod tests {
         assert!(out.contains("generation_panic"));
         assert!(out.contains("draft7:"));
         assert!(out.contains("allOf.json"));
-        assert!(out.contains("✅🔓"));
+        assert!(out.contains("✅🙈"));
         assert!(out.contains("optional:"));
         assert!(out.contains("totals:"));
         // pass/total column, and a cross-draft line when >1 draft.

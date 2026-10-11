@@ -324,8 +324,8 @@ fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, Strin
         for c in &g.cases {
             let mark = match c.outcome {
                 CaseOutcome::Match => "ok ",
-                CaseOutcome::FalseAccept => "🔓 ",
-                CaseOutcome::FalseReject => "🔒 ",
+                CaseOutcome::FalseAccept => "🙈 ",
+                CaseOutcome::FalseReject => "🚫 ",
                 CaseOutcome::Panic => "🔥 ",
                 CaseOutcome::NotRun => "-- ",
             };

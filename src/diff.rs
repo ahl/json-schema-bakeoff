@@ -374,7 +374,7 @@ mod tests {
         assert!(improved_pos < regressed_pos);
 
         assert!(out.contains("`draft7/ref.json::ref panics`: 💥 generation_panic → ✅ pass"));
-        assert!(out.contains("`draft7/allOf.json::allOf ok`: ✅ pass → 🔓 false_accept"));
+        assert!(out.contains("`draft7/allOf.json::allOf ok`: ✅ pass → 🙈 false_accept"));
         // regression includes the first line of the new error.
         assert!(out.contains("now accepts garbage"));
         assert!(!out.contains("extra context"));
@@ -386,7 +386,7 @@ mod tests {
         assert!(out.contains("## Changed within the same bucket (1)"));
         assert!(
             out.contains(
-                "`draft7/enum.json::enum loose`: 🔓 false_accept — cases: first: FalseAccept → Match; second: Match → FalseAccept"
+                "`draft7/enum.json::enum loose`: 🙈 false_accept — cases: first: FalseAccept → Match; second: Match → FalseAccept"
             ),
             "got:\n{out}"
         );
@@ -419,11 +419,11 @@ mod tests {
     fn transition_matrix_rows_and_totals() {
         let out = render(&results_a(), &results_b());
         let table = out.split("## Transition matrix\n\n").nth(1).unwrap();
-        // before-buckets ✅ and 🔓 and 💥; after-buckets ✅ and 🔓.
-        assert!(table.contains("| before ↓ / after → | ✅ | 🔓 | Total |"), "got:\n{table}");
+        // before-buckets ✅ and 🙈 and 💥; after-buckets ✅ and 🙈.
+        assert!(table.contains("| before ↓ / after → | ✅ | 🙈 | Total |"), "got:\n{table}");
         // ✅ before: one stayed pass, one became false_accept.
         assert!(table.contains("| ✅ | 1 | 1 | **2** |"), "got:\n{table}");
-        assert!(table.contains("| 🔓 | 0 | 1 | **1** |"), "got:\n{table}");
+        assert!(table.contains("| 🙈 | 0 | 1 | **1** |"), "got:\n{table}");
         assert!(table.contains("| 💥 | 1 | 0 | **1** |"), "got:\n{table}");
         assert!(table.contains("| **Total** | **2** | **2** | **4** |"), "got:\n{table}");
     }

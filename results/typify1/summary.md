@@ -1,14 +1,14 @@
 # Conformance summary — typify1 (typify 0.10.0-alpha.2)
 
-_generated 2026-10-10T18:38:34Z_
+_generated 2026-10-11T03:47:42Z_
 
 **80 of 258 non-optional groups pass (31.0%)**
 
 | | bucket | meaning |
 |---|---|---|
 | ✅ | `pass` | every case matched |
-| 🔓 | `false_accept` | deserialize succeeded but `valid: false` (too loose) |
-| 🔒 | `false_reject` | deserialize failed but `valid: true` (too strict) |
+| 🙈 | `false_accept` | deserialize succeeded but `valid: false` (too loose) |
+| 🚫 | `false_reject` | deserialize failed but `valid: true` (too strict) |
 | 🔀 | `mixed` | both false_accept and false_reject cases in one group |
 | 🔥 | `runtime_panic` | a test case panicked during deserialize |
 | 🧱 | `compile_fail` | generated code doesn't compile |
@@ -19,7 +19,7 @@ _generated 2026-10-10T18:38:34Z_
 
 ### Groups
 
-| Draft | ✅ | 🔓 | 🔒 | 🔀 | ❌ | 💥 | Total | Pass rate |
+| Draft | ✅ | 🙈 | 🚫 | 🔀 | ❌ | 💥 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | draft7 | 80 | 36 | 16 | 5 | 32 | 89 | 258 | 31.0% |
 | **Total** | **80** | **36** | **16** | **5** | **32** | **89** | **258** | **31.0%** |
@@ -35,44 +35,44 @@ _generated 2026-10-10T18:38:34Z_
 
 ### draft7
 
-| File | ✅ | 🔓 | 🔒 | 🔀 | ❌ | 💥 | Total | Chart |
+| File | ✅ | 🙈 | 🚫 | 🔀 | ❌ | 💥 | Total | Chart |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| additionalItems.json | 3 | 0 | 1 | 0 | 6 | 0 | 10 | ❌✅✅❌🔒❌❌❌❌✅ |
-| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 7 | 🔒✅✅✅✅✅✅ |
+| additionalItems.json | 3 | 0 | 1 | 0 | 6 | 0 | 10 | ❌✅✅❌🚫❌❌❌❌✅ |
+| additionalProperties.json | 6 | 0 | 1 | 0 | 0 | 0 | 7 | 🚫✅✅✅✅✅✅ |
 | allOf.json | 10 | 0 | 0 | 0 | 0 | 2 | 12 | ✅✅💥✅✅✅✅✅✅✅✅💥 |
-| anyOf.json | 1 | 1 | 1 | 0 | 2 | 3 | 8 | 💥❌🔒💥💥🔓❌✅ |
+| anyOf.json | 1 | 1 | 1 | 0 | 2 | 3 | 8 | 💥❌🚫💥💥🙈❌✅ |
 | boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓🔓 |
+| const.json | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
 | contains.json | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
-| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🔓 |
+| default.json | 1 | 1 | 0 | 0 | 1 | 0 | 3 | ❌✅🙈 |
 | definitions.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 💥 |
-| dependencies.json | 1 | 6 | 0 | 0 | 0 | 0 | 7 | 🔓✅🔓🔓🔓🔓🔓 |
-| enum.json | 11 | 0 | 2 | 0 | 0 | 2 | 15 | ✅💥✅✅💥✅✅✅✅✅🔒✅🔒✅✅ |
+| dependencies.json | 1 | 6 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
+| enum.json | 11 | 0 | 2 | 0 | 0 | 2 | 15 | ✅💥✅✅💥✅✅✅✅✅🚫✅🚫✅✅ |
 | exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 💥 |
 | exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 💥 |
 | format.json | 0 | 0 | 0 | 0 | 0 | 17 | 17 | 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥 |
 | if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 12 | 💥💥💥💥💥💥💥💥💥💥💥💥 |
 | infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| items.json | 4 | 0 | 1 | 0 | 4 | 0 | 9 | 🔒❌✅✅❌❌✅✅❌ |
+| items.json | 4 | 0 | 1 | 0 | 4 | 0 | 9 | 🚫❌✅✅❌❌✅✅❌ |
 | maxItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🔀❌ |
-| maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🔒❌ |
-| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🔀❌🔓 |
+| maxLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚫❌ |
+| maxProperties.json | 0 | 1 | 0 | 1 | 1 | 0 | 3 | 🔀❌🙈 |
 | maximum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 💥💥 |
 | minItems.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🔀❌ |
-| minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🔒❌ |
+| minLength.json | 0 | 0 | 1 | 0 | 1 | 0 | 2 | 🚫❌ |
 | minProperties.json | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🔀❌ |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 💥💥 |
 | multipleOf.json | 2 | 0 | 0 | 0 | 0 | 3 | 5 | 💥💥💥✅✅ |
 | not.json | 4 | 0 | 0 | 0 | 0 | 4 | 8 | 💥💥💥✅✅✅✅💥 |
-| oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 💥🔓💥💥💥💥✅🔓🔓🔓✅ |
-| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🔒✅ |
-| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 5 | 🔒🔓🔓🔓✅ |
-| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🔒🔀🔓💥✅🔒 |
-| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🔒✅✅💥🔓✅ |
-| ref.json | 13 | 1 | 0 | 0 | 1 | 20 | 35 | 💥💥❌💥✅✅💥💥✅✅✅✅💥💥💥💥💥✅💥💥💥💥✅✅✅✅💥💥💥💥💥💥✅✅🔓 |
+| oneOf.json | 2 | 4 | 0 | 0 | 0 | 5 | 11 | 💥🙈💥💥💥💥✅🙈🙈🙈✅ |
+| pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 2 | 🚫✅ |
+| patternProperties.json | 1 | 3 | 1 | 0 | 0 | 0 | 5 | 🚫🙈🙈🙈✅ |
+| properties.json | 1 | 1 | 2 | 1 | 0 | 1 | 6 | 🚫🔀🙈💥✅🚫 |
+| propertyNames.json | 3 | 1 | 1 | 0 | 0 | 1 | 6 | 🚫✅✅💥🙈✅ |
+| ref.json | 13 | 1 | 0 | 0 | 1 | 20 | 35 | 💥💥❌💥✅✅💥💥✅✅✅✅💥💥💥💥💥✅💥💥💥💥✅✅✅✅💥💥💥💥💥💥✅✅🙈 |
 | refRemote.json | 0 | 0 | 0 | 0 | 0 | 11 | 11 | 💥💥💥💥💥💥💥💥💥💥💥 |
-| required.json | 2 | 0 | 2 | 0 | 0 | 1 | 5 | 🔒✅✅💥🔒 |
-| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 11 | 🔒✅✅✅✅✅✅✅✅✅✅ |
+| required.json | 2 | 0 | 2 | 0 | 0 | 1 | 5 | 🚫✅✅💥🚫 |
+| type.json | 10 | 0 | 1 | 0 | 0 | 0 | 11 | 🚫✅✅✅✅✅✅✅✅✅✅ |
 | uniqueItems.json | 1 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌✅❌❌ |
 | **Total** | **80** | **36** | **16** | **5** | **32** | **89** | **258** |  |
 
@@ -200,7 +200,7 @@ Per group:
 - `draft7/properties.json::properties, patternProperties, additionalProperties interaction` — `accepted 'property invalidates property' though valid: false`
   - cases: property invalidates property (accepted), patternProperty invalidates property (accepted), patternProperty validates nonproperty (rejected)
 
-### 🔒 `false_reject` (16)
+### 🚫 `false_reject` (16)
 
 12 distinct first-line errors; most common:
 
@@ -245,7 +245,7 @@ Per group:
 - `draft7/type.json::integer type matches integers` — `a float with zero fractional part is an integer: invalid type: floating point '1.0', expected i64`
   - cases: a float with zero fractional part is an integer (rejected)
 
-### 🔓 `false_accept` (36)
+### 🙈 `false_accept` (36)
 
 33 distinct first-line errors; most common:
 

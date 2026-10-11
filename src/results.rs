@@ -42,8 +42,8 @@ impl Bucket {
     pub fn glyph(self) -> &'static str {
         match self {
             Bucket::Pass => "✅",
-            Bucket::FalseAccept => "🔓",
-            Bucket::FalseReject => "🔒",
+            Bucket::FalseAccept => "🙈",
+            Bucket::FalseReject => "🚫",
             Bucket::Mixed => "🔀",
             Bucket::RuntimePanic => "🔥",
             Bucket::CompileFail => "🧱",
