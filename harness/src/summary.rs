@@ -534,7 +534,6 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     s.push_str("Each row links to that generator's page, which lists every failing group with its error.\n\n");
 
     let shown: Vec<&Results> = all.iter().filter(|r| !r.hidden).collect();
-    let hidden: Vec<&Results> = all.iter().filter(|r| r.hidden).collect();
     let (rust, other): (Vec<&Results>, Vec<&Results>) = shown.iter().partition(|r| r.language == "rust");
     for (title, rows, show_language) in [("Rust", rust, false), ("Other languages", other, true)] {
         if rows.is_empty() {
@@ -574,18 +573,11 @@ pub fn render_scoreboard(all: &[Results]) -> String {
             s.push_str("\n\n");
         }
     }
-    if shown.iter().any(|r| r.kind == "validator") || !hidden.is_empty() {
+    if shown.iter().any(|r| r.kind == "validator") {
         s.push_str("## Notes\n\n");
     }
     if shown.iter().any(|r| r.kind == "validator") {
         s.push_str("𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.\n\n");
-    }
-    if !hidden.is_empty() {
-        let links: Vec<String> = hidden
-            .iter()
-            .map(|r| format!("[{}](results/{}/README.md)", escape_cell(&r.typify), r.version))
-            .collect();
-        s.push_str(&format!("Also measured but left off the tables: {}.\n\n", links.join(", ")));
     }
     s
 }

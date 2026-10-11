@@ -41,7 +41,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-10-11T18:53:39Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-10-11T18:51:36Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-10-11T18:51:51Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.1% | 19.7% | 17.8% | 13.7% | 12.2% | 2026-10-11T18:47:37Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.1% | 19.7% | 17.8% | 13.7% | 12.2% | 2026-10-11T18:56:42Z |
 
 ### Optional tests
 
@@ -54,7 +54,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-10-11T18:53:39Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-10-11T18:51:36Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-10-11T18:51:51Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.9% | 31.8% | 21.9% | 18.4% | 17.9% | 2026-10-11T18:47:37Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.9% | 31.8% | 21.9% | 18.4% | 17.9% | 2026-10-11T18:56:42Z |
 
 ## The tools
 
@@ -105,25 +105,22 @@ get out of the way. It models structure only, so validation keywords vanish
 and anything that isn't a plain object graph panics. The last release
 (0.6.0) is from October 2021.
 
-**typebox 0.34.52 + schema2typebox 1.7.8**  
+**typebox 0.34.52 + schema2typebox 1.7.8** — [GitHub](https://github.com/sinclairzx81/typebox)  
 TypeBox is a TypeScript type builder: `Type.Object({ x: Type.Number() })`
-returns an object that is simultaneously a draft-7 Json Schema fragment and
-a static TypeScript type, and `TypeCompiler`/`Value` check instances
-against it. Its design center is the TypeScript end of the wire — the
-schema is something you *write in TypeScript* to get inference and
-validation from one definition — so it dispatches on a `Kind` symbol its
-own constructors attach and cannot consume a Json Schema it did not build:
-`Value.Check({ type: 'string' }, 'x')` throws "Unknown type", and
-`Type.Unsafe` only relabels the problem. Going the other way needs a code
-generator, and `@sinclair/typebox-codegen` has no Json Schema front end
-(it maps TypeScript *source* to TypeBox and a TypeBox model out to zod,
-valibot and others), so this row runs the generator TypeBox's own readme
-points at: schema2typebox emits the `Type.*` source, tsc compiles it, and
-TypeBox's compiler checks the cases. Both halves of the claim are therefore
-measured — types generated from the schema, and validation by the type —
-and the price is schema2typebox's narrow front end, which requires a
-recognizable `type` or combinator at every level and refuses most of the
-suite outright.
+returns a value that is at once a draft-7 Json Schema fragment and a static
+TypeScript type, and `TypeCompiler`/`Value` check instances against it. Its
+design center is the TypeScript end of the wire — one definition, written
+in TypeScript, yielding both inference and validation — so its checkers
+dispatch on a `Kind` symbol its own constructors attach and refuse a Json
+Schema they didn't build (`Value.Check({ type: 'string' }, 'x')` throws
+"Unknown type"; `Type.Unsafe` only relabels the problem). Coming the other
+way needs a code generator, and `@sinclair/typebox-codegen` has no Json
+Schema front end, so this row uses the one TypeBox's own readme points at:
+schema2typebox emits the `Type.*` source, tsc compiles it, TypeBox's
+compiler checks the cases. That measures both halves of the claim — types
+generated from the schema, validation by the type — at the cost of
+schema2typebox's narrow front end, which wants a recognizable `type` or
+combinator at every level and refuses most of the suite outright.
 
 **typify 0.10.0-alpha.2** — [crates.io](https://crates.io/crates/typify)  
 Rust types for serde from JSON Schema, built to generate OpenAPI clients
@@ -140,6 +137,4 @@ The last typify release before the typespace rewrite. Same design center as
 ## Notes
 
 𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.
-
-Also measured but left off the tables: [json-schema-rs 0.0.6](results/json-schema-rs-0.0.6/README.md).
 
