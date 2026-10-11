@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # The PR's head branch, so results can be committed onto it.
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
