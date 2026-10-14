@@ -66,6 +66,10 @@ section has a paragraph on each tool's design center.
   output can accept or refuse a test case; a row would score its static
   types with `tsc`, which isn't comparable to the runtime rows. Measured
   once at 33.5% of required groups under both 3.0.3 and 3.1 envelopes.
+  Also looked at and skipped: [Konfig](https://github.com/konfig-dev/konfig)
+  (sunset December 2024; a Spring service around a fork of openapi-generator,
+  whose TypeScript output is types-only and whose Go output is
+  openapi-generator's).
 - `jsonschema-0.58`, `ajv`: validators, not generators (marked 𝓥 on the
   scoreboard). They calibrate the Rust and Node paths and resolve the suite's
   `localhost:1234` remotes from `suite/remotes/`. jsonschema leaves `format` at
