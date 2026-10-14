@@ -22,6 +22,11 @@ any language fits without touching Rust.
   validates. Validator rows calibrate the harness and may resolve
   `localhost:1234` remotes from `suite/remotes/` (never the network).
   Generator rows leave remote refs to fail; record what the tool does.
+- **Does the output reject anything?** A tool that emits types plus
+  converters that never fail (forge; openapi-typescript) has nothing the
+  harness can score: every case is "accepted". Checking its static types
+  with a type checker is possible but isn't comparable to the runtime rows,
+  so don't add a row; note the tool in the README instead.
 - **Measure the tool's default behavior.** Don't enable stricter modes
   (Go's `DisallowUnknownFields`, a validator's format assertion) to make
   the row look better; don't strip the tool's output to hide a compile

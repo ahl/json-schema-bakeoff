@@ -60,6 +60,12 @@ section has a paragraph on each tool's design center.
 - `ogen`: [ogen](https://ogen.dev), Go. Each schema is wrapped as a component
   of an OpenAPI 3.1 document; the check calls the generated decoder and
   `Validate()`.
+- Tried and not scored: [forge](https://github.com/cloudflare/forge)
+  (Cloudflare's OpenAPI-to-SDK generator). It emits TypeScript types plus
+  codecs that convert values and never reject them, so nothing in its
+  output can accept or refuse a test case; a row would score its static
+  types with `tsc`, which isn't comparable to the runtime rows. Measured
+  once at 33.5% of required groups under both 3.0.3 and 3.1 envelopes.
 - `jsonschema-0.58`, `ajv`: validators, not generators (marked 𝓥 on the
   scoreboard). They calibrate the Rust and Node paths and resolve the suite's
   `localhost:1234` remotes from `suite/remotes/`. jsonschema leaves `format` at
