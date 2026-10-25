@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "go-jsonschema",
   "homepage": "https://github.com/omissis/go-jsonschema",
-  "generated_at": "2026-10-11T18:50:16Z",
+  "generated_at": "2026-10-25T14:54:23Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -4432,8 +4432,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "d5373f88fa2947981191a882a513539f8f5ba54da2503adeaab8b7976563778f",
-      "generated_at": "2026-10-11T18:50:11Z",
+      "hash": "7b371e1979a3938731a609c403dc3dd392a7b544a8893b9e38d9f06a5ff48148",
+      "generated_at": "2026-10-25T14:54:21Z",
       "bucket": "compile_fail",
       "error": "g_68c07488f1d9c11b/g_68c07488f1d9c11b.go:9:8: undefined: Root",
       "cases": [
@@ -4584,6 +4584,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5134,8 +5144,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "d7f0f498059acbbf4a9999813defe35e065c567eb4010076b7687e39e4b279de",
-      "generated_at": "2026-10-11T18:50:11Z",
+      "hash": "026a6aabacd6f47c8189bf419a1c87bd9ed0a3bdabe91352e2f674d7f2a8ea51",
+      "generated_at": "2026-10-25T14:54:21Z",
       "bucket": "compile_fail",
       "error": "g_6bac4657aa959e29/g_6bac4657aa959e29.go:9:8: undefined: Root",
       "cases": [
@@ -5371,6 +5381,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13582,8 +13597,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "0ce73e7c546f1b4495a95508b6865f2a43ad083e18d034adbf22ae65f7a015f8",
-      "generated_at": "2026-10-11T18:50:12Z",
+      "hash": "ee97c74fe16699ba35c12d8936dea4540cba5fa3c07fa712d12e90300682e62b",
+      "generated_at": "2026-10-25T14:54:21Z",
       "bucket": "compile_fail",
       "error": "g_2fdf67eaab92a245/g_2fdf67eaab92a245.go:9:8: undefined: Root",
       "cases": [
@@ -13734,6 +13749,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -14918,8 +14943,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "c4b0c452ba651642f49bfa26a27de1a76969ae9695c0a4f8c1bb9f17ad6b8fbb",
-      "generated_at": "2026-10-11T18:50:12Z",
+      "hash": "f38afa306cd7cfd0de89ffc3cd320869ff57384c6a28c33a2a52c59384812295",
+      "generated_at": "2026-10-25T14:54:21Z",
       "bucket": "compile_fail",
       "error": "g_b1df19a27be8b76f/g_b1df19a27be8b76f.go:9:8: undefined: Root",
       "cases": [
@@ -15155,6 +15180,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25396,8 +25426,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "80e3187d78c7ec5c75cf52490cbd10de36a66bf175686a453a835221acb833cc",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "9b1f3169a619a29141e1bb5143407fdc31a16af198eab5413e70e31879150a50",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_7fe05e8ac392b90d/g_7fe05e8ac392b90d.go:9:8: undefined: Root",
       "cases": [
@@ -25518,6 +25548,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -25875,8 +25915,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "ed67814f99c47ac9c067c6b27ea92ebd1e3e85212f8b9494e94e70c5ff84a770",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "b3ff48def91913a70fa974efab523d918f6428500b3ad36ad55282ba595ca01b",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_c697aba762ff8d73/g_c697aba762ff8d73.go:9:8: undefined: Root",
       "cases": [
@@ -26167,6 +26207,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -27351,8 +27406,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "d499227cad10c41b2f816205bcb30ea58a53c3e419e425523eda7c187fa6a567",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "23a236f9caa57ae38ddf019f4a680ce90befb831a4c1db507debfa9abf3e0127",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -27419,6 +27474,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -28334,8 +28414,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "0390f123bf00ab6ecae7e28766b3605480579b53e9a8fe10048bff834a156c8c",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "43b825b6ae92cabef082be8cf4c66d8c2899de018108a000f5d0715daadee400",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_1883d056ce873623/g_1883d056ce873623.go:9:8: undefined: Root",
       "cases": [
@@ -28571,6 +28651,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -35700,10 +35785,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "c88c144f581882a406e99aed7623ebec1be48ae6b18e0595a41a3e62bc715540",
-      "generated_at": "2026-10-11T18:50:15Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "5d529cb9df9d3bb37c7d21a03bd658be123ac0327da982962366bb2b4f8004ec",
+      "generated_at": "2026-10-25T14:54:22Z",
+      "bucket": "compile_fail",
+      "error": "g_bc82848d48a424e6/g_bc82848d48a424e6.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -35723,10 +35808,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "3749207baa97decfad325c68950ebe6e648633780601db22016d40b0efaec46a",
-      "generated_at": "2026-10-11T18:50:15Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "a04ca9be86f286cd188885066d196fbb0282e91bd86f1be7638bac16adbb86aa",
+      "generated_at": "2026-10-25T14:54:22Z",
+      "bucket": "compile_fail",
+      "error": "g_7d44d2401323ecef/g_7d44d2401323ecef.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -37861,8 +37946,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "1eaeb2f9939045a75fcd821c66c8bfd3e01289957b7386b57c39842841a623c2",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "a46f0a532e31f85a33170443ab74a85cfa93fe938c82663daa80232161f2b91b",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "pass",
       "cases": [
         {
@@ -40258,8 +40343,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "b4a11ee399562249147ded8e0b977a50e022b9f95762082d905165b211f56461",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "49df5def6a04cf117af1d6c8522e1ffd82069eb4230905b19529de057d1345e1",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_89455c49d3b29b20/g_89455c49d3b29b20.go:9:8: undefined: Root",
       "cases": [
@@ -40380,6 +40465,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -40737,8 +40832,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "9d9787237fc4ee45834235cbadf0fe7232272ef36ad406dd817b1cb81a3edde8",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "ea99c98cadd6c4ebef88b7046ad1d8b205824d36bcb770f5fbe208529aeb0186",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_32ae7c063d0757cc/g_32ae7c063d0757cc.go:9:8: undefined: Root",
       "cases": [
@@ -41029,6 +41124,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -42213,8 +42323,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "649861da7cc4f3b7f114a005f7297e25df85735bf785005ba89f1633a339f62f",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "6ab64a29a6719a5e06651a495a057b903743df5742ca148a76d76efafd26cc20",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_debdfb0bc8ba4bfa/g_debdfb0bc8ba4bfa.go:9:8: undefined: Root",
       "cases": [
@@ -42281,6 +42391,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -43196,8 +43331,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "872e471fb9bc17392714f20749f541ec09d6b2602d3c94bd9364eccaf6cb29d7",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "577b4936382905636f9f977c7fbae197f34d034c1f76b4b008d74334ad556ca2",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_171aaaa7e89fb17f/g_171aaaa7e89fb17f.go:9:8: undefined: Root",
       "cases": [
@@ -43433,6 +43568,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48313,13 +48453,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "7d56afcbe3120c688d55a7ff448d44650d35f0b8090bdcbbe4211d89769900fe",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "48b14b95ad5ac6b22b69a0faa60c51cc50abcbabebebde57816afb329d622d4e",
+      "generated_at": "2026-10-25T14:54:22Z",
       "bucket": "compile_fail",
       "error": "g_d7e7024e47303146/g_d7e7024e47303146.go:13:8: undefined: Root",
       "cases": [
@@ -51673,10 +51813,10 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "c5a856407da3bb03e3095464d39b984e19fd9ccff3dfb9d2ee4af75535ac50f3",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "6c8ab287100048bfa1e5798b1e39adb57dd765ba4a092f41c5ba098b50defe30",
+      "generated_at": "2026-10-25T14:54:23Z",
       "bucket": "compile_fail",
-      "error": "g_0e9625999fd93493/g_0e9625999fd93493.go:9:8: undefined: Root",
+      "error": "g_7483135d2e5ccbf6/g_7483135d2e5ccbf6.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "number is valid",
@@ -53479,10 +53619,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "58a8f8b8d8ac24f784190c6dd6af694a6d93310a7c6905cf190454ac895998d7",
-      "generated_at": "2026-10-11T18:50:16Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "29dc81254a01c1dfc9d18f95b92abdc7a58e2c17db3303035482cdd7b5ec1977",
+      "generated_at": "2026-10-25T14:54:23Z",
+      "bucket": "compile_fail",
+      "error": "g_f3ac7c001519f500/g_f3ac7c001519f500.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -53502,10 +53642,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "a2a10f795e6ccb44ecdd8c145ab946ffe4209bf5344310a3b2c406ad2330af3b",
-      "generated_at": "2026-10-11T18:50:16Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "30b2a6f809a9440b66b605786d90b49c6a2c297cc9f9a94915455f43dc299f95",
+      "generated_at": "2026-10-25T14:54:23Z",
+      "bucket": "compile_fail",
+      "error": "g_cd258633eaa6c7a9/g_cd258633eaa6c7a9.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -58056,8 +58196,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "1d4a6afef04fbf8ae6994653e0ce4edf2eed3aa2c1c61d1a71b191f913a7905c",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "c3fa6986184580967a75053b069a4d7f7385b1a1d4d7ca513edf116b9bacfc88",
+      "generated_at": "2026-10-25T14:54:23Z",
       "bucket": "compile_fail",
       "error": "g_fa682a1ca9592e74/g_fa682a1ca9592e74.go:9:8: undefined: Root",
       "cases": [
@@ -58178,6 +58318,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -58535,8 +58685,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "c882be4de422e5f784db2d214e721c5816ad4b9632d15cc0b79d9d1669a2a466",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "f06f908016cc2029b99a2d12897d8cd733f078b2e15763c87ef726d62c1f7ec9",
+      "generated_at": "2026-10-25T14:54:23Z",
       "bucket": "compile_fail",
       "error": "g_3464ec40053b8e9f/g_3464ec40053b8e9f.go:9:8: undefined: Root",
       "cases": [
@@ -58827,6 +58977,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -60011,8 +60176,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "d34f3933125e55120d16a562bf327e82779e7a4001389708fb4155b886a84a10",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "07c6311194e4ecaf5dd1b78b7072155e26c95cfcb4e20f45ca8debfefac68d81",
+      "generated_at": "2026-10-25T14:54:23Z",
       "bucket": "compile_fail",
       "error": "g_f03a36338525c4d2/g_f03a36338525c4d2.go:9:8: undefined: Root",
       "cases": [
@@ -60079,6 +60244,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -60994,8 +61184,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "894aed959f12e7cc63edfd38a1fa0ab43b0260a95d488c65b34ea4edd0707bbf",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "6aeaec8aadc7970166713e9d237c6673fbb622f017b16f290b53c67ff459bb28",
+      "generated_at": "2026-10-25T14:54:23Z",
       "bucket": "compile_fail",
       "error": "g_2e1e58feb8b4e3d4/g_2e1e58feb8b4e3d4.go:9:8: undefined: Root",
       "cases": [
@@ -61231,6 +61421,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -62010,14 +62205,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "6aa63587806a49164afee4bad0940b324fadb8ef27578c6a0c27859eee2bb79a",
-      "generated_at": "2026-10-11T18:50:16Z",
-      "bucket": "pass",
+      "hash": "8c3ab6920c0a68b6d6f1dbbd2a920692a8092c88316a48ce50e5dd4433b46547",
+      "generated_at": "2026-10-25T14:54:23Z",
+      "bucket": "false_accept",
+      "error": "accepted `Unicode letter property name matches but value type is incorrect` though valid: false",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -66123,13 +66324,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "60031b41b0289bf1fee8f18531baa700b420dcfe656f59c279b21ba013fb7cba",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "02997d3c1cb4928aa2b98cb9268eba2a932c7077210789368c8c214e547920d5",
+      "generated_at": "2026-10-25T14:54:23Z",
       "bucket": "compile_fail",
       "error": "g_231b40ad3da69346/g_231b40ad3da69346.go:13:8: undefined: Root",
       "cases": [

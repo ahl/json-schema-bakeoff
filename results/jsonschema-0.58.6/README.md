@@ -8,7 +8,7 @@ a price tag on the policies the generators live with. Remote refs come from
 the library default (asserted through draft 7, annotation-only after), because
 2020-12's required tests say so.
 
-_generated 2026-10-11T22:03:28Z_
+_generated 2026-10-25T14:55:33Z_
 
 **1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
 
@@ -55,19 +55,19 @@ _generated 2026-10-11T22:03:28Z_
 | draft6 | 841 | 841 | 100.0% | 841 | 100.0% |
 | draft7 | 929 | 929 | 100.0% | 929 | 100.0% |
 | draft2019-09 | 1261 | 1261 | 100.0% | 1261 | 100.0% |
-| draft2020-12 | 1301 | 1301 | 100.0% | 1301 | 100.0% |
-| **Total** | **4950** | **4950** | **100.0%** | **4950** | **100.0%** |
+| draft2020-12 | 1302 | 1302 | 100.0% | 1302 | 100.0% |
+| **Total** | **4951** | **4951** | **100.0%** | **4951** | **100.0%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 391 | 391 | 100.0% | 391 | 100.0% |
-| draft6 | 520 | 520 | 100.0% | 520 | 100.0% |
-| draft7 | 922 | 922 | 100.0% | 922 | 100.0% |
-| draft2019-09 | 566 | 1043 | 54.3% | 1043 | 54.3% |
-| draft2020-12 | 570 | 1047 | 54.4% | 1047 | 54.4% |
-| **Total** | **2969** | **3923** | **75.7%** | **3923** | **75.7%** |
+| draft4 | 394 | 394 | 100.0% | 394 | 100.0% |
+| draft6 | 523 | 523 | 100.0% | 523 | 100.0% |
+| draft7 | 933 | 933 | 100.0% | 933 | 100.0% |
+| draft2019-09 | 571 | 1054 | 54.2% | 1054 | 54.2% |
+| draft2020-12 | 575 | 1058 | 54.3% | 1058 | 54.3% |
+| **Total** | **2996** | **3962** | **75.6%** | **3962** | **75.6%** |
 
 ## Chart
 
@@ -477,13 +477,13 @@ Per group:
 - `draft2019-09/optional/format/email.json::validation of e-mail addresses` — `accepted 'an invalid e-mail address' though valid: false`
   - cases: an invalid e-mail address (accepted), dot before local part is not valid (accepted), dot after local part is not valid (accepted), two subsequent dots inside local part are not valid (accepted), an invalid domain (accepted), an invalid IPv4-address-literal (accepted), … and 38 more
 - `draft2019-09/optional/format/hostname.json::validation of host names` — `accepted 'empty string' though valid: false`
-  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 6 more
+  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 8 more
 - `draft2019-09/optional/format/hostname.json::validation of A-label (punycode) host names` — `accepted 'invalid Punycode' though valid: false`
   - cases: invalid Punycode (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), Begins with a Spacing Combining Mark (accepted), Begins with a Nonspacing Mark (accepted), Begins with an Enclosing Mark (accepted), Exceptions that are DISALLOWED, right-to-left chars (accepted), … and 17 more
 - `draft2019-09/optional/format/idn-email.json::validation of an internationalized e-mail addresses` — `accepted 'an invalid e-mail/idn e-mail address' though valid: false`
   - cases: an invalid e-mail/idn e-mail address (accepted), a fullwidth commercial at is not a local-part separator (accepted), a domain label starting with a hyphen is not valid (accepted), a domain label ending with a hyphen is not valid (accepted), a domain starting with a dot is not valid (accepted), a domain ending with a dot is not valid (accepted), … and 2 more
 - `draft2019-09/optional/format/idn-hostname.json::validation of internationalized host names` — `accepted 'illegal first char U+302E Hangul single dot tone mark' though valid: false`
-  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 37 more
+  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 40 more
 - `draft2019-09/optional/format/idn-hostname.json::validation of separators in internationalized host names` — `accepted 'single dot' though valid: false`
   - cases: single dot (accepted), single ideographic full stop (accepted), single fullwidth full stop (accepted), single halfwidth ideographic full stop (accepted), leading dot (accepted), leading ideographic full stop (accepted), … and 6 more
 - `draft2019-09/optional/format/ipv4.json::validation of IP addresses` — `accepted 'an IP address with too many components' though valid: false`
@@ -507,7 +507,7 @@ Per group:
 - `draft2019-09/optional/format/uri-template.json::format: uri-template` — `accepted 'an invalid uri-template' though valid: false`
   - cases: an invalid uri-template (accepted), an empty expression is invalid (accepted), an empty varspec inside the variable list is invalid (accepted), a zero prefix max-length is invalid (accepted), a five-digit prefix max-length is invalid (accepted), an unmatched closing brace is invalid (accepted), … and 15 more
 - `draft2019-09/optional/format/uri.json::validation of URIs` — `accepted 'an invalid protocol-relative URI Reference' though valid: false`
-  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 20 more
+  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 21 more
 - `draft2019-09/optional/format/uuid.json::uuid format` — `accepted 'wrong length' though valid: false`
   - cases: wrong length (accepted), missing section (accepted), bad characters (not hex) (accepted), no dashes (accepted), too few dashes (accepted), too many dashes (accepted), … and 8 more
 - `draft2020-12/optional/format/date-time.json::validation of date-time strings` — `accepted 'an invalid date-time past leap second, UTC' though valid: false`
@@ -525,13 +525,13 @@ Per group:
 - `draft2020-12/optional/format/email.json::validation of e-mail addresses` — `accepted 'an invalid e-mail address' though valid: false`
   - cases: an invalid e-mail address (accepted), dot before local part is not valid (accepted), dot after local part is not valid (accepted), two subsequent dots inside local part are not valid (accepted), an invalid domain (accepted), an invalid IPv4-address-literal (accepted), … and 38 more
 - `draft2020-12/optional/format/hostname.json::validation of host names` — `accepted 'empty string' though valid: false`
-  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 6 more
+  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 8 more
 - `draft2020-12/optional/format/hostname.json::validation of A-label (punycode) host names` — `accepted 'invalid Punycode' though valid: false`
   - cases: invalid Punycode (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), Begins with a Spacing Combining Mark (accepted), Begins with a Nonspacing Mark (accepted), Begins with an Enclosing Mark (accepted), Exceptions that are DISALLOWED, right-to-left chars (accepted), … and 17 more
 - `draft2020-12/optional/format/idn-email.json::validation of an internationalized e-mail addresses` — `accepted 'an invalid e-mail/idn e-mail address' though valid: false`
   - cases: an invalid e-mail/idn e-mail address (accepted), a fullwidth commercial at is not a local-part separator (accepted), a domain label starting with a hyphen is not valid (accepted), a domain label ending with a hyphen is not valid (accepted), a domain starting with a dot is not valid (accepted), a domain ending with a dot is not valid (accepted), … and 2 more
 - `draft2020-12/optional/format/idn-hostname.json::validation of internationalized host names` — `accepted 'illegal first char U+302E Hangul single dot tone mark' though valid: false`
-  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 37 more
+  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 40 more
 - `draft2020-12/optional/format/idn-hostname.json::validation of separators in internationalized host names` — `accepted 'single dot' though valid: false`
   - cases: single dot (accepted), single ideographic full stop (accepted), single fullwidth full stop (accepted), single halfwidth ideographic full stop (accepted), leading dot (accepted), leading ideographic full stop (accepted), … and 6 more
 - `draft2020-12/optional/format/ipv4.json::validation of IP addresses` — `accepted 'an IP address with too many components' though valid: false`
@@ -555,7 +555,7 @@ Per group:
 - `draft2020-12/optional/format/uri-template.json::format: uri-template` — `accepted 'an invalid uri-template' though valid: false`
   - cases: an invalid uri-template (accepted), an empty expression is invalid (accepted), an empty varspec inside the variable list is invalid (accepted), a zero prefix max-length is invalid (accepted), a five-digit prefix max-length is invalid (accepted), an unmatched closing brace is invalid (accepted), … and 15 more
 - `draft2020-12/optional/format/uri.json::validation of URIs` — `accepted 'an invalid protocol-relative URI Reference' though valid: false`
-  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 20 more
+  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 21 more
 - `draft2020-12/optional/format/uuid.json::uuid format` — `accepted 'wrong length' though valid: false`
   - cases: wrong length (accepted), missing section (accepted), bad characters (not hex) (accepted), no dashes (accepted), too few dashes (accepted), too many dashes (accepted), … and 8 more
 

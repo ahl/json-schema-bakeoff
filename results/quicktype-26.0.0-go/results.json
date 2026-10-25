@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "quicktype",
   "homepage": "https://quicktype.io",
-  "generated_at": "2026-10-11T18:51:36Z",
+  "generated_at": "2026-10-25T14:56:00Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -4415,8 +4415,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "7395ef43430ccd49a4e7cf17031c60824b21c23af58ee00ed8b0288e7e63f637",
-      "generated_at": "2026-10-11T18:51:29Z",
+      "hash": "fc1b9d8c6501513301b8eec4217b1e0a442b2babd379866da2e6a21d594f34fd",
+      "generated_at": "2026-10-25T14:55:58Z",
       "bucket": "compile_fail",
       "error": "g_6721f10638cacf96/g_6721f10638cacf96.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -4567,6 +4567,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5117,8 +5127,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "a416e385db46fc688d0369edeff0f48a59e7727bcc233a1eed6d236fd18f12a1",
-      "generated_at": "2026-10-11T18:51:29Z",
+      "hash": "6b4f77cfae56d8079f36f5209a7a77586542973a741d20684b26ad71ebb2457c",
+      "generated_at": "2026-10-25T14:55:58Z",
       "bucket": "compile_fail",
       "error": "g_7c24122fa07b5c5e/g_7c24122fa07b5c5e.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -5354,6 +5364,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13564,8 +13579,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "5f1cbf7ddbd4f4ca64f9a4cb388a1b8f2905ce784833e6b6c05dcb9c46d2ee9b",
-      "generated_at": "2026-10-11T18:51:30Z",
+      "hash": "6c25b9562fec3049fed50c6b6d12dab76bfab23a7590d9842c924313be324bda",
+      "generated_at": "2026-10-25T14:55:58Z",
       "bucket": "compile_fail",
       "error": "g_a5d4be75aff27cad/g_a5d4be75aff27cad.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -13716,6 +13731,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -14900,8 +14925,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "3a3b5d00ff572bc4954a6d78770768fde360fec487355009728232a4fa37e99a",
-      "generated_at": "2026-10-11T18:51:30Z",
+      "hash": "17562fb8271b6d6afab2985cb06cf49c9d10b39dbe46a5f82dc87257642c0fc4",
+      "generated_at": "2026-10-25T14:55:58Z",
       "bucket": "compile_fail",
       "error": "g_6431f3cc0e8c1bab/g_6431f3cc0e8c1bab.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -15137,6 +15162,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25379,8 +25409,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "5f021171975afbb3073dd266dbc7c0ce3582c33eb5ddad8a63a403c9012fe41d",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "5e1cc30bf89a2eae951ac65b3717ce64157c31787b0bc67c6a90a2b92b2110d8",
+      "generated_at": "2026-10-25T14:55:59Z",
       "bucket": "compile_fail",
       "error": "g_c7c41c120326cda8/g_c7c41c120326cda8.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -25501,6 +25531,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -25858,8 +25898,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "4ceddf1c43badb03d649017ba2c2dce5c780418f41d2d3a6b25a8e52a3b2c21d",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "43428c6c4b4a51ebdea573f05c071a1dbb0d493e3459a8ac37b50a4fc581c6e2",
+      "generated_at": "2026-10-25T14:55:59Z",
       "bucket": "compile_fail",
       "error": "g_4bfd06b7c3fb0fde/g_4bfd06b7c3fb0fde.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -26150,6 +26190,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -27334,8 +27389,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "11f7c71e2f685343de018e9e4463b01a628a0a428db4be9a06cbfc90a2da61df",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "5ef83f27129d78b71e8271b943a189b397d67a9ea5dc85e7eaf2110f454b109e",
+      "generated_at": "2026-10-25T14:55:59Z",
       "bucket": "compile_fail",
       "error": "g_52b6126a3075d4dc/g_52b6126a3075d4dc.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -27402,6 +27457,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -28317,8 +28397,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "68a64625b64f6e72bd11efe96f87158eb16437af408d01686d949abbb7b474c4",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "ceda644ac9ac2325e6feff14fe60b164779743c5887ffbcf1726eb6ef2074f0f",
+      "generated_at": "2026-10-25T14:55:59Z",
       "bucket": "compile_fail",
       "error": "g_6dc494d4a6468fc7/g_6dc494d4a6468fc7.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -28554,6 +28634,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -35700,10 +35785,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "c7c8f841e01297358ca15719522f0a32861fca717207a37f89ae8b582cce2797",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "6aa02b0e9542a598cdc69447e509c724dff3df945b6c70ef9c002f152a65a733",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
-      "error": "g_16d25a56bf935153/g_16d25a56bf935153.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_57ebd146008265e3/g_57ebd146008265e3.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -35723,10 +35808,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "f11029bd31844ae7645c681ac75376dc05016ef93642a44aa334c509f35681ca",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "16c9a673f4d30c931d052324ba787dd2d02049ac7b08ca4c1427a23ac8bd1d8f",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
-      "error": "g_564dc73c2d5236dc/g_564dc73c2d5236dc.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_3392f13524d687a2/g_3392f13524d687a2.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -37860,8 +37945,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "bf77a38db35b98294d068b40a4b9df6c5bffc3c5e62238f26f2a6f12c9d97a07",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "e2227b666a10326a02ce6ceb60fc298a867c43daf9b10fe0e7d0e73b09ec4797",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "generation_error",
       "error": "SchemaFetchError: Could not fetch schema http://localhost:1234/draft7/ignore-dependentRequired.json, referred to from Root#/allOf/1",
       "cases": [
@@ -40243,8 +40328,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "00e9fbaf0faaed13ec5670f63c2cadc9f5d517c046bc7b984eacd64afb82c838",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "c1b54efcd12f3046071538da23def0d9000edde80860219df5e8161499a82e61",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_a3d37899d578e289/g_a3d37899d578e289.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -40365,6 +40450,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -40722,8 +40817,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "0dc7b7bdd9a9d9b490218a1abb2bc44d51111cd7b7fa36b00edd8c2df0d8b44e",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "4d04373d230292daa708c0dfd41906cc29ec0ff8a1fce7b1dbcef3d275e1dc27",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_e81f57d077e765d4/g_e81f57d077e765d4.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -41014,6 +41109,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -42198,8 +42308,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "7762d07dfa080b11cf0c33946d3dfbd99d189bd814ca71e0cabed85eb2dc7c60",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "3a7160d776296df80a3d9ec5edaa85c91a72f787cf5b004fa2a4106646af7e72",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_5c57d6c018e6471b/g_5c57d6c018e6471b.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -42266,6 +42376,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -43181,8 +43316,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "e080ba7143c3f8e7f1ddf3451884095f7ef09f55ce2bb7241668673a71d7f4bb",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "a6b4a698f502f601c53371a9d8283be829354615da882977006d2a58c7e60d62",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_5510cafe96bc5931/g_5510cafe96bc5931.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -43418,6 +43553,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48308,13 +48448,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "a459e2a309a92cac8e434c03812b52d3e6d3d20756c6de6b801ff78f8577bd21",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "18a6accbfc159f3b2cef49b7a2365b81e170a6714d8079b57452991c90f536cb",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "false_accept",
       "error": "accepted `Empty is invalid` though valid: false",
       "cases": [
@@ -51673,8 +51813,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "9563a2279b5a09ee103a47ad891affff608537f123c36220d446464aa39eb4a8",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "c9a119db2fac72726ec9d25e7ff24ca841dd9c1c8e6098492d4ef0dc4340184f",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "generation_error",
       "error": "SchemaFetchError: Could not fetch schema http://localhost:1234/draft2020-12/detached-dynamicref.json, referred to from Root#",
       "cases": [
@@ -53483,10 +53623,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "b0f610df212b27fd5e3c372878f8e15d6693bacffc439eb7aa0233b0dc425ee9",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "a24d9a4f229e0e19c5622c671531369aa517ac586f0f40241f80789d840cea4e",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
-      "error": "g_666ae1bc932b91ed/g_666ae1bc932b91ed.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_d4054ee9ea2d1c6e/g_d4054ee9ea2d1c6e.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -53506,10 +53646,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "a58ef4f910ccf81b0d02f5742c35c6fef8cec6ed5c55f8ea10d221ddd418aabd",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "1a423eea28e550c50d406439a68d78458f3642d02d174c5497d4a2d46bb588bc",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
-      "error": "g_8311a4bf002df499/g_8311a4bf002df499.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_240045f14d487a00/g_240045f14d487a00.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -58044,8 +58184,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "eabb882bda57564bb1aa8e2d59a354fd43d5680ed22038bbbf32c884001df0c5",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "a414d433c90b35a268d05b65685f0a8dde27b2970ad11689b89f761ae7c323ce",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_64447f2046e12f22/g_64447f2046e12f22.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -58166,6 +58306,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -58523,8 +58673,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "bb5640f2bac76b2711da43da590e8d8dfc5809abeaef89da2a341b68c59b547e",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "355f51abed96ce1e5c66801179fa48e8eb74307d7ce1160f9a94ed24466952fb",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_5a3b4523bcab5264/g_5a3b4523bcab5264.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -58815,6 +58965,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -59999,8 +60164,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "232f432758d74d22e1c4b47d7767830cbbda572fbe0d95a7d8682d5ed2f32621",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "210b38b8305c612edd257cf9d520f7c6fe72e9ee5f963224e59461da3e1fac49",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_fa90e59e503b70d8/g_fa90e59e503b70d8.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -60067,6 +60232,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -60982,8 +61172,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "177467f40cd7aa5a4642b4a4fc53c0f9497ff77c9ee6842fb1b59a5dbc0b35a9",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "9baa1448fa23175115cdc102b80674f7e09595144944cb0abcebdfbf9f2e4c5a",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "compile_fail",
       "error": "g_18ed9822caaa3c88/g_18ed9822caaa3c88.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -61219,6 +61409,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -61998,14 +62193,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "aef6dfa6e06ac604a9c8f881ec33c2a0f37626d92eec0f37321a75f23d0c8748",
-      "generated_at": "2026-10-11T18:51:36Z",
-      "bucket": "pass",
+      "hash": "a7d1e795f164cd552d1a68ca27ae5c6279468ca1607fbc23b1edde8d0c12f3a6",
+      "generated_at": "2026-10-25T14:56:00Z",
+      "bucket": "false_accept",
+      "error": "accepted `Unicode letter property name matches but value type is incorrect` though valid: false",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -66115,13 +66316,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "ebaf6d02a3fb764620864cf8ace5c40978c43bfe0f93002e977d9e61ce6dceee",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "5f63134f2a8d047323b18ccf3277fd674853f0dddd03b7bdb64233ae692d429f",
+      "generated_at": "2026-10-25T14:56:00Z",
       "bucket": "false_accept",
       "error": "accepted `Empty is invalid` though valid: false",
       "cases": [

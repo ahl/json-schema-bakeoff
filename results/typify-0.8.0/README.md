@@ -3,7 +3,7 @@
 The last typify release before the typespace rewrite. Same design center as
 0.10; it's here so the rewrite has something to be measured against.
 
-_generated 2026-10-11T22:00:26Z_
+_generated 2026-10-25T14:56:39Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
@@ -50,19 +50,19 @@ _generated 2026-10-11T22:00:26Z_
 | draft6 | 414 | 549 | 75.4% | 841 | 49.2% |
 | draft7 | 414 | 549 | 75.4% | 929 | 44.6% |
 | draft2019-09 | 546 | 749 | 72.9% | 1261 | 43.3% |
-| draft2020-12 | 575 | 799 | 72.0% | 1301 | 44.2% |
-| **Total** | **2263** | **3048** | **74.2%** | **4950** | **45.7%** |
+| draft2020-12 | 576 | 800 | 72.0% | 1302 | 44.2% |
+| **Total** | **2264** | **3049** | **74.3%** | **4951** | **45.7%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 81 | 93 | 87.1% | 391 | 20.7% |
-| draft6 | 81 | 96 | 84.4% | 520 | 15.6% |
-| draft7 | 85 | 102 | 83.3% | 922 | 9.2% |
-| draft2019-09 | 103 | 131 | 78.6% | 1043 | 9.9% |
-| draft2020-12 | 103 | 131 | 78.6% | 1047 | 9.8% |
-| **Total** | **453** | **553** | **81.9%** | **3923** | **11.5%** |
+| draft4 | 81 | 93 | 87.1% | 394 | 20.6% |
+| draft6 | 81 | 96 | 84.4% | 523 | 15.5% |
+| draft7 | 85 | 102 | 83.3% | 933 | 9.1% |
+| draft2019-09 | 103 | 131 | 78.6% | 1054 | 9.8% |
+| draft2020-12 | 103 | 131 | 78.6% | 1058 | 9.7% |
+| **Total** | **453** | **553** | **81.9%** | **3962** | **11.4%** |
 
 ## Chart
 

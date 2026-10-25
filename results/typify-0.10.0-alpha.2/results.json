@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "typify-0.10",
   "homepage": "https://crates.io/crates/typify",
-  "generated_at": "2026-10-11T22:00:06Z",
+  "generated_at": "2026-10-25T14:56:34Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -4483,8 +4483,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "030feaec9aeaf99b8657137217e302a61c5cca0ab8c540c284ca707d13e4d084",
-      "generated_at": "2026-10-11T21:59:54Z",
+      "hash": "b9e54fdc6af16d1177d53745b45512d72867dccb90d776170a079cb2a27f65ca",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -4635,6 +4635,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5185,8 +5195,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "174cc3197b78f364b4af69d35a3e0fb5c62e91b8e87ba7eebab2c65d987a23d0",
-      "generated_at": "2026-10-11T21:59:54Z",
+      "hash": "e6f797c601d19c3460693a26006e4824dba7417985fc1aeaa338151094d59e00",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -5422,6 +5432,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13740,8 +13755,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "f91a173527465ac4a781f949354835cce6f108900bbb708491cbdcf3ce659fb6",
-      "generated_at": "2026-10-11T21:59:56Z",
+      "hash": "d8a5f043ed36384317f4b1148d137e5a8b31a6f5ce64eb72f43f42189c255e25",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -13892,6 +13907,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -15076,8 +15101,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "0d89ba5a5be42ffc0713593712e3737ec653d53956b65e750c56617f86e4aade",
-      "generated_at": "2026-10-11T21:59:56Z",
+      "hash": "0edcdc25f98b6861ce110ead490fbb68e70b4abc216386be031f6d894c276da7",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -15313,6 +15338,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25666,8 +25696,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "4329cf1e11c99e344ffe62cf4fbdb312bcc078307835ad930a0b1bff4e960870",
-      "generated_at": "2026-10-11T21:59:59Z",
+      "hash": "6636277a195f7218fcc31a216a33da2e704f2a4e2c3e028cd3c71c66982422a5",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -25788,6 +25818,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -26145,8 +26185,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "d83bfd15cfd8032fd5610eacbae296702e1687e85a3d05bc25c138e7786ab568",
-      "generated_at": "2026-10-11T21:59:59Z",
+      "hash": "96355b00e939beddac21f4846fbc95b539a802619c9b552c644b3d83fac404b5",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"idn-hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -26437,6 +26477,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -27621,8 +27676,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "406d26dc23deed71901e417cadd68e9280d1e5ff555a270fc61dd06d2b6679d7",
-      "generated_at": "2026-10-11T21:59:59Z",
+      "hash": "331bf14b3d87a374ad85dd95fff7381ae19933009356ffb34e5e3ae72a83d08f",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -27689,6 +27744,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -28604,8 +28684,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "1a638e81e46c9707cd523d5b3da08adb5812d26ba9d50c4b6397c21548aafcb5",
-      "generated_at": "2026-10-11T21:59:59Z",
+      "hash": "7212db22a24c82f13fa616224a00be5ec9169d183dde74d030811c51d74a9f4d",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -28841,6 +28921,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -36035,8 +36120,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "9e4fc7b53c82fc12a935a34dc437017a9346b3a56d8d93e50179026cb569c41a",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "55244d03d8be3170c1485f3b9c7935c2e7143559686c647ba5c18030130e47c2",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not implemented: if/then/else schemas are not supported: {\n  \"if\": {\n    \"const\": 1\n  },\n  \"then\": false\n} at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:289",
       "cases": [
@@ -36058,8 +36143,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "b4ec11d85f3ebe601ecf6323e49a4accc17c65471c762f6a7f52c19141e1040b",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "7c4503b6fa2dfdf25760db94f9914b1010a17164eb430f094b0f7a7813e6a96a",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not implemented: if/then/else schemas are not supported: {\n  \"if\": {\n    \"const\": 1\n  },\n  \"else\": false\n} at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:289",
       "cases": [
@@ -38227,8 +38312,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "80ce30c59131ffff9d58a3100b66e11a8d91e46cb06a2f00ea6561e42681adbe",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "b54fcf891e1d4ec01dcf4cfb6b38927c41ba91e95dc3d7b7bd89b796bf4045d7",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "unresolved reference: http://localhost:1234/draft7/ignore-dependentRequired.json at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:125",
       "cases": [
@@ -40641,8 +40726,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "5e1db147f025ee8b563afc37d20e69f22a82c6388da87fd0392377a8d77d3d1c",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "b6a893fb33e2ed8f535e6490ba5b2bbc0d7e5aedf4bb7843b387816c98d2b381",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -40763,6 +40848,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -41120,8 +41215,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "40b195bb02f3e66b785783ba28a4023ed6e7c1bafc890d4c570b2ebded993728",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "0e5db6c80b927da6fafdba96b740877c88b96ca07fec18d7533bfa7448815039",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"idn-hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -41412,6 +41507,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -42596,8 +42706,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "f450d448b02f32adf4f28ac4c44b58c7c1f2f9bb930c78765b007aedaadd0ea3",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "85f165aef1207fda8222ba10c77ddeaaf524c31a1fc2da4a5233ec311bbfe1e0",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -42664,6 +42774,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -43579,8 +43714,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "520fa6b03c5e5f9c572787d187ca3fd51e4c97589fe41cac2fae27463472a831",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "hash": "c99183cd0a0003560d17d65ce68149494b0113c9f9d292224cb1d9f1ecabb55b",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -43816,6 +43951,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48748,13 +48888,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "db6203265df8e5e6a994be32cbd3d782dbd6ccb9a53bfb4edd022874c0aead38",
-      "generated_at": "2026-10-11T22:00:02Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "bda115981a8e44b1cf263b8a050bd4f068d73c56cc362ed76607e87cffb63439",
+      "generated_at": "2026-10-25T14:56:33Z",
       "bucket": "false_accept",
       "error": "accepted `a + b is invalid` though valid: false",
       "cases": [
@@ -52113,8 +52253,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "bfb05acf3bb97310380724b0a9b25f5a84289824100c0b6204509bc05457ffac",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "a7c92264b86550035bf6c79273522a3ffc927937c7ef1fc795bcf07c21f55951",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "external references are not supported: http://localhost:1234/draft2020-12/detached-dynamicref.json#/$defs/foo at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:1452",
       "cases": [
@@ -53932,8 +54072,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "30c1c54186b24456e7c82b122c62e6d2a5b697bda772e2a11203c6c3d712cdf7",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "a902d9d939505dbbac7423162f97145b8020b475f6cb6588b0711515a00daaa0",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "not implemented: if/then/else schemas are not supported: {\n  \"if\": {\n    \"const\": 1\n  },\n  \"then\": false\n} at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:289",
       "cases": [
@@ -53955,8 +54095,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "2ca3d68d142130d5a1478ec23995c4de12eedee2047a5f25ffa0585191d49c3c",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "94193c976726384205babd1936128c117efe657100ac42a60ff117f74a5ddd21",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "not implemented: if/then/else schemas are not supported: {\n  \"if\": {\n    \"const\": 1\n  },\n  \"else\": false\n} at <registry>/typify-impl-0.10.0-alpha.2/src/merge.rs:289",
       "cases": [
@@ -58570,8 +58710,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "93cbe65b937fc47855a7d61ff09cda496a8bc9c6ef4db3bee2e5fb81aacd4978",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "22ab1815662514a8b5dc79460d91a7b3ed9af0dc7cbfb243e1833b0a4241fa19",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -58692,6 +58832,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -59049,8 +59199,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "38cf07b8e634113a5a9d94b256d41986b18d28b37215c4a62954ef81de79fbcb",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "e06c6c3bd9b110225806210482534e43eefdf7b8747b4efe1a528a53d4ef9cf4",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"idn-hostname\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -59341,6 +59491,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -60525,8 +60690,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "9361d813c05ee133dbfd4033d9b6515ea59529c1ea53f6e52ae5965d113e0ecf",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "7a4af8b99a0aa9313a9a1b913568373e5a4e137d8d2008aa5a74d15a1e4bef46",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"regex\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -60593,6 +60758,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -61508,8 +61698,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "36eefc9c199d05b45fe16a06c4131a66077bb96d3ff8b2cf7587c0a5e454e351",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "882ffbc1196de764ab52adb65b3f571e0031a62ce32978effdd558e3de7940d9",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "generation_panic",
       "error": "not yet implemented: invalid (or unexpected) schema:\n{\n  \"format\": \"uri\"\n} at <registry>/typify-impl-0.10.0-alpha.2/src/convert.rs:785",
       "cases": [
@@ -61745,6 +61935,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -62543,8 +62738,8 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "930e9391e0e48aa62f0d86ea380ad4e0801364d50cc2d1835bfc98792a13fcc1",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "hash": "a1fe268953d2bae9043d92e8ccbd61ca01db7bb931ba80f153a16dac685157e5",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "false_reject",
       "error": "Unicode letter property name matches: doesn't match pattern \"^\\p{Letter}+$\"",
       "cases": [
@@ -62552,6 +62747,12 @@
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "false_reject",
+          "error": "doesn't match pattern \"^\\p{Letter}+$\""
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "match",
           "error": "doesn't match pattern \"^\\p{Letter}+$\""
         },
         {
@@ -66688,13 +66889,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "36968b9f66aeb40374d608443d34247b2a29bbdfeaba00c293bf664df9f5cfac",
-      "generated_at": "2026-10-11T22:00:06Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "68df99b87d85dccbc79b092317bc263199ae58e18845d1f22408101d7f247eae",
+      "generated_at": "2026-10-25T14:56:34Z",
       "bucket": "false_accept",
       "error": "accepted `a + b is invalid` though valid: false",
       "cases": [

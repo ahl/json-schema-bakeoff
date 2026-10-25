@@ -5,7 +5,7 @@ must be an object with `properties` or it refuses outright. Constraints come
 out as attributes for its own validator, which serde ignores, so it's
 measured on the little it does model.
 
-_generated 2026-10-11T22:01:51Z_
+_generated 2026-10-25T14:54:33Z_
 
 **16 of 1408 non-optional groups pass (1.1%)**; 301 optional groups reported separately
 
@@ -52,19 +52,19 @@ _generated 2026-10-11T22:01:51Z_
 | draft6 | 26 | 46 | 56.5% | 841 | 3.1% |
 | draft7 | 26 | 46 | 56.5% | 929 | 2.8% |
 | draft2019-09 | 50 | 95 | 52.6% | 1261 | 4.0% |
-| draft2020-12 | 42 | 72 | 58.3% | 1301 | 3.2% |
-| **Total** | **172** | **309** | **55.7%** | **4950** | **3.5%** |
+| draft2020-12 | 42 | 72 | 58.3% | 1302 | 3.2% |
+| **Total** | **172** | **309** | **55.7%** | **4951** | **3.5%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 0 | 0 | - | 391 | 0.0% |
-| draft6 | 0 | 0 | - | 520 | 0.0% |
-| draft7 | 0 | 0 | - | 922 | 0.0% |
-| draft2019-09 | 0 | 0 | - | 1043 | 0.0% |
-| draft2020-12 | 0 | 0 | - | 1047 | 0.0% |
-| **Total** | **0** | **0** | **-** | **3923** | **0.0%** |
+| draft4 | 0 | 0 | - | 394 | 0.0% |
+| draft6 | 0 | 0 | - | 523 | 0.0% |
+| draft7 | 0 | 0 | - | 933 | 0.0% |
+| draft2019-09 | 0 | 0 | - | 1054 | 0.0% |
+| draft2020-12 | 0 | 0 | - | 1058 | 0.0% |
+| **Total** | **0** | **0** | **-** | **3962** | **0.0%** |
 
 ## Chart
 

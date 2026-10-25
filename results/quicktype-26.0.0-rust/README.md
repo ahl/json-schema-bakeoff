@@ -6,9 +6,9 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-10-11T18:51:27Z_
+_generated 2026-10-25T14:55:58Z_
 
-**545 of 1408 non-optional groups pass (38.7%)**; 301 optional groups reported separately
+**544 of 1408 non-optional groups pass (38.6%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -31,8 +31,8 @@ _generated 2026-10-11T18:51:27Z_
 | draft6 | 96 | 84 | 6 | 5 | 0 | 0 | 39 | 3 | 233 | 41.2% |
 | draft7 | 112 | 93 | 6 | 5 | 0 | 0 | 39 | 3 | 258 | 43.4% |
 | draft2019-09 | 135 | 169 | 11 | 4 | 0 | 0 | 51 | 3 | 373 | 36.2% |
-| draft2020-12 | 136 | 176 | 10 | 3 | 0 | 0 | 56 | 3 | 384 | 35.4% |
-| **Total** | **545** | **585** | **38** | **21** | **0** | **0** | **207** | **12** | **1408** | **38.7%** |
+| draft2020-12 | 135 | 177 | 10 | 3 | 0 | 0 | 56 | 3 | 384 | 35.2% |
+| **Total** | **544** | **586** | **38** | **21** | **0** | **0** | **207** | **12** | **1408** | **38.6%** |
 
 ### Optional groups
 
@@ -53,19 +53,19 @@ _generated 2026-10-11T18:51:27Z_
 | draft6 | 553 | 738 | 74.9% | 841 | 65.8% |
 | draft7 | 630 | 826 | 76.3% | 929 | 67.8% |
 | draft2019-09 | 808 | 1129 | 71.6% | 1261 | 64.1% |
-| draft2020-12 | 828 | 1156 | 71.6% | 1301 | 63.6% |
-| **Total** | **3243** | **4414** | **73.5%** | **4950** | **65.5%** |
+| draft2020-12 | 828 | 1157 | 71.6% | 1302 | 63.6% |
+| **Total** | **3243** | **4415** | **73.5%** | **4951** | **65.5%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 169 | 388 | 43.6% | 391 | 43.2% |
-| draft6 | 240 | 513 | 46.8% | 520 | 46.2% |
-| draft7 | 422 | 917 | 46.0% | 922 | 45.8% |
-| draft2019-09 | 486 | 1029 | 47.2% | 1043 | 46.6% |
-| draft2020-12 | 488 | 1033 | 47.2% | 1047 | 46.6% |
-| **Total** | **1805** | **3880** | **46.5%** | **3923** | **46.0%** |
+| draft4 | 169 | 391 | 43.2% | 394 | 42.9% |
+| draft6 | 240 | 516 | 46.5% | 523 | 45.9% |
+| draft7 | 427 | 928 | 46.0% | 933 | 45.8% |
+| draft2019-09 | 491 | 1040 | 47.2% | 1054 | 46.6% |
+| draft2020-12 | 493 | 1044 | 47.2% | 1058 | 46.6% |
+| **Total** | **1820** | **3919** | **46.4%** | **3962** | **45.9%** |
 
 ## Chart
 
@@ -392,7 +392,7 @@ _generated 2026-10-11T18:51:27Z_
 | not.json | 2 | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | 🙈🙈🙈🙈🙈🙈✅✅🙈 |
 | oneOf.json | 0 | 8 | 0 | 0 | 0 | 0 | 3 | 0 | 11 | 🙈🙈🙈❌❌❌🙈🙈🙈🙈🙈 |
 | pattern.json | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈✅🙈 |
-| patternProperties.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈✅✅ |
+| patternProperties.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈✅🙈 |
 | prefixItems.json | 1 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 4 | 🤪❌🚧✅ |
 | properties.json | 4 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 6 | ✅🙈❌✅✅✅ |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
@@ -404,7 +404,7 @@ _generated 2026-10-11T18:51:27Z_
 | unevaluatedProperties.json | 9 | 35 | 0 | 0 | 0 | 0 | 0 | 0 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈🙈 |
 | uniqueItems.json | 2 | 2 | 1 | 1 | 0 | 0 | 0 | 0 | 6 | 🙈🤪🙈✅🚧✅ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ❌✅ |
-| **Total** | **136** | **176** | **10** | **3** | **0** | **0** | **56** | **3** | **384** |  |
+| **Total** | **135** | **177** | **10** | **3** | **0** | **0** | **56** | **3** | **384** |  |
 
 #### optional
 
@@ -695,9 +695,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: invalid type: floating point '1e+308', expected i64`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (815)
+### 🙈 `false_accept` (816)
 
-174 distinct first-line errors; most common:
+175 distinct first-line errors; most common:
 
 - **27×** `accepted 'too long is invalid' though valid: false`
 - **27×** `accepted 'too short is invalid' though valid: false`
@@ -807,5 +807,5 @@ Per group:
   - cases: both valid - invalid (accepted)
 - `draft4/oneOf.json::oneOf with required` — `accepted 'both invalid - invalid' though valid: false`
   - cases: both invalid - invalid (accepted), both valid - invalid (accepted)
-- … and 765 more
+- … and 766 more
 

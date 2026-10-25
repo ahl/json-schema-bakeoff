@@ -7,7 +7,7 @@ on `type`: a typed schema picks up bounds, lengths, patterns, enums and
 says. It has no `$ref` resolver. Unmaintained since March 2026; 2.8.1 is the
 last release, and it runs on zod 4 here.
 
-_generated 2026-10-11T18:53:39Z_
+_generated 2026-10-25T14:54:37Z_
 
 **538 of 1408 non-optional groups pass (38.2%)**; 301 optional groups reported separately
 
@@ -54,19 +54,19 @@ _generated 2026-10-11T18:53:39Z_
 | draft6 | 627 | 841 | 74.6% | 841 | 74.6% |
 | draft7 | 702 | 929 | 75.6% | 929 | 75.6% |
 | draft2019-09 | 905 | 1261 | 71.8% | 1261 | 71.8% |
-| draft2020-12 | 928 | 1301 | 71.3% | 1301 | 71.3% |
-| **Total** | **3619** | **4950** | **73.1%** | **4950** | **73.1%** |
+| draft2020-12 | 929 | 1302 | 71.4% | 1302 | 71.4% |
+| **Total** | **3620** | **4951** | **73.1%** | **4951** | **73.1%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 193 | 391 | 49.4% | 391 | 49.4% |
-| draft6 | 268 | 520 | 51.5% | 520 | 51.5% |
-| draft7 | 449 | 922 | 48.7% | 922 | 48.7% |
-| draft2019-09 | 515 | 1043 | 49.4% | 1043 | 49.4% |
-| draft2020-12 | 517 | 1047 | 49.4% | 1047 | 49.4% |
-| **Total** | **1942** | **3923** | **49.5%** | **3923** | **49.5%** |
+| draft4 | 193 | 394 | 49.0% | 394 | 49.0% |
+| draft6 | 268 | 523 | 51.2% | 523 | 51.2% |
+| draft7 | 454 | 933 | 48.7% | 933 | 48.7% |
+| draft2019-09 | 520 | 1054 | 49.3% | 1054 | 49.3% |
+| draft2020-12 | 522 | 1058 | 49.3% | 1058 | 49.3% |
+| **Total** | **1957** | **3962** | **49.4%** | **3962** | **49.4%** |
 
 ## Chart
 
