@@ -10,6 +10,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
+| [jsonschema 0.60.0](results/jsonschema-0.60.0/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-25T14:55:14Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T22:03:28Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T22:00:41Z |
@@ -23,6 +24,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
+| [jsonschema 0.60.0](results/jsonschema-0.60.0/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-25T14:55:14Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T22:03:28Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T22:00:41Z |
@@ -86,7 +88,7 @@ on `type`: a typed schema picks up bounds, lengths, patterns, enums and
 says. It has no `$ref` resolver. Unmaintained since March 2026; 2.8.1 is the
 last release, and it runs on zod 4 here.
 
-**jsonschema 0.58.6** — [crates.io](https://crates.io/crates/jsonschema)  
+**jsonschema 0.60.0** — [crates.io](https://crates.io/crates/jsonschema)  
 A Rust validator, not a generator: it interprets the schema at run time, so
 it can enforce every keyword, which a type generator structurally can't. It's
 the reference row: the ceiling the suite allows, a check on the harness, and
