@@ -29,4 +29,4 @@ serde_json = { version = "1", features = ["float_roundtrip", "raw_value"] }
 # formats and silently ignored, which would show up in draft 4/6/7
 # `optional/format` as this generator being too loose when in fact we had
 # just compiled the checks out.
-jsonschema = { version = "=0.58.6", default-features = false, features = ["idna"] }
+jsonschema = { version = "=0.60.0", default-features = false, features = ["idna"] }
