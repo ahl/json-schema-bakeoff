@@ -6,9 +6,9 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-10-11T18:51:36Z_
+_generated 2026-10-25T14:56:00Z_
 
-**302 of 1408 non-optional groups pass (21.4%)**; 301 optional groups reported separately
+**301 of 1408 non-optional groups pass (21.4%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -31,8 +31,8 @@ _generated 2026-10-11T18:51:36Z_
 | draft6 | 58 | 42 | 3 | 5 | 0 | 83 | 39 | 3 | 233 | 24.9% |
 | draft7 | 62 | 42 | 3 | 5 | 0 | 104 | 39 | 3 | 258 | 24.0% |
 | draft2019-09 | 70 | 95 | 7 | 5 | 0 | 142 | 51 | 3 | 373 | 18.8% |
-| draft2020-12 | 72 | 94 | 6 | 4 | 0 | 149 | 56 | 3 | 384 | 18.8% |
-| **Total** | **302** | **310** | **22** | **22** | **0** | **533** | **207** | **12** | **1408** | **21.4%** |
+| draft2020-12 | 71 | 95 | 6 | 4 | 0 | 149 | 56 | 3 | 384 | 18.5% |
+| **Total** | **301** | **311** | **22** | **22** | **0** | **533** | **207** | **12** | **1408** | **21.4%** |
 
 ### Optional groups
 
@@ -53,19 +53,19 @@ _generated 2026-10-11T18:51:36Z_
 | draft6 | 280 | 366 | 76.5% | 841 | 33.3% |
 | draft7 | 288 | 374 | 77.0% | 929 | 31.0% |
 | draft2019-09 | 380 | 557 | 68.2% | 1261 | 30.1% |
-| draft2020-12 | 366 | 532 | 68.8% | 1301 | 28.1% |
-| **Total** | **1541** | **2128** | **72.4%** | **4950** | **31.1%** |
+| draft2020-12 | 366 | 533 | 68.7% | 1302 | 28.1% |
+| **Total** | **1541** | **2129** | **72.4%** | **4951** | **31.1%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 33 | 64 | 51.6% | 391 | 8.4% |
-| draft6 | 31 | 63 | 49.2% | 520 | 6.0% |
-| draft7 | 31 | 63 | 49.2% | 922 | 3.4% |
-| draft2019-09 | 37 | 69 | 53.6% | 1043 | 3.5% |
-| draft2020-12 | 37 | 69 | 53.6% | 1047 | 3.5% |
-| **Total** | **169** | **328** | **51.5%** | **3923** | **4.3%** |
+| draft4 | 33 | 64 | 51.6% | 394 | 8.4% |
+| draft6 | 31 | 63 | 49.2% | 523 | 5.9% |
+| draft7 | 31 | 63 | 49.2% | 933 | 3.3% |
+| draft2019-09 | 37 | 69 | 53.6% | 1054 | 3.5% |
+| draft2020-12 | 37 | 69 | 53.6% | 1058 | 3.5% |
+| **Total** | **169** | **328** | **51.5%** | **3962** | **4.3%** |
 
 ## Chart
 
@@ -392,7 +392,7 @@ _generated 2026-10-11T18:51:36Z_
 | not.json | 0 | 1 | 0 | 0 | 0 | 8 | 0 | 0 | 9 | 🦀🦀🦀🙈🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 4 | 0 | 0 | 0 | 4 | 3 | 0 | 11 | 🦀🙈🦀❌❌❌🙈🦀🙈🙈🦀 |
 | pattern.json | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 3 | 🦀🦀🙈 |
-| patternProperties.json | 1 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀✅ |
+| patternProperties.json | 0 | 1 | 0 | 0 | 0 | 5 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🙈 |
 | prefixItems.json | 1 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 4 | 🤪❌🚧✅ |
 | properties.json | 4 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 6 | ✅🙈❌✅✅✅ |
 | propertyNames.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
@@ -404,7 +404,7 @@ _generated 2026-10-11T18:51:36Z_
 | unevaluatedProperties.json | 6 | 27 | 0 | 0 | 0 | 11 | 0 | 0 | 44 | 🦀🦀🦀🙈🦀✅✅🙈🙈✅✅🙈🙈🙈🦀🦀🦀🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🦀🦀🦀🦀🙈🙈🙈🙈 |
 | uniqueItems.json | 0 | 2 | 1 | 1 | 0 | 2 | 0 | 0 | 6 | 🦀🤪🙈🦀🚧🙈 |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ❌✅ |
-| **Total** | **72** | **94** | **6** | **4** | **0** | **149** | **56** | **3** | **384** |  |
+| **Total** | **71** | **95** | **6** | **4** | **0** | **149** | **56** | **3** | **384** |  |
 
 #### optional
 
@@ -729,9 +729,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: json: cannot unmarshal number 1e+308 into Go value of type g_1cb87ac0db86bbfd.Root`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (385)
+### 🙈 `false_accept` (386)
 
-84 distinct first-line errors; most common:
+85 distinct first-line errors; most common:
 
 - **18×** `accepted 'with unevaluated properties' though valid: false`
 - **15×** `accepted 'does not match' though valid: false`
@@ -841,5 +841,5 @@ Per group:
   - cases: integer 2 is invalid (accepted), float 2.0 is invalid (accepted), float -2.00001 is invalid (accepted)
 - `draft6/const.json::float and integers are equal up to 64-bit representation limits` — `accepted 'integer minus one is invalid' though valid: false`
   - cases: integer minus one is invalid (accepted), float minus one is invalid (accepted)
-- … and 335 more
+- … and 336 more
 

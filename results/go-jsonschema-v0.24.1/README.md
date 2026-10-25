@@ -8,9 +8,9 @@ the unmarshaller rather than left to the type system. The flip side is that a
 root with no `type` keyword produces no root type at all, and the combinators
 collapse into a merged type or `interface{}`.
 
-_generated 2026-10-11T18:50:16Z_
+_generated 2026-10-25T14:54:23Z_
 
-**28 of 1408 non-optional groups pass (2.0%)**; 301 optional groups reported separately
+**27 of 1408 non-optional groups pass (1.9%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -32,9 +32,9 @@ _generated 2026-10-11T18:50:16Z_
 | draft4 | 3 | 11 | 1 | 2 | 0 | 121 | 22 | 0 | 160 | 1.9% |
 | draft6 | 3 | 10 | 1 | 3 | 0 | 172 | 44 | 0 | 233 | 1.3% |
 | draft7 | 3 | 10 | 1 | 3 | 0 | 185 | 56 | 0 | 258 | 1.2% |
-| draft2019-09 | 11 | 31 | 1 | 3 | 0 | 279 | 48 | 0 | 373 | 2.9% |
-| draft2020-12 | 8 | 13 | 1 | 3 | 0 | 337 | 22 | 0 | 384 | 2.1% |
-| **Total** | **28** | **75** | **5** | **14** | **0** | **1094** | **192** | **0** | **1408** | **2.0%** |
+| draft2019-09 | 11 | 31 | 1 | 3 | 0 | 281 | 46 | 0 | 373 | 2.9% |
+| draft2020-12 | 7 | 14 | 1 | 3 | 0 | 339 | 20 | 0 | 384 | 1.8% |
+| **Total** | **27** | **76** | **5** | **14** | **0** | **1098** | **188** | **0** | **1408** | **1.9%** |
 
 ### Optional groups
 
@@ -55,19 +55,19 @@ _generated 2026-10-11T18:50:16Z_
 | draft6 | 75 | 102 | 73.5% | 841 | 8.9% |
 | draft7 | 75 | 102 | 73.5% | 929 | 8.1% |
 | draft2019-09 | 113 | 170 | 66.5% | 1261 | 9.0% |
-| draft2020-12 | 90 | 123 | 73.2% | 1301 | 6.9% |
-| **Total** | **428** | **598** | **71.6%** | **4950** | **8.6%** |
+| draft2020-12 | 90 | 124 | 72.6% | 1302 | 6.9% |
+| **Total** | **428** | **599** | **71.5%** | **4951** | **8.6%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 40 | 63 | 63.5% | 391 | 10.2% |
-| draft6 | 39 | 62 | 62.9% | 520 | 7.5% |
-| draft7 | 40 | 64 | 62.5% | 922 | 4.3% |
-| draft2019-09 | 40 | 63 | 63.5% | 1043 | 3.8% |
-| draft2020-12 | 39 | 62 | 62.9% | 1047 | 3.7% |
-| **Total** | **198** | **314** | **63.1%** | **3923** | **5.0%** |
+| draft4 | 40 | 63 | 63.5% | 394 | 10.2% |
+| draft6 | 39 | 62 | 62.9% | 523 | 7.5% |
+| draft7 | 40 | 64 | 62.5% | 933 | 4.3% |
+| draft2019-09 | 40 | 63 | 63.5% | 1054 | 3.8% |
+| draft2020-12 | 39 | 62 | 62.9% | 1058 | 3.7% |
+| **Total** | **198** | **314** | **63.1%** | **3962** | **5.0%** |
 
 ## Chart
 
@@ -287,7 +287,7 @@ _generated 2026-10-11T18:50:16Z_
 | exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | format.json | 0 | 0 | 0 | 0 | 0 | 19 | 0 | 0 | 19 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 10 | 2 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀❌❌ |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 0 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | infinite-loop-detection.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | items.json | 1 | 0 | 0 | 0 | 0 | 4 | 4 | 0 | 9 | 🦀❌🦀🦀❌❌✅🦀❌ |
 | maxContains.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
@@ -316,7 +316,7 @@ _generated 2026-10-11T18:50:16Z_
 | unevaluatedProperties.json | 7 | 21 | 0 | 0 | 0 | 15 | 1 | 0 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🦀🦀🦀🦀🦀✅✅🙈🙈🙈🙈🙈🙈🙈❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 2 | 4 | 0 | 6 | 🦀❌❌🦀❌❌ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 🦀✅ |
-| **Total** | **11** | **31** | **1** | **3** | **0** | **279** | **48** | **0** | **373** |  |
+| **Total** | **11** | **31** | **1** | **3** | **0** | **281** | **46** | **0** | **373** |  |
 
 #### optional
 
@@ -377,7 +377,7 @@ _generated 2026-10-11T18:50:16Z_
 | exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | format.json | 0 | 0 | 0 | 0 | 0 | 19 | 0 | 0 | 19 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 10 | 2 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀❌❌ |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 0 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | infinite-loop-detection.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | items.json | 1 | 1 | 0 | 0 | 0 | 8 | 0 | 0 | 10 | 🦀🦀🦀🙈✅🦀🦀🦀🦀🦀 |
 | maxContains.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
@@ -394,7 +394,7 @@ _generated 2026-10-11T18:50:16Z_
 | not.json | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 0 | 9 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 2 | 0 | 0 | 0 | 9 | 0 | 0 | 11 | 🦀🙈🦀🦀🦀🦀🦀🦀🙈🦀🦀 |
 | pattern.json | 1 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 3 | 🦀🦀✅ |
-| patternProperties.json | 1 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀✅ |
+| patternProperties.json | 0 | 1 | 0 | 0 | 0 | 5 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🙈 |
 | prefixItems.json | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 🦀🦀🦀🦀 |
 | properties.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | propertyNames.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
@@ -406,7 +406,7 @@ _generated 2026-10-11T18:50:16Z_
 | unevaluatedProperties.json | 2 | 0 | 0 | 0 | 0 | 42 | 0 | 0 | 44 | 🦀🦀🦀🦀🦀✅✅🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 🦀✅ |
-| **Total** | **8** | **13** | **1** | **3** | **0** | **337** | **22** | **0** | **384** |  |
+| **Total** | **7** | **14** | **1** | **3** | **0** | **339** | **20** | **0** | **384** |  |
 
 #### optional
 
@@ -450,12 +450,12 @@ _generated 2026-10-11T18:50:16Z_
 
 ## Failures
 
-### ❌ `generation_error` (207)
+### ❌ `generation_error` (203)
 
 25 distinct first-line errors; most common:
 
 - **107×** `error parsing from file <schema>: cannot load schema`
-- **59×** `schema has no root`
+- **55×** `schema has no root`
 - **5×** `cannot add struct field: could not generate type with scope 'NodeSubtree': could not follow $ref "tree" to file "tree": cannot load schema`
 - **5×** `could not follow $ref "folderInteger.json" to file "folderInteger.json": cannot load schema`
 - **3×** `cannot add struct field: could not generate type with scope 'RootList': definition does not exist in schema: "baz/definitions/bar" (from ref "#/definitions/baz/…`
@@ -512,11 +512,11 @@ Per group:
 - `draft6/maxProperties.json::maxProperties validation with a decimal` — `error parsing from file <schema>: cannot load schema`
 - `draft6/minItems.json::minItems validation with a decimal` — `error parsing from file <schema>: cannot load schema`
 - `draft6/minLength.json::minLength validation with a decimal` — `error parsing from file <schema>: cannot load schema`
-- … and 157 more
+- … and 153 more
 
-### 🦀 `compile_fail` (1287)
+### 🦀 `compile_fail` (1291)
 
-1182 distinct first-line errors; most common:
+1186 distinct first-line errors; most common:
 
 - **8×** `g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root`
 - **8×** `g_debdfb0bc8ba4bfa/g_debdfb0bc8ba4bfa.go:9:8: undefined: Root`
@@ -576,7 +576,7 @@ Per group:
 - `draft4/format.json::uri format` — `g_6bac4657aa959e29/g_6bac4657aa959e29.go:9:8: undefined: Root`
 - `draft4/infinite-loop-detection.json::evaluating the same schema location against the same data location twice is not a sign of an infinite loop` — `g_19bf22974b211372/g_19bf22974b211372.go:11:8: undefined: Root`
 - `draft4/items.json::a schema given for items` — `g_1a57970c3f190bec/g_1a57970c3f190bec.go:9:8: undefined: Root`
-- … and 1237 more
+- … and 1241 more
 
 ### 🤪 `mixed` (14)
 
@@ -682,9 +682,9 @@ Per group:
 - `draft2020-12/optional/ecmascript-regex.json::ECMA 262 \s matches whitespace` — `Line tabulation matches: field  pattern match: must match ^\s$`
   - cases: Line tabulation matches (rejected), latin-1 non-breaking-space matches (rejected), zero-width whitespace matches (rejected), paragraph separator matches (line terminator) (rejected), EM SPACE matches (Space_Separator) (rejected)
 
-### 🙈 `false_accept` (106)
+### 🙈 `false_accept` (107)
 
-27 distinct first-line errors; most common:
+28 distinct first-line errors; most common:
 
 - **10×** `accepted 'ascii non-digits' though valid: false`
 - **10×** `accepted 'literal unicode character in json string' though valid: false`
@@ -794,5 +794,5 @@ Per group:
   - cases: with unevaluated properties (accepted)
 - `draft2019-09/unevaluatedProperties.json::unevaluatedProperties with not` — `accepted 'with unevaluated properties' though valid: false`
   - cases: with unevaluated properties (accepted)
-- … and 56 more
+- … and 57 more
 

@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "typebox",
   "homepage": "https://github.com/sinclairzx81/typebox",
-  "generated_at": "2026-10-11T19:24:11Z",
+  "generated_at": "2026-10-25T14:56:22Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -4426,8 +4426,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "b95cc52b9e96a3f403c3c5391e5b690ff6423d9b9ce57d4c9d079b34dd783d76",
-      "generated_at": "2026-10-11T19:24:02Z",
+      "hash": "1ccd137c2fb683d590b493b8cfb863b20c3ed3fb15cd704fc44f14783edcd0ca",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -4578,6 +4578,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5128,8 +5138,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "dd0cb5341f2350e82882094ebc5c099db858fbeee9425adfc0f9a5345df62041",
-      "generated_at": "2026-10-11T19:24:02Z",
+      "hash": "f99cdecc40f3870cd03693742c36877e1cbb3bb9219101fd697bad569c48e9b8",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"uri\",\"$id\":\"T\"}",
       "cases": [
@@ -5365,6 +5375,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13590,8 +13605,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "1d9ad99be464e92f579a01193df8b8ada6ab4127a3e9522695c2b68093e9d738",
-      "generated_at": "2026-10-11T19:24:04Z",
+      "hash": "18925b68dbb97acdefb750bc9faa58292817df8ed50f9a9d8c12a11c15f874af",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -13742,6 +13757,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -14926,8 +14951,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "4f40633640806afb79a955d5eb3e52894f3f7fc25e06d43ad3d80de145ebc866",
-      "generated_at": "2026-10-11T19:24:04Z",
+      "hash": "4012499d3de2120bdd1d8f8a59a8852548c84d4d5fa133991b5e8967016399d8",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"uri\",\"$id\":\"T\"}",
       "cases": [
@@ -15163,6 +15188,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25417,8 +25447,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "bd1ba7203e6690f27a2e7b2e76523d12d405480cd03f73ac11fb1bcd6289b45a",
-      "generated_at": "2026-10-11T19:24:06Z",
+      "hash": "c6d8bf80cdd62bc428b01abe7bad01c7fa32d9ce37492a5cb74f4c24bb67f5c6",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -25539,6 +25569,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -25896,8 +25936,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "6bd42b59ab7e0fd63a28a5fc730ca82cac8a179ca3eb2fa93fde0ac4b9f9b3ab",
-      "generated_at": "2026-10-11T19:24:06Z",
+      "hash": "5c683d446031ce061e642e2e6554af10304bae2211f1b8eb3a00bd48e9fcee0a",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"idn-hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -26188,6 +26228,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -27372,8 +27427,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "7f0db87ce5392e5c081c9beb2f033ae034c82a737313ab845f76a96979dc6666",
-      "generated_at": "2026-10-11T19:24:06Z",
+      "hash": "29b69a880ca7f9fa182801725f8c88179b9c1130c24792cbcb3c433659af1327",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"regex\",\"$id\":\"T\"}",
       "cases": [
@@ -27440,6 +27495,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -28355,8 +28435,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "badd7acd02fe98a64edccd0ce568cb5919dbd1a15951b5f46d8de6ad175b8114",
-      "generated_at": "2026-10-11T19:24:06Z",
+      "hash": "f9442ffa6430ca3bbf3dc0cb010d28103e471ab9e0f1bdd2e566d268e2567b54",
+      "generated_at": "2026-10-25T14:56:20Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"format\":\"uri\",\"$id\":\"T\"}",
       "cases": [
@@ -28592,6 +28672,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -35741,10 +35826,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "e8ae80dbdf2f91cb10377da72932f640ad834b1f8398baa2bfe3c762c994cd3e",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "4f59202b14865f02da6387c485fd38a6cef3d0409b95363a273122b5318be76b",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
-      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"if\":{\"const\":1},\"then\":false,\"$id\":\"T\"}",
+      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2019-09/schema\",\"if\":{\"const\":1},\"then\":false,\"$id\":\"T\"}",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -35764,10 +35849,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "af2023e422f0bf2e160d4f57ad10ce51c86784adf3827eedb123663d136e4882",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "5449b6ac55ea3bd21470506e7f34096980124b85caa2de19c0fa4a5ba87c7909",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
-      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"else\":false,\"if\":{\"const\":1},\"$id\":\"T\"}",
+      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2019-09/schema\",\"else\":false,\"if\":{\"const\":1},\"$id\":\"T\"}",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -37907,8 +37992,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "5a6d9c3d083f57f95d9aa1e80326d19f15e27de13e601708bb53be5834b439a3",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "83b516dc3658cef11a7f49d084ca8b2276cecd6b3758e3ed086a6ce7f470eb59",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
       "error": "ResolverError: Error downloading http://localhost:1234/draft7/ignore-dependentRequired.json \nthe bakeoff forbids network access, node:http.get",
       "cases": [
@@ -40298,8 +40383,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "093b2cd129e651a0f5d3b4321b4773f8046009faaa557d82c07e31f5801a04bf",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "4fd472139df2c4593f42c201c884e810a5c24942d406a5eecbb8540c66258012",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2019-09/schema\",\"format\":\"hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -40420,6 +40505,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -40777,8 +40872,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "f3665540d3ad6e6ed14266af88d3d977e9da68b532904c57446eed8144fec9a2",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "6735e0fa807f13e2b387758d530cb2a19073dc8bd303d1df033c25d48d4780e9",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2019-09/schema\",\"format\":\"idn-hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -41069,6 +41164,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -42253,8 +42363,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "29e8cbbce33be54a666dfc34a49d7f872091f8598164a1791774284dae943526",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "ec91836cf5c199bc3fe6f04c8b89dfd6844e9da09a429469bf4365caf1435e20",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2019-09/schema\",\"format\":\"regex\",\"$id\":\"T\"}",
       "cases": [
@@ -42321,6 +42431,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -43236,8 +43371,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "9e71d7a767e60dc9c16829fef22e8028baa3ab9af19fb0831f72e199d44fb7f3",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "hash": "dd050dc2f5aaac536a79cc065a50687aa337dd95f3a5fcef3bf83b792e5a8379",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2019-09/schema\",\"format\":\"uri\",\"$id\":\"T\"}",
       "cases": [
@@ -43473,6 +43608,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48355,13 +48495,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "4ee65c9ae400424a49c7fc8f9333c96ffd7eec9ff6da5aa4ad760af4b347eeea",
-      "generated_at": "2026-10-11T19:24:09Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "f4166f36bfec2e7c86b8e3def0a9ff15608e66f92b51b8f074be77263ea2a352",
+      "generated_at": "2026-10-25T14:56:21Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"properties\":{\"c\":true},\"required\":[\"c\"]}",
       "cases": [
@@ -51727,8 +51867,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "5f5126e282083a88f5011a94bb537c718028753e5cd4c4e83d2743dc6f00834b",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "9a52ccc91553acae7644d7e9f06fd4e087dcb6097cae3141c938e3b9ccd3f7ac",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
       "error": "ResolverError: Error downloading http://localhost:1234/draft2020-12/detached-dynamicref.json \nthe bakeoff forbids network access, node:http.get",
       "cases": [
@@ -53540,10 +53680,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "52419901bd9534aad77c5d0cbbac5ff0c3f93d78693e638f8154bf02fdcecfc1",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "6fc2b6489e0539a3bed786f42dec4f9441eb5e0b4a974bab04d7467bc5d80491",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
-      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"if\":{\"const\":1},\"then\":false,\"$id\":\"T\"}",
+      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"if\":{\"const\":1},\"then\":false,\"$id\":\"T\"}",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -53563,10 +53703,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "3914ea03a530606d8023a4ab73d5107be0f6ec853566d90d3af2be6eae9add53",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "28d95086ed1e865ef7ea0b4679cfeb173f348f7c3361c056b9cc1c921c00539e",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
-      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"else\":false,\"if\":{\"const\":1},\"$id\":\"T\"}",
+      "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"else\":false,\"if\":{\"const\":1},\"$id\":\"T\"}",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -58115,8 +58255,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "3bd2803a9ee0f467a06a70e7a9572162dcfd99c7875c18eecfedf8f579a53161",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "b6e4a0e5cd6273b276939c9ba2d60c418378a922fd9309a3d2236f1521467d4b",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"format\":\"hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -58237,6 +58377,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -58594,8 +58744,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "3e0b773beecdfc3a7e51d77571c0a319e2002b2f8173af5e69dde50339e81f8c",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "4199a7a02e5cbd8022b593112f7be4007896bc5fb71cb706d79d45fb6412b8ba",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"format\":\"idn-hostname\",\"$id\":\"T\"}",
       "cases": [
@@ -58886,6 +59036,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -60070,8 +60235,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "aa24e9af24c22090ef85b9766a3008895276d0b566ad19d178c10681a78dc4ee",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "5dbeddb22e8aae6223f0babe773bd4b9971d434f2e484aba5a77e1b97b1f55ee",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"format\":\"regex\",\"$id\":\"T\"}",
       "cases": [
@@ -60138,6 +60303,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -61053,8 +61243,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "274fb7c28444c568087aaf13ed153f5391e0d1ba5e7969dd85da302ab5309f24",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "hash": "9b6d30bc98be156708d67c7b561a81dd552b3c9fe97bbe377c522cdcb8791fcd",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"format\":\"uri\",\"$id\":\"T\"}",
       "cases": [
@@ -61290,6 +61480,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -62072,14 +62267,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "f21cbe49a0cca71be55db0728b4b0bcb72895f01dcb0d6582ce56a822f4d0950",
-      "generated_at": "2026-10-11T19:24:11Z",
-      "bucket": "pass",
+      "hash": "4f51ce6386b772e9169aa4ba4ddf6d24b06a87d81a5835828688f415584ae192",
+      "generated_at": "2026-10-25T14:56:22Z",
+      "bucket": "false_accept",
+      "error": "accepted `Unicode letter property name matches but value type is incorrect` though valid: false",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -66187,13 +66388,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "df850a7dbcaea991ec7a336c3e3bec86a2b265ada1194d7403f2be970e4fe0ee",
-      "generated_at": "2026-10-11T19:24:11Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "170a0b454c1d2c70acc4a421935cdb8483c8ac676539007a55fc9ddfe2b25e30",
+      "generated_at": "2026-10-25T14:56:22Z",
       "bucket": "generation_error",
       "error": "Error: Unsupported schema. Did not match any type of the parsers. Schema was: {\"properties\":{\"c\":true},\"required\":[\"c\"]}",
       "cases": [

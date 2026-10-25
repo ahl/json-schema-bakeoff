@@ -7,9 +7,9 @@ get out of the way. It models structure only, so validation keywords vanish
 and anything that isn't a plain object graph panics. The last release
 (0.6.0) is from October 2021.
 
-_generated 2026-10-11T22:00:41Z_
+_generated 2026-10-25T14:56:18Z_
 
-**325 of 1408 non-optional groups pass (23.1%)**; 301 optional groups reported separately
+**324 of 1408 non-optional groups pass (23.0%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -32,8 +32,8 @@ _generated 2026-10-11T22:00:41Z_
 | draft6 | 54 | 106 | 3 | 3 | 0 | 12 | 27 | 28 | 233 | 23.2% |
 | draft7 | 66 | 115 | 3 | 3 | 0 | 12 | 27 | 32 | 258 | 25.6% |
 | draft2019-09 | 81 | 160 | 3 | 3 | 0 | 21 | 44 | 61 | 373 | 21.7% |
-| draft2020-12 | 80 | 168 | 3 | 3 | 0 | 22 | 42 | 66 | 384 | 20.8% |
-| **Total** | **325** | **628** | **14** | **15** | **0** | **76** | **140** | **210** | **1408** | **23.1%** |
+| draft2020-12 | 79 | 169 | 3 | 3 | 0 | 22 | 42 | 66 | 384 | 20.6% |
+| **Total** | **324** | **629** | **14** | **15** | **0** | **76** | **140** | **210** | **1408** | **23.0%** |
 
 ### Optional groups
 
@@ -54,19 +54,19 @@ _generated 2026-10-11T22:00:41Z_
 | draft6 | 441 | 658 | 67.0% | 841 | 52.4% |
 | draft7 | 510 | 738 | 69.1% | 929 | 54.9% |
 | draft2019-09 | 616 | 918 | 67.1% | 1261 | 48.9% |
-| draft2020-12 | 641 | 955 | 67.1% | 1301 | 49.3% |
-| **Total** | **2575** | **3805** | **67.7%** | **4950** | **52.0%** |
+| draft2020-12 | 641 | 956 | 67.1% | 1302 | 49.2% |
+| **Total** | **2575** | **3806** | **67.7%** | **4951** | **52.0%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 169 | 388 | 43.6% | 391 | 43.2% |
-| draft6 | 234 | 498 | 47.0% | 520 | 45.0% |
-| draft7 | 414 | 898 | 46.1% | 922 | 44.9% |
-| draft2019-09 | 471 | 1001 | 47.1% | 1043 | 45.2% |
-| draft2020-12 | 473 | 1005 | 47.1% | 1047 | 45.2% |
-| **Total** | **1761** | **3790** | **46.5%** | **3923** | **44.9%** |
+| draft4 | 169 | 391 | 43.2% | 394 | 42.9% |
+| draft6 | 234 | 501 | 46.7% | 523 | 44.7% |
+| draft7 | 419 | 909 | 46.1% | 933 | 44.9% |
+| draft2019-09 | 476 | 1012 | 47.0% | 1054 | 45.2% |
+| draft2020-12 | 478 | 1016 | 47.0% | 1058 | 45.2% |
+| **Total** | **1776** | **3829** | **46.4%** | **3962** | **44.8%** |
 
 ## Chart
 
@@ -393,7 +393,7 @@ _generated 2026-10-11T22:00:41Z_
 | not.json | 1 | 5 | 0 | 0 | 0 | 0 | 3 | 0 | 9 | 🙈🙈🙈🙈🙈❌❌✅❌ |
 | oneOf.json | 0 | 6 | 0 | 0 | 0 | 0 | 5 | 0 | 11 | 🙈🙈❌❌❌❌🙈🙈🙈❌🙈 |
 | pattern.json | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈✅🙈 |
-| patternProperties.json | 2 | 3 | 0 | 0 | 0 | 0 | 1 | 0 | 6 | 🙈🙈🙈❌✅✅ |
+| patternProperties.json | 1 | 4 | 0 | 0 | 0 | 0 | 1 | 0 | 6 | 🙈🙈🙈❌✅🙈 |
 | prefixItems.json | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈✅✅ |
 | properties.json | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 0 | 6 | 🚧🙈❌🦀✅🤪 |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
@@ -405,7 +405,7 @@ _generated 2026-10-11T22:00:41Z_
 | unevaluatedProperties.json | 9 | 25 | 0 | 0 | 0 | 0 | 7 | 3 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈❌🤯🤯🤯❌❌✅✅🙈🙈🙈🙈🙈❌❌🙈❌❌✅✅🙈🙈🙈🙈🙈🙈 |
 | uniqueItems.json | 2 | 2 | 0 | 0 | 0 | 0 | 2 | 0 | 6 | 🙈🙈❌✅✅❌ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ❌✅ |
-| **Total** | **80** | **168** | **3** | **3** | **0** | **22** | **42** | **66** | **384** |  |
+| **Total** | **79** | **169** | **3** | **3** | **0** | **22** | **42** | **66** | **384** |  |
 
 #### optional
 
@@ -740,9 +740,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: invalid type: floating point '1e+308', expected i64`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (830)
+### 🙈 `false_accept` (831)
 
-186 distinct first-line errors; most common:
+187 distinct first-line errors; most common:
 
 - **27×** `accepted 'too short is invalid' though valid: false`
 - **15×** `accepted 'anything non-null is invalid' though valid: false`
@@ -852,5 +852,5 @@ Per group:
   - cases: mismatch (accepted), other mismatch (accepted)
 - `draft4/not.json::not more complex schema` — `accepted 'mismatch' though valid: false`
   - cases: mismatch (accepted)
-- … and 780 more
+- … and 781 more
 

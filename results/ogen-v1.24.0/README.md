@@ -7,7 +7,7 @@ with the schema as a component (3.1 schema objects are JSON Schema 2020-12,
 so nothing is translated), and the check calls both `Decode` and
 `Validate`.
 
-_generated 2026-10-11T19:51:21Z_
+_generated 2026-10-25T14:55:46Z_
 
 **279 of 1408 non-optional groups pass (19.8%)**; 301 optional groups reported separately
 
@@ -54,19 +54,19 @@ _generated 2026-10-11T19:51:21Z_
 | draft6 | 398 | 583 | 68.3% | 841 | 47.3% |
 | draft7 | 455 | 651 | 69.9% | 929 | 49.0% |
 | draft2019-09 | 586 | 864 | 67.8% | 1261 | 46.5% |
-| draft2020-12 | 578 | 861 | 67.1% | 1301 | 44.4% |
-| **Total** | **2337** | **3405** | **68.6%** | **4950** | **47.2%** |
+| draft2020-12 | 579 | 862 | 67.2% | 1302 | 44.5% |
+| **Total** | **2338** | **3406** | **68.6%** | **4951** | **47.2%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 126 | 206 | 61.2% | 391 | 32.2% |
-| draft6 | 179 | 304 | 58.9% | 520 | 34.4% |
-| draft7 | 318 | 571 | 55.7% | 922 | 34.5% |
-| draft2019-09 | 338 | 604 | 56.0% | 1043 | 32.4% |
-| draft2020-12 | 338 | 604 | 56.0% | 1047 | 32.3% |
-| **Total** | **1299** | **2289** | **56.7%** | **3923** | **33.1%** |
+| draft4 | 126 | 208 | 60.6% | 394 | 32.0% |
+| draft6 | 179 | 306 | 58.5% | 523 | 34.2% |
+| draft7 | 323 | 581 | 55.6% | 933 | 34.6% |
+| draft2019-09 | 343 | 614 | 55.9% | 1054 | 32.5% |
+| draft2020-12 | 343 | 614 | 55.9% | 1058 | 32.4% |
+| **Total** | **1314** | **2323** | **56.6%** | **3962** | **33.2%** |
 
 ## Chart
 

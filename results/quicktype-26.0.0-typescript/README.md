@@ -6,9 +6,9 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-10-11T18:51:51Z_
+_generated 2026-10-25T14:56:05Z_
 
-**591 of 1408 non-optional groups pass (42.0%)**; 301 optional groups reported separately
+**590 of 1408 non-optional groups pass (41.9%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -31,8 +31,8 @@ _generated 2026-10-11T18:51:51Z_
 | draft6 | 101 | 79 | 5 | 4 | 0 | 2 | 39 | 3 | 233 | 43.3% |
 | draft7 | 117 | 88 | 5 | 4 | 0 | 2 | 39 | 3 | 258 | 45.3% |
 | draft2019-09 | 151 | 138 | 24 | 3 | 0 | 2 | 51 | 4 | 373 | 40.5% |
-| draft2020-12 | 152 | 149 | 20 | 2 | 0 | 2 | 56 | 3 | 384 | 39.6% |
-| **Total** | **591** | **512** | **59** | **16** | **0** | **10** | **207** | **13** | **1408** | **42.0%** |
+| draft2020-12 | 151 | 150 | 20 | 2 | 0 | 2 | 56 | 3 | 384 | 39.3% |
+| **Total** | **590** | **513** | **59** | **16** | **0** | **10** | **207** | **13** | **1408** | **41.9%** |
 
 ### Optional groups
 
@@ -53,19 +53,19 @@ _generated 2026-10-11T18:51:51Z_
 | draft6 | 561 | 727 | 77.2% | 841 | 66.7% |
 | draft7 | 638 | 815 | 78.3% | 929 | 68.7% |
 | draft2019-09 | 835 | 1116 | 74.8% | 1261 | 66.2% |
-| draft2020-12 | 854 | 1145 | 74.6% | 1301 | 65.6% |
-| **Total** | **3319** | **4357** | **76.2%** | **4950** | **67.1%** |
+| draft2020-12 | 854 | 1146 | 74.5% | 1302 | 65.6% |
+| **Total** | **3319** | **4358** | **76.2%** | **4951** | **67.0%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 171 | 388 | 44.1% | 391 | 43.7% |
-| draft6 | 244 | 513 | 47.6% | 520 | 46.9% |
-| draft7 | 426 | 917 | 46.5% | 922 | 46.2% |
-| draft2019-09 | 490 | 1029 | 47.6% | 1043 | 47.0% |
-| draft2020-12 | 492 | 1033 | 47.6% | 1047 | 47.0% |
-| **Total** | **1823** | **3880** | **47.0%** | **3923** | **46.5%** |
+| draft4 | 171 | 391 | 43.7% | 394 | 43.4% |
+| draft6 | 244 | 516 | 47.3% | 523 | 46.7% |
+| draft7 | 431 | 928 | 46.4% | 933 | 46.2% |
+| draft2019-09 | 495 | 1040 | 47.6% | 1054 | 47.0% |
+| draft2020-12 | 497 | 1044 | 47.6% | 1058 | 47.0% |
+| **Total** | **1838** | **3919** | **46.9%** | **3962** | **46.4%** |
 
 ## Chart
 
@@ -392,7 +392,7 @@ _generated 2026-10-11T18:51:51Z_
 | not.json | 2 | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | 🙈🙈🙈🙈🙈🙈✅✅🙈 |
 | oneOf.json | 1 | 7 | 0 | 0 | 0 | 0 | 3 | 0 | 11 | 🙈🙈🙈❌❌❌🙈🙈🙈🙈✅ |
 | pattern.json | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈✅🙈 |
-| patternProperties.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈✅✅ |
+| patternProperties.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈✅🙈 |
 | prefixItems.json | 1 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 4 | 🤪❌🚧✅ |
 | properties.json | 3 | 1 | 0 | 0 | 0 | 1 | 1 | 0 | 6 | ✅🦀❌✅✅🙈 |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
@@ -404,7 +404,7 @@ _generated 2026-10-11T18:51:51Z_
 | unevaluatedProperties.json | 19 | 14 | 11 | 0 | 0 | 0 | 0 | 0 | 44 | ✅🙈🙈✅🙈✅✅🚧🚧🚧✅🚧🚧✅🙈🙈🙈🚧✅🚧🚧🚧🙈🙈🚧✅🙈✅🙈✅✅✅✅✅🙈🙈✅✅🙈🙈🚧✅✅✅ |
 | uniqueItems.json | 2 | 2 | 1 | 1 | 0 | 0 | 0 | 0 | 6 | 🙈🤪🙈✅🚧✅ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ❌✅ |
-| **Total** | **152** | **149** | **20** | **2** | **0** | **2** | **56** | **3** | **384** |  |
+| **Total** | **151** | **150** | **20** | **2** | **0** | **2** | **56** | **3** | **384** |  |
 
 #### optional
 
@@ -716,9 +716,9 @@ Per group:
   - cases: with additional properties (rejected)
 - … and 34 more
 
-### 🙈 `false_accept` (718)
+### 🙈 `false_accept` (719)
 
-167 distinct first-line errors; most common:
+168 distinct first-line errors; most common:
 
 - **27×** `accepted 'too long is invalid' though valid: false`
 - **27×** `accepted 'too short is invalid' though valid: false`
@@ -828,5 +828,5 @@ Per group:
   - cases: an invalid due to one is invalid (accepted), an invalid due to the other is invalid (accepted), an invalid due to both is invalid (accepted)
 - `draft4/patternProperties.json::regexes are not anchored by default and are case sensitive` — `accepted 'recognized members are accounted for' though valid: false`
   - cases: recognized members are accounted for (accepted), regexes are case sensitive, 2 (accepted)
-- … and 668 more
+- … and 669 more
 

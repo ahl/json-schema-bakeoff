@@ -7,7 +7,7 @@
   "generator": "json-schema-rs-0.0",
   "homepage": "https://crates.io/crates/json-schema-rs",
   "hidden": true,
-  "generated_at": "2026-10-11T22:01:51Z",
+  "generated_at": "2026-10-25T14:54:33Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -4449,8 +4449,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "76a42217447045f76275b2244e500168dae0693b3c2f6144e7f7337ca1293a27",
-      "generated_at": "2026-10-11T22:00:44Z",
+      "hash": "0ab795f494192a36dcfc3a1e491e9505a688d8079d5c5ef54936fb1bde357e28",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -4601,6 +4601,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5151,8 +5161,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "5e8ab46d5da5eb9bf2ab053c121c7822954214692e90ac298c0be18db09ea0dc",
-      "generated_at": "2026-10-11T22:00:44Z",
+      "hash": "94b1f71934ed06021bded4d4371339aa8d99cae3b4dd018a32ef19651c7c4c71",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -5388,6 +5398,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13570,8 +13585,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "a3810308fc6d3c46692ad049443e284b397c91566f7342212fd92e6b46ce276f",
-      "generated_at": "2026-10-11T22:00:46Z",
+      "hash": "a7ff56b22cc25fc9637daa7124748e4b2073b3e665ee2f16cf35d9dbcf024b84",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -13722,6 +13737,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -14906,8 +14931,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "f0f0b5a4336eed403246774d8950cc7670c0b0fb77024bdb04585703529027c3",
-      "generated_at": "2026-10-11T22:00:46Z",
+      "hash": "5f0d96a79b94a818ad6dca106207559131feb5d034c7a014e2b773620253b4e7",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -15143,6 +15168,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25354,8 +25384,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "8aa098176f90441e2151d68ff04c83a2f7ceddebf8c7dcc5b8a63b2670d28d16",
-      "generated_at": "2026-10-11T22:00:47Z",
+      "hash": "40a15bc0a3fb9721f2c7789dda4bd2def534cfc44738ae83e48e9c6f077cc115",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -25476,6 +25506,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -25833,8 +25873,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "43dbba55dd0200e41f5d04aeeacedf57b1c79189004abb443d24986b121b9270",
-      "generated_at": "2026-10-11T22:00:47Z",
+      "hash": "9ce8b1ff620c97faf6794ed13ac862122fb585cccd3cdd1af41a33005060dd4a",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -26125,6 +26165,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -27309,8 +27364,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "bff3f4129912f7cd8ac9e383f13633fa9422270382bd0c73eb800594fb493d3d",
-      "generated_at": "2026-10-11T22:00:47Z",
+      "hash": "0cbaeef6d652403c7e309d75efdf90429d1251109ac20ae64a5a03a353c4f98f",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -27377,6 +27432,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -28292,8 +28372,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "f40c134f13d5e4cc9f8e3f6971c936a88f1f7743648012fc606d741729494bbe",
-      "generated_at": "2026-10-11T22:00:47Z",
+      "hash": "776118bf7f644419f9adbf62f3c77bf5408894295d28a5657a9e0ffb07d506d9",
+      "generated_at": "2026-10-25T14:54:32Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -28529,6 +28609,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -35630,8 +35715,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "f3f0712f97d48f87224ec45e85cc923f7d16615d448fbff797d7fe33ed4df16a",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "a1d6df2991abf39ca15c9a6b7cf850a1b4a7a492db65a18bce8b76502155e1a2",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -35653,8 +35738,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "3689af1c04c67229abf82cb9b70e112b87e0e180f66792dbec2a38463ef862c3",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "27f7a5b43e62365e36e0244c467c0193c0f12aff46f264c4b1687ce20f777015",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -37805,8 +37890,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "66218cbb058777ef9701aaad6a6adcb1238fc4ce7106ac35ed4055b735e777f7",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "3d3c9ffa17e5d2c4f0a18a2c72a7ec03665045241f49b00e573d729195bd7198",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "invalid JSON Schema: invalid type: boolean `true`, expected struct JsonSchemaHelper",
       "cases": [
@@ -40187,8 +40272,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "005ffdcca9641db299563fc51f3356c2b99fcabc1bce07f5038cc9faf83383d7",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "8efadd4339fe420e9fc56d5d43ce5da0fd526482f1520e334f5ea458bf0b91da",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -40309,6 +40394,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -40666,8 +40761,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "41e56cf2143582447d3b6a9d9e954dc2ffaf92eaaaf895b251d322c41b95f2ac",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "5a59004773b8206b6f3f1232829aab5068471fe0e2f9fd8fec43a9385b40cef7",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -40958,6 +41053,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -42142,8 +42252,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "5f22716a2113db7c3dcbbd91a2d8dbb86850e1bfd5426c93304e2adb41797e7d",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "583affb763615529ff7c323595cdbbffb888eb7e56aa1afe9c0a3196312886f4",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -42210,6 +42320,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -43125,8 +43260,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "d1447376ae99e081ac2b272ff429f6e8858aac6199e4b86634a4942cda9d32b6",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "hash": "6b6d93cf712a3b6f8753cb5fe307f235693388ec1635417dc152a341e0ea756e",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -43362,6 +43497,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48238,13 +48378,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "7e744746ceb5ff2baae2123dcd9f199e6e7669da9df504b6dd44013297576709",
-      "generated_at": "2026-10-11T22:01:50Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "fd8986564e270071a068e7b7f5da19c788c6eedc7a9d17b29ce731a692ab457f",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "invalid JSON Schema: invalid type: boolean `true`, expected struct JsonSchemaHelper",
       "cases": [
@@ -51612,8 +51752,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "d55173fb8768da230a9447f118da8ce98d3767c851ec0940483d934bc7553f12",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "3461f2ddc5d4e8dd707943f5b29abb7866bccc0c8d44cd64b7e54b9d7ae776c7",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: could not resolve $ref \"http://localhost:1234/draft2020-12/detached-dynamicref.json#/$defs/foo\": UnsupportedRef { ref_str: \"http://localhost:1234/draft2020-12/detached-dynamicref.json#/$defs/foo\" }",
       "cases": [
@@ -53418,8 +53558,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "27d6d1708a3521aa1dca65f05affcc3debf73b8892972624b910cbce777b9f99",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "9e52b1098764f56c5ca00a2df2bb0348c7ef21ec032c664d366761a56c3fed38",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -53441,8 +53581,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "809a4f1c28c353fc5804d330dc0a7d6625716800e297610c859204c547bc53a1",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "35deec001d2740e0675502fe896b96b9ca8cfed533f53fba505ab8bfd0984e4a",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -57993,8 +58133,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "33f6a80e762fe181c17c13ce436e469ba9ed8a6d9ad7b608156a032b26ff8218",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "d4e62aa849b9dc9e488058cfae66dbfdcfe5b49d6bd17de16d9a36349adf2851",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -58115,6 +58255,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -58472,8 +58622,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "18b0c03653b8c777fc0456dbab7c61856abc67c7f45152b6105bda68a4cb6196",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "3dbdc8b24e34b85a1147b4248f2492cc9a9fd476c9ead7660622d5ceb50d6311",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -58764,6 +58914,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -59948,8 +60113,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "3098d0c062e766a16fdeeb33493a94b769a249cadae5ee18c75b0d759000c5d8",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "c98445e39dfdac837467b6a830ceddf3d1a599f8a17dea5a46cfa09606add5dd",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -60016,6 +60181,31 @@
         {
           "description": "an unterminated character class is invalid",
           "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
           "outcome": "not_run"
         }
       ]
@@ -60931,8 +61121,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "78ffbf9a0624becc537ed0e31d27c0c1dccbdf0bd35935490a10da1d005f721f",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "4c2bf51e39d550b4aa74c8c329d26c9f2cb2d3d8827caf6bbfff8f1fa02ae168",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
@@ -61168,6 +61358,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -61947,14 +62142,19 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "336bd3ca3bd38003cd9dd665540fd0b142d1dada94ba8764525506027f51aca6",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "hash": "09dcbba027b9bcc94c8cb03c2fb86f7afab9396cf6d1d3929ca8849ddbf8997e",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "schema at index 0: root schema must have type \"object\" and non-empty properties",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -66034,13 +66234,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "6a9bc531dcdb29263862038be08c1bf056cf251c3daa7f3f6fb6616a7c26c5a5",
-      "generated_at": "2026-10-11T22:01:51Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "966fadc109d6d1289058bd85df8ae02dbae38bd9de79d3dfc4322d975abf5368",
+      "generated_at": "2026-10-25T14:54:33Z",
       "bucket": "generation_error",
       "error": "invalid JSON Schema: invalid type: boolean `true`, expected struct JsonSchemaHelper",
       "cases": [

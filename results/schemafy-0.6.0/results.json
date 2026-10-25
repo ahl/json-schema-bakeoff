@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "schemafy-0.6",
   "homepage": "https://crates.io/crates/schemafy_lib",
-  "generated_at": "2026-10-11T22:00:41Z",
+  "generated_at": "2026-10-25T14:56:18Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -4398,8 +4398,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "04e032a254b207eb373da91c6deaa9ba0f70f6225476b5b9ddf94cbbacc50d37",
-      "generated_at": "2026-10-11T22:00:30Z",
+      "hash": "b4a5cb4733ad91a90f1d9c9fa60945901bfa478c20b72df68a9ece5ca7af1d50",
+      "generated_at": "2026-10-25T14:56:16Z",
       "bucket": "false_accept",
       "error": "accepted `a host name starting with an illegal character` though valid: false",
       "cases": [
@@ -4550,6 +4550,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -5099,8 +5109,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "c96f67394874b429587a475e44e39617049f944befe80e9f24ee0066f70466f1",
-      "generated_at": "2026-10-11T22:00:30Z",
+      "hash": "b2e1f750e33e2ed2e3cd5eaee09b8fc4edb763b6bee683a5098ecd7c086ff98f",
+      "generated_at": "2026-10-25T14:56:16Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid protocol-relative URI Reference` though valid: false",
       "cases": [
@@ -5336,6 +5346,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "false_accept"
         }
@@ -13511,8 +13526,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "4ea473c33c4a18b7f414e1e536b89d86709ca386695d32a2173b60888f5da164",
-      "generated_at": "2026-10-11T22:00:33Z",
+      "hash": "b3eb0413dcf43fe7648f25394e8cfc477aaf0df776ce982220c8e3705e7197bf",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `a host name starting with an illegal character` though valid: false",
       "cases": [
@@ -13663,6 +13678,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -14846,8 +14871,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "a50edd2efa4b29b98d0642a9dce98a950c17d4416f8799b6574eb0030b53d1ec",
-      "generated_at": "2026-10-11T22:00:33Z",
+      "hash": "74d22ea3110b7a8e8f8816d9f415e97514ddc20a9285ce8ea615e050149c9195",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid protocol-relative URI Reference` though valid: false",
       "cases": [
@@ -15083,6 +15108,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "false_accept"
         }
@@ -25272,8 +25302,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "332b8fd11f2b53b30e2592a153f3e97ed6fc50be65ae05d9cc760672e39c6a92",
-      "generated_at": "2026-10-11T22:00:35Z",
+      "hash": "64d0a86fa117ab5cd839e40e30a409c396f69850015af4c16a03be72fa217b3d",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `empty string` though valid: false",
       "cases": [
@@ -25394,6 +25424,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -25751,8 +25791,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "10c7ac3d5d3b80315f8da6ecf4a1a4e89bfd25821f2e67bba6bcdbdb3c400cc1",
-      "generated_at": "2026-10-11T22:00:35Z",
+      "hash": "0b4aee58a71cd509e70a50a1ab3c014eecbef9222430887e08692f25f7b9bba1",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `illegal first char U+302E Hangul single dot tone mark` though valid: false",
       "cases": [
@@ -26043,6 +26083,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -27227,8 +27282,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "0bce4118841d32784d1a994746f773a68dd07aff72d6828332fbf776b00d8e37",
-      "generated_at": "2026-10-11T22:00:35Z",
+      "hash": "c0bf6650f9ed89ed645cad3d2334dcbc302bf3b35f7b424c02c6cc183ee3e2ed",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `a regular expression with unclosed parens is invalid` though valid: false",
       "cases": [
@@ -27296,6 +27351,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -28209,8 +28289,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "15ca44d231348f654ebfeabab3de61f5238e8b0f9572216816982a27bb93e5ca",
-      "generated_at": "2026-10-11T22:00:35Z",
+      "hash": "b7b3c08b58cb30ebdcdb3e2964d4286e48ee99f8c91b035977542e80ecbd6e9a",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid protocol-relative URI Reference` though valid: false",
       "cases": [
@@ -28446,6 +28526,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "false_accept"
         }
@@ -35540,8 +35625,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "b4888997fca7b1e3cc97547eb37e864b3c00414743a2fad01eceed776c80afa6",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "2767de76b4197244128aed8a9c7123e430c5427508228ecc2314d36a8da0754a",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `matches if → then=false → invalid` though valid: false",
       "cases": [
@@ -35563,8 +35648,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "05daaec827231ade2c1b63e2b9ecb4e6c199ec3544a1230c452ff57051375067",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "43209e7858ed37761d0ae39571256b23a26bae48b9b5f5bd08166ecddc49a0cb",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `does not match if → else executes → invalid` though valid: false",
       "cases": [
@@ -37692,8 +37777,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "abff46a14acd348dbcef56e2601b194a502e155581c1a73bc0c0cd4a03b75d58",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "e74afb8a6bfd6fcf08f9c00108fb2d2e3d60157841175514a3c818e3f5a0251f",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "generation_error",
       "error": "schema did not parse as schemafy_lib::Schema: invalid type: boolean `true`, expected struct Schema",
       "cases": [
@@ -40071,8 +40156,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "ef14bd406a7211408d5eff4eb372d43819aa3575c5cda4da340df3201b7d9269",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "af36d47583ee9b42493135e478610a7c73c512c0f792d0a9893ebf888448d897",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `empty string` though valid: false",
       "cases": [
@@ -40193,6 +40278,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -40550,8 +40645,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "98d944a1a63c10763cc497375dbfa17726e3de1efae324552fd58ba116f30854",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "eb5e24ca3ca29ccdf572b0884b99a87fb3c034c0fcee902cf434381189fcc25e",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `illegal first char U+302E Hangul single dot tone mark` though valid: false",
       "cases": [
@@ -40842,6 +40937,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -42026,8 +42136,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "ca8c5cbe29bcc2a11a388cd2807e532735cf456807578d31eebd6b70e49069f7",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "f49f6a3b8fd6a1f61b4d1a3fa0c9644792281625ce9c7ac2199a286701b6bf58",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `a regular expression with unclosed parens is invalid` though valid: false",
       "cases": [
@@ -42095,6 +42205,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -43008,8 +43143,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "c962d10613cc3d2226e9b7d7fceb84a132a63ee36fa67c3c0f1e239c523dca4e",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "hash": "620cafabefffccf258524705eecd161896be599cff617317d92d3c5f68fe131f",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid protocol-relative URI Reference` though valid: false",
       "cases": [
@@ -43245,6 +43380,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "false_accept"
         }
@@ -48124,13 +48264,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "5f12617749241cff7b057027a8cd6ea383759d2edcd53b5124454704d3f121b6",
-      "generated_at": "2026-10-11T22:00:38Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "7b5b7eda7cf8fa38d0ebac9f79d8cb04a379922f40c80f7ac5cc7d02b90bbeb9",
+      "generated_at": "2026-10-25T14:56:17Z",
       "bucket": "generation_error",
       "error": "schema did not parse as schemafy_lib::Schema: invalid type: boolean `true`, expected struct Schema",
       "cases": [
@@ -51472,8 +51612,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "b6319a10e917a039200b01997af07c7cb6a00620fe34e47f3b6133356958e921",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "81ebe28e81cc31c69f1ac58932159810aad135c4cf2a2234af7c1ea991f2ea83",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "generation_panic",
       "error": "Expected definition: `http://localhost:1234/draft2020-12/detached-dynamicref.json#/$defs/foo` http: at <registry>/schemafy_lib-0.6.0/src/lib.rs:410",
       "cases": [
@@ -53254,8 +53394,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "56ca1b6c6c40e777f93ab3c81ea19c65ae4827b57d6b7bd2475e24ea0e105bee",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "5bf26e2b8491bd0a20dc9b1e161b16256a0e36baf1e3cc08a8f00fa9f2a194a9",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "false_accept",
       "error": "accepted `matches if → then=false → invalid` though valid: false",
       "cases": [
@@ -53277,8 +53417,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "8062f0a0de5c6f0d804ca381671396ec1bab3940d18335ada2277fa36b0b6af6",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "af0b1937e14110c54d1f8b970039c89c3703fc60f46d55434c14b5d59cc2faf0",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "false_accept",
       "error": "accepted `does not match if → else executes → invalid` though valid: false",
       "cases": [
@@ -57804,8 +57944,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "a962ba63d5e02af9356312f1d9c37327871bb43b7273bbc070883aa8eb6c621a",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "0b91493b022952be1cd66818b3adc1406e5d1dd6d21bcff8f3e5c94172a1b984",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "false_accept",
       "error": "accepted `empty string` though valid: false",
       "cases": [
@@ -57926,6 +58066,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -58283,8 +58433,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "3a6acbed84b1e171bbcccdaa04e727ed636abfe1fd3b51f7cec6ae4ebff74fc5",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "228916d1ea6885b1d70f2f6bb69dba159319774324a229f53ca714bf39d48161",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "false_accept",
       "error": "accepted `illegal first char U+302E Hangul single dot tone mark` though valid: false",
       "cases": [
@@ -58575,6 +58725,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -59759,8 +59924,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "48cd71f8bf82a418937e14ee01ac34f979a20bb81703e85e8057664fbfabc120",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "563c44b6e907d4511c2b350e25b71101b38a334bbf013a36c4003b4e40a89639",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "false_accept",
       "error": "accepted `a regular expression with unclosed parens is invalid` though valid: false",
       "cases": [
@@ -59828,6 +59993,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -60741,8 +60931,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "bc120f2c81072222ace71b83f0722105815d294ec4a4ea4312c75457651d2bf6",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "hash": "0e00df8aa1478915c77d9c086ff76e322561fda278e42f9eff412b7b5baa7590",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid protocol-relative URI Reference` though valid: false",
       "cases": [
@@ -60978,6 +61168,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "false_accept"
         }
@@ -61755,14 +61950,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "0aec1cc2cf3519d3de8041133740a719f2ec691fdd2f56e09b74a2c0c94c6396",
-      "generated_at": "2026-10-11T22:00:41Z",
-      "bucket": "pass",
+      "hash": "ca5f4d1ac8eb17c7251e264f931070e00fbb6b62a7f63e4ad9befbe8432d200c",
+      "generated_at": "2026-10-25T14:56:18Z",
+      "bucket": "false_accept",
+      "error": "accepted `Unicode letter property name matches but value type is incorrect` though valid: false",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -65861,13 +66062,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "9a59c9935f79f0141b92bc488d3f683903c6dbb294018dd0f53b1ec60ae36614",
-      "generated_at": "2026-10-11T22:00:41Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "e807f2bb3d919fab43e60c61283001f3f275327e1a0b5f15384e9a9867812988",
+      "generated_at": "2026-10-25T14:56:18Z",
       "bucket": "generation_error",
       "error": "schema did not parse as schemafy_lib::Schema: invalid type: boolean `true`, expected struct Schema",
       "cases": [

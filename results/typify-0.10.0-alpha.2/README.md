@@ -7,7 +7,7 @@ type system can say; anything else is silently absent, and a construct it
 can't model fails at generation rather than producing a wrong type. The 0.10
 line is the in-progress rewrite on top of typespace.
 
-_generated 2026-10-11T22:00:06Z_
+_generated 2026-10-25T14:56:34Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
@@ -54,19 +54,19 @@ _generated 2026-10-11T22:00:06Z_
 | draft6 | 395 | 516 | 76.6% | 841 | 47.0% |
 | draft7 | 395 | 516 | 76.6% | 929 | 42.5% |
 | draft2019-09 | 516 | 693 | 74.5% | 1261 | 40.9% |
-| draft2020-12 | 551 | 755 | 73.0% | 1301 | 42.4% |
-| **Total** | **2152** | **2849** | **75.5%** | **4950** | **43.5%** |
+| draft2020-12 | 552 | 756 | 73.0% | 1302 | 42.4% |
+| **Total** | **2153** | **2850** | **75.5%** | **4951** | **43.5%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 81 | 93 | 87.1% | 391 | 20.7% |
-| draft6 | 81 | 96 | 84.4% | 520 | 15.6% |
-| draft7 | 85 | 102 | 83.3% | 922 | 9.2% |
-| draft2019-09 | 103 | 131 | 78.6% | 1043 | 9.9% |
-| draft2020-12 | 103 | 131 | 78.6% | 1047 | 9.8% |
-| **Total** | **453** | **553** | **81.9%** | **3923** | **11.5%** |
+| draft4 | 81 | 93 | 87.1% | 394 | 20.6% |
+| draft6 | 81 | 96 | 84.4% | 523 | 15.5% |
+| draft7 | 85 | 102 | 83.3% | 933 | 9.1% |
+| draft2019-09 | 103 | 131 | 78.6% | 1054 | 9.8% |
+| draft2020-12 | 103 | 131 | 78.6% | 1058 | 9.7% |
+| **Total** | **453** | **553** | **81.9%** | **3962** | **11.4%** |
 
 ## Chart
 

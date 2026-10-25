@@ -8,9 +8,9 @@ TypeBox needs a separate generator; this row uses schema2typebox, the one
 TypeBox's readme points at. Most of what it can't express becomes
 `Type.Unknown()`.
 
-_generated 2026-10-11T19:24:11Z_
+_generated 2026-10-25T14:56:22Z_
 
-**227 of 1408 non-optional groups pass (16.1%)**; 301 optional groups reported separately
+**226 of 1408 non-optional groups pass (16.1%)**; 301 optional groups reported separately
 
 | | bucket | meaning |
 |---|---|---|
@@ -33,8 +33,8 @@ _generated 2026-10-11T19:24:11Z_
 | draft6 | 46 | 5 | 4 | 2 | 0 | 20 | 155 | 1 | 233 | 19.7% |
 | draft7 | 46 | 5 | 4 | 2 | 0 | 20 | 180 | 1 | 258 | 17.8% |
 | draft2019-09 | 51 | 28 | 4 | 2 | 0 | 20 | 266 | 2 | 373 | 13.7% |
-| draft2020-12 | 47 | 6 | 5 | 2 | 0 | 20 | 302 | 2 | 384 | 12.2% |
-| **Total** | **227** | **49** | **19** | **9** | **0** | **86** | **1011** | **7** | **1408** | **16.1%** |
+| draft2020-12 | 46 | 7 | 5 | 2 | 0 | 20 | 302 | 2 | 384 | 12.0% |
+| **Total** | **226** | **50** | **19** | **9** | **0** | **86** | **1011** | **7** | **1408** | **16.1%** |
 
 ### Optional groups
 
@@ -55,19 +55,19 @@ _generated 2026-10-11T19:24:11Z_
 | draft6 | 184 | 206 | 89.3% | 841 | 21.9% |
 | draft7 | 184 | 206 | 89.3% | 929 | 19.8% |
 | draft2019-09 | 222 | 276 | 80.4% | 1261 | 17.6% |
-| draft2020-12 | 193 | 221 | 87.3% | 1301 | 14.8% |
-| **Total** | **929** | **1073** | **86.6%** | **4950** | **18.8%** |
+| draft2020-12 | 193 | 222 | 86.9% | 1302 | 14.8% |
+| **Total** | **929** | **1074** | **86.5%** | **4951** | **18.8%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 54 | 64 | 84.4% | 391 | 13.8% |
-| draft6 | 54 | 63 | 85.7% | 520 | 10.4% |
-| draft7 | 54 | 63 | 85.7% | 922 | 5.9% |
-| draft2019-09 | 54 | 63 | 85.7% | 1043 | 5.2% |
-| draft2020-12 | 54 | 63 | 85.7% | 1047 | 5.2% |
-| **Total** | **270** | **316** | **85.4%** | **3923** | **6.9%** |
+| draft4 | 54 | 64 | 84.4% | 394 | 13.7% |
+| draft6 | 54 | 63 | 85.7% | 523 | 10.3% |
+| draft7 | 54 | 63 | 85.7% | 933 | 5.8% |
+| draft2019-09 | 54 | 63 | 85.7% | 1054 | 5.1% |
+| draft2020-12 | 54 | 63 | 85.7% | 1058 | 5.1% |
+| **Total** | **270** | **316** | **85.4%** | **3962** | **6.8%** |
 
 ## Chart
 
@@ -394,7 +394,7 @@ _generated 2026-10-11T19:24:11Z_
 | not.json | 5 | 0 | 0 | 0 | 0 | 2 | 2 | 0 | 9 | ✅✅✅❌✅🦀🦀✅❌ |
 | oneOf.json | 2 | 1 | 0 | 0 | 0 | 4 | 4 | 0 | 11 | ❌❌🦀🦀🦀🦀❌✅🙈❌✅ |
 | pattern.json | 0 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 3 | ❌❌🚧 |
-| patternProperties.json | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌❌❌✅ |
+| patternProperties.json | 0 | 1 | 0 | 0 | 0 | 0 | 5 | 0 | 6 | ❌❌❌❌❌🙈 |
 | prefixItems.json | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 4 | ❌❌❌❌ |
 | properties.json | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 6 | ❌❌❌❌❌❌ |
 | propertyNames.json | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 6 | ❌❌❌❌❌❌ |
@@ -406,7 +406,7 @@ _generated 2026-10-11T19:24:11Z_
 | unevaluatedProperties.json | 1 | 0 | 0 | 0 | 0 | 2 | 40 | 1 | 44 | ❌❌❌❌❌🦀✅❌❌❌❌❌❌❌❌❌❌❌🦀❌❌❌❌❌❌❌❌❌❌❌❌❌❌🤯❌❌❌❌❌❌❌❌❌❌ |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 6 | ❌❌❌❌❌❌ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ❌✅ |
-| **Total** | **47** | **6** | **5** | **2** | **0** | **20** | **302** | **2** | **384** |  |
+| **Total** | **46** | **7** | **5** | **2** | **0** | **20** | **302** | **2** | **384** |  |
 
 #### optional
 
@@ -469,7 +469,7 @@ Per group:
 
 ### ❌ `generation_error` (1216)
 
-578 distinct first-line errors; most common:
+582 distinct first-line errors; most common:
 
 - **16×** `SyntaxError: Argument expression expected. (6:28)`
 - **15×** `Error: Unsupported schema. Did not match any type of the parsers. Schema was: {"properties":{"bar":{"type":"integer"}},"required":["bar"]}`
@@ -674,9 +674,9 @@ Per group:
 - `draft2020-12/pattern.json::pattern with Unicode property escape requires unicode mode` — `ASCII letters match: Expected string to match '^\p{Letter}+$' at <root>`
   - cases: ASCII letters match (rejected), Non-ASCII letters match (rejected)
 
-### 🙈 `false_accept` (75)
+### 🙈 `false_accept` (76)
 
-18 distinct first-line errors; most common:
+19 distinct first-line errors; most common:
 
 - **10×** `accepted 'ascii non-digits' though valid: false`
 - **10×** `accepted 'literal unicode character in json string' though valid: false`
@@ -776,6 +776,8 @@ Per group:
   - cases: too many items (accepted), too many sub-items (accepted), wrong item (accepted), wrong sub-item (accepted)
 - `draft2020-12/oneOf.json::oneOf with required` — `accepted 'both invalid - invalid' though valid: false`
   - cases: both invalid - invalid (accepted), both valid - invalid (accepted)
+- `draft2020-12/patternProperties.json::patternProperties with Unicode property escape` — `accepted 'Unicode letter property name matches but value type is incorrect' though valid: false`
+  - cases: Unicode letter property name matches but value type is incorrect (accepted)
 - `draft2020-12/type.json::integer type matches integers` — `accepted 'a float is not an integer' though valid: false`
   - cases: a float is not an integer (accepted)
 - `draft2020-12/type.json::object type matches objects` — `accepted 'an integer is not an object' though valid: false`
@@ -784,7 +786,5 @@ Per group:
   - cases: number is invalid (accepted), string is invalid (accepted), null is invalid (accepted)
 - `draft2020-12/type.json::type: array, object or null` — `accepted 'number is invalid' though valid: false`
   - cases: number is invalid (accepted), string is invalid (accepted)
-- `draft4/optional/ecmascript-regex.json::patterns always use unicode semantics with patternProperties` — `accepted 'unicode matching is case-sensitive' though valid: false`
-  - cases: unicode matching is case-sensitive (accepted)
-- … and 25 more
+- … and 26 more
 
