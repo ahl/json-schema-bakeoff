@@ -233,6 +233,36 @@ Nothing is stripped from the generated code. The module is the buffer
 followed by `__conformance_check`. In `DedupeMode::Disabled` it never refers
 to a `shared` module.
 
+### What the validator is worth: a run with it off
+
+The crate has switches for both validating paths, `self_validating(false)`
+and `constrained_newtypes(false)`, and upstream says turning them off leaves
+the shapes and derives the same. So a one-off run with them off (into
+scratch; the row keeps the defaults) says what the types pass on their own,
+at 1d1774d:
+
+| draft | groups | pass, defaults | pass, validator off | depend on it |
+|---|---|---|---|---|
+| draft4 | 160 | 94 | 77 (48.1%) | 17 |
+| draft6 | 233 | 137 | 117 (50.2%) | 20 |
+| draft7 | 258 | 145 | 125 (48.4%) | 20 |
+| draft2019-09 | 373 | 186 | 153 (41.0%) | 34 |
+| draft2020-12 | 384 | 186 | 155 (40.4%) | 31 |
+| all | 1408 | 748 | 627 (44.5%) | 122 |
+
+Every one of the 122 becomes a false accept with the validator off. By
+file: `oneOf` 38 (the variant is picked by validation; off, the first shape
+that fits wins), `ref` 13, `unevaluatedProperties` 12, `allOf` 10, `anyOf`
+10, `multipleOf` 10, `maximum` 6, `default` 5, `recursiveRef` 5,
+`maxLength` 4, `minLength` 4, `unevaluatedItems` 2, `minimum`, `items` and
+`pattern` 1 each. One group goes the other way: `$recursiveRef with nesting`
+(2019-09) is a false reject with the validator and passes without it.
+
+So the validator is worth about nine points, mostly `oneOf`, and the 395
+false accepts are elsewhere: untyped schemas that became a bare `Value`
+with no validator at all. typify 0.10.0-alpha.2 on the same drafts: 38.1,
+34.3, 31.0, 27.6 and 27.9%.
+
 ## What the batch crate needed
 
 `generate` writes `<out_dir>/batch-deps.toml`:
