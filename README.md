@@ -47,9 +47,12 @@ section has a paragraph on each tool's design center.
 - `schemafy-0.6`: [schemafy_lib](https://crates.io/crates/schemafy_lib), Rust.
   Generation runs in a supervised worker because the tool overflows the stack
   on some schemas.
-- `json-schema-rs-0.0`: [json-schema-rs](https://crates.io/crates/json-schema-rs),
-  Rust. Hidden from the scoreboard tables (its results are too poor to be
-  informative); still measured and paged.
+- `json-schema-rs-0.0`: [json-schema-rs](https://github.com/goddtriffin/json-schema-rs),
+  Rust, pinned to unreleased main by commit (the type-graph codegen landed
+  as PR #68; no tag since 0.0.6). The published 0.0.6 keeps its results under
+  `results/json-schema-rs-0.0.6/`, hidden from the tables (that version
+  refused any root that wasn't an object); only the current pin can be rerun.
+  Needs Rust 1.99 (`cargo +1.99.1`).
 - `json-schema-to-zod`: [json-schema-to-zod](https://www.npmjs.com/package/json-schema-to-zod)
   with zod 4, TypeScript. Node runs the emitted code directly; the build step
   is a load probe.

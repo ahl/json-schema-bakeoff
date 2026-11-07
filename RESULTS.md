@@ -10,6 +10,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
+| [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 48.1% | 49.4% | 47.7% | 40.5% | 39.8% | 2026-10-31T16:46:40Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-10-11T22:03:28Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-10-11T22:00:41Z |
@@ -23,6 +24,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
+| [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 17.9% | 15.9% | 12.5% | 19.7% | 19.2% | 2026-10-31T16:46:40Z |
 | [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-10-11T22:03:28Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-10-11T18:51:27Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-10-11T22:00:41Z |
@@ -77,6 +79,18 @@ struct, and `required`, `enum`, lengths, patterns and bounds are enforced in
 the unmarshaller rather than left to the type system. The flip side is that a
 root with no `type` keyword produces no root type at all, and the combinators
 collapse into a merged type or `interface{}`.
+
+**json-schema-rs 0.0.6+892e088** — [GitHub](https://github.com/goddtriffin/json-schema-rs)  
+A young Rust generator aimed at hand-written config schemas, pinned to an
+unreleased main: codegen rebuilt around an intermediate graph that
+handles any root shape, recursion, `allOf` as a conjunction, and `const`.
+Unions are `#[serde(untagged)]`, so `oneOf` exclusivity isn't checked, and
+constraints come out as attributes for its own validator, which serde ignores.
+The published 0.0.6 row (results kept, hidden) refused any root that wasn't
+an object. The codegen measured here was written by Claude Code: the repo
+is run from a CLAUDE.md and a contribution skill, and every commit of the
+type-graph rewrite (about 38k lines, five days in October 2026) carries a
+Claude session tag.
 
 **json-schema-to-zod 2.8.1 + zod 4.6.6** — [npm](https://www.npmjs.com/package/json-schema-to-zod)  
 Turns a JSON Schema into a zod schema expression, so you get a static

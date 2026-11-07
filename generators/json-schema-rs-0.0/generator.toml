@@ -1,24 +1,30 @@
-# Integration for the json-schema-rs 0.0 line. The exact version comes from
-# the pinned crate (see Cargo.toml) and names the results directory.
+# Integration for unreleased json-schema-rs main (the type-graph codegen),
+# pinned by git sha in Cargo.toml. The identity
+# ("json-schema-rs <version>+<short sha>") comes from Cargo.lock.
 name = "json-schema-rs-0.0"
 
 language = "rust"
-# Hidden from the scoreboard tables because its results are currently so poor
-# (about 1% of groups pass; the root must be an object with properties) that
-# a row adds noise, not information. Everything is still measured and its page
-# is linked from the bottom of RESULTS.md.
-hidden = true
-homepage = "https://crates.io/crates/json-schema-rs"
+homepage = "https://github.com/goddtriffin/json-schema-rs"
 description = """
-A young Rust generator (0.0.x) aimed at hand-written config schemas: the root
-must be an object with `properties` or it refuses outright. Constraints come
-out as attributes for its own validator, which serde ignores, so it's
-measured on the little it does model.
+A young Rust generator aimed at hand-written config schemas, pinned to an
+unreleased main: codegen rebuilt around an intermediate graph that
+handles any root shape, recursion, `allOf` as a conjunction, and `const`.
+Unions are `#[serde(untagged)]`, so `oneOf` exclusivity isn't checked, and
+constraints come out as attributes for its own validator, which serde ignores.
+The published 0.0.6 row (results kept, hidden) refused any root that wasn't
+an object. The codegen measured here was written by Claude Code: the repo
+is run from a CLAUDE.md and a contribution skill, and every commit of the
+type-graph rewrite (about 38k lines, five days in October 2026) carries a
+Claude session tag.
 """
 
 [commands]
 # Run with cwd = this directory, CARGO_TARGET_DIR = <repo>/target.
 # {root} is the repo root; {out_dir}/{gen_dir}/{batch_dir} are absolute.
-version  = "cargo run -q -- version"
-generate = "cargo run -q -- generate {out_dir}"
-build    = "cargo run -q --manifest-path {root}/Cargo.toml -p rust-batch -- build {gen_dir} {batch_dir}"
+# `+1.99.1`: json-schema-rs at this sha declares rust-version = "1.99", and
+# the harness's own RUSTUP_TOOLCHAIN would otherwise win over a
+# rust-toolchain.toml. rustup passes the choice down, so the cargo that
+# rust-batch spawns for the batch crate uses it too.
+version  = "cargo +1.99.1 run -q -- version"
+generate = "cargo +1.99.1 run -q -- generate {out_dir}"
+build    = "cargo +1.99.1 run -q --manifest-path {root}/Cargo.toml -p rust-batch -- build {gen_dir} {batch_dir}"

@@ -1,6 +1,7 @@
-//! json-schema-rs 0.0 generator for the bakeoff harness.
+//! json-schema-rs (unreleased type-graph branch, pinned by git sha) generator
+//! for the bakeoff harness.
 //!
-//!   version                → "json-schema-rs <crate version>"
+//!   version                → "json-schema-rs <crate version>+<short sha>"
 //!   generate <out_dir>     → stdin: JSON array of {key, draft, schema}; writes
 //!                             <out_dir>/<key>.rs (module + __conformance_check)
 //!                             and <out_dir>/batch-deps.toml;
@@ -71,14 +72,14 @@ fn generate_all(out_dir: PathBuf) -> Result<()> {
             }
         };
         let status = match generate::generate(&g.schema, spec, TIMEOUT) {
-            generate::GenOutcome::Code { code, root } => {
+            generate::GenOutcome::Code { code, root, rule } => {
                 // The generated buffer is used verbatim: it opens with a
                 // `//!` doc comment and `use` items, both of which are fine
-                // at the top of a module file, and it never emits
-                // `extern crate` or a path rooted at `crate::`.
+                // at the top of a module file, and in `DedupeMode::Disabled`
+                // it never refers to a sibling `shared` module.
                 let source = format!(
                     "{code}\n\
-                     // root type: {root}\n\
+                     // root type: {root} ({rule})\n\
                      pub fn __conformance_check(v: ::serde_json::Value) -> ::std::result::Result<(), ::std::string::String> {{\n\
                      \x20   ::serde_json::from_value::<{root}>(v).map(|_| ()).map_err(|e| e.to_string())\n\
                      }}\n"

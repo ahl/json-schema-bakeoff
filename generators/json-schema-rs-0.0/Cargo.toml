@@ -10,6 +10,9 @@ publish = false
 
 [dependencies]
 anyhow = "1"
-json-schema-rs = "=0.0.6"
+# Unreleased main, pinned by sha: the type-graph codegen (PR #68) plus
+# cross-document $ref retrieval (PR #71). No tag has been cut since 0.0.6.
+# build.rs reads the version and the sha back out of Cargo.lock.
+json-schema-rs = { git = "https://github.com/goddtriffin/json-schema-rs.git", rev = "892e0882d2339236f8e58b460154b838349c5cc4" }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip"] }
