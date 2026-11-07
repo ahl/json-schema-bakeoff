@@ -299,9 +299,11 @@ pub enum PreId {
     Alpha(String),
 }
 
-/// True when `a` and `b` agree on every group they both have: same bucket
-/// and the same per-case outcomes, position by position. Error text and
-/// timestamps don't count; groups in only one of them are ignored. No
+/// True when `a` and `b` agree on every group they both ran with the same
+/// cases: same bucket and the same per-case outcomes, position by
+/// position. Error text and timestamps don't count. Groups in only one of
+/// them are ignored, and so is a group whose case list differs (the suite
+/// changed it between the two runs, so they didn't run the same test). No
 /// shared groups at all is not a match.
 pub fn same_results(a: &Results, b: &Results) -> bool {
     let theirs: std::collections::HashMap<&str, &GroupResult> =
@@ -309,11 +311,13 @@ pub fn same_results(a: &Results, b: &Results) -> bool {
     let mut shared = 0;
     for g in &a.groups {
         let Some(h) = theirs.get(g.id.as_str()) else { continue };
+        let same_cases = g.cases.len() == h.cases.len()
+            && g.cases.iter().zip(&h.cases).all(|(x, y)| x.description == y.description && x.valid == y.valid);
+        if !same_cases {
+            continue;
+        }
         shared += 1;
-        if g.bucket != h.bucket
-            || g.cases.len() != h.cases.len()
-            || g.cases.iter().zip(&h.cases).any(|(x, y)| x.outcome != y.outcome)
-        {
+        if g.bucket != h.bucket || g.cases.iter().zip(&h.cases).any(|(x, y)| x.outcome != y.outcome) {
             return false;
         }
     }

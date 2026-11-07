@@ -117,10 +117,11 @@ directories for the same tool exist only when the glue code differs
 A bump within one generator directory (and, for quicktype, one target
 language) that leaves every shared group's bucket and case outcomes
 unchanged adds nothing, so the older row is left off the scoreboard as
-superseded and named in its Notes; its page stays. Groups only one side
-has (compound groups added after a version was retired) don't count, so
-the two rows' percentages can differ. Different directories never
-supersede each other.
+superseded and named in its Notes; its page stays. Only groups both rows
+ran with the same cases count: groups one side lacks (compound groups
+added after a version was retired) and groups whose cases a suite bump
+changed are skipped, so the two rows' percentages can differ. Different
+directories never supersede each other.
 
 ## Buckets
 

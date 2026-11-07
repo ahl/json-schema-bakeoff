@@ -1161,8 +1161,12 @@ mod tests {
     fn different_case_outcome_is_not_identical() {
         let (old, mut new) = bump_pair();
         assert!(crate::results::same_results(&old, &new));
-        // Same bucket, but the cases moved.
-        new.groups[5].cases.swap(0, 1);
+        // Same bucket and the same cases, but two outcomes traded places.
+        let g = &mut new.groups[5];
+        let (a, b) = (g.cases[0].outcome, g.cases[1].outcome);
+        assert_ne!(a, b);
+        g.cases[0].outcome = b;
+        g.cases[1].outcome = a;
         assert!(!crate::results::same_results(&old, &new));
     }
 
@@ -1178,6 +1182,19 @@ mod tests {
         old.generator.clear();
         new.generator.clear();
         assert!(table_has(&render_scoreboard(&[old, new]), "typify 0.10.0-alpha.2"));
+    }
+
+    #[test]
+    fn group_whose_cases_changed_is_ignored() {
+        // A suite bump added a case to a group the retired row never reran
+        // with; that group is not the same test, so it doesn't break the
+        // match.
+        let (old, mut new) = bump_pair();
+        new.groups[0].cases.push(case("added by a suite bump", false, CaseOutcome::FalseAccept));
+        new.groups[0].bucket = Bucket::FalseAccept;
+        let out = render_scoreboard(&[old, new]);
+        assert!(!table_has(&out, "typify 0.10.0-alpha.2"));
+        assert!(out.contains("Left off"));
     }
 
     #[test]
