@@ -64,6 +64,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-11-07T04:47:47Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 2.1% | 2026-11-07T04:47:48Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-11-07T04:47:54Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-11-07T16:39:06Z |
 | [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 21.9% | 18.0% | 20.2% | 20.6% | 19.0% | 2026-11-07T04:48:02Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-11-07T04:48:07Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-11-07T04:48:08Z |
@@ -78,6 +79,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-11-07T04:47:47Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-11-07T04:47:48Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-11-07T04:47:54Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-11-07T16:39:06Z |
 | [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 56.4% | 34.1% | 28.1% | 25.0% | 24.4% | 2026-11-07T04:48:02Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-11-07T04:48:07Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-11-07T04:48:08Z |
@@ -92,6 +94,7 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T04:47:47Z |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T04:47:48Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | — | — | 75.0% | — | 75.0% | 2026-11-07T04:47:54Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | — | — | 75.0% | — | 75.0% | 2026-11-07T16:39:06Z |
 | [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | — | — | 100.0% | — | 100.0% | 2026-11-07T04:48:02Z |
 | [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T04:48:07Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | — | — | 25.0% | — | 25.0% | 2026-11-07T04:48:08Z |
