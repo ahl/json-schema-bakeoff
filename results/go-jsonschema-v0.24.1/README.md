@@ -8,9 +8,9 @@ the unmarshaller rather than left to the type system. The flip side is that a
 root with no `type` keyword produces no root type at all, and the combinators
 collapse into a merged type or `interface{}`.
 
-_generated 2026-11-07T15:37:51Z_
+_generated 2026-11-07T23:13:05Z_
 
-**28 of 1408 non-optional groups pass (2.0%)**; 301 optional groups reported separately
+**27 of 1413 non-optional groups pass (1.9%)**; 306 optional groups reported separately
 
 **0 of 10 compound groups pass (0.0%)**
 
@@ -31,23 +31,23 @@ _generated 2026-11-07T15:37:51Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 3 | 11 | 1 | 2 | 0 | 121 | 22 | 0 | 160 | 1.9% |
-| draft6 | 3 | 10 | 1 | 3 | 0 | 172 | 44 | 0 | 233 | 1.3% |
-| draft7 | 3 | 10 | 1 | 3 | 0 | 185 | 56 | 0 | 258 | 1.2% |
-| draft2019-09 | 11 | 31 | 1 | 3 | 0 | 279 | 48 | 0 | 373 | 2.9% |
-| draft2020-12 | 8 | 13 | 1 | 3 | 0 | 337 | 22 | 0 | 384 | 2.1% |
-| **Total** | **28** | **75** | **5** | **14** | **0** | **1094** | **192** | **0** | **1408** | **2.0%** |
+| draft4 | 3 | 11 | 1 | 2 | 0 | 122 | 22 | 0 | 161 | 1.9% |
+| draft6 | 3 | 10 | 1 | 3 | 0 | 173 | 44 | 0 | 234 | 1.3% |
+| draft7 | 3 | 10 | 1 | 3 | 0 | 186 | 56 | 0 | 259 | 1.2% |
+| draft2019-09 | 11 | 31 | 1 | 3 | 0 | 282 | 46 | 0 | 374 | 2.9% |
+| draft2020-12 | 7 | 14 | 1 | 3 | 0 | 340 | 20 | 0 | 385 | 1.8% |
+| **Total** | **27** | **76** | **5** | **14** | **0** | **1103** | **188** | **0** | **1413** | **1.9%** |
 
 ### Optional groups
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 9 | 6 | 4 | 0 | 0 | 19 | 1 | 0 | 39 | 23.1% |
-| draft6 | 8 | 6 | 4 | 0 | 0 | 25 | 1 | 0 | 44 | 18.2% |
-| draft7 | 8 | 7 | 4 | 0 | 0 | 39 | 6 | 0 | 64 | 12.5% |
-| draft2019-09 | 9 | 6 | 4 | 0 | 0 | 54 | 3 | 0 | 76 | 11.8% |
-| draft2020-12 | 8 | 6 | 4 | 0 | 0 | 56 | 4 | 0 | 78 | 10.3% |
-| **Total** | **42** | **31** | **20** | **0** | **0** | **193** | **15** | **0** | **301** | **14.0%** |
+| draft4 | 9 | 6 | 4 | 0 | 0 | 20 | 1 | 0 | 40 | 22.5% |
+| draft6 | 8 | 6 | 4 | 0 | 0 | 26 | 1 | 0 | 45 | 17.8% |
+| draft7 | 8 | 7 | 4 | 0 | 0 | 40 | 6 | 0 | 65 | 12.3% |
+| draft2019-09 | 9 | 6 | 4 | 0 | 0 | 55 | 3 | 0 | 77 | 11.7% |
+| draft2020-12 | 8 | 6 | 4 | 0 | 0 | 57 | 4 | 0 | 79 | 10.1% |
+| **Total** | **42** | **31** | **20** | **0** | **0** | **198** | **15** | **0** | **306** | **13.7%** |
 
 ### Compound groups
 
@@ -61,23 +61,23 @@ _generated 2026-11-07T15:37:51Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 75 | 101 | 74.3% | 618 | 12.1% |
-| draft6 | 75 | 102 | 73.5% | 841 | 8.9% |
-| draft7 | 75 | 102 | 73.5% | 929 | 8.1% |
-| draft2019-09 | 113 | 170 | 66.5% | 1261 | 9.0% |
-| draft2020-12 | 90 | 123 | 73.2% | 1301 | 6.9% |
-| **Total** | **428** | **598** | **71.6%** | **4950** | **8.6%** |
+| draft4 | 75 | 101 | 74.3% | 616 | 12.2% |
+| draft6 | 75 | 102 | 73.5% | 839 | 8.9% |
+| draft7 | 75 | 102 | 73.5% | 927 | 8.1% |
+| draft2019-09 | 113 | 170 | 66.5% | 1259 | 9.0% |
+| draft2020-12 | 90 | 124 | 72.6% | 1300 | 6.9% |
+| **Total** | **428** | **599** | **71.5%** | **4941** | **8.7%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 40 | 63 | 63.5% | 391 | 10.2% |
-| draft6 | 39 | 62 | 62.9% | 520 | 7.5% |
-| draft7 | 40 | 64 | 62.5% | 922 | 4.3% |
-| draft2019-09 | 40 | 63 | 63.5% | 1043 | 3.8% |
-| draft2020-12 | 39 | 62 | 62.9% | 1047 | 3.7% |
-| **Total** | **198** | **314** | **63.1%** | **3923** | **5.0%** |
+| draft4 | 40 | 63 | 63.5% | 396 | 10.1% |
+| draft6 | 39 | 62 | 62.9% | 525 | 7.4% |
+| draft7 | 40 | 64 | 62.5% | 950 | 4.2% |
+| draft2019-09 | 40 | 63 | 63.5% | 1070 | 3.7% |
+| draft2020-12 | 39 | 62 | 62.9% | 1074 | 3.6% |
+| **Total** | **198** | **314** | **63.1%** | **4015** | **4.9%** |
 
 ### Per-case match rate (compound)
 
@@ -112,7 +112,7 @@ _generated 2026-11-07T15:37:51Z_
 | minLength.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | minProperties.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 🦀🦀🦀🦀 |
-| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
+| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | not.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 2 | 0 | 0 | 0 | 5 | 0 | 0 | 7 | 🦀🙈🦀🦀🙈🦀🦀 |
 | pattern.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
@@ -123,13 +123,13 @@ _generated 2026-11-07T15:37:51Z_
 | required.json | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 🦀🦀🦀🦀 |
 | type.json | 1 | 8 | 0 | 2 | 0 | 0 | 0 | 0 | 11 | 🙈🙈🙈🙈🙈🙈🙈🤪✅🤪🙈 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 2 | 4 | 0 | 6 | 🦀❌❌🦀❌❌ |
-| **Total** | **3** | **11** | **1** | **2** | **0** | **121** | **22** | **0** | **160** |  |
+| **Total** | **3** | **11** | **1** | **2** | **0** | **122** | **22** | **0** | **161** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 4 | 0 | 0 | 7 | 🚧✅✅🦀🦀🦀🦀 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 5 | 0 | 0 | 8 | 🚧✅✅🦀🦀🦀🦀🦀 |
 | optional/ecmascript-regex.json | 6 | 6 | 3 | 0 | 0 | 5 | 0 | 0 | 20 | ✅✅🚧🚧✅✅✅✅🚧🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈🙈 |
 | optional/float-overflow.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
@@ -142,7 +142,7 @@ _generated 2026-11-07T15:37:51Z_
 | optional/id.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/non-bmp-regex.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | optional/zeroTerminatedFloats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **9** | **6** | **4** | **0** | **0** | **19** | **1** | **0** | **39** |  |
+| **Total** | **9** | **6** | **4** | **0** | **0** | **20** | **1** | **0** | **40** |  |
 
 ### draft6
 
@@ -172,7 +172,7 @@ _generated 2026-11-07T15:37:51Z_
 | minLength.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minProperties.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
-| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
+| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | not.json | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0 | 8 | 🦀🦀🦀🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 2 | 0 | 0 | 0 | 9 | 0 | 0 | 11 | 🦀🙈🦀🦀🦀🦀🦀🦀🙈🦀🦀 |
 | pattern.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
@@ -184,13 +184,13 @@ _generated 2026-11-07T15:37:51Z_
 | required.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | type.json | 1 | 7 | 0 | 3 | 0 | 0 | 0 | 0 | 11 | 🤪🙈🙈🙈🙈🙈🙈🤪✅🤪🙈 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 2 | 4 | 0 | 6 | 🦀❌❌🦀❌❌ |
-| **Total** | **3** | **10** | **1** | **3** | **0** | **172** | **44** | **0** | **233** |  |
+| **Total** | **3** | **10** | **1** | **3** | **0** | **173** | **44** | **0** | **234** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 4 | 0 | 0 | 7 | 🚧✅✅🦀🦀🦀🦀 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 5 | 0 | 0 | 8 | 🚧✅✅🦀🦀🦀🦀🦀 |
 | optional/ecmascript-regex.json | 6 | 6 | 3 | 0 | 0 | 5 | 0 | 0 | 20 | ✅✅🚧🚧✅✅✅✅🚧🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈🙈 |
 | optional/float-overflow.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | optional/format/date-time.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
@@ -206,7 +206,7 @@ _generated 2026-11-07T15:37:51Z_
 | optional/id.json | 0 | 0 | 0 | 0 | 0 | 2 | 1 | 0 | 3 | ❌🦀🦀 |
 | optional/non-bmp-regex.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
-| **Total** | **8** | **6** | **4** | **0** | **0** | **25** | **1** | **0** | **44** |  |
+| **Total** | **8** | **6** | **4** | **0** | **0** | **26** | **1** | **0** | **45** |  |
 
 ### draft7
 
@@ -237,7 +237,7 @@ _generated 2026-11-07T15:37:51Z_
 | minLength.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minProperties.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
-| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
+| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | not.json | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0 | 8 | 🦀🦀🦀🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 2 | 0 | 0 | 0 | 9 | 0 | 0 | 11 | 🦀🙈🦀🦀🦀🦀🦀🦀🙈🦀🦀 |
 | pattern.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
@@ -249,13 +249,13 @@ _generated 2026-11-07T15:37:51Z_
 | required.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | type.json | 1 | 7 | 0 | 3 | 0 | 0 | 0 | 0 | 11 | 🤪🙈🙈🙈🙈🙈🙈🤪✅🤪🙈 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 2 | 4 | 0 | 6 | 🦀❌❌🦀❌❌ |
-| **Total** | **3** | **10** | **1** | **3** | **0** | **185** | **56** | **0** | **258** |  |
+| **Total** | **3** | **10** | **1** | **3** | **0** | **186** | **56** | **0** | **259** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 4 | 0 | 0 | 7 | 🚧✅✅🦀🦀🦀🦀 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 5 | 0 | 0 | 8 | 🚧✅✅🦀🦀🦀🦀🦀 |
 | optional/content.json | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 3 | ❌❌❌ |
 | optional/cross-draft.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | optional/ecmascript-regex.json | 6 | 6 | 3 | 0 | 0 | 5 | 0 | 0 | 20 | ✅✅🚧🚧✅✅✅✅🚧🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈🙈 |
@@ -282,7 +282,7 @@ _generated 2026-11-07T15:37:51Z_
 | optional/id.json | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 3 | ❌❌❌ |
 | optional/non-bmp-regex.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
-| **Total** | **8** | **7** | **4** | **0** | **0** | **39** | **6** | **0** | **64** |  |
+| **Total** | **8** | **7** | **4** | **0** | **0** | **40** | **6** | **0** | **65** |  |
 
 #### compound
 
@@ -312,7 +312,7 @@ _generated 2026-11-07T15:37:51Z_
 | exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | format.json | 0 | 0 | 0 | 0 | 0 | 19 | 0 | 0 | 19 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 10 | 2 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀❌❌ |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 0 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | infinite-loop-detection.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | items.json | 1 | 0 | 0 | 0 | 0 | 4 | 4 | 0 | 9 | 🦀❌🦀🦀❌❌✅🦀❌ |
 | maxContains.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
@@ -325,7 +325,7 @@ _generated 2026-11-07T15:37:51Z_
 | minLength.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minProperties.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
-| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
+| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | not.json | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 0 | 9 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 2 | 0 | 0 | 0 | 9 | 0 | 0 | 11 | 🦀🙈🦀🦀🦀🦀🦀🦀🙈🦀🦀 |
 | pattern.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
@@ -341,14 +341,14 @@ _generated 2026-11-07T15:37:51Z_
 | unevaluatedProperties.json | 7 | 21 | 0 | 0 | 0 | 15 | 1 | 0 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🦀🦀🦀🦀🦀✅✅🙈🙈🙈🙈🙈🙈🙈❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 2 | 4 | 0 | 6 | 🦀❌❌🦀❌❌ |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 🦀✅ |
-| **Total** | **11** | **31** | **1** | **3** | **0** | **279** | **48** | **0** | **373** |  |
+| **Total** | **11** | **31** | **1** | **3** | **0** | **282** | **46** | **0** | **374** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
-| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 4 | 0 | 0 | 7 | 🚧✅✅🦀🦀🦀🦀 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 5 | 0 | 0 | 8 | 🚧✅✅🦀🦀🦀🦀🦀 |
 | optional/cross-draft.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ❌✅ |
 | optional/dependencies-compatibility.json | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 0 | 7 | 🦀🦀🦀🦀🦀🦀🦀 |
 | optional/ecmascript-regex.json | 6 | 6 | 3 | 0 | 0 | 5 | 0 | 0 | 20 | ✅✅🚧🚧✅✅✅✅🚧🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈🙈 |
@@ -379,7 +379,7 @@ _generated 2026-11-07T15:37:51Z_
 | optional/non-bmp-regex.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
-| **Total** | **9** | **6** | **4** | **0** | **0** | **54** | **3** | **0** | **76** |  |
+| **Total** | **9** | **6** | **4** | **0** | **0** | **55** | **3** | **0** | **77** |  |
 
 ### draft2020-12
 
@@ -402,7 +402,7 @@ _generated 2026-11-07T15:37:51Z_
 | exclusiveMaximum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | exclusiveMinimum.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | format.json | 0 | 0 | 0 | 0 | 0 | 19 | 0 | 0 | 19 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
-| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 10 | 2 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀❌❌ |
+| if-then-else.json | 0 | 0 | 0 | 0 | 0 | 12 | 0 | 0 | 12 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | infinite-loop-detection.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | items.json | 1 | 1 | 0 | 0 | 0 | 8 | 0 | 0 | 10 | 🦀🦀🦀🙈✅🦀🦀🦀🦀🦀 |
 | maxContains.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
@@ -415,11 +415,11 @@ _generated 2026-11-07T15:37:51Z_
 | minLength.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minProperties.json | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 🦀❌ |
 | minimum.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
-| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
+| multipleOf.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | not.json | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 0 | 9 | 🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | oneOf.json | 0 | 2 | 0 | 0 | 0 | 9 | 0 | 0 | 11 | 🦀🙈🦀🦀🦀🦀🦀🦀🙈🦀🦀 |
 | pattern.json | 1 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 3 | 🦀🦀✅ |
-| patternProperties.json | 1 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀✅ |
+| patternProperties.json | 0 | 1 | 0 | 0 | 0 | 5 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🙈 |
 | prefixItems.json | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 🦀🦀🦀🦀 |
 | properties.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | propertyNames.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
@@ -431,14 +431,14 @@ _generated 2026-11-07T15:37:51Z_
 | unevaluatedProperties.json | 2 | 0 | 0 | 0 | 0 | 42 | 0 | 0 | 44 | 🦀🦀🦀🦀🦀✅✅🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | vocabulary.json | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 🦀✅ |
-| **Total** | **8** | **13** | **1** | **3** | **0** | **337** | **22** | **0** | **384** |  |
+| **Total** | **7** | **14** | **1** | **3** | **0** | **340** | **20** | **0** | **385** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
-| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 4 | 0 | 0 | 7 | 🚧✅✅🦀🦀🦀🦀 |
+| optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 5 | 0 | 0 | 8 | 🚧✅✅🦀🦀🦀🦀🦀 |
 | optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/dependencies-compatibility.json | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 0 | 7 | 🦀🦀🦀🦀🦀🦀🦀 |
 | optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
@@ -471,7 +471,7 @@ _generated 2026-11-07T15:37:51Z_
 | optional/non-bmp-regex.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
-| **Total** | **8** | **6** | **4** | **0** | **0** | **56** | **4** | **0** | **78** |  |
+| **Total** | **8** | **6** | **4** | **0** | **0** | **57** | **4** | **0** | **79** |  |
 
 #### compound
 
@@ -482,12 +482,12 @@ _generated 2026-11-07T15:37:51Z_
 
 ## Failures
 
-### ❌ `generation_error` (207)
+### ❌ `generation_error` (203)
 
 25 distinct first-line errors; most common:
 
 - **107×** `error parsing from file <schema>: cannot load schema`
-- **59×** `schema has no root`
+- **55×** `schema has no root`
 - **5×** `cannot add struct field: could not generate type with scope 'NodeSubtree': could not follow $ref "tree" to file "tree": cannot load schema`
 - **5×** `could not follow $ref "folderInteger.json" to file "folderInteger.json": cannot load schema`
 - **3×** `cannot add struct field: could not generate type with scope 'RootList': definition does not exist in schema: "baz/definitions/bar" (from ref "#/definitions/baz/…`
@@ -544,11 +544,11 @@ Per group:
 - `draft6/maxProperties.json::maxProperties validation with a decimal` — `error parsing from file <schema>: cannot load schema`
 - `draft6/minItems.json::minItems validation with a decimal` — `error parsing from file <schema>: cannot load schema`
 - `draft6/minLength.json::minLength validation with a decimal` — `error parsing from file <schema>: cannot load schema`
-- … and 157 more
+- … and 153 more
 
-### 🦀 `compile_fail` (1297)
+### 🦀 `compile_fail` (1311)
 
-1192 distinct first-line errors; most common:
+1206 distinct first-line errors; most common:
 
 - **8×** `g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root`
 - **8×** `g_debdfb0bc8ba4bfa/g_debdfb0bc8ba4bfa.go:9:8: undefined: Root`
@@ -608,7 +608,7 @@ Per group:
 - `draft4/enum.json::enum with 1 does not match true` — `g_cabbcbae211922a3/g_cabbcbae211922a3.go:9:8: undefined: Root`
 - `draft4/enum.json::enum with [1] does not match [true]` — `g_56241582576d7a66/g_56241582576d7a66.go:9:8: undefined: Root`
 - `draft4/enum.json::nul characters in strings` — `g_892cb66ea81a0f5e/g_892cb66ea81a0f5e.go:9:8: undefined: Root`
-- … and 1247 more
+- … and 1261 more
 
 ### 🤪 `mixed` (14)
 
@@ -714,9 +714,9 @@ Per group:
 - `draft2020-12/optional/ecmascript-regex.json::ECMA 262 \s matches whitespace` — `Line tabulation matches: field  pattern match: must match ^\s$`
   - cases: Line tabulation matches (rejected), latin-1 non-breaking-space matches (rejected), zero-width whitespace matches (rejected), paragraph separator matches (line terminator) (rejected), EM SPACE matches (Space_Separator) (rejected)
 
-### 🙈 `false_accept` (106)
+### 🙈 `false_accept` (107)
 
-27 distinct first-line errors; most common:
+28 distinct first-line errors; most common:
 
 - **10×** `accepted 'ascii non-digits' though valid: false`
 - **10×** `accepted 'literal unicode character in json string' though valid: false`
@@ -826,5 +826,5 @@ Per group:
   - cases: with unevaluated properties (accepted)
 - `draft2019-09/unevaluatedProperties.json::unevaluatedProperties with not` — `accepted 'with unevaluated properties' though valid: false`
   - cases: with unevaluated properties (accepted)
-- … and 56 more
+- … and 57 more
 

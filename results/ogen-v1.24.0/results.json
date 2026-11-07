@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "ogen",
   "homepage": "https://ogen.dev",
-  "generated_at": "2026-11-07T15:38:19Z",
+  "generated_at": "2026-11-07T23:14:53Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -2596,6 +2596,29 @@
       ]
     },
     {
+      "id": "draft4/multipleOf.json::by very small number",
+      "draft": "draft4",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "ba5b0e2eac805ef5a76f10d96db2f0449e0ff877e97e9c0f258569e727acd608",
+      "generated_at": "2026-11-07T23:14:50Z",
+      "bucket": "false_accept",
+      "error": "accepted `1.5e-8 is not multiple of 1e-8` though valid: false",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
       "id": "draft4/multipleOf.json::float division = inf",
       "draft": "draft4",
       "file": "multipleOf.json",
@@ -3144,6 +3167,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft4/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft4",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "5ea3101483878ebe3d1b18a88ae46ab908015a0d91052034e50759e1a95533df",
+      "generated_at": "2026-11-07T23:14:50Z",
+      "bucket": "false_accept",
+      "error": "accepted `1e20 is not multiple of 3` though valid: false",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "false_accept"
         }
@@ -4412,8 +4458,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "0661bcb4bc78c1c29e3c785994c8732ec38d31e51e948a5559b682ab199abea1",
-      "generated_at": "2026-10-11T19:51:05Z",
+      "hash": "b854790833745da426b987f3ee6650c9b2c1bdddaaa23f3b9a4106d657288118",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "false_accept",
       "error": "accepted `a host name starting with an illegal character` though valid: false",
       "cases": [
@@ -4564,6 +4610,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -5113,8 +5169,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "f3cf9ffde90fba5f7cee8da7ef367bbaefb390941a1a4e89039bde9f891e017c",
-      "generated_at": "2026-10-11T19:51:05Z",
+      "hash": "723b6f179f439b49459b792ac3c218ca94e141a77a655dcb892c27afe5835b78",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "compile_fail",
       "error": "g_0977f3622f6b2774/g_0977f3622f6b2774.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment",
       "cases": [
@@ -5350,6 +5406,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -7264,8 +7325,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "2d562f99335413476cb0a6721b4cd57f9fa986788538e3c2829945fda7e0b64d",
-      "generated_at": "2026-10-11T19:51:05Z",
+      "hash": "eb70a655f084f6864fc8a9e9078854beb18af59f444088c88b3de618829998a7",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "generation_error",
       "error": "make ir: operations: path \"/\": post: requestBody: contents: media: \"application/json\": generate schema: empty uniqueItems not implemented",
       "cases": [
@@ -7347,16 +7408,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -7508,8 +7559,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "bc3553a406000266f65fc575d3b3f7aaafca9e55780c667dd51565390c459a05",
-      "generated_at": "2026-10-11T19:51:05Z",
+      "hash": "1d55d85b7ba7637bf5b131c0d040212c5bc78a08a09da04f60f01b2c61226f6b",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "pass",
       "cases": [
         {
@@ -7564,16 +7615,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "match"
         },
@@ -11506,6 +11547,29 @@
       ]
     },
     {
+      "id": "draft6/multipleOf.json::by very small number",
+      "draft": "draft6",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "303f220bd3471a8e72a15d7b11482e4f548ef3900fb131d9798a41ab776e3955",
+      "generated_at": "2026-11-07T23:14:50Z",
+      "bucket": "false_accept",
+      "error": "accepted `1.5e-8 is not multiple of 1e-8` though valid: false",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
       "id": "draft6/multipleOf.json::float division = inf",
       "draft": "draft6",
       "file": "multipleOf.json",
@@ -12243,6 +12307,29 @@
           "description": "comparison works for very negative numbers",
           "valid": false,
           "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft6/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft6",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "9ff20ed5911b668aa8f0d891c52c1c5e179e2f333d7e12bfa11aa46fb905bf1f",
+      "generated_at": "2026-11-07T23:14:50Z",
+      "bucket": "false_accept",
+      "error": "accepted `1e20 is not multiple of 3` though valid: false",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -13526,8 +13613,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "1fe222f5adccee6cfaf278f978995c5bb376945156f162e3b674037064b36477",
-      "generated_at": "2026-10-11T19:51:09Z",
+      "hash": "3ef58b0e58269b6feb65cefd9353e91d0c729fa5ceebce51fa0960a2e5cfb7ff",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "false_accept",
       "error": "accepted `a host name starting with an illegal character` though valid: false",
       "cases": [
@@ -13678,6 +13765,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -14861,8 +14958,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "8382f0db56ee1a8bf5712fe826e6e2865a0366ce3e789d7e02e3861573bd2283",
-      "generated_at": "2026-10-11T19:51:09Z",
+      "hash": "0006dd23cb86827fec690674a418c92b3d6ae92238f05b741551a91bb68c5931",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "compile_fail",
       "error": "g_b28fcd01cbcd5013/g_b28fcd01cbcd5013.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment",
       "cases": [
@@ -15098,6 +15195,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -17700,8 +17802,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "9986445819cec98377a827605712c36b9f2865537b6915c1b35b029531cf7f5e",
-      "generated_at": "2026-10-11T19:51:09Z",
+      "hash": "a0d240e07a7283db4e95c1120a82171c2a443423e3070584d0dbab5245ecdf60",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "generation_error",
       "error": "make ir: operations: path \"/\": post: requestBody: contents: media: \"application/json\": generate schema: empty uniqueItems not implemented",
       "cases": [
@@ -17783,16 +17885,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -17944,8 +18036,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "3899f0fcd133a6a73beb16781e6aa52ea86d0d5c1504ec7f184ffb4d8ea083ea",
-      "generated_at": "2026-10-11T19:51:09Z",
+      "hash": "ff65626b7bb85d71518fb5ea94d21a1add39e79d6e4278200144a12364e82933",
+      "generated_at": "2026-11-07T23:14:50Z",
       "bucket": "pass",
       "cases": [
         {
@@ -18000,16 +18092,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "match"
         },
@@ -22605,6 +22687,29 @@
       ]
     },
     {
+      "id": "draft7/multipleOf.json::by very small number",
+      "draft": "draft7",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "43c0aa215f37fc1a07dbbf8792828b76e8990985fa24d80c10009e395eb68812",
+      "generated_at": "2026-11-07T23:14:51Z",
+      "bucket": "false_accept",
+      "error": "accepted `1.5e-8 is not multiple of 1e-8` though valid: false",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
       "id": "draft7/multipleOf.json::float division = inf",
       "draft": "draft7",
       "file": "multipleOf.json",
@@ -23342,6 +23447,29 @@
           "description": "comparison works for very negative numbers",
           "valid": false,
           "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "d4db4e1a87d7ce99a408d40936fd479f92ffd5745a0c7ffbc0686f06e26e9511",
+      "generated_at": "2026-11-07T23:14:51Z",
+      "bucket": "false_accept",
+      "error": "accepted `1e20 is not multiple of 3` though valid: false",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -25290,8 +25418,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "5771f7418957da6521436ba140298824ddc260320212a20955af4f665dd712f7",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "78d3f4d26b8c68319532c14afab26fba823cb77afc009002ad83edcfa90458d0",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "false_accept",
       "error": "accepted `empty string` though valid: false",
       "cases": [
@@ -25412,6 +25540,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -25769,8 +25907,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "a11192f6c04a1d336c46da89e2dfe71175fd3723dc8ebceb3bc4e6087e623feb",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "a5f1f97ff280967f7994c300717c2a73d5af46f842be2ded228ad9cfbcb519dd",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "false_accept",
       "error": "accepted `illegal first char U+302E Hangul single dot tone mark` though valid: false",
       "cases": [
@@ -26061,6 +26199,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -26771,8 +26924,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "02a21743f43c4b07f5cb4ea31ee8427aa539a4bbbe2aefa041d3a79c41ab8065",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "5f1362b1e0142d9fa528b7af04d621d6aa33db6377968c32c96275e5830e4ed2",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid IRI Reference` though valid: false",
       "cases": [
@@ -26880,6 +27033,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -26889,8 +27062,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "59e67c71dddc672f27bfd96aa7a6acf0e6ad293c3aa1e1b4af07f36b194a269c",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "c232b3cce693a61a31abbc93851798a24a2b8f5565b2794d2ebf213a60919e63",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "false_accept",
       "error": "accepted `invalid percent-encoding with non-hex digits` though valid: false",
       "cases": [
@@ -27023,6 +27196,36 @@
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -27245,8 +27448,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "719fcc5fc120d9726200ac878d27c4fa53a383392f5011ab4058f5d2c576d50c",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "6a8b33adc8745de6b560d33c20f4033561dc5019a890a375a1b29dd4ca22f0b0",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "false_accept",
       "error": "accepted `a regular expression with unclosed parens is invalid` though valid: false",
       "cases": [
@@ -27314,6 +27517,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -27323,8 +27551,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "8e0a7a32533690b74a620f3e42ede0adb8e513cf88ec1f9688cc7bfb978db5c5",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "584341fb68efef7b62c0e97f592d776519016d0573d33d1efb6c6493ad2b9db5",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid RJP that is a valid JSON Pointer` though valid: false",
       "cases": [
@@ -27452,6 +27680,31 @@
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "trailing newline after the non-negative integer",
@@ -28227,8 +28480,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "8029d2b0eb82e404648baa391f9747ef8c10b0132fbd6790da898185dfa79fdc",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "20df447afb85b0c295b32dd07eeb3f4139237cda1e030c45b312338bef4e0141",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "compile_fail",
       "error": "g_7b63951497746465/g_7b63951497746465.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment",
       "cases": [
@@ -28464,6 +28717,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -31158,8 +31416,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "c02e987a328c2a4e06d9afc8c9014ab02a5122fd96b86e2d6840abcacf69791d",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "a29aef2ededd8a16147d9ea82bc11eed37e96aaa039f67e29dfd8ceae758beac",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "generation_error",
       "error": "make ir: operations: path \"/\": post: requestBody: contents: media: \"application/json\": generate schema: empty uniqueItems not implemented",
       "cases": [
@@ -31241,16 +31499,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -31402,8 +31650,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "e695eff78485af5c00f2e2a18fab0e4349e0537ff540cdbca30f2340ea506a75",
-      "generated_at": "2026-10-11T19:51:12Z",
+      "hash": "28437e0e4e7aae72fd406fe01e24b83fdef52ca8e747f6893294c4f4217f56df",
+      "generated_at": "2026-11-07T23:14:51Z",
       "bucket": "pass",
       "cases": [
         {
@@ -31458,16 +31706,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "match"
         },
@@ -35804,8 +36042,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "a88b1bc23633e00cec9c7a53a72f0319f0223852b184d59844a745bb4f07e9e7",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "0eace0f16e980529c99714805c3518d87f751d9565cf3b32343346d27474dd0e",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `matches if → then=false → invalid` though valid: false",
       "cases": [
@@ -35827,8 +36065,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "cfd6e01d40b042b2961b30bd49736f59a9bc4a5ba0a92ff33da9a5a076af62da",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "18fc81398ae4d0e6e329373cba3f8071fb0d4ee3e47446a2b34bd5eabe76596d",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `does not match if → else executes → invalid` though valid: false",
       "cases": [
@@ -37133,6 +37371,29 @@
       ]
     },
     {
+      "id": "draft2019-09/multipleOf.json::by very small number",
+      "draft": "draft2019-09",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "448f5016c80eb1bce3974a9ec22edc2ec84daa05c40dd3bdc282d633f741c578",
+      "generated_at": "2026-11-07T23:14:52Z",
+      "bucket": "false_accept",
+      "error": "accepted `1.5e-8 is not multiple of 1e-8` though valid: false",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
       "id": "draft2019-09/multipleOf.json::float division = inf",
       "draft": "draft2019-09",
       "file": "multipleOf.json",
@@ -37930,6 +38191,29 @@
       ]
     },
     {
+      "id": "draft2019-09/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft2019-09",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "01503a2466fded2b52627ef4092f300c0b042fbb201c9e182589d3ad5cfb1866",
+      "generated_at": "2026-11-07T23:14:52Z",
+      "bucket": "false_accept",
+      "error": "accepted `1e20 is not multiple of 3` though valid: false",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
       "id": "draft2019-09/optional/cross-draft.json::refs to future drafts are processed as future drafts",
       "draft": "draft2019-09",
       "file": "optional/cross-draft.json",
@@ -37958,8 +38242,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "ead599eeb99596f9c93e2a034c6f60e9d08915d3cb3958f28a280aed74fdebe3",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "6467b7c28711c905c82a402417715d01fe32f6436176b12050a35eb86cca0876",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "generation_error",
       "error": "callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType \"json:\\\"type\\\"\" }",
       "cases": [
@@ -39570,10 +39854,10 @@
       "file": "optional/format/duration.json",
       "optional": true,
       "group": "validation of duration strings",
-      "hash": "e0db79a3ed8abbfa94cf2feac85bdfb2c076547f1e4f6b58e56fb094145c2fc8",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "0f940ebb63542e23746a901f6ad777693adc59a37cf961734f1b668bf0040d63",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "compile_fail",
-      "error": "g_5aa6f70ec5408b36/g_5aa6f70ec5408b36.go:31:15: cannot use v (variable of int64 type \"time\".Duration) as jx.Raw value in assignment",
+      "error": "g_5aa6f70ec5408b36/g_5aa6f70ec5408b36.go:31:15: cannot use v (variable of int64 type time.Duration) as jx.Raw value in assignment",
       "cases": [
         {
           "description": "all string formats ignore integers",
@@ -39763,11 +40047,6 @@
         {
           "description": "years and days cannot appear without months",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "months and days can appear without years",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -40346,8 +40625,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "99f8c4b749d221c3b84c2318f4f4aa06e1151adf857df6fdffa87780ef44b416",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "42813cf19484e4acb7b4c8acda2f3e45cf3284c817a5386a901554817a5cbc5d",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `empty string` though valid: false",
       "cases": [
@@ -40468,6 +40747,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -40825,8 +41114,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "37df17c17eb8b5835d51c02873e22e402601db9220e8200a8e6a2b6bb9a8fbfe",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "6ef7ffd0d9ea4b49f151613b8d0fbe4f77818d312b028abe188ed179f2e6028f",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `illegal first char U+302E Hangul single dot tone mark` though valid: false",
       "cases": [
@@ -41117,6 +41406,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -41827,8 +42131,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "2ef979a7525c053444ed8d48bba59b79fd14d5ce33b600f3ad1455566cdfd58d",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "8e5ac09a3ea8742739e37a137a6193a29d315e1592d02e6e2c0413c0d19cf7bc",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid IRI Reference` though valid: false",
       "cases": [
@@ -41936,6 +42240,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -41945,8 +42269,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "fac648bfbd93004bf64d4b8cdb90cbdb5da8bb9e181a7a6f372192a008f87718",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "f1c089575cfc506b33f2362968b93fe0ad974237bc5b1bb595075fc8110fa866",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `invalid percent-encoding with non-hex digits` though valid: false",
       "cases": [
@@ -42079,6 +42403,36 @@
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -42301,8 +42655,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "551c5df64f1022055c3122aae5344b004cc8fb3f6812fbc3b9f3b7b2ed1f959e",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "142a607297d6b83996bef4344c243b45bcb2373cfbcba7a99911cf9e1d192c01",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `a regular expression with unclosed parens is invalid` though valid: false",
       "cases": [
@@ -42370,6 +42724,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -42379,8 +42758,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "1a599401b596ae3fac48cea0e8fa551c41d565a07113e52eff776a6f897d5f65",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "b8e338a1bf0982374344ccbdcfc7f00ad2f404c718fdd569686baa8f949145dd",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid RJP that is a valid JSON Pointer` though valid: false",
       "cases": [
@@ -42508,6 +42887,31 @@
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "trailing newline after the non-negative integer",
@@ -43283,8 +43687,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "20195e86383cdf5f1fc802bab01d23e8843c1044e502d940a8edf4168fb88921",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "2647dcbfd2fa54fcbac94dfa42a8d5b812e9618f80928bc19b459ad8dd78f5e4",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "compile_fail",
       "error": "g_721a083cbf29a5cf/g_721a083cbf29a5cf.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment",
       "cases": [
@@ -43520,6 +43924,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48389,13 +48798,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "9bd8b35d3ed1a1dc83323412d483251e7d5e97fd432bdc20f397542c37540342",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "724617bcd4899ecbfcf7d3fa5d42b5ce7ce3256838aaab9691f1dcc1ddee797e",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "generation_error",
       "error": "callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType \"json:\\\"type\\\"\" }",
       "cases": [
@@ -48709,8 +49118,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "121df2092497e4c749a49c6125ce5b4a2181d5384277e0bcdffe35193f75db23",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "71513d8868721adf2118b2cf7664472d0a1ed00b39d985197ab6b60dac7948d5",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "generation_error",
       "error": "make ir: operations: path \"/\": post: requestBody: contents: media: \"application/json\": generate schema: empty uniqueItems not implemented",
       "cases": [
@@ -48792,16 +49201,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -48953,8 +49352,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "14f32fd5044627c207ff86a3ca8ebd1e02cacfb03c40d067d460c518382583e9",
-      "generated_at": "2026-10-11T19:51:17Z",
+      "hash": "6df360f8257960e886f16c44af97b3fa32b2850508ac856f9cff507685729b42",
+      "generated_at": "2026-11-07T23:14:52Z",
       "bucket": "pass",
       "cases": [
         {
@@ -49009,16 +49408,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "match"
         },
@@ -51732,8 +52121,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "05b36c345bb03ee3e52e7d11f70238e47f42c896a30f12832e7e964ab7edd07d",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "5a0bfda6b406263116b813f2f33c310b68f57db13c7fab98afb529fd301e988c",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "generation_error",
       "error": "parse spec: at 1:1: parse components: schemas: \"Root\": resolve \"#/components/schemas/Root\": $ref: resolve \"http://localhost:1234/draft2020-12/detached-dynamicref.json#/$defs/foo\": get \"http://localhost:1234/draft2020-12/detached-dynamicref.json\": external references are disabled",
       "cases": [
@@ -53522,8 +53911,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "bf4b5e4c5540e9162e7db43d79c02f57c7813a208aa8d346a9589fbd922ff8d3",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "609f23d40d0d7c95eb4af947bbd64f4a6f2d3c9fa6cdf0fa9e4b152831b61fba",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `matches if → then=false → invalid` though valid: false",
       "cases": [
@@ -53545,8 +53934,8 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "38f708c9a72c252e0a7172ca206ec66766e8bb7a260781bed3341cf497e95efd",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "12e463c7149014479ff01fb965b033566480215c39de60b8ab364b8b4b911026",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `does not match if → else executes → invalid` though valid: false",
       "cases": [
@@ -54867,6 +55256,29 @@
       ]
     },
     {
+      "id": "draft2020-12/multipleOf.json::by very small number",
+      "draft": "draft2020-12",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "c31f78795c8225fe2a538372d1307a6bf51fe71aa38f5ae02a4dd02c0f82b5c2",
+      "generated_at": "2026-11-07T23:14:53Z",
+      "bucket": "false_accept",
+      "error": "accepted `1.5e-8 is not multiple of 1e-8` though valid: false",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
       "id": "draft2020-12/multipleOf.json::float division = inf",
       "draft": "draft2020-12",
       "file": "multipleOf.json",
@@ -55660,6 +56072,29 @@
           "description": "comparison works for very negative numbers",
           "valid": false,
           "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft2020-12",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "1247a5b96eff588e8be5479892400317ceee5b1f987e1fad90b199386d5cddfc",
+      "generated_at": "2026-11-07T23:14:53Z",
+      "bucket": "false_accept",
+      "error": "accepted `1e20 is not multiple of 3` though valid: false",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -57304,10 +57739,10 @@
       "file": "optional/format/duration.json",
       "optional": true,
       "group": "validation of duration strings",
-      "hash": "95ba51a0b10cf145df9e9764959b1a9fb7308809dfdfc8008a172b9b755a2481",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "147d98de4e12a9b109bbfe4b92fd0135572b7b1991446bf863617556c2b5699a",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "compile_fail",
-      "error": "g_8366bec273d2f5b8/g_8366bec273d2f5b8.go:31:15: cannot use v (variable of int64 type \"time\".Duration) as jx.Raw value in assignment",
+      "error": "g_8366bec273d2f5b8/g_8366bec273d2f5b8.go:31:15: cannot use v (variable of int64 type time.Duration) as jx.Raw value in assignment",
       "cases": [
         {
           "description": "all string formats ignore integers",
@@ -57497,11 +57932,6 @@
         {
           "description": "years and days cannot appear without months",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "months and days can appear without years",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -58080,8 +58510,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "7881353698385b186a308e3614a2a0bc142dd3ffa1f9e0f4bf238625b2ca805c",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "155fbfcc72b8573d702a07ba7cda58a85146e2f7b5ff8b74f78ca22e16914ee0",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `empty string` though valid: false",
       "cases": [
@@ -58202,6 +58632,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -58559,8 +58999,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "d62cf850948b2e5977a6f7e0fb11b76717d1b5ef52259a195c5855ff64c5bebe",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "f938a4c9819d2d9e81aebdac2b4db731af65bacba578b974e5c18f888f8703a9",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `illegal first char U+302E Hangul single dot tone mark` though valid: false",
       "cases": [
@@ -58851,6 +59291,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "false_accept"
         },
@@ -59561,8 +60016,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "b02718a35dd1c85cb8393cd284bd99eeefe97884f51ca332bcd1ccb21794ec01",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "fb58a9daa7afc3f960f58e61f95799943cac7ab8604ca4679a724fb694dc6c0d",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid IRI Reference` though valid: false",
       "cases": [
@@ -59670,6 +60125,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -59679,8 +60154,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "52c347055a9e94c42cb3c9999e89bbaffd74d6c4b53beda8789b76bc8f471a35",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "0448ce7cdd595066837a2d9316217f02f8ef0a3bd87570a039061e2c10540ca7",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `invalid percent-encoding with non-hex digits` though valid: false",
       "cases": [
@@ -59813,6 +60288,36 @@
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -60035,8 +60540,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "d5d486e57de733e1996e389fc939ced97fa84b28578e525995f05c1795fbd3bb",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "f90f3f5a5a1dd5911d6644f348f1bf39a55495883a36d4994a556b55530a65f6",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `a regular expression with unclosed parens is invalid` though valid: false",
       "cases": [
@@ -60104,6 +60609,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "false_accept"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "match"
         }
       ]
     },
@@ -60113,8 +60643,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "1b0d12dc478584b13ce4e1acaab7ce2c87fac0385bad57976b6b3ccbcc18532b",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "e32c2585bbbc273a6838d9c76de636af09a71cc7165dbbbdc7fcb398495c6f51",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "false_accept",
       "error": "accepted `an invalid RJP that is a valid JSON Pointer` though valid: false",
       "cases": [
@@ -60242,6 +60772,31 @@
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "trailing newline after the non-negative integer",
@@ -61017,8 +61572,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "3045ddfa4f0cb49c2da9b2dc2bce6fdc2e8098a0472322e87513fc6eb1b8aea3",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "ac1641e8dc0d14231dfe94dbcaf5529421a0e8eaf9a4319a343b8ffe88d3f7ba",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "compile_fail",
       "error": "g_66e674a7a748fe41/g_66e674a7a748fe41.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment",
       "cases": [
@@ -61254,6 +61809,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -62031,14 +62591,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "9aae90920f08acd3adb776e7631e2fc1fc104b594b664eae09ddee011801e5a2",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "ebcc129880406fbf3dc067879c05b61a164a65f5fa306075fc309f6b4baae639",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "pass",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "match",
+          "error": "decode Root: callback: decode field \"π\": unexpected byte 34 '\"' at 6"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -66129,13 +66695,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "9932539fb98d9821218bed8a1d4bec2e0ee9134f9c7aab09cf6bf860403a2652",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "d089c0f5c120db84f1fd85c9058f91f8053ba5ac446f8fcda7fa814ab2e02ddc",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "generation_error",
       "error": "callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType \"json:\\\"type\\\"\" }",
       "cases": [
@@ -66449,8 +67015,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "22a0e55bd87a473effd7db1d78c65594595efac0617a7f05a97963933e50e95c",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "3c20f93bdca3190ab7f6b1eba95c40472246bf16b392814a23f866f4516f3855",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "generation_error",
       "error": "make ir: operations: path \"/\": post: requestBody: contents: media: \"application/json\": generate schema: empty uniqueItems not implemented",
       "cases": [
@@ -66532,16 +67098,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -66693,8 +67249,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "fa3f836a1618ff2e0ad89e1339345e568d0826b7137276abfe34a674845dc81e",
-      "generated_at": "2026-10-11T19:51:21Z",
+      "hash": "399cb3a6572396dd8894d723194130ad9cfea1ea95cb34f96bc7e995541e1941",
+      "generated_at": "2026-11-07T23:14:53Z",
       "bucket": "pass",
       "cases": [
         {
@@ -66749,16 +67305,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "match"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "match"
         },

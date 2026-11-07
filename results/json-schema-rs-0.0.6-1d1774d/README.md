@@ -11,9 +11,9 @@ shape-only (the validating path is `TryFrom<Value>`). Written by Claude Code: th
 repo runs from a CLAUDE.md and the codegen commits carry session tags. The
 published 0.0.6 (results kept, hidden) refused any root that wasn't an object.
 
-_generated 2026-11-07T15:37:55Z_
+_generated 2026-11-07T23:13:41Z_
 
-**748 of 1408 non-optional groups pass (53.1%)**; 301 optional groups reported separately
+**752 of 1413 non-optional groups pass (53.2%)**; 306 optional groups reported separately
 
 **8 of 10 compound groups pass (80.0%)**
 
@@ -34,23 +34,23 @@ _generated 2026-11-07T15:37:55Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 94 | 30 | 24 | 4 | 0 | 0 | 8 | 0 | 160 | 58.8% |
-| draft6 | 137 | 50 | 28 | 4 | 0 | 1 | 13 | 0 | 233 | 58.8% |
-| draft7 | 145 | 59 | 36 | 4 | 0 | 1 | 13 | 0 | 258 | 56.2% |
-| draft2019-09 | 186 | 125 | 39 | 5 | 0 | 1 | 17 | 0 | 373 | 49.9% |
-| draft2020-12 | 186 | 131 | 39 | 5 | 0 | 1 | 22 | 0 | 384 | 48.4% |
-| **Total** | **748** | **395** | **166** | **22** | **0** | **4** | **73** | **0** | **1408** | **53.1%** |
+| draft4 | 95 | 30 | 24 | 4 | 0 | 0 | 8 | 0 | 161 | 59.0% |
+| draft6 | 138 | 50 | 28 | 4 | 0 | 1 | 13 | 0 | 234 | 59.0% |
+| draft7 | 146 | 59 | 36 | 4 | 0 | 1 | 13 | 0 | 259 | 56.4% |
+| draft2019-09 | 187 | 125 | 39 | 5 | 0 | 1 | 17 | 0 | 374 | 50.0% |
+| draft2020-12 | 186 | 132 | 39 | 5 | 0 | 1 | 22 | 0 | 385 | 48.3% |
+| **Total** | **752** | **396** | **166** | **22** | **0** | **4** | **73** | **0** | **1413** | **53.2%** |
 
 ### Optional groups
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 24 | 1 | 14 | 0 | 0 | 0 | 0 | 0 | 39 | 61.5% |
-| draft6 | 25 | 1 | 18 | 0 | 0 | 0 | 0 | 0 | 44 | 56.8% |
-| draft7 | 31 | 6 | 25 | 1 | 0 | 0 | 1 | 0 | 64 | 48.4% |
-| draft2019-09 | 33 | 12 | 10 | 19 | 0 | 0 | 2 | 0 | 76 | 43.4% |
-| draft2020-12 | 33 | 15 | 10 | 19 | 0 | 0 | 1 | 0 | 78 | 42.3% |
-| **Total** | **146** | **35** | **77** | **39** | **0** | **0** | **4** | **0** | **301** | **48.5%** |
+| draft4 | 25 | 1 | 14 | 0 | 0 | 0 | 0 | 0 | 40 | 62.5% |
+| draft6 | 26 | 1 | 18 | 0 | 0 | 0 | 0 | 0 | 45 | 57.8% |
+| draft7 | 32 | 6 | 25 | 1 | 0 | 0 | 1 | 0 | 65 | 49.2% |
+| draft2019-09 | 34 | 12 | 10 | 19 | 0 | 0 | 2 | 0 | 77 | 44.2% |
+| draft2020-12 | 34 | 15 | 10 | 19 | 0 | 0 | 1 | 0 | 79 | 43.0% |
+| **Total** | **151** | **35** | **77** | **39** | **0** | **0** | **4** | **0** | **306** | **49.3%** |
 
 ### Compound groups
 
@@ -64,23 +64,23 @@ _generated 2026-11-07T15:37:55Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 449 | 601 | 74.7% | 618 | 72.7% |
-| draft6 | 603 | 808 | 74.6% | 841 | 71.7% |
-| draft7 | 632 | 896 | 70.5% | 929 | 68.0% |
-| draft2019-09 | 852 | 1220 | 69.8% | 1261 | 67.6% |
-| draft2020-12 | 867 | 1247 | 69.5% | 1301 | 66.6% |
-| **Total** | **3403** | **4772** | **71.3%** | **4950** | **68.7%** |
+| draft4 | 447 | 599 | 74.6% | 616 | 72.6% |
+| draft6 | 601 | 806 | 74.6% | 839 | 71.6% |
+| draft7 | 630 | 894 | 70.5% | 927 | 68.0% |
+| draft2019-09 | 850 | 1218 | 69.8% | 1259 | 67.5% |
+| draft2020-12 | 865 | 1246 | 69.4% | 1300 | 66.5% |
+| **Total** | **3393** | **4763** | **71.2%** | **4941** | **68.7%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 336 | 391 | 85.9% | 391 | 85.9% |
-| draft6 | 445 | 520 | 85.6% | 520 | 85.6% |
-| draft7 | 780 | 920 | 84.8% | 922 | 84.6% |
-| draft2019-09 | 414 | 1040 | 39.8% | 1043 | 39.7% |
-| draft2020-12 | 417 | 1046 | 39.9% | 1047 | 39.8% |
-| **Total** | **2392** | **3917** | **61.1%** | **3923** | **61.0%** |
+| draft4 | 341 | 396 | 86.1% | 396 | 86.1% |
+| draft6 | 450 | 525 | 85.7% | 525 | 85.7% |
+| draft7 | 808 | 948 | 85.2% | 950 | 85.1% |
+| draft2019-09 | 425 | 1067 | 39.8% | 1070 | 39.7% |
+| draft2020-12 | 428 | 1073 | 39.9% | 1074 | 39.9% |
+| **Total** | **2452** | **4009** | **61.2%** | **4015** | **61.1%** |
 
 ### Per-case match rate (compound)
 
@@ -115,7 +115,7 @@ _generated 2026-11-07T15:37:55Z_
 | minLength.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
 | minProperties.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | minimum.json | 1 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 4 | 🚧🚧✅🚧 |
-| multipleOf.json | 4 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅✅✅ |
+| multipleOf.json | 5 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧✅✅✅✅✅ |
 | not.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈🙈✅ |
 | oneOf.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
 | pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
@@ -126,13 +126,13 @@ _generated 2026-11-07T15:37:55Z_
 | required.json | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 4 | 🚧✅🙈🤪 |
 | type.json | 10 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅🚧 |
 | uniqueItems.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈✅✅🙈 |
-| **Total** | **94** | **30** | **24** | **4** | **0** | **0** | **8** | **0** | **160** |  |
+| **Total** | **95** | **30** | **24** | **4** | **0** | **0** | **8** | **0** | **161** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 5 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅🚧✅✅✅ |
+| optional/bignum.json | 6 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 8 | 🚧✅✅🚧✅✅✅✅ |
 | optional/ecmascript-regex.json | 15 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🚧🚧🚧🚧🚧 |
 | optional/float-overflow.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/format/date-time.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
@@ -145,7 +145,7 @@ _generated 2026-11-07T15:37:55Z_
 | optional/id.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/non-bmp-regex.json | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅🙈 |
 | optional/zeroTerminatedFloats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **24** | **1** | **14** | **0** | **0** | **0** | **0** | **0** | **39** |  |
+| **Total** | **25** | **1** | **14** | **0** | **0** | **0** | **0** | **0** | **40** |  |
 
 ### draft6
 
@@ -175,7 +175,7 @@ _generated 2026-11-07T15:37:55Z_
 | minLength.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | minProperties.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | minimum.json | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧🚧 |
-| multipleOf.json | 4 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅✅✅ |
+| multipleOf.json | 5 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧✅✅✅✅✅ |
 | not.json | 2 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈🙈🙈🙈🙈✅✅ |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
@@ -187,13 +187,13 @@ _generated 2026-11-07T15:37:55Z_
 | required.json | 2 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅🙈🤪 |
 | type.json | 9 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅🚧 |
 | uniqueItems.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈✅✅🙈 |
-| **Total** | **137** | **50** | **28** | **4** | **0** | **1** | **13** | **0** | **233** |  |
+| **Total** | **138** | **50** | **28** | **4** | **0** | **1** | **13** | **0** | **234** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 5 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅🚧✅✅✅ |
+| optional/bignum.json | 6 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 8 | 🚧✅✅🚧✅✅✅✅ |
 | optional/ecmascript-regex.json | 15 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🚧🚧🚧🚧🚧 |
 | optional/float-overflow.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
 | optional/format/date-time.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
@@ -209,7 +209,7 @@ _generated 2026-11-07T15:37:55Z_
 | optional/id.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
 | optional/non-bmp-regex.json | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅🙈 |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **25** | **1** | **18** | **0** | **0** | **0** | **0** | **0** | **44** |  |
+| **Total** | **26** | **1** | **18** | **0** | **0** | **0** | **0** | **0** | **45** |  |
 
 ### draft7
 
@@ -240,7 +240,7 @@ _generated 2026-11-07T15:37:55Z_
 | minLength.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | minProperties.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | minimum.json | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧🚧 |
-| multipleOf.json | 4 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅✅✅ |
+| multipleOf.json | 5 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧✅✅✅✅✅ |
 | not.json | 2 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈🙈🙈🙈🙈✅✅ |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
@@ -252,13 +252,13 @@ _generated 2026-11-07T15:37:55Z_
 | required.json | 2 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅🙈🤪 |
 | type.json | 9 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 11 | 🚧✅✅✅✅✅✅✅✅✅🚧 |
 | uniqueItems.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈✅✅🙈 |
-| **Total** | **145** | **59** | **36** | **4** | **0** | **1** | **13** | **0** | **258** |  |
+| **Total** | **146** | **59** | **36** | **4** | **0** | **1** | **13** | **0** | **259** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 5 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅🚧✅✅✅ |
+| optional/bignum.json | 6 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 8 | 🚧✅✅🚧✅✅✅✅ |
 | optional/content.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈🙈🙈 |
 | optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/ecmascript-regex.json | 15 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🚧🚧🚧🚧🚧 |
@@ -285,7 +285,7 @@ _generated 2026-11-07T15:37:55Z_
 | optional/id.json | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅🙈🙈 |
 | optional/non-bmp-regex.json | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅🙈 |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **31** | **6** | **25** | **1** | **0** | **0** | **1** | **0** | **64** |  |
+| **Total** | **32** | **6** | **25** | **1** | **0** | **0** | **1** | **0** | **65** |  |
 
 #### compound
 
@@ -328,7 +328,7 @@ _generated 2026-11-07T15:37:55Z_
 | minLength.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | minProperties.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | minimum.json | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧🚧 |
-| multipleOf.json | 4 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅✅✅ |
+| multipleOf.json | 5 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧✅✅✅✅✅ |
 | not.json | 2 | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | 🙈🙈🙈🙈🙈🙈✅✅🙈 |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
@@ -344,14 +344,14 @@ _generated 2026-11-07T15:37:55Z_
 | unevaluatedProperties.json | 15 | 29 | 0 | 0 | 0 | 0 | 0 | 0 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈✅✅✅🙈✅🙈✅✅🙈🙈🙈🙈🙈🙈 |
 | uniqueItems.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈✅✅🙈 |
 | vocabulary.json | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 2 | 🤪✅ |
-| **Total** | **186** | **125** | **39** | **5** | **0** | **1** | **17** | **0** | **373** |  |
+| **Total** | **187** | **125** | **39** | **5** | **0** | **1** | **17** | **0** | **374** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| optional/bignum.json | 5 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅🚧✅✅✅ |
+| optional/bignum.json | 6 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 8 | 🚧✅✅🚧✅✅✅✅ |
 | optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 2 | ❌❌ |
 | optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
 | optional/ecmascript-regex.json | 15 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🚧🚧🚧🚧🚧 |
@@ -382,7 +382,7 @@ _generated 2026-11-07T15:37:55Z_
 | optional/non-bmp-regex.json | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅🙈 |
 | optional/refOfUnknownKeyword.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **33** | **12** | **10** | **19** | **0** | **0** | **2** | **0** | **76** |  |
+| **Total** | **34** | **12** | **10** | **19** | **0** | **0** | **2** | **0** | **77** |  |
 
 ### draft2020-12
 
@@ -418,11 +418,11 @@ _generated 2026-11-07T15:37:55Z_
 | minLength.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | minProperties.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | minimum.json | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧🚧 |
-| multipleOf.json | 4 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅✅✅ |
+| multipleOf.json | 5 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧✅✅✅✅✅ |
 | not.json | 2 | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | 🙈🙈🙈🙈🙈🙈✅✅🙈 |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 🚧✅✅ |
-| patternProperties.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈✅✅ |
+| patternProperties.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈🙈✅🙈 |
 | prefixItems.json | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈✅✅ |
 | properties.json | 2 | 1 | 2 | 1 | 0 | 0 | 0 | 0 | 6 | 🚧🤪🙈✅✅🚧 |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
@@ -434,14 +434,14 @@ _generated 2026-11-07T15:37:55Z_
 | unevaluatedProperties.json | 15 | 29 | 0 | 0 | 0 | 0 | 0 | 0 | 44 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈✅✅✅🙈✅🙈✅✅🙈🙈🙈🙈🙈🙈 |
 | uniqueItems.json | 2 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈🙈✅✅🙈 |
 | vocabulary.json | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 2 | 🤪✅ |
-| **Total** | **186** | **131** | **39** | **5** | **0** | **1** | **22** | **0** | **384** |  |
+| **Total** | **186** | **132** | **39** | **5** | **0** | **1** | **22** | **0** | **385** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| optional/bignum.json | 5 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 7 | 🚧✅✅🚧✅✅✅ |
+| optional/bignum.json | 6 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 8 | 🚧✅✅🚧✅✅✅✅ |
 | optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
 | optional/dynamicRef.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
@@ -474,7 +474,7 @@ _generated 2026-11-07T15:37:55Z_
 | optional/non-bmp-regex.json | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅🙈 |
 | optional/refOfUnknownKeyword.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **33** | **15** | **10** | **19** | **0** | **0** | **1** | **0** | **78** |  |
+| **Total** | **34** | **15** | **10** | **19** | **0** | **0** | **1** | **0** | **79** |  |
 
 #### compound
 
@@ -623,25 +623,25 @@ Per group:
 - `draft2019-09/optional/format/email.json::validation of e-mail addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 44 more
 - `draft2019-09/optional/format/hostname.json::validation of host names` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 12 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 14 more
 - `draft2019-09/optional/format/idn-email.json::validation of an internationalized e-mail addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 8 more
 - `draft2019-09/optional/format/idn-hostname.json::validation of internationalized host names` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 43 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 46 more
 - `draft2019-09/optional/format/ipv4.json::validation of IP addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 30 more
 - `draft2019-09/optional/format/ipv6.json::validation of IPv6 addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 28 more
 - `draft2019-09/optional/format/iri-reference.json::validation of IRI References` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 7 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 10 more
 - `draft2019-09/optional/format/iri.json::validation of IRIs` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 9 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 15 more
 - `draft2019-09/optional/format/json-pointer.json::validation of JSON-pointers (JSON String Representation)` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 12 more
 - `draft2019-09/optional/format/regex.json::validation of regular expressions` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 6 more
 - `draft2019-09/optional/format/relative-json-pointer.json::validation of Relative JSON Pointers (RJP)` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 13 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 14 more
 - `draft2019-09/optional/format/time.json::validation of time strings` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 36 more
 - `draft2019-09/optional/format/uri-reference.json::validation of URI References` — `all string formats ignore integers: invalid type: integer '12', expected a string`
@@ -649,7 +649,7 @@ Per group:
 - `draft2019-09/optional/format/uri-template.json::format: uri-template` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 21 more
 - `draft2019-09/optional/format/uri.json::validation of URIs` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 26 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 27 more
 - `draft2019-09/optional/format/uuid.json::uuid format` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 14 more
 - `draft2020-12/optional/format/date-time.json::validation of date-time strings` — `all string formats ignore integers: invalid type: integer '12', expected a string`
@@ -661,11 +661,11 @@ Per group:
 - `draft2020-12/optional/format/email.json::validation of e-mail addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 44 more
 - `draft2020-12/optional/format/hostname.json::validation of host names` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 12 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 14 more
 - `draft2020-12/optional/format/idn-email.json::validation of an internationalized e-mail addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 8 more
 - `draft2020-12/optional/format/idn-hostname.json::validation of internationalized host names` — `all string formats ignore integers: invalid type: integer '12', expected a string`
-  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 43 more
+  - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 46 more
 - `draft2020-12/optional/format/ipv4.json::validation of IP addresses` — `all string formats ignore integers: invalid type: integer '12', expected a string`
   - cases: all string formats ignore integers (rejected), all string formats ignore floats (rejected), all string formats ignore objects (rejected), all string formats ignore arrays (rejected), all string formats ignore booleans (rejected), all string formats ignore nulls (rejected), … and 30 more
 - … and 11 more
@@ -784,9 +784,9 @@ Per group:
   - cases: ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected), ignores null (rejected), ignores boolean (rejected)
 - … and 193 more
 
-### 🙈 `false_accept` (432)
+### 🙈 `false_accept` (433)
 
-109 distinct first-line errors; most common:
+110 distinct first-line errors; most common:
 
 - **18×** `accepted 'with unevaluated items' though valid: false`
 - **18×** `accepted 'with unevaluated properties' though valid: false`
@@ -896,5 +896,5 @@ Per group:
   - cases: matches root (accepted), matches both (accepted)
 - `draft6/items.json::an array of schemas for items` — `accepted 'wrong types' though valid: false`
   - cases: wrong types (accepted)
-- … and 382 more
+- … and 383 more
 

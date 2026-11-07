@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "go-jsonschema",
   "homepage": "https://github.com/omissis/go-jsonschema",
-  "generated_at": "2026-11-07T15:37:51Z",
+  "generated_at": "2026-11-07T23:13:05Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -2609,6 +2609,29 @@
       ]
     },
     {
+      "id": "draft4/multipleOf.json::by very small number",
+      "draft": "draft4",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "e74a16cc0d947f37695dabac74ca76329b33e4041b8205780968ba72e95f3ef6",
+      "generated_at": "2026-11-07T23:13:04Z",
+      "bucket": "compile_fail",
+      "error": "g_b03544577bb6ac42/g_b03544577bb6ac42.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft4/multipleOf.json::float division = inf",
       "draft": "draft4",
       "file": "multipleOf.json",
@@ -3161,6 +3184,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft4/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft4",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "55b82154e95f9452bbee668735a01f8bf224a0abda4d71f053a4422dedcccd55",
+      "generated_at": "2026-11-07T23:13:04Z",
+      "bucket": "compile_fail",
+      "error": "g_e1ae29e468a970a8/g_e1ae29e468a970a8.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -4432,8 +4478,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "d5373f88fa2947981191a882a513539f8f5ba54da2503adeaab8b7976563778f",
-      "generated_at": "2026-10-11T18:50:11Z",
+      "hash": "7b371e1979a3938731a609c403dc3dd392a7b544a8893b9e38d9f06a5ff48148",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_68c07488f1d9c11b/g_68c07488f1d9c11b.go:9:8: undefined: Root",
       "cases": [
@@ -4584,6 +4630,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5134,8 +5190,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "d7f0f498059acbbf4a9999813defe35e065c567eb4010076b7687e39e4b279de",
-      "generated_at": "2026-10-11T18:50:11Z",
+      "hash": "026a6aabacd6f47c8189bf419a1c87bd9ed0a3bdabe91352e2f674d7f2a8ea51",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_6bac4657aa959e29/g_6bac4657aa959e29.go:9:8: undefined: Root",
       "cases": [
@@ -5371,6 +5427,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -7289,8 +7350,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "82e5eb06e28b7c66e9cc142a3bc7fff429d20abb95fb823907720399a069f1f3",
-      "generated_at": "2026-10-11T18:50:11Z",
+      "hash": "3ce6b42b0615dc4d45934880e63087da4c97f63fc67dd560b572ffc92a9e12b9",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_7f34f881b7aa1636/g_7f34f881b7aa1636.go:9:8: undefined: Root",
       "cases": [
@@ -7372,16 +7433,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -7533,8 +7584,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "72995a1e6ad8d5bddb2020dafe49631a91f1bf47b17b30b2a6706c44b5a99082",
-      "generated_at": "2026-10-11T18:50:11Z",
+      "hash": "6cf28e5114173733d7d7912dcfc42902862d95af7d32799f704eaec2492cdda9",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_4bc72fb95230c194/g_4bc72fb95230c194.go:9:8: undefined: Root",
       "cases": [
@@ -7590,16 +7641,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -11551,6 +11592,29 @@
       ]
     },
     {
+      "id": "draft6/multipleOf.json::by very small number",
+      "draft": "draft6",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "4f77f4b2491179b6fb53ad832edea1147de7575481ff7495e3aea9706e41a3f2",
+      "generated_at": "2026-11-07T23:13:04Z",
+      "bucket": "compile_fail",
+      "error": "g_624c898b03437bb0/g_624c898b03437bb0.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft6/multipleOf.json::float division = inf",
       "draft": "draft6",
       "file": "multipleOf.json",
@@ -12291,6 +12355,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft6/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft6",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "0cd394926de45c1a047b0764b3ae01bdc9da0a4883e7c2f4c8654c8f96ec2ffd",
+      "generated_at": "2026-11-07T23:13:04Z",
+      "bucket": "compile_fail",
+      "error": "g_70461cad6889eead/g_70461cad6889eead.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13582,8 +13669,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "0ce73e7c546f1b4495a95508b6865f2a43ad083e18d034adbf22ae65f7a015f8",
-      "generated_at": "2026-10-11T18:50:12Z",
+      "hash": "ee97c74fe16699ba35c12d8936dea4540cba5fa3c07fa712d12e90300682e62b",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_2fdf67eaab92a245/g_2fdf67eaab92a245.go:9:8: undefined: Root",
       "cases": [
@@ -13734,6 +13821,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -14918,8 +15015,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "c4b0c452ba651642f49bfa26a27de1a76969ae9695c0a4f8c1bb9f17ad6b8fbb",
-      "generated_at": "2026-10-11T18:50:12Z",
+      "hash": "f38afa306cd7cfd0de89ffc3cd320869ff57384c6a28c33a2a52c59384812295",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_b1df19a27be8b76f/g_b1df19a27be8b76f.go:9:8: undefined: Root",
       "cases": [
@@ -15155,6 +15252,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -17762,8 +17864,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "d56c1f7690baf93d44c136b097bc390c10932f522a6cccd53ab72f3c48f4ef18",
-      "generated_at": "2026-10-11T18:50:12Z",
+      "hash": "888ef2ad12fe11037c6f6db5ac4ddc90a102b3de4bf83e0cd89d81e914b46fed",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_814f873d3f93ce8b/g_814f873d3f93ce8b.go:9:8: undefined: Root",
       "cases": [
@@ -17845,16 +17947,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -18006,8 +18098,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "5b5ac94de9c7878ac1160e4db15e27453ff70309633850f418869dc911ba820a",
-      "generated_at": "2026-10-11T18:50:12Z",
+      "hash": "3279dfcb457c4aefb3c314a74ded5a840ee42dbeb1730a39ec8e031f12316b08",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_659812636b7f24b4/g_659812636b7f24b4.go:9:8: undefined: Root",
       "cases": [
@@ -18063,16 +18155,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -22697,6 +22779,29 @@
       ]
     },
     {
+      "id": "draft7/multipleOf.json::by very small number",
+      "draft": "draft7",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "1388a2c558b30dddc351e18f3157b6d9764af7fcf8c36546b4f6f195a0eeb617",
+      "generated_at": "2026-11-07T23:13:04Z",
+      "bucket": "compile_fail",
+      "error": "g_89f4878757ea286f/g_89f4878757ea286f.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft7/multipleOf.json::float division = inf",
       "draft": "draft7",
       "file": "multipleOf.json",
@@ -23437,6 +23542,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "03f15f4496fb4cc8d2fd9a9f25177dcb7a08a3e499496d0e03ff834c0bf97a3d",
+      "generated_at": "2026-11-07T23:13:04Z",
+      "bucket": "compile_fail",
+      "error": "g_81843a88a21cc34b/g_81843a88a21cc34b.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25396,8 +25524,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "80e3187d78c7ec5c75cf52490cbd10de36a66bf175686a453a835221acb833cc",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "9b1f3169a619a29141e1bb5143407fdc31a16af198eab5413e70e31879150a50",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_7fe05e8ac392b90d/g_7fe05e8ac392b90d.go:9:8: undefined: Root",
       "cases": [
@@ -25518,6 +25646,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -25875,8 +26013,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "ed67814f99c47ac9c067c6b27ea92ebd1e3e85212f8b9494e94e70c5ff84a770",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "b3ff48def91913a70fa974efab523d918f6428500b3ad36ad55282ba595ca01b",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_c697aba762ff8d73/g_c697aba762ff8d73.go:9:8: undefined: Root",
       "cases": [
@@ -26167,6 +26305,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -26877,8 +27030,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "3a2acc9b48cef9d53da720b74002f63e2d5ded49e5ea86d0148fe685f03ecbe0",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "e1d8879eec551bd82c9ec4586f717ece89cd1cd26b6e2ee52ea5346e1fad9ed6",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_77569d73f5629b28/g_77569d73f5629b28.go:9:8: undefined: Root",
       "cases": [
@@ -26986,6 +27139,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -26995,8 +27168,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "cb2d631e19ae8364f1f927e2b82245ef2c37feea4b9a56ae140e30e938285f91",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "4f469c62dd422b7c84115144f8feef01a35cdd04e1f6107ce36cb6d80814a2a1",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_5fdccf6257bbef39/g_5fdccf6257bbef39.go:9:8: undefined: Root",
       "cases": [
@@ -27128,6 +27301,36 @@
         {
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
           "outcome": "not_run"
         }
       ]
@@ -27351,8 +27554,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "d499227cad10c41b2f816205bcb30ea58a53c3e419e425523eda7c187fa6a567",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "23a236f9caa57ae38ddf019f4a680ce90befb831a4c1db507debfa9abf3e0127",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root",
       "cases": [
@@ -27420,6 +27623,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -27429,8 +27657,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "6288a8790d548b850b017218ffd9ee68f96e87c31ff5d7e4fc6f6a321dd8c342",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "0176c9a85a06532f9ff115b11b2841e48eb575b8e54d12e5b23362a54a321868",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_6b6ed942f8bf6375/g_6b6ed942f8bf6375.go:9:8: undefined: Root",
       "cases": [
@@ -27557,6 +27785,31 @@
         {
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -28334,8 +28587,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "0390f123bf00ab6ecae7e28766b3605480579b53e9a8fe10048bff834a156c8c",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "43b825b6ae92cabef082be8cf4c66d8c2899de018108a000f5d0715daadee400",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_1883d056ce873623/g_1883d056ce873623.go:9:8: undefined: Root",
       "cases": [
@@ -28571,6 +28824,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -31270,8 +31528,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "eb4f72c93b49e58bd714331442c1a2e5a4af67e5811191f49efbe7ecb69f1b39",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "2882003458c7b51d8adcac6781755f8dff2f6b42a0cf097d1f86f6f1b970d5b8",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_6fc3c694cc9221e6/g_6fc3c694cc9221e6.go:9:8: undefined: Root",
       "cases": [
@@ -31353,16 +31611,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -31514,8 +31762,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "ed783866c8d96d41921d73fe7df2536afe1c8696b1ede7d3ed697ea23e57d13b",
-      "generated_at": "2026-10-11T18:50:13Z",
+      "hash": "70c68bfd4882f4d71995926629702c359d4dae9c9d99bf649385307c73131ad6",
+      "generated_at": "2026-11-07T23:13:04Z",
       "bucket": "compile_fail",
       "error": "g_2ed7ffb93154baeb/g_2ed7ffb93154baeb.go:9:8: undefined: Root",
       "cases": [
@@ -31571,16 +31819,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -35940,10 +36178,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "c88c144f581882a406e99aed7623ebec1be48ae6b18e0595a41a3e62bc715540",
-      "generated_at": "2026-10-11T18:50:15Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "5d529cb9df9d3bb37c7d21a03bd658be123ac0327da982962366bb2b4f8004ec",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_bc82848d48a424e6/g_bc82848d48a424e6.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -35963,10 +36201,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "3749207baa97decfad325c68950ebe6e648633780601db22016d40b0efaec46a",
-      "generated_at": "2026-10-11T18:50:15Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "a04ca9be86f286cd188885066d196fbb0282e91bd86f1be7638bac16adbb86aa",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_7d44d2401323ecef/g_7d44d2401323ecef.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -37271,6 +37509,29 @@
       ]
     },
     {
+      "id": "draft2019-09/multipleOf.json::by very small number",
+      "draft": "draft2019-09",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "b8d5a407c65f631c712bcfbb72d85c982157fc4a3a4d02d500211bc722ffe050",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_6303be8213b1586d/g_6303be8213b1586d.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft2019-09/multipleOf.json::float division = inf",
       "draft": "draft2019-09",
       "file": "multipleOf.json",
@@ -38073,6 +38334,29 @@
       ]
     },
     {
+      "id": "draft2019-09/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft2019-09",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "d80db2ee245f17075effd14ed44a21490e436013a00c1f954204c81992018daa",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_db84c1cfb6f1e138/g_db84c1cfb6f1e138.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft2019-09/optional/cross-draft.json::refs to future drafts are processed as future drafts",
       "draft": "draft2019-09",
       "file": "optional/cross-draft.json",
@@ -38101,8 +38385,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "1eaeb2f9939045a75fcd821c66c8bfd3e01289957b7386b57c39842841a623c2",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "a46f0a532e31f85a33170443ab74a85cfa93fe938c82663daa80232161f2b91b",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "pass",
       "cases": [
         {
@@ -39719,8 +40003,8 @@
       "file": "optional/format/duration.json",
       "optional": true,
       "group": "validation of duration strings",
-      "hash": "b757552fe2517c39b49f84bc7643a60e6759987d663498cd0b72f4dcb874f412",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "f83599a3410afc6a68656eddfe374d1008a99effe3b8c59de9bc1efaa38c4973",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_aaa665ecde866971/g_aaa665ecde866971.go:9:8: undefined: Root",
       "cases": [
@@ -39912,11 +40196,6 @@
         {
           "description": "years and days cannot appear without months",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "months and days can appear without years",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -40498,8 +40777,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "b4a11ee399562249147ded8e0b977a50e022b9f95762082d905165b211f56461",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "49df5def6a04cf117af1d6c8522e1ffd82069eb4230905b19529de057d1345e1",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_89455c49d3b29b20/g_89455c49d3b29b20.go:9:8: undefined: Root",
       "cases": [
@@ -40620,6 +40899,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -40977,8 +41266,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "9d9787237fc4ee45834235cbadf0fe7232272ef36ad406dd817b1cb81a3edde8",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "ea99c98cadd6c4ebef88b7046ad1d8b205824d36bcb770f5fbe208529aeb0186",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_32ae7c063d0757cc/g_32ae7c063d0757cc.go:9:8: undefined: Root",
       "cases": [
@@ -41269,6 +41558,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -41979,8 +42283,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "c64eee15ae1ae8fe0a7e8f8f5e9baa2657527e69d683bfc7dfdfe3368d61351f",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "bd961a2aedf9df2d1ef59751556bf2c778fa6fe4e0d846fd1f0be9c57d8b28b7",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_c811242b4509588b/g_c811242b4509588b.go:9:8: undefined: Root",
       "cases": [
@@ -42088,6 +42392,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -42097,8 +42421,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "b84f458f0079c72343eb5cc9ae3726bafcdf7cd66370e4d6dfb81c5c0f2572a3",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "f988b91944e3ae1ed69e08ad7a179133f0992a99f74ec65d86bff1d8ad77d88d",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_cc3328213e58dcff/g_cc3328213e58dcff.go:9:8: undefined: Root",
       "cases": [
@@ -42230,6 +42554,36 @@
         {
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
           "outcome": "not_run"
         }
       ]
@@ -42453,8 +42807,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "649861da7cc4f3b7f114a005f7297e25df85735bf785005ba89f1633a339f62f",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "6ab64a29a6719a5e06651a495a057b903743df5742ca148a76d76efafd26cc20",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_debdfb0bc8ba4bfa/g_debdfb0bc8ba4bfa.go:9:8: undefined: Root",
       "cases": [
@@ -42522,6 +42876,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -42531,8 +42910,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "83f06d8f9fcef590f069a2663699334f9c7970afff8a25c0172f8dc08f995ca5",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "ddcd218b9262afe8ef87b48cfc77029930cb35feab180d1fdd9522b806a41073",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_d0a7adc65e3f2f12/g_d0a7adc65e3f2f12.go:9:8: undefined: Root",
       "cases": [
@@ -42659,6 +43038,31 @@
         {
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -43436,8 +43840,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "872e471fb9bc17392714f20749f541ec09d6b2602d3c94bd9364eccaf6cb29d7",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "577b4936382905636f9f977c7fbae197f34d034c1f76b4b008d74334ad556ca2",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_171aaaa7e89fb17f/g_171aaaa7e89fb17f.go:9:8: undefined: Root",
       "cases": [
@@ -43673,6 +44077,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48553,13 +48962,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "7d56afcbe3120c688d55a7ff448d44650d35f0b8090bdcbbe4211d89769900fe",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "48b14b95ad5ac6b22b69a0faa60c51cc50abcbabebebde57816afb329d622d4e",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_d7e7024e47303146/g_d7e7024e47303146.go:13:8: undefined: Root",
       "cases": [
@@ -48875,8 +49284,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "30044c2b277ee9dd94e84e017dc22e6620e2b1728883ef407c1b9a0dbacdbd8f",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "740a30842c510d839112057ff7bc24f3daeaafcaa4f340cbc30ebc89159c2d90",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_fb3a8fa8a9065cb2/g_fb3a8fa8a9065cb2.go:9:8: undefined: Root",
       "cases": [
@@ -48958,16 +49367,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -49119,8 +49518,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "e95129e17ee8e0ade1554bfc24e848cdb4bc5644b31caf2e940ae912e6497659",
-      "generated_at": "2026-10-11T18:50:15Z",
+      "hash": "eb2eaa610d923b0ba7c5246d1ad835224ddcebdd1f09759b9f81673fef434127",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_3ee004c636ed2817/g_3ee004c636ed2817.go:9:8: undefined: Root",
       "cases": [
@@ -49176,16 +49575,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -51913,10 +52302,10 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "c5a856407da3bb03e3095464d39b984e19fd9ccff3dfb9d2ee4af75535ac50f3",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "6c8ab287100048bfa1e5798b1e39adb57dd765ba4a092f41c5ba098b50defe30",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
-      "error": "g_0e9625999fd93493/g_0e9625999fd93493.go:9:8: undefined: Root",
+      "error": "g_7483135d2e5ccbf6/g_7483135d2e5ccbf6.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "number is valid",
@@ -53719,10 +54108,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "58a8f8b8d8ac24f784190c6dd6af694a6d93310a7c6905cf190454ac895998d7",
-      "generated_at": "2026-10-11T18:50:16Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "29dc81254a01c1dfc9d18f95b92abdc7a58e2c17db3303035482cdd7b5ec1977",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_f3ac7c001519f500/g_f3ac7c001519f500.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -53742,10 +54131,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "a2a10f795e6ccb44ecdd8c145ab946ffe4209bf5344310a3b2c406ad2330af3b",
-      "generated_at": "2026-10-11T18:50:16Z",
-      "bucket": "generation_error",
-      "error": "schema has no root",
+      "hash": "30b2a6f809a9440b66b605786d90b49c6a2c297cc9f9a94915455f43dc299f95",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_cd258633eaa6c7a9/g_cd258633eaa6c7a9.go:9:8: undefined: Root",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -55068,6 +55457,29 @@
       ]
     },
     {
+      "id": "draft2020-12/multipleOf.json::by very small number",
+      "draft": "draft2020-12",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "da99c1005a64f477088ec4bf027c16389cac4789a14300550a935bacc91a9d62",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_3b48d17d3f1166c0/g_3b48d17d3f1166c0.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft2020-12/multipleOf.json::float division = inf",
       "draft": "draft2020-12",
       "file": "multipleOf.json",
@@ -55864,6 +56276,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft2020-12",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "6252afbf6355c7f5cdcba6ed02288981b396a2809b6c9ab1934f0059a2add09a",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "compile_fail",
+      "error": "g_6c74948bf8adbd68/g_6c74948bf8adbd68.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -57517,8 +57952,8 @@
       "file": "optional/format/duration.json",
       "optional": true,
       "group": "validation of duration strings",
-      "hash": "1acbcb135c8ec6bd5dbb2712c9207443e5af73f7de927f886021b248824a128f",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "f75ca157a03705878ce554841f21be762fee81ed5279609b1eeba1cc76b1c74f",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_4923e9bf40301ab3/g_4923e9bf40301ab3.go:9:8: undefined: Root",
       "cases": [
@@ -57710,11 +58145,6 @@
         {
           "description": "years and days cannot appear without months",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "months and days can appear without years",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -58296,8 +58726,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "1d4a6afef04fbf8ae6994653e0ce4edf2eed3aa2c1c61d1a71b191f913a7905c",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "c3fa6986184580967a75053b069a4d7f7385b1a1d4d7ca513edf116b9bacfc88",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_fa682a1ca9592e74/g_fa682a1ca9592e74.go:9:8: undefined: Root",
       "cases": [
@@ -58418,6 +58848,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -58775,8 +59215,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "c882be4de422e5f784db2d214e721c5816ad4b9632d15cc0b79d9d1669a2a466",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "f06f908016cc2029b99a2d12897d8cd733f078b2e15763c87ef726d62c1f7ec9",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_3464ec40053b8e9f/g_3464ec40053b8e9f.go:9:8: undefined: Root",
       "cases": [
@@ -59067,6 +59507,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -59777,8 +60232,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "10f339314f1e382862919145f81d2e7eace37bf08dbe42af98b8f8b6729ef0bc",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "11edc2da23c081ee30d5d9897cf74aab4ae28be942c3a609f723746ac9a285e6",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_fbf0c48de749985b/g_fbf0c48de749985b.go:9:8: undefined: Root",
       "cases": [
@@ -59886,6 +60341,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -59895,8 +60370,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "057d629aba177301cdec62ddf53288b6323347a8e8d3242c68e696bf7849559a",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "78567fd0f7236dce27ae1b9143c331234931b5604a704fdbed92ad918854f841",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_1e0a7276ccad1164/g_1e0a7276ccad1164.go:9:8: undefined: Root",
       "cases": [
@@ -60028,6 +60503,36 @@
         {
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
           "outcome": "not_run"
         }
       ]
@@ -60251,8 +60756,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "d34f3933125e55120d16a562bf327e82779e7a4001389708fb4155b886a84a10",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "07c6311194e4ecaf5dd1b78b7072155e26c95cfcb4e20f45ca8debfefac68d81",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_f03a36338525c4d2/g_f03a36338525c4d2.go:9:8: undefined: Root",
       "cases": [
@@ -60320,6 +60825,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -60329,8 +60859,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "772e9eef522fa9b0273126778943ff9edc82aa680371cea3a6376437cc6aeb36",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "c573580c5d03d7babf7c307bed9a609067ee0d3568ded4ec08914bcf91e7769f",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_0f936b6bb734dd6d/g_0f936b6bb734dd6d.go:9:8: undefined: Root",
       "cases": [
@@ -60457,6 +60987,31 @@
         {
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -61234,8 +61789,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "894aed959f12e7cc63edfd38a1fa0ab43b0260a95d488c65b34ea4edd0707bbf",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "6aeaec8aadc7970166713e9d237c6673fbb622f017b16f290b53c67ff459bb28",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_2e1e58feb8b4e3d4/g_2e1e58feb8b4e3d4.go:9:8: undefined: Root",
       "cases": [
@@ -61471,6 +62026,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -62250,14 +62810,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "6aa63587806a49164afee4bad0940b324fadb8ef27578c6a0c27859eee2bb79a",
-      "generated_at": "2026-10-11T18:50:16Z",
-      "bucket": "pass",
+      "hash": "8c3ab6920c0a68b6d6f1dbbd2a920692a8092c88316a48ce50e5dd4433b46547",
+      "generated_at": "2026-11-07T23:13:05Z",
+      "bucket": "false_accept",
+      "error": "accepted `Unicode letter property name matches but value type is incorrect` though valid: false",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -66363,13 +66929,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "60031b41b0289bf1fee8f18531baa700b420dcfe656f59c279b21ba013fb7cba",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "02997d3c1cb4928aa2b98cb9268eba2a932c7077210789368c8c214e547920d5",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_231b40ad3da69346/g_231b40ad3da69346.go:13:8: undefined: Root",
       "cases": [
@@ -66685,8 +67251,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "1e720627d9cf266b67d21d91eb2f8e20855e7ff167ffb40c2a52ea2d0867ca17",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "9c187cfd9605602cc24039288f8d7b9da9cb0a2aea159130c1e56c0021408979",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_80867d22daeffba5/g_80867d22daeffba5.go:9:8: undefined: Root",
       "cases": [
@@ -66768,16 +67334,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -66929,8 +67485,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "c03b22f5a4cbafe4c5727985dae2f05bb0e82cdba7eb6da3c265544fd3349cef",
-      "generated_at": "2026-10-11T18:50:16Z",
+      "hash": "0f5f96f0969bef1b9fefd2099c206867edd375050dc8e2ec82a9bf9ac9c5369a",
+      "generated_at": "2026-11-07T23:13:05Z",
       "bucket": "compile_fail",
       "error": "g_a368676b1d7b3b41/g_a368676b1d7b3b41.go:9:8: undefined: Root",
       "cases": [
@@ -66986,16 +67542,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },

@@ -8,9 +8,9 @@ a price tag on the policies the generators live with. Remote refs come from
 the library default (asserted through draft 7, annotation-only after), because
 2020-12's required tests say so.
 
-_generated 2026-11-07T15:38:17Z_
+_generated 2026-11-07T23:14:39Z_
 
-**1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
+**1413 of 1413 non-optional groups pass (100.0%)**; 306 optional groups reported separately
 
 **10 of 10 compound groups pass (100.0%)**
 
@@ -31,23 +31,23 @@ _generated 2026-11-07T15:38:17Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 160 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 160 | 100.0% |
-| draft6 | 233 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 233 | 100.0% |
-| draft7 | 258 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 258 | 100.0% |
-| draft2019-09 | 373 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 373 | 100.0% |
-| draft2020-12 | 384 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 384 | 100.0% |
-| **Total** | **1408** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **1408** | **100.0%** |
+| draft4 | 161 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 161 | 100.0% |
+| draft6 | 234 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 234 | 100.0% |
+| draft7 | 259 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 259 | 100.0% |
+| draft2019-09 | 374 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 374 | 100.0% |
+| draft2020-12 | 385 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 385 | 100.0% |
+| **Total** | **1413** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **1413** | **100.0%** |
 
 ### Optional groups
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft4 | 39 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 39 | 100.0% |
-| draft6 | 44 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 44 | 100.0% |
-| draft7 | 64 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 64 | 100.0% |
-| draft2019-09 | 52 | 24 | 0 | 0 | 0 | 0 | 0 | 0 | 76 | 68.4% |
-| draft2020-12 | 54 | 24 | 0 | 0 | 0 | 0 | 0 | 0 | 78 | 69.2% |
-| **Total** | **253** | **48** | **0** | **0** | **0** | **0** | **0** | **0** | **301** | **84.1%** |
+| draft4 | 40 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 40 | 100.0% |
+| draft6 | 45 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 45 | 100.0% |
+| draft7 | 65 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 65 | 100.0% |
+| draft2019-09 | 53 | 24 | 0 | 0 | 0 | 0 | 0 | 0 | 77 | 68.8% |
+| draft2020-12 | 55 | 24 | 0 | 0 | 0 | 0 | 0 | 0 | 79 | 69.6% |
+| **Total** | **258** | **48** | **0** | **0** | **0** | **0** | **0** | **0** | **306** | **84.3%** |
 
 ### Compound groups
 
@@ -61,23 +61,23 @@ _generated 2026-11-07T15:38:17Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 618 | 618 | 100.0% | 618 | 100.0% |
-| draft6 | 841 | 841 | 100.0% | 841 | 100.0% |
-| draft7 | 929 | 929 | 100.0% | 929 | 100.0% |
-| draft2019-09 | 1261 | 1261 | 100.0% | 1261 | 100.0% |
-| draft2020-12 | 1301 | 1301 | 100.0% | 1301 | 100.0% |
-| **Total** | **4950** | **4950** | **100.0%** | **4950** | **100.0%** |
+| draft4 | 616 | 616 | 100.0% | 616 | 100.0% |
+| draft6 | 839 | 839 | 100.0% | 839 | 100.0% |
+| draft7 | 927 | 927 | 100.0% | 927 | 100.0% |
+| draft2019-09 | 1259 | 1259 | 100.0% | 1259 | 100.0% |
+| draft2020-12 | 1300 | 1300 | 100.0% | 1300 | 100.0% |
+| **Total** | **4941** | **4941** | **100.0%** | **4941** | **100.0%** |
 
 ### Per-case match rate (optional)
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft4 | 391 | 391 | 100.0% | 391 | 100.0% |
-| draft6 | 520 | 520 | 100.0% | 520 | 100.0% |
-| draft7 | 922 | 922 | 100.0% | 922 | 100.0% |
-| draft2019-09 | 566 | 1043 | 54.3% | 1043 | 54.3% |
-| draft2020-12 | 570 | 1047 | 54.4% | 1047 | 54.4% |
-| **Total** | **2969** | **3923** | **75.7%** | **3923** | **75.7%** |
+| draft4 | 396 | 396 | 100.0% | 396 | 100.0% |
+| draft6 | 525 | 525 | 100.0% | 525 | 100.0% |
+| draft7 | 950 | 950 | 100.0% | 950 | 100.0% |
+| draft2019-09 | 577 | 1070 | 53.9% | 1070 | 53.9% |
+| draft2020-12 | 581 | 1074 | 54.1% | 1074 | 54.1% |
+| **Total** | **3029** | **4015** | **75.4%** | **4015** | **75.4%** |
 
 ### Per-case match rate (compound)
 
@@ -112,7 +112,7 @@ _generated 2026-11-07T15:38:17Z_
 | minLength.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | minProperties.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | minimum.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| multipleOf.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | not.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | oneOf.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
 | pattern.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
@@ -123,13 +123,13 @@ _generated 2026-11-07T15:38:17Z_
 | required.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
 | type.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
-| **Total** | **160** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **160** |  |
+| **Total** | **161** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **161** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
+| optional/bignum.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | optional/ecmascript-regex.json | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | optional/float-overflow.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/format/date-time.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
@@ -142,7 +142,7 @@ _generated 2026-11-07T15:38:17Z_
 | optional/id.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | optional/zeroTerminatedFloats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **39** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **39** |  |
+| **Total** | **40** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **40** |  |
 
 ### draft6
 
@@ -172,7 +172,7 @@ _generated 2026-11-07T15:38:17Z_
 | minLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minProperties.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minimum.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| multipleOf.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | not.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
@@ -184,13 +184,13 @@ _generated 2026-11-07T15:38:17Z_
 | required.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | type.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
-| **Total** | **233** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **233** |  |
+| **Total** | **234** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **234** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
+| optional/bignum.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | optional/ecmascript-regex.json | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | optional/float-overflow.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/format/date-time.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
@@ -206,7 +206,7 @@ _generated 2026-11-07T15:38:17Z_
 | optional/id.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
 | optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **44** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **44** |  |
+| **Total** | **45** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **45** |  |
 
 ### draft7
 
@@ -237,7 +237,7 @@ _generated 2026-11-07T15:38:17Z_
 | minLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minProperties.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minimum.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| multipleOf.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | not.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
@@ -249,13 +249,13 @@ _generated 2026-11-07T15:38:17Z_
 | required.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | type.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
-| **Total** | **258** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **258** |  |
+| **Total** | **259** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **259** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| optional/bignum.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
+| optional/bignum.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | optional/content.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
 | optional/cross-draft.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/ecmascript-regex.json | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
@@ -282,7 +282,7 @@ _generated 2026-11-07T15:38:17Z_
 | optional/id.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
 | optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **64** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **64** |  |
+| **Total** | **65** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **65** |  |
 
 #### compound
 
@@ -325,7 +325,7 @@ _generated 2026-11-07T15:38:17Z_
 | minLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minProperties.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minimum.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| multipleOf.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | not.json | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
@@ -341,14 +341,14 @@ _generated 2026-11-07T15:38:17Z_
 | unevaluatedProperties.json | 44 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 44 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | vocabulary.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| **Total** | **373** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **373** |  |
+| **Total** | **374** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **374** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| optional/bignum.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
+| optional/bignum.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | optional/cross-draft.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | optional/dependencies-compatibility.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
 | optional/ecmascript-regex.json | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
@@ -379,7 +379,7 @@ _generated 2026-11-07T15:38:17Z_
 | optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | optional/refOfUnknownKeyword.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **52** | **24** | **0** | **0** | **0** | **0** | **0** | **0** | **76** |  |
+| **Total** | **53** | **24** | **0** | **0** | **0** | **0** | **0** | **0** | **77** |  |
 
 ### draft2020-12
 
@@ -415,7 +415,7 @@ _generated 2026-11-07T15:38:17Z_
 | minLength.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minProperties.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | minimum.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| multipleOf.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| multipleOf.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | not.json | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
 | oneOf.json | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 | ✅✅✅✅✅✅✅✅✅✅✅ |
 | pattern.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
@@ -431,14 +431,14 @@ _generated 2026-11-07T15:38:17Z_
 | unevaluatedProperties.json | 44 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 44 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | uniqueItems.json | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | ✅✅✅✅✅✅ |
 | vocabulary.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| **Total** | **384** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **384** |  |
+| **Total** | **385** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **385** |  |
 
 #### optional
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | optional/anchor.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| optional/bignum.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
+| optional/bignum.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | optional/cross-draft.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | optional/dependencies-compatibility.json | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | ✅✅✅✅✅✅✅ |
 | optional/dynamicRef.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
@@ -471,7 +471,7 @@ _generated 2026-11-07T15:38:17Z_
 | optional/non-bmp-regex.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | optional/refOfUnknownKeyword.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **54** | **24** | **0** | **0** | **0** | **0** | **0** | **0** | **78** |  |
+| **Total** | **55** | **24** | **0** | **0** | **0** | **0** | **0** | **0** | **79** |  |
 
 #### compound
 
@@ -509,13 +509,13 @@ Per group:
 - `draft2019-09/optional/format/email.json::validation of e-mail addresses` — `accepted 'an invalid e-mail address' though valid: false`
   - cases: an invalid e-mail address (accepted), dot before local part is not valid (accepted), dot after local part is not valid (accepted), two subsequent dots inside local part are not valid (accepted), an invalid domain (accepted), an invalid IPv4-address-literal (accepted), … and 38 more
 - `draft2019-09/optional/format/hostname.json::validation of host names` — `accepted 'empty string' though valid: false`
-  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 6 more
+  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 8 more
 - `draft2019-09/optional/format/hostname.json::validation of A-label (punycode) host names` — `accepted 'invalid Punycode' though valid: false`
   - cases: invalid Punycode (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), Begins with a Spacing Combining Mark (accepted), Begins with a Nonspacing Mark (accepted), Begins with an Enclosing Mark (accepted), Exceptions that are DISALLOWED, right-to-left chars (accepted), … and 17 more
 - `draft2019-09/optional/format/idn-email.json::validation of an internationalized e-mail addresses` — `accepted 'an invalid e-mail/idn e-mail address' though valid: false`
   - cases: an invalid e-mail/idn e-mail address (accepted), a fullwidth commercial at is not a local-part separator (accepted), a domain label starting with a hyphen is not valid (accepted), a domain label ending with a hyphen is not valid (accepted), a domain starting with a dot is not valid (accepted), a domain ending with a dot is not valid (accepted), … and 2 more
 - `draft2019-09/optional/format/idn-hostname.json::validation of internationalized host names` — `accepted 'illegal first char U+302E Hangul single dot tone mark' though valid: false`
-  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 37 more
+  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 40 more
 - `draft2019-09/optional/format/idn-hostname.json::validation of separators in internationalized host names` — `accepted 'single dot' though valid: false`
   - cases: single dot (accepted), single ideographic full stop (accepted), single fullwidth full stop (accepted), single halfwidth ideographic full stop (accepted), leading dot (accepted), leading ideographic full stop (accepted), … and 6 more
 - `draft2019-09/optional/format/ipv4.json::validation of IP addresses` — `accepted 'an IP address with too many components' though valid: false`
@@ -523,15 +523,15 @@ Per group:
 - `draft2019-09/optional/format/ipv6.json::validation of IPv6 addresses` — `accepted 'a group with 5 hex digits is invalid' though valid: false`
   - cases: a group with 5 hex digits is invalid (accepted), trailing 5 hex symbols is invalid (accepted), an IPv6 address with too many components (accepted), an IPv6 address containing illegal characters (accepted), missing leading octet is invalid (accepted), missing trailing octet is invalid (accepted), … and 22 more
 - `draft2019-09/optional/format/iri-reference.json::validation of IRI References` — `accepted 'an invalid IRI Reference' though valid: false`
-  - cases: an invalid IRI Reference (accepted), an invalid IRI fragment (accepted), an embedded IPv4 with a leading zero is invalid (accepted), a trailing newline after a valid IRI Reference is invalid (accepted), invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), … and 1 more
+  - cases: an invalid IRI Reference (accepted), an invalid IRI fragment (accepted), an embedded IPv4 with a leading zero is invalid (accepted), a trailing newline after a valid IRI Reference is invalid (accepted), invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), … and 4 more
 - `draft2019-09/optional/format/iri.json::validation of IRIs` — `accepted 'invalid percent-encoding with non-hex digits' though valid: false`
-  - cases: invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), lone percent sign is invalid (accepted), an IPv6 address without enclosing brackets is invalid (accepted), an invalid relative IRI Reference (accepted), an invalid IRI (accepted), … and 3 more
+  - cases: invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), lone percent sign is invalid (accepted), an IPv6 address without enclosing brackets is invalid (accepted), an invalid relative IRI Reference (accepted), an invalid IRI (accepted), … and 9 more
 - `draft2019-09/optional/format/json-pointer.json::validation of JSON-pointers (JSON String Representation)` — `accepted 'not a valid JSON-pointer (~ not escaped)' though valid: false`
   - cases: not a valid JSON-pointer (~ not escaped) (accepted), not a valid JSON-pointer (URI Fragment Identifier) #1 (accepted), not a valid JSON-pointer (URI Fragment Identifier) #2 (accepted), not a valid JSON-pointer (URI Fragment Identifier) #3 (accepted), not a valid JSON-pointer (some escaped, but not all) #1 (accepted), not a valid JSON-pointer (some escaped, but not all) #2 (accepted), … and 6 more
 - `draft2019-09/optional/format/regex.json::validation of regular expressions` — `accepted 'a regular expression with unclosed parens is invalid' though valid: false`
   - cases: a regular expression with unclosed parens is invalid (accepted), a quantifier with nothing to repeat is invalid (accepted), a character class range in reverse order is invalid (accepted), a trailing backslash is invalid (accepted), an unmatched closing parenthesis is invalid (accepted), an unterminated character class is invalid (accepted)
 - `draft2019-09/optional/format/relative-json-pointer.json::validation of Relative JSON Pointers (RJP)` — `accepted 'an invalid RJP that is a valid JSON Pointer' though valid: false`
-  - cases: an invalid RJP that is a valid JSON Pointer (accepted), a json-pointer part that does not start with a slash is invalid (accepted), negative prefix (accepted), explicit positive prefix (accepted), non-ASCII digit in the prefix is not allowed (accepted), ## is not a valid json-pointer (accepted), … and 7 more
+  - cases: an invalid RJP that is a valid JSON Pointer (accepted), a json-pointer part that does not start with a slash is invalid (accepted), negative prefix (accepted), explicit positive prefix (accepted), non-ASCII digit in the prefix is not allowed (accepted), ## is not a valid json-pointer (accepted), … and 8 more
 - `draft2019-09/optional/format/time.json::validation of time strings` — `accepted 'invalid time string with extra leading zeros' though valid: false`
   - cases: invalid time string with extra leading zeros (accepted), invalid time string with no leading zero for single digit (accepted), hour, minute, second must be two digits (accepted), invalid leap second, Zulu (wrong hour) (accepted), invalid leap second, Zulu (wrong minute) (accepted), invalid leap second, zero time-offset (wrong hour) (accepted), … and 30 more
 - `draft2019-09/optional/format/uri-reference.json::validation of URI References` — `accepted 'an invalid URI Reference' though valid: false`
@@ -539,7 +539,7 @@ Per group:
 - `draft2019-09/optional/format/uri-template.json::format: uri-template` — `accepted 'an invalid uri-template' though valid: false`
   - cases: an invalid uri-template (accepted), an empty expression is invalid (accepted), an empty varspec inside the variable list is invalid (accepted), a zero prefix max-length is invalid (accepted), a five-digit prefix max-length is invalid (accepted), an unmatched closing brace is invalid (accepted), … and 15 more
 - `draft2019-09/optional/format/uri.json::validation of URIs` — `accepted 'an invalid protocol-relative URI Reference' though valid: false`
-  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 20 more
+  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 21 more
 - `draft2019-09/optional/format/uuid.json::uuid format` — `accepted 'wrong length' though valid: false`
   - cases: wrong length (accepted), missing section (accepted), bad characters (not hex) (accepted), no dashes (accepted), too few dashes (accepted), too many dashes (accepted), … and 8 more
 - `draft2020-12/optional/format/date-time.json::validation of date-time strings` — `accepted 'an invalid date-time past leap second, UTC' though valid: false`
@@ -557,13 +557,13 @@ Per group:
 - `draft2020-12/optional/format/email.json::validation of e-mail addresses` — `accepted 'an invalid e-mail address' though valid: false`
   - cases: an invalid e-mail address (accepted), dot before local part is not valid (accepted), dot after local part is not valid (accepted), two subsequent dots inside local part are not valid (accepted), an invalid domain (accepted), an invalid IPv4-address-literal (accepted), … and 38 more
 - `draft2020-12/optional/format/hostname.json::validation of host names` — `accepted 'empty string' though valid: false`
-  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 6 more
+  - cases: empty string (accepted), single dot (accepted), leading dot (accepted), trailing dot (accepted), IDN label separator (accepted), starts with hyphen (accepted), … and 8 more
 - `draft2020-12/optional/format/hostname.json::validation of A-label (punycode) host names` — `accepted 'invalid Punycode' though valid: false`
   - cases: invalid Punycode (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), Begins with a Spacing Combining Mark (accepted), Begins with a Nonspacing Mark (accepted), Begins with an Enclosing Mark (accepted), Exceptions that are DISALLOWED, right-to-left chars (accepted), … and 17 more
 - `draft2020-12/optional/format/idn-email.json::validation of an internationalized e-mail addresses` — `accepted 'an invalid e-mail/idn e-mail address' though valid: false`
   - cases: an invalid e-mail/idn e-mail address (accepted), a fullwidth commercial at is not a local-part separator (accepted), a domain label starting with a hyphen is not valid (accepted), a domain label ending with a hyphen is not valid (accepted), a domain starting with a dot is not valid (accepted), a domain ending with a dot is not valid (accepted), … and 2 more
 - `draft2020-12/optional/format/idn-hostname.json::validation of internationalized host names` — `accepted 'illegal first char U+302E Hangul single dot tone mark' though valid: false`
-  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 37 more
+  - cases: illegal first char U+302E Hangul single dot tone mark (accepted), contains illegal char U+302E Hangul single dot tone mark (accepted), a single label of 64 characters is too long (accepted), invalid label, correct Punycode (accepted), invalid Punycode (accepted), U-label contains "--" in the 3rd and 4th position (accepted), … and 40 more
 - `draft2020-12/optional/format/idn-hostname.json::validation of separators in internationalized host names` — `accepted 'single dot' though valid: false`
   - cases: single dot (accepted), single ideographic full stop (accepted), single fullwidth full stop (accepted), single halfwidth ideographic full stop (accepted), leading dot (accepted), leading ideographic full stop (accepted), … and 6 more
 - `draft2020-12/optional/format/ipv4.json::validation of IP addresses` — `accepted 'an IP address with too many components' though valid: false`
@@ -571,15 +571,15 @@ Per group:
 - `draft2020-12/optional/format/ipv6.json::validation of IPv6 addresses` — `accepted 'a group with 5 hex digits is invalid' though valid: false`
   - cases: a group with 5 hex digits is invalid (accepted), trailing 5 hex symbols is invalid (accepted), an IPv6 address with too many components (accepted), an IPv6 address containing illegal characters (accepted), missing leading octet is invalid (accepted), missing trailing octet is invalid (accepted), … and 22 more
 - `draft2020-12/optional/format/iri-reference.json::validation of IRI References` — `accepted 'an invalid IRI Reference' though valid: false`
-  - cases: an invalid IRI Reference (accepted), an invalid IRI fragment (accepted), an embedded IPv4 with a leading zero is invalid (accepted), a trailing newline after a valid IRI Reference is invalid (accepted), invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), … and 1 more
+  - cases: an invalid IRI Reference (accepted), an invalid IRI fragment (accepted), an embedded IPv4 with a leading zero is invalid (accepted), a trailing newline after a valid IRI Reference is invalid (accepted), invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), … and 4 more
 - `draft2020-12/optional/format/iri.json::validation of IRIs` — `accepted 'invalid percent-encoding with non-hex digits' though valid: false`
-  - cases: invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), lone percent sign is invalid (accepted), an IPv6 address without enclosing brackets is invalid (accepted), an invalid relative IRI Reference (accepted), an invalid IRI (accepted), … and 3 more
+  - cases: invalid percent-encoding with non-hex digits (accepted), incomplete percent-encoding triplet (accepted), lone percent sign is invalid (accepted), an IPv6 address without enclosing brackets is invalid (accepted), an invalid relative IRI Reference (accepted), an invalid IRI (accepted), … and 9 more
 - `draft2020-12/optional/format/json-pointer.json::validation of JSON-pointers (JSON String Representation)` — `accepted 'not a valid JSON-pointer (~ not escaped)' though valid: false`
   - cases: not a valid JSON-pointer (~ not escaped) (accepted), not a valid JSON-pointer (URI Fragment Identifier) #1 (accepted), not a valid JSON-pointer (URI Fragment Identifier) #2 (accepted), not a valid JSON-pointer (URI Fragment Identifier) #3 (accepted), not a valid JSON-pointer (some escaped, but not all) #1 (accepted), not a valid JSON-pointer (some escaped, but not all) #2 (accepted), … and 6 more
 - `draft2020-12/optional/format/regex.json::validation of regular expressions` — `accepted 'a regular expression with unclosed parens is invalid' though valid: false`
   - cases: a regular expression with unclosed parens is invalid (accepted), a quantifier with nothing to repeat is invalid (accepted), a character class range in reverse order is invalid (accepted), a trailing backslash is invalid (accepted), an unmatched closing parenthesis is invalid (accepted), an unterminated character class is invalid (accepted)
 - `draft2020-12/optional/format/relative-json-pointer.json::validation of Relative JSON Pointers (RJP)` — `accepted 'an invalid RJP that is a valid JSON Pointer' though valid: false`
-  - cases: an invalid RJP that is a valid JSON Pointer (accepted), a json-pointer part that does not start with a slash is invalid (accepted), negative prefix (accepted), explicit positive prefix (accepted), non-ASCII digit in the prefix is not allowed (accepted), ## is not a valid json-pointer (accepted), … and 7 more
+  - cases: an invalid RJP that is a valid JSON Pointer (accepted), a json-pointer part that does not start with a slash is invalid (accepted), negative prefix (accepted), explicit positive prefix (accepted), non-ASCII digit in the prefix is not allowed (accepted), ## is not a valid json-pointer (accepted), … and 8 more
 - `draft2020-12/optional/format/time.json::validation of time strings` — `accepted 'invalid time string with extra leading zeros' though valid: false`
   - cases: invalid time string with extra leading zeros (accepted), invalid time string with no leading zero for single digit (accepted), hour, minute, second must be two digits (accepted), invalid leap second, Zulu (wrong hour) (accepted), invalid leap second, Zulu (wrong minute) (accepted), invalid leap second, zero time-offset (wrong hour) (accepted), … and 30 more
 - `draft2020-12/optional/format/uri-reference.json::validation of URI References` — `accepted 'an invalid URI Reference' though valid: false`
@@ -587,7 +587,7 @@ Per group:
 - `draft2020-12/optional/format/uri-template.json::format: uri-template` — `accepted 'an invalid uri-template' though valid: false`
   - cases: an invalid uri-template (accepted), an empty expression is invalid (accepted), an empty varspec inside the variable list is invalid (accepted), a zero prefix max-length is invalid (accepted), a five-digit prefix max-length is invalid (accepted), an unmatched closing brace is invalid (accepted), … and 15 more
 - `draft2020-12/optional/format/uri.json::validation of URIs` — `accepted 'an invalid protocol-relative URI Reference' though valid: false`
-  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 20 more
+  - cases: an invalid protocol-relative URI Reference (accepted), an invalid relative URI Reference (accepted), an invalid URI (accepted), an invalid URI though valid URI reference (accepted), an invalid URI with spaces (accepted), an invalid URI with spaces and missing scheme (accepted), … and 21 more
 - `draft2020-12/optional/format/uuid.json::uuid format` — `accepted 'wrong length' though valid: false`
   - cases: wrong length (accepted), missing section (accepted), bad characters (not hex) (accepted), no dashes (accepted), too few dashes (accepted), too many dashes (accepted), … and 8 more
 
