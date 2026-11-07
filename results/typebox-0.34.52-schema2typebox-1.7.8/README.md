@@ -8,9 +8,11 @@ TypeBox needs a separate generator; this row uses schema2typebox, the one
 TypeBox's readme points at. Most of what it can't express becomes
 `Type.Unknown()`.
 
-_generated 2026-10-11T19:24:11Z_
+_generated 2026-11-07T04:48:14Z_
 
 **227 of 1408 non-optional groups pass (16.1%)**; 301 optional groups reported separately
+
+**8 of 8 compound groups pass (100.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -47,6 +49,14 @@ _generated 2026-10-11T19:24:11Z_
 | draft2020-12 | 14 | 5 | 0 | 0 | 0 | 0 | 59 | 0 | 78 | 17.9% |
 | **Total** | **70** | **26** | **0** | **0** | **0** | **0** | **205** | **0** | **301** | **23.3%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -68,6 +78,14 @@ _generated 2026-10-11T19:24:11Z_
 | draft2019-09 | 54 | 63 | 85.7% | 1043 | 5.2% |
 | draft2020-12 | 54 | 63 | 85.7% | 1047 | 5.2% |
 | **Total** | **270** | **316** | **85.4%** | **3923** | **6.9%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
+| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
+| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
 
 ## Chart
 
@@ -266,6 +284,13 @@ _generated 2026-10-11T19:24:11Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | **Total** | **14** | **5** | **0** | **0** | **0** | **0** | **45** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -447,6 +472,13 @@ _generated 2026-10-11T19:24:11Z_
 | optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 5 | ❌❌❌❌❌ |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | **Total** | **14** | **5** | **0** | **0** | **0** | **0** | **59** | **0** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 

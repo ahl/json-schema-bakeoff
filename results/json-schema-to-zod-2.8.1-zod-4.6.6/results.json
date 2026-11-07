@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "json-schema-to-zod",
   "homepage": "https://www.npmjs.com/package/json-schema-to-zod",
-  "generated_at": "2026-10-11T18:53:39Z",
+  "generated_at": "2026-11-07T04:47:54Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31814,6 +31814,208 @@
           "description": "extra items are invalid even if unique",
           "valid": false,
           "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "37775ccf50de07d9f0cafbe0bff62f384491a0e95be37f84755ff09fc9ab41f8",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 2"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "a942d4e5b032bcc3b5b31fdf0cd331614e9ea7fb76b147fc19e0d1aec4fa6055",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "false_accept",
+      "error": "accepted `a non-number radius is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 2"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "1f12eb8aac01b488da4c805ce469dfda5c4487691907c8b772f9ea02bd5b5139",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "2f13771ad5bc7f8df79cd3518735e28225ee82939f3abc9c0daa85f93b5b9552",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
         }
       ]
     },
@@ -67165,6 +67367,208 @@
           "description": "number value",
           "valid": true,
           "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "98d8ddfbe9a254a172753f38f05242ec221ef28a0627dd946b46c62cd15863bc",
+      "generated_at": "2026-11-07T04:47:54Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 2"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "5b7137af3081c3d81de6566849a0d5df6b321ebfcc0b05ac140d0b6b2ea122de",
+      "generated_at": "2026-11-07T04:47:54Z",
+      "bucket": "false_accept",
+      "error": "accepted `a non-number radius is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 2"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "cbab0051ec90433c0e03b03d39a393e25f717fa472db8d6da1f98f6f73749212",
+      "generated_at": "2026-11-07T04:47:54Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "8875365a608f975267533554d5f29f14b56bbe50d36917c4ad97af02870005dd",
+      "generated_at": "2026-11-07T04:47:54Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
         }
       ]
     }

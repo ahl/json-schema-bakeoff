@@ -7,9 +7,11 @@ get out of the way. It models structure only, so validation keywords vanish
 and anything that isn't a plain object graph panics. The last release
 (0.6.0) is from October 2021.
 
-_generated 2026-10-11T22:00:41Z_
+_generated 2026-11-07T04:48:11Z_
 
 **325 of 1408 non-optional groups pass (23.1%)**; 301 optional groups reported separately
+
+**0 of 8 compound groups pass (0.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -46,6 +48,14 @@ _generated 2026-10-11T22:00:41Z_
 | draft2020-12 | 9 | 50 | 2 | 0 | 0 | 5 | 7 | 5 | 78 | 11.5% |
 | **Total** | **38** | **202** | **9** | **0** | **0** | **9** | **30** | **13** | **301** | **12.6%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0.0% |
+| draft2020-12 | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 0 | 4 | 0.0% |
+| **Total** | **0** | **6** | **0** | **0** | **0** | **2** | **0** | **0** | **8** | **0.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -67,6 +77,14 @@ _generated 2026-10-11T22:00:41Z_
 | draft2019-09 | 471 | 1001 | 47.1% | 1043 | 45.2% |
 | draft2020-12 | 473 | 1005 | 47.1% | 1047 | 45.2% |
 | **Total** | **1761** | **3790** | **46.5%** | **3923** | **44.9%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 21 | 27 | 77.8% | 27 | 77.8% |
+| draft2020-12 | 12 | 15 | 80.0% | 27 | 44.4% |
+| **Total** | **33** | **42** | **78.6%** | **54** | **61.1%** |
 
 ## Chart
 
@@ -265,6 +283,13 @@ _generated 2026-10-11T22:00:41Z_
 | optional/unknownKeyword.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | **Total** | **8** | **45** | **2** | **0** | **0** | **0** | **8** | **1** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
+| **Total** | **0** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -447,6 +472,13 @@ _generated 2026-10-11T22:00:41Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
 | **Total** | **9** | **50** | **2** | **0** | **0** | **5** | **7** | **5** | **78** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 0 | 4 | 🙈🦀🦀🙈 |
+| **Total** | **0** | **2** | **0** | **0** | **0** | **2** | **0** | **0** | **4** |  |
+
 ## Failures
 
 ### 🤯 `generation_panic` (223)
@@ -577,9 +609,9 @@ Per group:
 - `draft7/oneOf.json::oneOf with missing optional property` — `schema did not parse as schemafy_lib::Schema: invalid type: boolean 'true', expected struct Schema`
 - … and 120 more
 
-### 🦀 `compile_fail` (85)
+### 🦀 `compile_fail` (87)
 
-21 distinct first-line errors; most common:
+22 distinct first-line errors; most common:
 
 - **12×** `error[E0425]: cannot find type 'Bar' in this scope`
 - **6×** `error[E0425]: cannot find type 'FolderIntegerJson' in this scope`
@@ -589,6 +621,8 @@ Per group:
 
 Per group:
 
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `error[E0425]: cannot find type 'Circle' in this scope`
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `error[E0425]: cannot find type 'Circle' in this scope`
 - `draft4/enum.json::enum with escaped characters` — `error[E0428]: the name 'FooBar' is defined multiple times`
 - `draft4/properties.json::properties with escaped characters` — `error[E0124]: field 'foo_bar' is already declared`
 - `draft4/ref.json::relative pointer ref to object` — `error[E0425]: cannot find type 'Foo' in this scope`
@@ -637,9 +671,7 @@ Per group:
 - `draft2019-09/ref.json::URN base URI with NSS` — `error[E0425]: cannot find type 'Bar' in this scope`
 - `draft2019-09/ref.json::URN base URI with r-component` — `error[E0425]: cannot find type 'Bar' in this scope`
 - `draft2019-09/ref.json::URN base URI with q-component` — `error[E0425]: cannot find type 'Bar' in this scope`
-- `draft2019-09/ref.json::URN base URI with URN and JSON pointer ref` — `error[E0425]: cannot find type 'Bar' in this scope`
-- `draft2019-09/ref.json::URN base URI with URN and anchor ref` — `error[E0425]: cannot find type 'Something' in this scope`
-- … and 35 more
+- … and 37 more
 
 ### 🤪 `mixed` (15)
 
@@ -740,9 +772,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: invalid type: floating point '1e+308', expected i64`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (830)
+### 🙈 `false_accept` (836)
 
-186 distinct first-line errors; most common:
+189 distinct first-line errors; most common:
 
 - **27×** `accepted 'too short is invalid' though valid: false`
 - **15×** `accepted 'anything non-null is invalid' though valid: false`
@@ -752,6 +784,18 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `accepted 'circle plus an unrelated key is invalid' though valid: false`
+  - cases: circle plus an unrelated key is invalid (accepted), circle and square together is invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
+  - cases: the unit variant in map form with null is invalid (accepted), the data variant with an extra key is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
+  - cases: the unit variant in map form with null is invalid (accepted), the data variant with an extra key is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -840,17 +884,5 @@ Per group:
   - cases: boundary point is invalid (accepted)
 - `draft4/minimum.json::minimum validation with signed integer` — `accepted 'float below the minimum is invalid' though valid: false`
   - cases: float below the minimum is invalid (accepted), int below the minimum is invalid (accepted)
-- `draft4/multipleOf.json::by int` — `accepted 'int by int fail' though valid: false`
-  - cases: int by int fail (accepted)
-- `draft4/multipleOf.json::by number` — `accepted '35 is not multiple of 1.5' though valid: false`
-  - cases: 35 is not multiple of 1.5 (accepted)
-- `draft4/multipleOf.json::by small number` — `accepted '0.00751 is not multiple of 0.0001' though valid: false`
-  - cases: 0.00751 is not multiple of 0.0001 (accepted)
-- `draft4/not.json::not` — `accepted 'disallowed' though valid: false`
-  - cases: disallowed (accepted)
-- `draft4/not.json::not multiple types` — `accepted 'mismatch' though valid: false`
-  - cases: mismatch (accepted), other mismatch (accepted)
-- `draft4/not.json::not more complex schema` — `accepted 'mismatch' though valid: false`
-  - cases: mismatch (accepted)
-- … and 780 more
+- … and 786 more
 

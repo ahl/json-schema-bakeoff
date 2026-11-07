@@ -6,9 +6,11 @@ that at the boundary. No types come out; the schema stays the artifact. It's
 the reference row for the Node path, resolving `localhost:1234` remotes from
 `suite/remotes/` and shipping no formats, so `format` is ignored everywhere.
 
-_generated 2026-10-11T18:53:54Z_
+_generated 2026-11-07T04:47:47Z_
 
 **1348 of 1408 non-optional groups pass (95.7%)**; 301 optional groups reported separately
+
+**8 of 8 compound groups pass (100.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -45,6 +47,14 @@ _generated 2026-10-11T18:53:54Z_
 | draft2020-12 | 48 | 24 | 3 | 0 | 0 | 0 | 3 | 0 | 78 | 61.5% |
 | **Total** | **196** | **91** | **8** | **0** | **0** | **0** | **6** | **0** | **301** | **65.1%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -66,6 +76,14 @@ _generated 2026-10-11T18:53:54Z_
 | draft2019-09 | 560 | 1040 | 53.8% | 1043 | 53.7% |
 | draft2020-12 | 560 | 1040 | 53.8% | 1047 | 53.5% |
 | **Total** | **2107** | **3907** | **53.9%** | **3923** | **53.7%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
+| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
+| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
 
 ## Chart
 
@@ -264,6 +282,13 @@ _generated 2026-10-11T18:53:54Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | **Total** | **36** | **26** | **1** | **0** | **0** | **0** | **1** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -445,6 +470,13 @@ _generated 2026-10-11T18:53:54Z_
 | optional/refOfUnknownKeyword.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | **Total** | **48** | **24** | **3** | **0** | **0** | **0** | **3** | **0** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 

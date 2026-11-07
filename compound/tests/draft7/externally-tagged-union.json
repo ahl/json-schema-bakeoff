@@ -1,0 +1,406 @@
+[
+    {
+        "description": "oneOf of objects with one required key each, payloads inline",
+        "comment": "The shape of a Rust externally tagged enum, `{\"circle\": {...}}` or `{\"square\": {...}}`, with the payloads written inline, so a generator has to name them itself. The branches are open, so a variant key plus an unrelated key is valid; serde's externally tagged representation requires exactly one key, so it is not an exact match here.",
+        "schema": {
+            "title": "Shape",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "circle"
+                    ],
+                    "properties": {
+                        "circle": {
+                            "type": "object",
+                            "properties": {
+                                "radius": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "square"
+                    ],
+                    "properties": {
+                        "square": {
+                            "type": "object",
+                            "properties": {
+                                "side": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "tests": [
+            {
+                "description": "circle alone is valid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "square alone is valid",
+                "data": {
+                    "square": {
+                        "side": 2
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "circle plus an unrelated key is valid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    },
+                    "note": "hi"
+                },
+                "valid": true
+            },
+            {
+                "description": "an unrelated key before the variant key is valid",
+                "data": {
+                    "note": "hi",
+                    "circle": {
+                        "radius": 1
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "circle and square together match both branches, invalid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    },
+                    "square": {
+                        "side": 2
+                    }
+                },
+                "valid": false
+            },
+            {
+                "description": "neither variant key is present, invalid",
+                "data": {
+                    "note": "hi"
+                },
+                "valid": false
+            },
+            {
+                "description": "a non-number radius is invalid",
+                "data": {
+                    "circle": {
+                        "radius": "big"
+                    }
+                },
+                "valid": false
+            },
+            {
+                "description": "a non-object is invalid",
+                "data": "circle",
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "oneOf of objects with one required key each, payloads by $ref",
+        "comment": "The same union with the payloads named in definitions. Still open branches, so the extra-key instances are valid.",
+        "schema": {
+            "title": "Shape",
+            "definitions": {
+                "Circle": {
+                    "type": "object",
+                    "properties": {
+                        "radius": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "Square": {
+                    "type": "object",
+                    "properties": {
+                        "side": {
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "circle"
+                    ],
+                    "properties": {
+                        "circle": {
+                            "$ref": "#/definitions/Circle"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "square"
+                    ],
+                    "properties": {
+                        "square": {
+                            "$ref": "#/definitions/Square"
+                        }
+                    }
+                }
+            ]
+        },
+        "tests": [
+            {
+                "description": "circle alone is valid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "square alone is valid",
+                "data": {
+                    "square": {
+                        "side": 2
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "circle plus an unrelated key is valid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    },
+                    "note": "hi"
+                },
+                "valid": true
+            },
+            {
+                "description": "an unrelated key before the variant key is valid",
+                "data": {
+                    "note": "hi",
+                    "circle": {
+                        "radius": 1
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "circle and square together match both branches, invalid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    },
+                    "square": {
+                        "side": 2
+                    }
+                },
+                "valid": false
+            },
+            {
+                "description": "neither variant key is present, invalid",
+                "data": {
+                    "note": "hi"
+                },
+                "valid": false
+            },
+            {
+                "description": "a non-number radius is invalid",
+                "data": {
+                    "circle": {
+                        "radius": "big"
+                    }
+                },
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "oneOf of objects with one required key each and additionalProperties false",
+        "comment": "With every branch closed the schema says exactly one key, which is what a Rust externally tagged enum means: the extra-key instances are now invalid.",
+        "schema": {
+            "title": "Shape",
+            "definitions": {
+                "Circle": {
+                    "type": "object",
+                    "properties": {
+                        "radius": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "Square": {
+                    "type": "object",
+                    "properties": {
+                        "side": {
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "circle"
+                    ],
+                    "properties": {
+                        "circle": {
+                            "$ref": "#/definitions/Circle"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "square"
+                    ],
+                    "properties": {
+                        "square": {
+                            "$ref": "#/definitions/Square"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            ]
+        },
+        "tests": [
+            {
+                "description": "circle alone is valid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "square alone is valid",
+                "data": {
+                    "square": {
+                        "side": 2
+                    }
+                },
+                "valid": true
+            },
+            {
+                "description": "circle plus an unrelated key is invalid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    },
+                    "note": "hi"
+                },
+                "valid": false
+            },
+            {
+                "description": "circle and square together is invalid",
+                "data": {
+                    "circle": {
+                        "radius": 1
+                    },
+                    "square": {
+                        "side": 2
+                    }
+                },
+                "valid": false
+            },
+            {
+                "description": "an empty object is invalid",
+                "data": {},
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "oneOf mixing a unit variant and a data variant",
+        "comment": "The shape of a Rust externally tagged enum with a unit variant, `\"A\"`, beside a data variant, `{\"B\": 1}`, as schemars writes it. The schema admits only the bare string for the unit variant; serde's externally tagged form also accepts `{\"A\": null}`, the map form with a unit payload.",
+        "schema": {
+            "title": "E",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "enum": [
+                        "A"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "B"
+                    ],
+                    "properties": {
+                        "B": {
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            ]
+        },
+        "tests": [
+            {
+                "description": "the unit variant as a string is valid",
+                "data": "A",
+                "valid": true
+            },
+            {
+                "description": "the unit variant in map form with null is invalid",
+                "data": {
+                    "A": null
+                },
+                "valid": false
+            },
+            {
+                "description": "the unit variant in map form with an empty object is invalid",
+                "data": {
+                    "A": {}
+                },
+                "valid": false
+            },
+            {
+                "description": "the data variant is valid",
+                "data": {
+                    "B": 1
+                },
+                "valid": true
+            },
+            {
+                "description": "the data variant with a null payload is invalid",
+                "data": {
+                    "B": null
+                },
+                "valid": false
+            },
+            {
+                "description": "the data variant with an extra key is invalid",
+                "data": {
+                    "B": 1,
+                    "x": 2
+                },
+                "valid": false
+            },
+            {
+                "description": "the data variant's name as a bare string is invalid",
+                "data": "B",
+                "valid": false
+            }
+        ]
+    }
+]

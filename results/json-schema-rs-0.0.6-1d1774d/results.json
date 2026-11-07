@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "json-schema-rs-0.0",
   "homepage": "https://github.com/goddtriffin/json-schema-rs",
-  "generated_at": "2026-11-04T15:57:57Z",
+  "generated_at": "2026-11-07T04:47:53Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -33209,6 +33209,208 @@
           "description": "extra items are invalid even if unique",
           "valid": false,
           "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "a35bf71db37643a2c7da7d00efeb36221705c527d1e7c62843af121753ce627c",
+      "generated_at": "2026-11-07T04:47:51Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance matches 2 of the 2 oneOf subschema(s), exactly one required"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "04a6f38c502eee85eef0b05d469796a2bc9d8e6e9764e25d32b6b2e213b5ff3a",
+      "generated_at": "2026-11-07T04:47:51Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance matches 2 of the 2 oneOf subschema(s), exactly one required"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "4d9514c82b1c59f62f18b9d7bc69978a7f4b276d11b0fa121d640eac4a14854b",
+      "generated_at": "2026-11-07T04:47:51Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "c1a754797d6410e1dd66f8b588330902d6b98cb61aa50eec2bb3cec78d69e62e",
+      "generated_at": "2026-11-07T04:47:51Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
         }
       ]
     },
@@ -69136,6 +69338,208 @@
           "description": "number value",
           "valid": true,
           "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "874b7afd88b002e4e72374e4d6045e03ae1521acb57a900d513c20665262040f",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance matches 2 of the 2 oneOf subschema(s), exactly one required"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "ddf502ecaac375b5749bc2925f84e108e4d91fb2018f8ecb6cc8c7ce878f775d",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance matches 2 of the 2 oneOf subschema(s), exactly one required"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "42d42a6f8146cf3d69c768d280def13d8a6f0d47f70abbeed5966628e2fb313b",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "5781b63e776ac6781dfb630f40f5dae1e3e1ec2f46215f61e745b5518003eccc",
+      "generated_at": "2026-11-07T04:47:53Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "root: instance does not match any of the 2 subschema(s)"
         }
       ]
     }

@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "go-jsonschema",
   "homepage": "https://github.com/omissis/go-jsonschema",
-  "generated_at": "2026-10-11T18:50:16Z",
+  "generated_at": "2026-11-07T04:47:48Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31682,6 +31682,197 @@
         },
         {
           "description": "extra items are invalid even if unique",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "b0e1c09f044065fd0b2497f14099bbcb620d9d8959fadaafc9f4b80b7dade491",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_daa6e609ee6da0da/g_daa6e609ee6da0da.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "b6a248e514134d5566996e8fc2e8fbf990e5ff3700f82ffab52bced1718f55d5",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_a966d969c92bf620/g_a966d969c92bf620.go:19:8: undefined: Root",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "86b8f5a412dbca964c32124f705cba75c570e1a28a51102d17358617b7518966",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_da12cda703df3cdf/g_da12cda703df3cdf.go:19:8: undefined: Root",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "76a44df7b4ab03d3542eaa27d4ea263ee6ca23e7144161d7d8ea2fd279cdf8da",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_8b4d19bc4d95614c/g_8b4d19bc4d95614c.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -66910,6 +67101,197 @@
           "description": "number value",
           "valid": true,
           "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "cd82f9b119548fa4ba40689753736a7d01f5c8ebe4d8210c6fb9230240d6e460",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_153f0c14a8aec6b9/g_153f0c14a8aec6b9.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "22fb5d711fbefebc8fd9493d3ddda4efca20664bf44d8d66849b849090ef82ef",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_1163655532e4c123/g_1163655532e4c123.go:19:8: undefined: Root",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "12e4af3ce2d1e366e761ed56374a01937432c394e044907f1e66cad14c2da430",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_5fb7aef0fcef5886/g_5fb7aef0fcef5886.go:19:8: undefined: Root",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "e49608a1d8a699984c59fa5e19a572320ff669c7f8f3ed75d3d5205b71436852",
+      "generated_at": "2026-11-07T04:47:48Z",
+      "bucket": "compile_fail",
+      "error": "g_abf1dd3227d25fe3/g_abf1dd3227d25fe3.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "not_run"
         }
       ]
     }

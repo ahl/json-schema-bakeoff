@@ -6,7 +6,7 @@
   "kind": "validator",
   "generator": "ajv",
   "homepage": "https://ajv.js.org",
-  "generated_at": "2026-10-11T18:53:54Z",
+  "generated_at": "2026-11-07T04:47:47Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31892,6 +31892,208 @@
           "valid": false,
           "outcome": "match",
           "error": "data must NOT have more than 2 items"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "1a8eff1347a57d7dc10e9a40b4931ce9bfa4e958ea38109b9fb6833dafbc6057",
+      "generated_at": "2026-11-07T04:47:46Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must have required property 'circle', data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data/circle/radius must be number, data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be object, data must be object, data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "e2f4bc10e3a661d4dd6763d7266dfc2b6db9693f43580bb786f4b9c26e3230d7",
+      "generated_at": "2026-11-07T04:47:46Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must have required property 'circle', data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data/circle/radius must be number, data must have required property 'square', data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "36c3d976f3243b6dedda2652d5d3de35213552666433bf126e17fc343ae7afc3",
+      "generated_at": "2026-11-07T04:47:46Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must NOT have additional properties, data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must NOT have additional properties, data must NOT have additional properties, data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must have required property 'circle', data must have required property 'square', data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "da51852c225ed14c5e09ba1445c3443a2f41caccbe51e7e01824b9e8afe08c84",
+      "generated_at": "2026-11-07T04:47:46Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data must have required property 'B', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data must have required property 'B', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data/B must be integer, data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data must NOT have additional properties, data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values, data must be object, data must match exactly one schema in oneOf"
         }
       ]
     },
@@ -67375,6 +67577,208 @@
           "description": "number value",
           "valid": true,
           "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "72ee5d549ad6b8b93e80d8b2d00bc61000addb16976790ee18286285325a9d5d",
+      "generated_at": "2026-11-07T04:47:47Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must have required property 'circle', data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data/circle/radius must be number, data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be object, data must be object, data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "958f32f33f868ecbf28041f934df59421d6967f756bd13237f2da860d15fd5e9",
+      "generated_at": "2026-11-07T04:47:47Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must have required property 'circle', data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data/circle/radius must be number, data must have required property 'square', data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "b5c774c66855e76e5a943f2c46e1a0b22be735f64cea5d14bc5a2118058b827a",
+      "generated_at": "2026-11-07T04:47:47Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must NOT have additional properties, data must have required property 'square', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must NOT have additional properties, data must NOT have additional properties, data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must have required property 'circle', data must have required property 'square', data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "0ecd0c238cca5b041250585aa4d34859a5b88b901c475eed3d7bd26e7763c30c",
+      "generated_at": "2026-11-07T04:47:47Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data must have required property 'B', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data must have required property 'B', data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data/B must be integer, data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be string, data must be equal to one of the allowed values, data must NOT have additional properties, data must match exactly one schema in oneOf"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values, data must be object, data must match exactly one schema in oneOf"
         }
       ]
     }

@@ -8,9 +8,11 @@ the unmarshaller rather than left to the type system. The flip side is that a
 root with no `type` keyword produces no root type at all, and the combinators
 collapse into a merged type or `interface{}`.
 
-_generated 2026-10-11T18:50:16Z_
+_generated 2026-11-07T04:47:48Z_
 
 **28 of 1408 non-optional groups pass (2.0%)**; 301 optional groups reported separately
+
+**0 of 8 compound groups pass (0.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -47,6 +49,14 @@ _generated 2026-10-11T18:50:16Z_
 | draft2020-12 | 8 | 6 | 4 | 0 | 0 | 56 | 4 | 0 | 78 | 10.3% |
 | **Total** | **42** | **31** | **20** | **0** | **0** | **193** | **15** | **0** | **301** | **14.0%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 0.0% |
+| draft2020-12 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 0.0% |
+| **Total** | **0** | **0** | **0** | **0** | **0** | **8** | **0** | **0** | **8** | **0.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -68,6 +78,14 @@ _generated 2026-10-11T18:50:16Z_
 | draft2019-09 | 40 | 63 | 63.5% | 1043 | 3.8% |
 | draft2020-12 | 39 | 62 | 62.9% | 1047 | 3.7% |
 | **Total** | **198** | **314** | **63.1%** | **3923** | **5.0%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 0 | 0 | - | 27 | 0.0% |
+| draft2020-12 | 0 | 0 | - | 27 | 0.0% |
+| **Total** | **0** | **0** | **-** | **54** | **0.0%** |
 
 ## Chart
 
@@ -266,6 +284,13 @@ _generated 2026-10-11T18:50:16Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | **Total** | **8** | **7** | **4** | **0** | **0** | **39** | **6** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 🦀🦀🦀🦀 |
+| **Total** | **0** | **0** | **0** | **0** | **0** | **4** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -448,6 +473,13 @@ _generated 2026-10-11T18:50:16Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | **Total** | **8** | **6** | **4** | **0** | **0** | **56** | **4** | **0** | **78** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | 4 | 🦀🦀🦀🦀 |
+| **Total** | **0** | **0** | **0** | **0** | **0** | **4** | **0** | **0** | **4** |  |
+
 ## Failures
 
 ### ❌ `generation_error` (207)
@@ -514,9 +546,9 @@ Per group:
 - `draft6/minLength.json::minLength validation with a decimal` — `error parsing from file <schema>: cannot load schema`
 - … and 157 more
 
-### 🦀 `compile_fail` (1287)
+### 🦀 `compile_fail` (1295)
 
-1182 distinct first-line errors; most common:
+1190 distinct first-line errors; most common:
 
 - **8×** `g_d0b2c179917d66d6/g_d0b2c179917d66d6.go:9:8: undefined: Root`
 - **8×** `g_debdfb0bc8ba4bfa/g_debdfb0bc8ba4bfa.go:9:8: undefined: Root`
@@ -526,6 +558,14 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `g_daa6e609ee6da0da/g_daa6e609ee6da0da.go:9:8: undefined: Root`
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `g_a966d969c92bf620/g_a966d969c92bf620.go:19:8: undefined: Root`
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `g_da12cda703df3cdf/g_da12cda703df3cdf.go:19:8: undefined: Root`
+- `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `g_8b4d19bc4d95614c/g_8b4d19bc4d95614c.go:9:8: undefined: Root`
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `g_153f0c14a8aec6b9/g_153f0c14a8aec6b9.go:9:8: undefined: Root`
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `g_1163655532e4c123/g_1163655532e4c123.go:19:8: undefined: Root`
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `g_5fb7aef0fcef5886/g_5fb7aef0fcef5886.go:19:8: undefined: Root`
+- `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `g_abf1dd3227d25fe3/g_abf1dd3227d25fe3.go:9:8: undefined: Root`
 - `draft4/additionalItems.json::when items is schema, additionalItems does nothing` — `g_2ae117931cbed77e/g_2ae117931cbed77e.go:9:8: undefined: Root`
 - `draft4/additionalItems.json::additionalItems as false without items` — `g_91752a5959f55a1a/g_91752a5959f55a1a.go:9:8: undefined: Root`
 - `draft4/additionalItems.json::additionalItems with null instance elements` — `g_9cf72fcf495300ee/g_9cf72fcf495300ee.go:9:8: undefined: Root`
@@ -568,15 +608,7 @@ Per group:
 - `draft4/enum.json::nul characters in strings` — `g_892cb66ea81a0f5e/g_892cb66ea81a0f5e.go:9:8: undefined: Root`
 - `draft4/enum.json::characters with the same visual representation but different codepoint` — `g_40c459ff8d977fe3/g_40c459ff8d977fe3.go:9:8: undefined: Root`
 - `draft4/enum.json::characters with the same visual representation, but different number of codepoints` — `g_b95843450e35b931/g_b95843450e35b931.go:9:8: undefined: Root`
-- `draft4/format.json::email format` — `g_4cc93b415b496e2b/g_4cc93b415b496e2b.go:9:8: undefined: Root`
-- `draft4/format.json::ipv4 format` — `g_510af5b211611c4b/g_510af5b211611c4b.go:9:8: undefined: Root`
-- `draft4/format.json::ipv6 format` — `g_0cb470f40ea48aad/g_0cb470f40ea48aad.go:9:8: undefined: Root`
-- `draft4/format.json::hostname format` — `g_68c07488f1d9c11b/g_68c07488f1d9c11b.go:9:8: undefined: Root`
-- `draft4/format.json::date-time format` — `g_d2bd7e21bb1b8d54/g_d2bd7e21bb1b8d54.go:9:8: undefined: Root`
-- `draft4/format.json::uri format` — `g_6bac4657aa959e29/g_6bac4657aa959e29.go:9:8: undefined: Root`
-- `draft4/infinite-loop-detection.json::evaluating the same schema location against the same data location twice is not a sign of an infinite loop` — `g_19bf22974b211372/g_19bf22974b211372.go:11:8: undefined: Root`
-- `draft4/items.json::a schema given for items` — `g_1a57970c3f190bec/g_1a57970c3f190bec.go:9:8: undefined: Root`
-- … and 1237 more
+- … and 1245 more
 
 ### 🤪 `mixed` (14)
 

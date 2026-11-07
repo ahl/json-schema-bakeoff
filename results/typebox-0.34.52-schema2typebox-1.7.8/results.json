@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "typebox",
   "homepage": "https://github.com/sinclairzx81/typebox",
-  "generated_at": "2026-10-11T19:24:11Z",
+  "generated_at": "2026-11-07T04:48:14Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31706,6 +31706,208 @@
           "description": "extra items are invalid even if unique",
           "valid": false,
           "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "49bd0bf6a8b2d8e92d87771958e861d7c6fbe71d5b5a8bf4245988871455c08e",
+      "generated_at": "2026-11-07T04:48:12Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "98d454e49be90c6e74c8c3dd9a68e3f9013b48ba871b47e7e436138ab72cacb0",
+      "generated_at": "2026-11-07T04:48:12Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "6ec6adab5fea580bad6fcf88de4abd49cdb08ad5b36eb0100d5a136bbffbbd03",
+      "generated_at": "2026-11-07T04:48:12Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "94d61a7c0b6181468a6d07ddca68bf3bb2114130ccb482347a9cc009eb2ffb18",
+      "generated_at": "2026-11-07T04:48:12Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
         }
       ]
     },
@@ -66974,6 +67176,208 @@
           "description": "number value",
           "valid": true,
           "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "6aae534396950191669809842f7df4226602edde78720f8cbaa691966e4e43a3",
+      "generated_at": "2026-11-07T04:48:14Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "8f00f7c85c209eb1848363967742ff41ca67a55aa9b4cfc72cfdc45add3524e4",
+      "generated_at": "2026-11-07T04:48:14Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "8ccb7eae7111eca6c336e0841f5b8f07209b9cdaf14f8af241c5afcb1ca2378d",
+      "generated_at": "2026-11-07T04:48:14Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "c6a06ba4ff7173ac1979d0fdceff0f55a60e5a51ef9ef0da9d1341496a18bb18",
+      "generated_at": "2026-11-07T04:48:14Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected kind 'ExtendedOneOf' at <root>"
         }
       ]
     }

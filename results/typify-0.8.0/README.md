@@ -3,9 +3,11 @@
 The last typify release before the typespace rewrite. Same design center as
 0.10; it's here so the rewrite has something to be measured against.
 
-_generated 2026-10-11T22:00:26Z_
+_generated 2026-11-07T04:48:19Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
+
+**2 of 8 compound groups pass (25.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -42,6 +44,14 @@ _generated 2026-10-11T22:00:26Z_
 | draft2020-12 | 21 | 6 | 7 | 0 | 0 | 0 | 0 | 44 | 78 | 26.9% |
 | **Total** | **104** | **17** | **31** | **0** | **0** | **0** | **2** | **147** | **301** | **34.6%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
+| draft2020-12 | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
+| **Total** | **2** | **2** | **4** | **0** | **0** | **0** | **0** | **0** | **8** | **25.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -63,6 +73,14 @@ _generated 2026-10-11T22:00:26Z_
 | draft2019-09 | 103 | 131 | 78.6% | 1043 | 9.9% |
 | draft2020-12 | 103 | 131 | 78.6% | 1047 | 9.8% |
 | **Total** | **453** | **553** | **81.9%** | **3923** | **11.5%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 22 | 27 | 81.5% | 27 | 81.5% |
+| draft2020-12 | 22 | 27 | 81.5% | 27 | 81.5% |
+| **Total** | **44** | **54** | **81.5%** | **54** | **81.5%** |
 
 ## Chart
 
@@ -261,6 +279,13 @@ _generated 2026-10-11T22:00:26Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
 | **Total** | **20** | **3** | **6** | **0** | **0** | **0** | **0** | **35** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 🚧🚧✅🙈 |
+| **Total** | **1** | **1** | **2** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -442,6 +467,13 @@ _generated 2026-10-11T22:00:26Z_
 | optional/refOfUnknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 5 | 🤯🤯🤯🤯🤯 |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 🤯 |
 | **Total** | **21** | **6** | **7** | **0** | **0** | **0** | **0** | **44** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 🚧🚧✅🙈 |
+| **Total** | **1** | **1** | **2** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 
@@ -660,9 +692,9 @@ Per group:
 - `draft2020-12/properties.json::properties, patternProperties, additionalProperties interaction` — `accepted 'property invalidates property' though valid: false`
   - cases: property invalidates property (accepted), patternProperty invalidates property (accepted), patternProperty validates nonproperty (rejected)
 
-### 🚧 `false_reject` (130)
+### 🚧 `false_reject` (134)
 
-30 distinct first-line errors; most common:
+31 distinct first-line errors; most common:
 
 - **10×** `ascii character in json string: doesn't match pattern "\p{Letter}cole"`
 - **10×** `ascii digits: doesn't match pattern "^\p{digit}+$"`
@@ -672,6 +704,14 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `circle plus an unrelated key is valid: invalid value: map, expected map with a single key`
+  - cases: circle plus an unrelated key is valid (rejected), an unrelated key before the variant key is valid (rejected)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `circle plus an unrelated key is valid: invalid value: map, expected map with a single key`
+  - cases: circle plus an unrelated key is valid (rejected), an unrelated key before the variant key is valid (rejected)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `circle plus an unrelated key is valid: invalid value: map, expected map with a single key`
+  - cases: circle plus an unrelated key is valid (rejected), an unrelated key before the variant key is valid (rejected)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `circle plus an unrelated key is valid: invalid value: map, expected map with a single key`
+  - cases: circle plus an unrelated key is valid (rejected), an unrelated key before the variant key is valid (rejected)
 - `draft4/additionalItems.json::additionalItems as false without items` — `ignores non-arrays: invalid type: map, expected a sequence`
   - cases: ignores non-arrays (rejected)
 - `draft4/additionalProperties.json::additionalProperties being false does not allow other properties` — `ignores arrays: invalid length 3, expected fewer elements in array`
@@ -764,19 +804,11 @@ Per group:
   - cases: ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected)
 - `draft7/properties.json::object properties validation` — `ignores arrays: invalid length 0, expected struct Root with 2 elements`
   - cases: ignores arrays (rejected), ignores other non-objects (rejected)
-- `draft7/properties.json::properties whose names are Javascript object property names` — `ignores arrays: invalid length 0, expected struct Root with 3 elements`
-  - cases: ignores arrays (rejected), ignores other non-objects (rejected)
-- `draft7/propertyNames.json::propertyNames validation` — `ignores arrays: invalid type: sequence, expected a map`
-  - cases: ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected), ignores null (rejected), ignores booleans (rejected)
-- `draft7/required.json::required validation` — `ignores arrays: invalid length 0, expected struct Root with 2 elements`
-  - cases: ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected), ignores null (rejected), ignores boolean (rejected)
-- `draft7/required.json::required properties whose names are Javascript object property names` — `ignores arrays: invalid length 0, expected struct Root with 3 elements`
-  - cases: ignores arrays (rejected), ignores other non-objects (rejected)
-- … and 80 more
+- … and 84 more
 
-### 🙈 `false_accept` (268)
+### 🙈 `false_accept` (270)
 
-70 distinct first-line errors; most common:
+71 distinct first-line errors; most common:
 
 - **17×** `accepted 'with unevaluated properties' though valid: false`
 - **14×** `accepted 'missing dependency' though valid: false`
@@ -786,6 +818,10 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
+  - cases: the unit variant in map form with null is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
+  - cases: the unit variant in map form with null is invalid (accepted)
 - `draft4/anyOf.json::anyOf complex types` — `accepted 'neither anyOf valid (complex)' though valid: false`
   - cases: neither anyOf valid (complex) (accepted)
 - `draft4/default.json::the default keyword does not do anything if the property is missing` — `accepted 'an explicit property value is checked against maximum (failing)' though valid: false`
@@ -882,9 +918,5 @@ Per group:
   - cases: an invalid due to one is invalid (accepted), an invalid due to the other is invalid (accepted), an invalid due to both is invalid (accepted)
 - `draft6/patternProperties.json::regexes are not anchored by default and are case sensitive` — `accepted 'recognized members are accounted for' though valid: false`
   - cases: recognized members are accounted for (accepted), regexes are case sensitive, 2 (accepted)
-- `draft6/patternProperties.json::patternProperties with boolean schemas` — `accepted 'object with property matching schema false is invalid' though valid: false`
-  - cases: object with property matching schema false is invalid (accepted), object with both properties is invalid (accepted), object with a property matching both true and false is invalid (accepted)
-- `draft6/properties.json::properties with boolean schema` — `accepted 'only 'false' property present is invalid' though valid: false`
-  - cases: only 'false' property present is invalid (accepted), both properties present is invalid (accepted)
-- … and 218 more
+- … and 220 more
 

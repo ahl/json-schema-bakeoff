@@ -6,9 +6,11 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-10-11T18:51:36Z_
+_generated 2026-11-07T04:48:07Z_
 
 **302 of 1408 non-optional groups pass (21.4%)**; 301 optional groups reported separately
+
+**0 of 8 compound groups pass (0.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -45,6 +47,14 @@ _generated 2026-10-11T18:51:36Z_
 | draft2020-12 | 5 | 15 | 2 | 0 | 0 | 50 | 6 | 0 | 78 | 6.4% |
 | **Total** | **18** | **75** | **9** | **0** | **0** | **181** | **18** | **0** | **301** | **6.0%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0.0% |
+| draft2020-12 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0.0% |
+| **Total** | **0** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **0.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -66,6 +76,14 @@ _generated 2026-10-11T18:51:36Z_
 | draft2019-09 | 37 | 69 | 53.6% | 1043 | 3.5% |
 | draft2020-12 | 37 | 69 | 53.6% | 1047 | 3.5% |
 | **Total** | **169** | **328** | **51.5%** | **3923** | **4.3%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 15 | 27 | 55.6% | 27 | 55.6% |
+| draft2020-12 | 15 | 27 | 55.6% | 27 | 55.6% |
+| **Total** | **30** | **54** | **55.6%** | **54** | **55.6%** |
 
 ## Chart
 
@@ -264,6 +282,13 @@ _generated 2026-10-11T18:51:36Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | **Total** | **2** | **15** | **2** | **0** | **0** | **43** | **2** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
+| **Total** | **0** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -445,6 +470,13 @@ _generated 2026-10-11T18:51:36Z_
 | optional/refOfUnknownKeyword.json | 3 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 5 | ✅❌✅✅❌ |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | **Total** | **5** | **15** | **2** | **0** | **0** | **50** | **6** | **0** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
+| **Total** | **0** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 
@@ -729,9 +761,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: json: cannot unmarshal number 1e+308 into Go value of type g_1cb87ac0db86bbfd.Root`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (385)
+### 🙈 `false_accept` (393)
 
-84 distinct first-line errors; most common:
+87 distinct first-line errors; most common:
 
 - **18×** `accepted 'with unevaluated properties' though valid: false`
 - **15×** `accepted 'does not match' though valid: false`
@@ -741,6 +773,22 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `accepted 'circle plus an unrelated key is invalid' though valid: false`
+  - cases: circle plus an unrelated key is invalid (accepted), circle and square together is invalid (accepted), an empty object is invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
+  - cases: the unit variant in map form with null is invalid (accepted), the unit variant in map form with an empty object is invalid (accepted), the data variant with a null payload is invalid (accepted), the data variant with an extra key is invalid (accepted), the data variant's name as a bare string is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `accepted 'circle plus an unrelated key is invalid' though valid: false`
+  - cases: circle plus an unrelated key is invalid (accepted), circle and square together is invalid (accepted), an empty object is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
+  - cases: the unit variant in map form with null is invalid (accepted), the unit variant in map form with an empty object is invalid (accepted), the data variant with a null payload is invalid (accepted), the data variant with an extra key is invalid (accepted), the data variant's name as a bare string is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -825,21 +873,5 @@ Per group:
   - cases: heterogeneous invalid instance (accepted)
 - `draft6/additionalProperties.json::additionalProperties being false does not allow other properties` — `accepted 'an additional property is invalid' though valid: false`
   - cases: an additional property is invalid (accepted)
-- `draft6/additionalProperties.json::non-ASCII pattern with additionalProperties` — `accepted 'not matching the pattern is invalid' though valid: false`
-  - cases: not matching the pattern is invalid (accepted)
-- `draft6/additionalProperties.json::additionalProperties with schema` — `accepted 'an additional invalid property is invalid' though valid: false`
-  - cases: an additional invalid property is invalid (accepted)
-- `draft6/allOf.json::allOf` — `accepted 'mismatch second' though valid: false`
-  - cases: mismatch second (accepted), mismatch first (accepted)
-- `draft6/allOf.json::allOf with base schema` — `accepted 'mismatch base schema' though valid: false`
-  - cases: mismatch base schema (accepted), mismatch first allOf (accepted), mismatch second allOf (accepted), mismatch both (accepted)
-- `draft6/anyOf.json::anyOf with base schema` — `accepted 'both anyOf invalid' though valid: false`
-  - cases: both anyOf invalid (accepted)
-- `draft6/const.json::const validation` — `accepted 'another value is invalid' though valid: false`
-  - cases: another value is invalid (accepted)
-- `draft6/const.json::const with -2.0 matches integer and float types` — `accepted 'integer 2 is invalid' though valid: false`
-  - cases: integer 2 is invalid (accepted), float 2.0 is invalid (accepted), float -2.00001 is invalid (accepted)
-- `draft6/const.json::float and integers are equal up to 64-bit representation limits` — `accepted 'integer minus one is invalid' though valid: false`
-  - cases: integer minus one is invalid (accepted), float minus one is invalid (accepted)
-- … and 335 more
+- … and 343 more
 

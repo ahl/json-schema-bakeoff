@@ -11,9 +11,11 @@ shape-only (the validating path is `TryFrom<Value>`). Written by Claude Code: th
 repo runs from a CLAUDE.md and the codegen commits carry session tags. The
 published 0.0.6 (results kept, hidden) refused any root that wasn't an object.
 
-_generated 2026-11-04T15:57:57Z_
+_generated 2026-11-07T04:47:53Z_
 
 **748 of 1408 non-optional groups pass (53.1%)**; 301 optional groups reported separately
+
+**8 of 8 compound groups pass (100.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -50,6 +52,14 @@ _generated 2026-11-04T15:57:57Z_
 | draft2020-12 | 33 | 15 | 10 | 19 | 0 | 0 | 1 | 0 | 78 | 42.3% |
 | **Total** | **146** | **35** | **77** | **39** | **0** | **0** | **4** | **0** | **301** | **48.5%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -71,6 +81,14 @@ _generated 2026-11-04T15:57:57Z_
 | draft2019-09 | 414 | 1040 | 39.8% | 1043 | 39.7% |
 | draft2020-12 | 417 | 1046 | 39.9% | 1047 | 39.8% |
 | **Total** | **2392** | **3917** | **61.1%** | **3923** | **61.0%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
+| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
+| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
 
 ## Chart
 
@@ -269,6 +287,13 @@ _generated 2026-11-04T15:57:57Z_
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | **Total** | **31** | **6** | **25** | **1** | **0** | **0** | **1** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -450,6 +475,13 @@ _generated 2026-11-04T15:57:57Z_
 | optional/refOfUnknownKeyword.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
 | optional/unknownKeyword.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | **Total** | **33** | **15** | **10** | **19** | **0** | **0** | **1** | **0** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 

@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "schemafy-0.6",
   "homepage": "https://crates.io/crates/schemafy_lib",
-  "generated_at": "2026-10-11T22:00:41Z",
+  "generated_at": "2026-11-07T04:48:11Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31560,6 +31560,206 @@
           "description": "extra items are invalid even if unique",
           "valid": false,
           "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "fcce05185ababd3f52ad877af44c4ec8cece9041c4d2770a79e29c05677c9ef6",
+      "generated_at": "2026-11-07T04:48:09Z",
+      "bucket": "false_accept",
+      "error": "accepted `circle and square together match both branches, invalid` though valid: false",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "7be2e2368246157810fbf6498702c18ac0214af710f9783084f5bde89f99cd45",
+      "generated_at": "2026-11-07T04:48:09Z",
+      "bucket": "false_accept",
+      "error": "accepted `circle and square together match both branches, invalid` though valid: false",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum RootSide"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum RootSide"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "b816a317fb56855efe96a2d3b8fc4e5291c6f0a21269cc03343bb53a2b141aef",
+      "generated_at": "2026-11-07T04:48:09Z",
+      "bucket": "false_accept",
+      "error": "accepted `circle plus an unrelated key is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum RootSide"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "d2f9f46f10255b3956b321b1773978a4b0ec82b9d80dbf9d7ff34834b37fc729",
+      "generated_at": "2026-11-07T04:48:09Z",
+      "bucket": "false_accept",
+      "error": "accepted `the unit variant in map form with null is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
         }
       ]
     },
@@ -66644,6 +66844,203 @@
           "description": "number value",
           "valid": true,
           "outcome": "match"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads inline",
+      "hash": "d57fba51ac133c645170222e9299b18d6d042465b81fb4442943db069c431db5",
+      "generated_at": "2026-11-07T04:48:11Z",
+      "bucket": "false_accept",
+      "error": "accepted `circle and square together match both branches, invalid` though valid: false",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "a non-object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each, payloads by $ref",
+      "hash": "c3b03dde19277ec089ea2fdc8ef834717aa1f42665360a25eb31a9d294335559",
+      "generated_at": "2026-11-07T04:48:11Z",
+      "bucket": "compile_fail",
+      "error": "error[E0425]: cannot find type `Circle` in this scope\n --> src/g_8f3ea9ad2d553ae8.rs:7:17\n  |\n7 |     pub circle: Circle,\n  |                 ^^^^^^ not found in this scope\nerror[E0425]: cannot find type `Square` in this scope\n  --> src/g_8f3ea9ad2d553ae8.rs:11:17\n   |\n11 |     pub square: Square,\n   |                 ^^^^^^ not found in this scope",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an unrelated key before the variant key is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together match both branches, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "neither variant key is present, invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-number radius is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf of objects with one required key each and additionalProperties false",
+      "hash": "68f867ae86da24ce5beb4bf18d291abde1dbf9d1dacb62b300c95705ebe6fe6e",
+      "generated_at": "2026-11-07T04:48:11Z",
+      "bucket": "compile_fail",
+      "error": "error[E0425]: cannot find type `Circle` in this scope\n --> src/g_ed92bd7f33ce16aa.rs:7:17\n  |\n7 |     pub circle: Circle,\n  |                 ^^^^^^ not found in this scope\nerror[E0425]: cannot find type `Square` in this scope\n  --> src/g_ed92bd7f33ce16aa.rs:11:17\n   |\n11 |     pub square: Square,\n   |                 ^^^^^^ not found in this scope",
+      "cases": [
+        {
+          "description": "circle alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square alone is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle plus an unrelated key is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "circle and square together is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "oneOf mixing a unit variant and a data variant",
+      "hash": "deed07f2e9f4bf87e68cc5cd634b546b780a09022885038190483648f86de306",
+      "generated_at": "2026-11-07T04:48:11Z",
+      "bucket": "false_accept",
+      "error": "accepted `the unit variant in map form with null is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "the unit variant as a string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the unit variant in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "the unit variant in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "the data variant is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the data variant with a null payload is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
+        },
+        {
+          "description": "the data variant with an extra key is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data did not match any variant of untagged enum Root"
         }
       ]
     }

@@ -6,9 +6,11 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-10-11T18:51:51Z_
+_generated 2026-11-07T04:48:08Z_
 
 **591 of 1408 non-optional groups pass (42.0%)**; 301 optional groups reported separately
+
+**2 of 8 compound groups pass (25.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -45,6 +47,14 @@ _generated 2026-10-11T18:51:51Z_
 | draft2020-12 | 14 | 53 | 5 | 0 | 0 | 0 | 6 | 0 | 78 | 17.9% |
 | **Total** | **52** | **206** | **25** | **0** | **0** | **0** | **18** | **0** | **301** | **17.3%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
+| draft2020-12 | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
+| **Total** | **2** | **6** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **25.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -66,6 +76,14 @@ _generated 2026-10-11T18:51:51Z_
 | draft2019-09 | 490 | 1029 | 47.6% | 1043 | 47.0% |
 | draft2020-12 | 492 | 1033 | 47.6% | 1047 | 47.0% |
 | **Total** | **1823** | **3880** | **47.0%** | **3923** | **46.5%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 21 | 27 | 77.8% | 27 | 77.8% |
+| draft2020-12 | 21 | 27 | 77.8% | 27 | 77.8% |
+| **Total** | **42** | **54** | **77.8%** | **54** | **77.8%** |
 
 ## Chart
 
@@ -264,6 +282,13 @@ _generated 2026-10-11T18:51:51Z_
 | optional/unknownKeyword.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | **Total** | **10** | **47** | **5** | **0** | **0** | **0** | **2** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈✅ |
+| **Total** | **1** | **3** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -445,6 +470,13 @@ _generated 2026-10-11T18:51:51Z_
 | optional/refOfUnknownKeyword.json | 3 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 5 | ✅❌✅✅❌ |
 | optional/unknownKeyword.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | **Total** | **14** | **53** | **5** | **0** | **0** | **0** | **6** | **0** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈✅ |
+| **Total** | **1** | **3** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 
@@ -716,9 +748,9 @@ Per group:
   - cases: with additional properties (rejected)
 - … and 34 more
 
-### 🙈 `false_accept` (718)
+### 🙈 `false_accept` (724)
 
-167 distinct first-line errors; most common:
+169 distinct first-line errors; most common:
 
 - **27×** `accepted 'too long is invalid' though valid: false`
 - **27×** `accepted 'too short is invalid' though valid: false`
@@ -728,6 +760,18 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `accepted 'circle and square together is invalid' though valid: false`
+  - cases: circle and square together is invalid (accepted), an empty object is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'circle and square together match both branches, invalid' though valid: false`
+  - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each and additionalProperties false` — `accepted 'circle and square together is invalid' though valid: false`
+  - cases: circle and square together is invalid (accepted), an empty object is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -816,17 +860,5 @@ Per group:
   - cases: both oneOf valid (complex) (accepted)
 - `draft4/oneOf.json::oneOf with empty schema` — `accepted 'both valid - invalid' though valid: false`
   - cases: both valid - invalid (accepted)
-- `draft4/oneOf.json::oneOf with required` — `accepted 'both invalid - invalid' though valid: false`
-  - cases: both invalid - invalid (accepted), both valid - invalid (accepted)
-- `draft4/oneOf.json::oneOf with missing optional property` — `accepted 'both oneOf valid' though valid: false`
-  - cases: both oneOf valid (accepted), neither oneOf valid (accepted)
-- `draft4/pattern.json::pattern validation` — `accepted 'a non-matching pattern is invalid' though valid: false`
-  - cases: a non-matching pattern is invalid (accepted)
-- `draft4/patternProperties.json::patternProperties validates properties matching a regex` — `accepted 'a single invalid match is invalid' though valid: false`
-  - cases: a single invalid match is invalid (accepted), multiple invalid matches is invalid (accepted)
-- `draft4/patternProperties.json::multiple simultaneous patternProperties are validated` — `accepted 'an invalid due to one is invalid' though valid: false`
-  - cases: an invalid due to one is invalid (accepted), an invalid due to the other is invalid (accepted), an invalid due to both is invalid (accepted)
-- `draft4/patternProperties.json::regexes are not anchored by default and are case sensitive` — `accepted 'recognized members are accounted for' though valid: false`
-  - cases: recognized members are accounted for (accepted), regexes are case sensitive, 2 (accepted)
-- … and 668 more
+- … and 674 more
 

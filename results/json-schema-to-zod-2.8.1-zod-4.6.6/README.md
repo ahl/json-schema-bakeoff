@@ -7,9 +7,11 @@ on `type`: a typed schema picks up bounds, lengths, patterns, enums and
 says. It has no `$ref` resolver. Unmaintained since March 2026; 2.8.1 is the
 last release, and it runs on zod 4 here.
 
-_generated 2026-10-11T18:53:39Z_
+_generated 2026-11-07T04:47:54Z_
 
 **538 of 1408 non-optional groups pass (38.2%)**; 301 optional groups reported separately
+
+**6 of 8 compound groups pass (75.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -46,6 +48,14 @@ _generated 2026-10-11T18:53:39Z_
 | draft2020-12 | 23 | 51 | 4 | 0 | 0 | 0 | 0 | 0 | 78 | 29.5% |
 | **Total** | **103** | **178** | **20** | **0** | **0** | **0** | **0** | **0** | **301** | **34.2%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 75.0% |
+| draft2020-12 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 75.0% |
+| **Total** | **6** | **2** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **75.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -67,6 +77,14 @@ _generated 2026-10-11T18:53:39Z_
 | draft2019-09 | 515 | 1043 | 49.4% | 1043 | 49.4% |
 | draft2020-12 | 517 | 1047 | 49.4% | 1047 | 49.4% |
 | **Total** | **1942** | **3923** | **49.5%** | **3923** | **49.5%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 26 | 27 | 96.3% | 27 | 96.3% |
+| draft2020-12 | 26 | 27 | 96.3% | 27 | 96.3% |
+| **Total** | **52** | **54** | **96.3%** | **54** | **96.3%** |
 
 ## Chart
 
@@ -265,6 +283,13 @@ _generated 2026-10-11T18:53:39Z_
 | optional/unknownKeyword.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | **Total** | **21** | **39** | **4** | **0** | **0** | **0** | **0** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅🙈✅✅ |
+| **Total** | **3** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -447,6 +472,13 @@ _generated 2026-10-11T18:53:39Z_
 | optional/unknownKeyword.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | **Total** | **23** | **51** | **4** | **0** | **0** | **0** | **0** | **0** | **78** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅🙈✅✅ |
+| **Total** | **3** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ## Failures
 
 ### 🤪 `mixed` (9)
@@ -591,9 +623,9 @@ Per group:
   - cases: one of the enum is valid (rejected), valid object matches (rejected)
 - … and 57 more
 
-### 🙈 `false_accept` (952)
+### 🙈 `false_accept` (954)
 
-198 distinct first-line errors; most common:
+199 distinct first-line errors; most common:
 
 - **35×** `accepted 'mismatch' though valid: false`
 - **27×** `accepted 'too long is invalid' though valid: false`
@@ -603,6 +635,10 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'a non-number radius is invalid' though valid: false`
+  - cases: a non-number radius is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'a non-number radius is invalid' though valid: false`
+  - cases: a non-number radius is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -699,9 +735,5 @@ Per group:
   - cases: a single invalid match is invalid (accepted), multiple invalid matches is invalid (accepted)
 - `draft4/patternProperties.json::multiple simultaneous patternProperties are validated` — `accepted 'an invalid due to one is invalid' though valid: false`
   - cases: an invalid due to one is invalid (accepted), an invalid due to the other is invalid (accepted), an invalid due to both is invalid (accepted)
-- `draft4/patternProperties.json::regexes are not anchored by default and are case sensitive` — `accepted 'recognized members are accounted for' though valid: false`
-  - cases: recognized members are accounted for (accepted), regexes are case sensitive, 2 (accepted)
-- `draft4/properties.json::object properties validation` — `accepted 'one property invalid is invalid' though valid: false`
-  - cases: one property invalid is invalid (accepted), both properties invalid is invalid (accepted)
-- … and 902 more
+- … and 904 more
 

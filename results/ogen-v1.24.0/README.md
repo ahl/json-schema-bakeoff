@@ -7,9 +7,11 @@ with the schema as a component (3.1 schema objects are JSON Schema 2020-12,
 so nothing is translated), and the check calls both `Decode` and
 `Validate`.
 
-_generated 2026-10-11T19:51:21Z_
+_generated 2026-11-07T04:48:02Z_
 
 **279 of 1408 non-optional groups pass (19.8%)**; 301 optional groups reported separately
+
+**8 of 8 compound groups pass (100.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -46,6 +48,14 @@ _generated 2026-10-11T19:51:21Z_
 | draft2020-12 | 19 | 34 | 1 | 0 | 0 | 11 | 13 | 0 | 78 | 24.4% |
 | **Total** | **93** | **119** | **5** | **0** | **0** | **34** | **50** | **0** | **301** | **30.9%** |
 
+### Compound groups
+
+| Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
+| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+
 ### Per-case match rate
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
@@ -67,6 +77,14 @@ _generated 2026-10-11T19:51:21Z_
 | draft2019-09 | 338 | 604 | 56.0% | 1043 | 32.4% |
 | draft2020-12 | 338 | 604 | 56.0% | 1047 | 32.3% |
 | **Total** | **1299** | **2289** | **56.7%** | **3923** | **33.1%** |
+
+### Per-case match rate (compound)
+
+| Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
+|---|---:|---:|---:|---:|---:|
+| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
+| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
+| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
 
 ## Chart
 
@@ -265,6 +283,13 @@ _generated 2026-10-11T19:51:21Z_
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | **Total** | **18** | **28** | **1** | **0** | **0** | **6** | **11** | **0** | **64** |  |
 
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+
 ### draft2019-09
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
@@ -446,6 +471,13 @@ _generated 2026-10-11T19:51:21Z_
 | optional/refOfUnknownKeyword.json | 0 | 4 | 0 | 0 | 0 | 1 | 0 | 0 | 5 | 🙈🙈🙈🦀🙈 |
 | optional/unknownKeyword.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | **Total** | **19** | **34** | **1** | **0** | **0** | **11** | **13** | **0** | **78** |  |
+
+#### compound
+
+| File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
+| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
 
 ## Failures
 

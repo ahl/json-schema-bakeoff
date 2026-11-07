@@ -30,5 +30,5 @@ jobs:
         run: |
           # Progress lines go to stderr; capture both.
           cargo run --release -- run --generator typify-0.10 --draft draft7 2>&1 | tee run.log
-          grep -q "cache: 325 hit, 0 to run" run.log
+          grep -q "cache: 326 hit, 0 to run" run.log
           git diff --exit-code -- results RESULTS.md
