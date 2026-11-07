@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "quicktype",
   "homepage": "https://quicktype.io",
-  "generated_at": "2026-11-07T04:48:07Z",
+  "generated_at": "2026-11-07T15:38:23Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31872,6 +31872,59 @@
           "description": "the data variant's name as a bare string is invalid",
           "valid": false,
           "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "5f0869e7baed96a9208066e07aabcd1aaba87136068871de7c28e8ad0d432963",
+      "generated_at": "2026-11-07T15:38:22Z",
+      "bucket": "false_accept",
+      "error": "accepted `a non-member string is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal object into Go value of type g_d1ea2d26304c7e70.Root"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal object into Go value of type g_d1ea2d26304c7e70.Root"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal object into Go value of type g_d1ea2d26304c7e70.Root"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal array into Go value of type g_d1ea2d26304c7e70.Root"
         }
       ]
     },
@@ -67298,6 +67351,59 @@
           "description": "the data variant's name as a bare string is invalid",
           "valid": false,
           "outcome": "false_accept"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "ce07823a70428023f65f05af372da1ba1ccc4dd8e2916264c111e14f647a7094",
+      "generated_at": "2026-11-07T15:38:23Z",
+      "bucket": "false_accept",
+      "error": "accepted `a non-member string is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal object into Go value of type g_87392ffdf87c883f.Root"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal object into Go value of type g_87392ffdf87c883f.Root"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal object into Go value of type g_87392ffdf87c883f.Root"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "json: cannot unmarshal array into Go value of type g_87392ffdf87c883f.Root"
         }
       ]
     }

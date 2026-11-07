@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "typify-0.8",
   "homepage": "https://crates.io/crates/typify",
-  "generated_at": "2026-11-07T04:48:19Z",
+  "generated_at": "2026-11-07T15:38:39Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -32224,6 +32224,59 @@
           "valid": false,
           "outcome": "match",
           "error": "invalid type: unit variant, expected newtype variant"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "927f99397734f3c5c633bd2e9e0f48336059cf20729446d386c2f361cc523b51",
+      "generated_at": "2026-11-07T15:38:38Z",
+      "bucket": "false_accept",
+      "error": "accepted `a member in map form with null is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "unknown variant `D`, expected one of `A`, `B`, `C`"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: map, expected unit"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "unknown variant `D`, expected one of `A`, `B`, `C`"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: sequence, expected string or map"
         }
       ]
     },
@@ -67934,6 +67987,59 @@
           "valid": false,
           "outcome": "match",
           "error": "invalid type: unit variant, expected newtype variant"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "f39244381445a5c1e14f0b1c613ff35406eb036745240f0f64378f40f5156b5a",
+      "generated_at": "2026-11-07T15:38:39Z",
+      "bucket": "false_accept",
+      "error": "accepted `a member in map form with null is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "unknown variant `D`, expected one of `A`, `B`, `C`"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: map, expected unit"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "unknown variant `D`, expected one of `A`, `B`, `C`"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "invalid type: sequence, expected string or map"
         }
       ]
     }

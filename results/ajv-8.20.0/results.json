@@ -6,7 +6,7 @@
   "kind": "validator",
   "generator": "ajv",
   "homepage": "https://ajv.js.org",
-  "generated_at": "2026-11-07T04:47:47Z",
+  "generated_at": "2026-11-07T15:37:49Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -32094,6 +32094,59 @@
           "valid": false,
           "outcome": "match",
           "error": "data must be equal to one of the allowed values, data must be object, data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "3ed4d45cf128bb7bb6488b408c14761f51f908ec8c7796fcdfaf293038d2fdc3",
+      "generated_at": "2026-11-07T15:37:49Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
         }
       ]
     },
@@ -67779,6 +67832,59 @@
           "valid": false,
           "outcome": "match",
           "error": "data must be equal to one of the allowed values, data must be object, data must match exactly one schema in oneOf"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "79d9a40ab0bffd698afd21f64d1da1c957d5275777b1352982b8a8e1df8429ea",
+      "generated_at": "2026-11-07T15:37:49Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "data must be equal to one of the allowed values"
         }
       ]
     }

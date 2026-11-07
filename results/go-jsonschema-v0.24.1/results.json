@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "go-jsonschema",
   "homepage": "https://github.com/omissis/go-jsonschema",
-  "generated_at": "2026-11-07T04:47:48Z",
+  "generated_at": "2026-11-07T15:37:51Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31873,6 +31873,55 @@
         },
         {
           "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "64f3ab0c94cb322f636cfe0278fea34194512715039fb13a4aa106788edac8e2",
+      "generated_at": "2026-11-07T15:37:50Z",
+      "bucket": "compile_fail",
+      "error": "g_b45fa5f20ea36611/g_b45fa5f20ea36611.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -67290,6 +67339,55 @@
         },
         {
           "description": "the data variant's name as a bare string is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "51e2c892519c2e06dee898b30be1187102e502e414e6c41d2a74ae705b7f79c1",
+      "generated_at": "2026-11-07T15:37:51Z",
+      "bucket": "compile_fail",
+      "error": "g_7e9599702c183ca7/g_7e9599702c183ca7.go:9:8: undefined: Root",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
           "valid": false,
           "outcome": "not_run"
         }

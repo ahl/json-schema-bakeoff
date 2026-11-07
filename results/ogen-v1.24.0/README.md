@@ -7,11 +7,11 @@ with the schema as a component (3.1 schema objects are JSON Schema 2020-12,
 so nothing is translated), and the check calls both `Decode` and
 `Validate`.
 
-_generated 2026-11-07T04:48:02Z_
+_generated 2026-11-07T15:38:19Z_
 
 **279 of 1408 non-optional groups pass (19.8%)**; 301 optional groups reported separately
 
-**8 of 8 compound groups pass (100.0%)**
+**8 of 10 compound groups pass (80.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -52,9 +52,9 @@ _generated 2026-11-07T04:48:02Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
-| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
-| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+| draft7 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 80.0% |
+| draft2020-12 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 80.0% |
+| **Total** | **8** | **2** | **0** | **0** | **0** | **0** | **0** | **0** | **10** | **80.0%** |
 
 ### Per-case match rate
 
@@ -82,9 +82,9 @@ _generated 2026-11-07T04:48:02Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
-| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
-| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
+| draft7 | 29 | 34 | 85.3% | 34 | 85.3% |
+| draft2020-12 | 29 | 34 | 85.3% | 34 | 85.3% |
+| **Total** | **58** | **68** | **85.3%** | **68** | **85.3%** |
 
 ## Chart
 
@@ -287,8 +287,8 @@ _generated 2026-11-07T04:48:02Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅🙈 |
+| **Total** | **4** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -476,8 +476,8 @@ _generated 2026-11-07T04:48:02Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅🙈 |
+| **Total** | **4** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 
@@ -648,9 +648,9 @@ Per group:
 - `draft2020-12/optional/bignum.json::integer` — `a bignum is an integer: alias: value out of range`
   - cases: a bignum is an integer (rejected), a negative bignum is an integer (rejected)
 
-### 🙈 `false_accept` (764)
+### 🙈 `false_accept` (766)
 
-165 distinct first-line errors; most common:
+166 distinct first-line errors; most common:
 
 - **29×** `accepted 'mismatch' though valid: false`
 - **16×** `accepted 'a non-string is invalid' though valid: false`
@@ -660,6 +660,10 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a non-member string is invalid' though valid: false`
+  - cases: a non-member string is invalid (accepted), a member in map form with null is invalid (accepted), a member in map form with an empty object is invalid (accepted), a non-member in map form with null is invalid (accepted), a member wrapped in an array is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a non-member string is invalid' though valid: false`
+  - cases: a non-member string is invalid (accepted), a member in map form with null is invalid (accepted), a member in map form with an empty object is invalid (accepted), a non-member in map form with null is invalid (accepted), a member wrapped in an array is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -756,9 +760,5 @@ Per group:
   - cases: too short is invalid (accepted), one grapheme is not long enough (accepted)
 - `draft4/minProperties.json::minProperties validation` — `accepted 'too short is invalid' though valid: false`
   - cases: too short is invalid (accepted)
-- `draft4/minimum.json::minimum validation` — `accepted 'below the minimum is invalid' though valid: false`
-  - cases: below the minimum is invalid (accepted)
-- `draft4/minimum.json::minimum validation (explicit false exclusivity)` — `accepted 'below the minimum is invalid' though valid: false`
-  - cases: below the minimum is invalid (accepted)
-- … and 714 more
+- … and 716 more
 

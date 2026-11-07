@@ -6,11 +6,11 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-11-07T04:48:08Z_
+_generated 2026-11-07T15:38:24Z_
 
 **591 of 1408 non-optional groups pass (42.0%)**; 301 optional groups reported separately
 
-**2 of 8 compound groups pass (25.0%)**
+**4 of 10 compound groups pass (40.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -51,9 +51,9 @@ _generated 2026-11-07T04:48:08Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
-| draft2020-12 | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
-| **Total** | **2** | **6** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **25.0%** |
+| draft7 | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 40.0% |
+| draft2020-12 | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 40.0% |
+| **Total** | **4** | **6** | **0** | **0** | **0** | **0** | **0** | **0** | **10** | **40.0%** |
 
 ### Per-case match rate
 
@@ -81,9 +81,9 @@ _generated 2026-11-07T04:48:08Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 21 | 27 | 77.8% | 27 | 77.8% |
-| draft2020-12 | 21 | 27 | 77.8% | 27 | 77.8% |
-| **Total** | **42** | **54** | **77.8%** | **54** | **77.8%** |
+| draft7 | 28 | 34 | 82.4% | 34 | 82.4% |
+| draft2020-12 | 28 | 34 | 82.4% | 34 | 82.4% |
+| **Total** | **56** | **68** | **82.4%** | **68** | **82.4%** |
 
 ## Chart
 
@@ -286,8 +286,8 @@ _generated 2026-11-07T04:48:08Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈✅ |
-| **Total** | **1** | **3** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈✅✅ |
+| **Total** | **2** | **3** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -475,8 +475,8 @@ _generated 2026-11-07T04:48:08Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 1 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈✅ |
-| **Total** | **1** | **3** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈✅✅ |
+| **Total** | **2** | **3** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 

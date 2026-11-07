@@ -7,11 +7,11 @@ get out of the way. It models structure only, so validation keywords vanish
 and anything that isn't a plain object graph panics. The last release
 (0.6.0) is from October 2021.
 
-_generated 2026-11-07T04:48:11Z_
+_generated 2026-11-07T15:38:27Z_
 
 **325 of 1408 non-optional groups pass (23.1%)**; 301 optional groups reported separately
 
-**0 of 8 compound groups pass (0.0%)**
+**0 of 10 compound groups pass (0.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -52,9 +52,9 @@ _generated 2026-11-07T04:48:11Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0.0% |
-| draft2020-12 | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 0 | 4 | 0.0% |
-| **Total** | **0** | **6** | **0** | **0** | **0** | **2** | **0** | **0** | **8** | **0.0%** |
+| draft7 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 0.0% |
+| draft2020-12 | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 0 | 5 | 0.0% |
+| **Total** | **0** | **8** | **0** | **0** | **0** | **2** | **0** | **0** | **10** | **0.0%** |
 
 ### Per-case match rate
 
@@ -82,9 +82,9 @@ _generated 2026-11-07T04:48:11Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 21 | 27 | 77.8% | 27 | 77.8% |
-| draft2020-12 | 12 | 15 | 80.0% | 27 | 44.4% |
-| **Total** | **33** | **42** | **78.6%** | **54** | **61.1%** |
+| draft7 | 27 | 34 | 79.4% | 34 | 79.4% |
+| draft2020-12 | 18 | 22 | 81.8% | 34 | 52.9% |
+| **Total** | **45** | **56** | **80.4%** | **68** | **66.2%** |
 
 ## Chart
 
@@ -287,8 +287,8 @@ _generated 2026-11-07T04:48:11Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
-| **Total** | **0** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈🙈🙈 |
+| **Total** | **0** | **5** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -476,8 +476,8 @@ _generated 2026-11-07T04:48:11Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 0 | 4 | 🙈🦀🦀🙈 |
-| **Total** | **0** | **2** | **0** | **0** | **0** | **2** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 0 | 5 | 🙈🦀🦀🙈🙈 |
+| **Total** | **0** | **3** | **0** | **0** | **0** | **2** | **0** | **0** | **5** |  |
 
 ## Failures
 
@@ -772,9 +772,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: invalid type: floating point '1e+308', expected i64`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (836)
+### 🙈 `false_accept` (838)
 
-189 distinct first-line errors; most common:
+190 distinct first-line errors; most common:
 
 - **27×** `accepted 'too short is invalid' though valid: false`
 - **15×** `accepted 'anything non-null is invalid' though valid: false`
@@ -792,10 +792,14 @@ Per group:
   - cases: circle plus an unrelated key is invalid (accepted), circle and square together is invalid (accepted)
 - `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
   - cases: the unit variant in map form with null is invalid (accepted), the data variant with an extra key is invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
   - cases: circle and square together match both branches, invalid (accepted)
 - `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
   - cases: the unit variant in map form with null is invalid (accepted), the data variant with an extra key is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -880,9 +884,5 @@ Per group:
   - cases: below the minimum is invalid (accepted)
 - `draft4/minimum.json::minimum validation (explicit false exclusivity)` — `accepted 'below the minimum is invalid' though valid: false`
   - cases: below the minimum is invalid (accepted)
-- `draft4/minimum.json::exclusiveMinimum validation` — `accepted 'boundary point is invalid' though valid: false`
-  - cases: boundary point is invalid (accepted)
-- `draft4/minimum.json::minimum validation with signed integer` — `accepted 'float below the minimum is invalid' though valid: false`
-  - cases: float below the minimum is invalid (accepted), int below the minimum is invalid (accepted)
-- … and 786 more
+- … and 788 more
 

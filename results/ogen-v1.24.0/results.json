@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "ogen",
   "homepage": "https://ogen.dev",
-  "generated_at": "2026-11-07T04:48:02Z",
+  "generated_at": "2026-11-07T15:38:19Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31772,6 +31772,55 @@
           "valid": false,
           "outcome": "match",
           "error": "invalid value: B"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "582032ac865a3be9a20426f8fc7e54cf36c6bcaadbc32d80a5e7a7eec6ed2598",
+      "generated_at": "2026-11-07T15:38:18Z",
+      "bucket": "false_accept",
+      "error": "accepted `a non-member string is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     },
@@ -67065,6 +67114,55 @@
           "valid": false,
           "outcome": "match",
           "error": "invalid value: B"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "a2635df48fabbcd52ce2656541aaf12ed56b29612cb0f33ef7e863fb9aca1dce",
+      "generated_at": "2026-11-07T15:38:19Z",
+      "bucket": "false_accept",
+      "error": "accepted `a non-member string is invalid` though valid: false",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "false_accept"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "false_accept"
         }
       ]
     }

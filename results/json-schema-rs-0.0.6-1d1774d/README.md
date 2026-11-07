@@ -11,11 +11,11 @@ shape-only (the validating path is `TryFrom<Value>`). Written by Claude Code: th
 repo runs from a CLAUDE.md and the codegen commits carry session tags. The
 published 0.0.6 (results kept, hidden) refused any root that wasn't an object.
 
-_generated 2026-11-07T04:47:53Z_
+_generated 2026-11-07T15:37:55Z_
 
 **748 of 1408 non-optional groups pass (53.1%)**; 301 optional groups reported separately
 
-**8 of 8 compound groups pass (100.0%)**
+**8 of 10 compound groups pass (80.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -56,9 +56,9 @@ _generated 2026-11-07T04:47:53Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
-| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
-| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+| draft7 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 80.0% |
+| draft2020-12 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 80.0% |
+| **Total** | **8** | **2** | **0** | **0** | **0** | **0** | **0** | **0** | **10** | **80.0%** |
 
 ### Per-case match rate
 
@@ -86,9 +86,9 @@ _generated 2026-11-07T04:47:53Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
-| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
-| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
+| draft7 | 33 | 34 | 97.1% | 34 | 97.1% |
+| draft2020-12 | 33 | 34 | 97.1% | 34 | 97.1% |
+| **Total** | **66** | **68** | **97.1%** | **68** | **97.1%** |
 
 ## Chart
 
@@ -291,8 +291,8 @@ _generated 2026-11-07T04:47:53Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅🙈 |
+| **Total** | **4** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -480,8 +480,8 @@ _generated 2026-11-07T04:47:53Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅🙈 |
+| **Total** | **4** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 
@@ -784,9 +784,9 @@ Per group:
   - cases: ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected), ignores null (rejected), ignores boolean (rejected)
 - … and 193 more
 
-### 🙈 `false_accept` (430)
+### 🙈 `false_accept` (432)
 
-108 distinct first-line errors; most common:
+109 distinct first-line errors; most common:
 
 - **18×** `accepted 'with unevaluated items' though valid: false`
 - **18×** `accepted 'with unevaluated properties' though valid: false`
@@ -796,6 +796,10 @@ Per group:
 
 Per group:
 
+- `draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -892,9 +896,5 @@ Per group:
   - cases: matches root (accepted), matches both (accepted)
 - `draft6/items.json::an array of schemas for items` — `accepted 'wrong types' though valid: false`
   - cases: wrong types (accepted)
-- `draft6/items.json::items with boolean schema (false)` — `accepted 'any non-empty array is invalid' though valid: false`
-  - cases: any non-empty array is invalid (accepted)
-- `draft6/items.json::items with boolean schemas` — `accepted 'array with two items is invalid' though valid: false`
-  - cases: array with two items is invalid (accepted)
-- … and 380 more
+- … and 382 more
 

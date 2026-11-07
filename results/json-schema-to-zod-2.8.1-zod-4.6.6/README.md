@@ -7,11 +7,11 @@ on `type`: a typed schema picks up bounds, lengths, patterns, enums and
 says. It has no `$ref` resolver. Unmaintained since March 2026; 2.8.1 is the
 last release, and it runs on zod 4 here.
 
-_generated 2026-11-07T04:47:54Z_
+_generated 2026-11-07T15:37:57Z_
 
 **538 of 1408 non-optional groups pass (38.2%)**; 301 optional groups reported separately
 
-**6 of 8 compound groups pass (75.0%)**
+**8 of 10 compound groups pass (80.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -52,9 +52,9 @@ _generated 2026-11-07T04:47:54Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 75.0% |
-| draft2020-12 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 75.0% |
-| **Total** | **6** | **2** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **75.0%** |
+| draft7 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 80.0% |
+| draft2020-12 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 80.0% |
+| **Total** | **8** | **2** | **0** | **0** | **0** | **0** | **0** | **0** | **10** | **80.0%** |
 
 ### Per-case match rate
 
@@ -82,9 +82,9 @@ _generated 2026-11-07T04:47:54Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 26 | 27 | 96.3% | 27 | 96.3% |
-| draft2020-12 | 26 | 27 | 96.3% | 27 | 96.3% |
-| **Total** | **52** | **54** | **96.3%** | **54** | **96.3%** |
+| draft7 | 33 | 34 | 97.1% | 34 | 97.1% |
+| draft2020-12 | 33 | 34 | 97.1% | 34 | 97.1% |
+| **Total** | **66** | **68** | **97.1%** | **68** | **97.1%** |
 
 ## Chart
 
@@ -287,8 +287,8 @@ _generated 2026-11-07T04:47:54Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅🙈✅✅ |
-| **Total** | **3** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅🙈✅✅✅ |
+| **Total** | **4** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -476,8 +476,8 @@ _generated 2026-11-07T04:47:54Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅🙈✅✅ |
-| **Total** | **3** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅🙈✅✅✅ |
+| **Total** | **4** | **1** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 

@@ -3,11 +3,11 @@
 The last typify release before the typespace rewrite. Same design center as
 0.10; it's here so the rewrite has something to be measured against.
 
-_generated 2026-11-07T04:48:19Z_
+_generated 2026-11-07T15:38:39Z_
 
 **431 of 1408 non-optional groups pass (30.6%)**; 301 optional groups reported separately
 
-**2 of 8 compound groups pass (25.0%)**
+**2 of 10 compound groups pass (20.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -48,9 +48,9 @@ _generated 2026-11-07T04:48:19Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
-| draft2020-12 | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 25.0% |
-| **Total** | **2** | **2** | **4** | **0** | **0** | **0** | **0** | **0** | **8** | **25.0%** |
+| draft7 | 1 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 5 | 20.0% |
+| draft2020-12 | 1 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 5 | 20.0% |
+| **Total** | **2** | **4** | **4** | **0** | **0** | **0** | **0** | **0** | **10** | **20.0%** |
 
 ### Per-case match rate
 
@@ -78,9 +78,9 @@ _generated 2026-11-07T04:48:19Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 22 | 27 | 81.5% | 27 | 81.5% |
-| draft2020-12 | 22 | 27 | 81.5% | 27 | 81.5% |
-| **Total** | **44** | **54** | **81.5%** | **54** | **81.5%** |
+| draft7 | 28 | 34 | 82.4% | 34 | 82.4% |
+| draft2020-12 | 28 | 34 | 82.4% | 34 | 82.4% |
+| **Total** | **56** | **68** | **82.4%** | **68** | **82.4%** |
 
 ## Chart
 
@@ -283,8 +283,8 @@ _generated 2026-11-07T04:48:19Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 🚧🚧✅🙈 |
-| **Total** | **1** | **1** | **2** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 1 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧🚧✅🙈🙈 |
+| **Total** | **1** | **2** | **2** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -472,8 +472,8 @@ _generated 2026-11-07T04:48:19Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 🚧🚧✅🙈 |
-| **Total** | **1** | **1** | **2** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 1 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 5 | 🚧🚧✅🙈🙈 |
+| **Total** | **1** | **2** | **2** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 
@@ -806,9 +806,9 @@ Per group:
   - cases: ignores arrays (rejected), ignores other non-objects (rejected)
 - … and 84 more
 
-### 🙈 `false_accept` (270)
+### 🙈 `false_accept` (272)
 
-71 distinct first-line errors; most common:
+72 distinct first-line errors; most common:
 
 - **17×** `accepted 'with unevaluated properties' though valid: false`
 - **14×** `accepted 'missing dependency' though valid: false`
@@ -820,8 +820,12 @@ Per group:
 
 - `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
   - cases: the unit variant in map form with null is invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
   - cases: the unit variant in map form with null is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft4/anyOf.json::anyOf complex types` — `accepted 'neither anyOf valid (complex)' though valid: false`
   - cases: neither anyOf valid (complex) (accepted)
 - `draft4/default.json::the default keyword does not do anything if the property is missing` — `accepted 'an explicit property value is checked against maximum (failing)' though valid: false`
@@ -914,9 +918,5 @@ Per group:
   - cases: both valid - invalid (accepted)
 - `draft6/oneOf.json::oneOf with missing optional property` — `accepted 'both oneOf valid' though valid: false`
   - cases: both oneOf valid (accepted)
-- `draft6/patternProperties.json::multiple simultaneous patternProperties are validated` — `accepted 'an invalid due to one is invalid' though valid: false`
-  - cases: an invalid due to one is invalid (accepted), an invalid due to the other is invalid (accepted), an invalid due to both is invalid (accepted)
-- `draft6/patternProperties.json::regexes are not anchored by default and are case sensitive` — `accepted 'recognized members are accounted for' though valid: false`
-  - cases: recognized members are accounted for (accepted), regexes are case sensitive, 2 (accepted)
-- … and 220 more
+- … and 222 more
 

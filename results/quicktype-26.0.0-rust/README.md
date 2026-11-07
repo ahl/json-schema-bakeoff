@@ -6,11 +6,11 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-11-07T04:48:05Z_
+_generated 2026-11-07T15:38:21Z_
 
 **545 of 1408 non-optional groups pass (38.7%)**; 301 optional groups reported separately
 
-**0 of 8 compound groups pass (0.0%)**
+**0 of 10 compound groups pass (0.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -51,9 +51,9 @@ _generated 2026-11-07T04:48:05Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0.0% |
-| draft2020-12 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0.0% |
-| **Total** | **0** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **0.0%** |
+| draft7 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 0.0% |
+| draft2020-12 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 0.0% |
+| **Total** | **0** | **10** | **0** | **0** | **0** | **0** | **0** | **0** | **10** | **0.0%** |
 
 ### Per-case match rate
 
@@ -81,9 +81,9 @@ _generated 2026-11-07T04:48:05Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 18 | 27 | 66.7% | 27 | 66.7% |
-| draft2020-12 | 18 | 27 | 66.7% | 27 | 66.7% |
-| **Total** | **36** | **54** | **66.7%** | **54** | **66.7%** |
+| draft7 | 24 | 34 | 70.6% | 34 | 70.6% |
+| draft2020-12 | 24 | 34 | 70.6% | 34 | 70.6% |
+| **Total** | **48** | **68** | **70.6%** | **68** | **70.6%** |
 
 ## Chart
 
@@ -286,8 +286,8 @@ _generated 2026-11-07T04:48:05Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
-| **Total** | **0** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈🙈🙈 |
+| **Total** | **0** | **5** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -475,8 +475,8 @@ _generated 2026-11-07T04:48:05Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈🙈🙈 |
-| **Total** | **0** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈🙈🙈🙈🙈 |
+| **Total** | **0** | **5** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 
@@ -727,9 +727,9 @@ Per group:
 - `draft2020-12/optional/float-overflow.json::all integers are multiples of 0.5, if overflow is handled` — `valid if optional overflow handling is implemented: invalid type: floating point '1e+308', expected i64`
   - cases: valid if optional overflow handling is implemented (rejected)
 
-### 🙈 `false_accept` (823)
+### 🙈 `false_accept` (825)
 
-177 distinct first-line errors; most common:
+178 distinct first-line errors; most common:
 
 - **27×** `accepted 'too long is invalid' though valid: false`
 - **27×** `accepted 'too short is invalid' though valid: false`
@@ -747,6 +747,8 @@ Per group:
   - cases: circle plus an unrelated key is invalid (accepted), circle and square together is invalid (accepted), an empty object is invalid (accepted)
 - `draft7/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
   - cases: the unit variant in map form with null is invalid (accepted), the data variant with an extra key is invalid (accepted)
+- `draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads inline` — `accepted 'circle and square together match both branches, invalid' though valid: false`
   - cases: circle and square together match both branches, invalid (accepted), neither variant key is present, invalid (accepted)
 - `draft2020-12/compound/externally-tagged-union.json::oneOf of objects with one required key each, payloads by $ref` — `accepted 'circle and square together match both branches, invalid' though valid: false`
@@ -755,6 +757,8 @@ Per group:
   - cases: circle plus an unrelated key is invalid (accepted), circle and square together is invalid (accepted), an empty object is invalid (accepted)
 - `draft2020-12/compound/externally-tagged-union.json::oneOf mixing a unit variant and a data variant` — `accepted 'the unit variant in map form with null is invalid' though valid: false`
   - cases: the unit variant in map form with null is invalid (accepted), the data variant with an extra key is invalid (accepted)
+- `draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant` — `accepted 'a member in map form with null is invalid' though valid: false`
+  - cases: a member in map form with null is invalid (accepted)
 - `draft4/additionalItems.json::additionalItems as schema` — `accepted 'additional items do not match schema' though valid: false`
   - cases: additional items do not match schema (accepted)
 - `draft4/additionalItems.json::array of items with no additionalItems permitted` — `accepted 'additional items are not permitted' though valid: false`
@@ -835,9 +839,5 @@ Per group:
   - cases: 35 is not multiple of 1.5 (accepted)
 - `draft4/multipleOf.json::by small number` — `accepted '0.00751 is not multiple of 0.0001' though valid: false`
   - cases: 0.00751 is not multiple of 0.0001 (accepted)
-- `draft4/not.json::not` — `accepted 'disallowed' though valid: false`
-  - cases: disallowed (accepted)
-- `draft4/not.json::not multiple types` — `accepted 'mismatch' though valid: false`
-  - cases: mismatch (accepted), other mismatch (accepted)
-- … and 773 more
+- … and 775 more
 

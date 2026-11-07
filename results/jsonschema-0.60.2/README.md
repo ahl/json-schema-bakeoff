@@ -8,11 +8,11 @@ a price tag on the policies the generators live with. Remote refs come from
 the library default (asserted through draft 7, annotation-only after), because
 2020-12's required tests say so.
 
-_generated 2026-11-07T06:16:47Z_
+_generated 2026-11-07T15:38:17Z_
 
 **1408 of 1408 non-optional groups pass (100.0%)**; 301 optional groups reported separately
 
-**8 of 8 compound groups pass (100.0%)**
+**10 of 10 compound groups pass (100.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -53,9 +53,9 @@ _generated 2026-11-07T06:16:47Z_
 
 | Draft | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| draft7 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
-| draft2020-12 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 100.0% |
-| **Total** | **8** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **8** | **100.0%** |
+| draft7 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 100.0% |
+| draft2020-12 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 100.0% |
+| **Total** | **10** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **10** | **100.0%** |
 
 ### Per-case match rate
 
@@ -83,9 +83,9 @@ _generated 2026-11-07T06:16:47Z_
 
 | Draft | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---|---:|---:|---:|---:|---:|
-| draft7 | 27 | 27 | 100.0% | 27 | 100.0% |
-| draft2020-12 | 27 | 27 | 100.0% | 27 | 100.0% |
-| **Total** | **54** | **54** | **100.0%** | **54** | **100.0%** |
+| draft7 | 34 | 34 | 100.0% | 34 | 100.0% |
+| draft2020-12 | 34 | 34 | 100.0% | 34 | 100.0% |
+| **Total** | **68** | **68** | **100.0%** | **68** | **100.0%** |
 
 ## Chart
 
@@ -288,8 +288,8 @@ _generated 2026-11-07T06:16:47Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| **Total** | **5** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ### draft2019-09
 
@@ -477,8 +477,8 @@ _generated 2026-11-07T06:16:47Z_
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| compound/externally-tagged-union.json | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | ✅✅✅✅ |
-| **Total** | **4** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **4** |  |
+| compound/externally-tagged-union.json | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | ✅✅✅✅✅ |
+| **Total** | **5** | **0** | **0** | **0** | **0** | **0** | **0** | **0** | **5** |  |
 
 ## Failures
 

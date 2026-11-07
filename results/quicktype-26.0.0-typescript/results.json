@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "quicktype",
   "homepage": "https://quicktype.io",
-  "generated_at": "2026-11-07T04:48:08Z",
+  "generated_at": "2026-11-07T15:38:24Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31882,6 +31882,59 @@
           "valid": false,
           "outcome": "match",
           "error": "Invalid value. Expected one of [object, object] but got \"B\""
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "e7054cb3ca0ff096b977efc350d27d5128bab16bb9637003e504176c85131b59",
+      "generated_at": "2026-11-07T15:38:24Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got \"D\""
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got {\"A\":null}"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got {\"A\":{}}"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got {\"D\":null}"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got [\"A\"]"
         }
       ]
     },
@@ -67338,6 +67391,59 @@
           "valid": false,
           "outcome": "match",
           "error": "Invalid value. Expected one of [object, object] but got \"B\""
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "0962b095f0ee8655029adc8545d3731d2dd010560bb811e03c0fce29ad6611be",
+      "generated_at": "2026-11-07T15:38:24Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got \"D\""
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got {\"A\":null}"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got {\"A\":{}}"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got {\"D\":null}"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Invalid value. Expected one of [A, B, C] but got [\"A\"]"
         }
       ]
     }

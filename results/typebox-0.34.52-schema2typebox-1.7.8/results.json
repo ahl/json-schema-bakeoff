@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "typebox",
   "homepage": "https://github.com/sinclairzx81/typebox",
-  "generated_at": "2026-11-07T04:48:14Z",
+  "generated_at": "2026-11-07T15:38:29Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -31908,6 +31908,59 @@
           "valid": false,
           "outcome": "match",
           "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "288076088c6ca0ba1d36162048d49bfa180538a291150dc2fd0af0ad7325d034",
+      "generated_at": "2026-11-07T15:38:28Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
         }
       ]
     },
@@ -67378,6 +67431,59 @@
           "valid": false,
           "outcome": "match",
           "error": "Expected kind 'ExtendedOneOf' at <root>"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "97753ae7129474326a8e3450bb9214cb5a3829eb65b3c96fba37d4f9a7a30184",
+      "generated_at": "2026-11-07T15:38:29Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "Expected union value at <root>"
         }
       ]
     }

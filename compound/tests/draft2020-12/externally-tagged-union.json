@@ -402,5 +402,62 @@
                 "valid": false
             }
         ]
+    },
+    {
+        "description": "a string enum sent the map form of a unit variant",
+        "comment": "A string enum is the shape of a Rust enum of unit variants. The schema admits only the strings; serde's externally tagged form also accepts `{\"A\": null}`, the map form with a unit payload.",
+        "schema": {
+            "title": "Letter",
+            "enum": [
+                "A",
+                "B",
+                "C"
+            ]
+        },
+        "tests": [
+            {
+                "description": "a member string is valid",
+                "data": "A",
+                "valid": true
+            },
+            {
+                "description": "the last member string is valid",
+                "data": "C",
+                "valid": true
+            },
+            {
+                "description": "a non-member string is invalid",
+                "data": "D",
+                "valid": false
+            },
+            {
+                "description": "a member in map form with null is invalid",
+                "data": {
+                    "A": null
+                },
+                "valid": false
+            },
+            {
+                "description": "a member in map form with an empty object is invalid",
+                "data": {
+                    "A": {}
+                },
+                "valid": false
+            },
+            {
+                "description": "a non-member in map form with null is invalid",
+                "data": {
+                    "D": null
+                },
+                "valid": false
+            },
+            {
+                "description": "a member wrapped in an array is invalid",
+                "data": [
+                    "A"
+                ],
+                "valid": false
+            }
+        ]
     }
 ]

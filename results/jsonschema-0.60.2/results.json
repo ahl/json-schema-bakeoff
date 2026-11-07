@@ -6,7 +6,7 @@
   "kind": "validator",
   "generator": "jsonschema-0.58",
   "homepage": "https://crates.io/crates/jsonschema",
-  "generated_at": "2026-11-07T06:16:47Z",
+  "generated_at": "2026-11-07T15:38:17Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -32879,6 +32879,59 @@
           "valid": false,
           "outcome": "match",
           "error": "\"B\" is not valid under any of the schemas listed in the 'oneOf' keyword"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "6a786f6142bf701b349aca3c8e66d27e8e86f2866985fa383a522bd05e798ec2",
+      "generated_at": "2026-11-07T15:38:16Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "\"D\" is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "{\"A\":null} is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "{\"A\":{}} is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "{\"D\":null} is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "[\"A\"] is not one of \"A\", \"B\" or \"C\""
         }
       ]
     },
@@ -68525,6 +68578,59 @@
           "valid": false,
           "outcome": "match",
           "error": "\"B\" is not valid under any of the schemas listed in the 'oneOf' keyword"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "6d9bfcf708fe97b3ee1714387de8e36d2e91f2e6750777228872e50c51f60148",
+      "generated_at": "2026-11-07T15:38:17Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "\"D\" is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "{\"A\":null} is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "{\"A\":{}} is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "{\"D\":null} is not one of \"A\", \"B\" or \"C\""
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "[\"A\"] is not one of \"A\", \"B\" or \"C\""
         }
       ]
     }

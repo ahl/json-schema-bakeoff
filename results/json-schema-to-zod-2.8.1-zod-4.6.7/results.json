@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "json-schema-to-zod",
   "homepage": "https://www.npmjs.com/package/json-schema-to-zod",
-  "generated_at": "2026-11-07T16:39:06Z",
+  "generated_at": "2026-11-07T16:42:30Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -32016,6 +32016,59 @@
           "valid": false,
           "outcome": "match",
           "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        }
+      ]
+    },
+    {
+      "id": "draft7/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft7",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "026e6b623f985b443542d72ab45d6db5209977bddc68e63d06e03cc699af0466",
+      "generated_at": "2026-11-07T16:42:29Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
         }
       ]
     },
@@ -67569,6 +67622,59 @@
           "valid": false,
           "outcome": "match",
           "error": "ZodError: <root>: Invalid input: Should pass single schema. Passed 0"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/compound/externally-tagged-union.json::a string enum sent the map form of a unit variant",
+      "draft": "draft2020-12",
+      "file": "compound/externally-tagged-union.json",
+      "optional": false,
+      "compound": true,
+      "group": "a string enum sent the map form of a unit variant",
+      "hash": "8ca56eeaac3f74f17741631fbf5b452ce4c93c2ed67a5c71e1ae7ac38fe51a85",
+      "generated_at": "2026-11-07T16:42:30Z",
+      "bucket": "pass",
+      "cases": [
+        {
+          "description": "a member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "the last member string is valid",
+          "valid": true,
+          "outcome": "match"
+        },
+        {
+          "description": "a non-member string is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a member in map form with an empty object is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a non-member in map form with null is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
+        },
+        {
+          "description": "a member wrapped in an array is invalid",
+          "valid": false,
+          "outcome": "match",
+          "error": "ZodError: <root>: Invalid option: expected one of \"A\"|\"B\"|\"C\""
         }
       ]
     }
