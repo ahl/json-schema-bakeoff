@@ -6,6 +6,6 @@
   "description": "json-schema-to-zod integration for the JSON Schema codegen bakeoff",
   "dependencies": {
     "json-schema-to-zod": "2.8.1",
-    "zod": "4.6.6"
+    "zod": "4.6.7"
   }
 }
