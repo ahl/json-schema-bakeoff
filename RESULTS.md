@@ -16,6 +16,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-11-07T04:48:05Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-11-07T04:48:11Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-11-07T04:48:17Z |
+| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-11-07T06:15:56Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-11-07T04:48:19Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | 30.2% | 26.8% | 27.1% | 2026-10-11T19:27:54Z |
 
@@ -31,6 +32,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-11-07T04:48:05Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-11-07T04:48:11Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-11-07T04:48:17Z |
+| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-11-07T06:15:56Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-11-07T04:48:19Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T19:27:54Z |
 
@@ -45,6 +47,7 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T04:48:05Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T04:48:11Z |
 | [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | — | — | 25.0% | — | 25.0% | 2026-11-07T04:48:17Z |
+| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | — | — | 25.0% | — | 25.0% | 2026-11-07T06:15:56Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | — | — | 25.0% | — | 25.0% | 2026-11-07T04:48:19Z |
 
 ## Other languages
