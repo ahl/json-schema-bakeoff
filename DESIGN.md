@@ -114,6 +114,14 @@ version edits it in place; the old version's `results/<id>/` stays. Two
 directories for the same tool exist only when the glue code differs
 (`typify-0.8`, `typify2`).
 
+A bump within one generator directory (and, for quicktype, one target
+language) that leaves every shared group's bucket and case outcomes
+unchanged adds nothing, so the older row is left off the scoreboard as
+superseded and named in its Notes; its page stays. Groups only one side
+has (compound groups added after a version was retired) don't count, so
+the two rows' percentages can differ. Different directories never
+supersede each other.
+
 ## Buckets
 
 One per group, worst to best. `cargo run -- key` prints the glyphs.

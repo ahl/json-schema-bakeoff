@@ -249,22 +249,75 @@ pub fn language_label(language: &str) -> &str {
 }
 
 /// Order key for scoreboard rows: tool name ascending, then version
-/// descending (newest first), so `typify 0.10.0-alpha.2` precedes
-/// `typify 0.8.0` precedes `typify 0.3.0`. Versions compare by numeric
-/// segments; a prerelease sorts before its release.
-pub fn row_order(identity: &str) -> (String, Vec<i64>, String) {
+/// descending (newest first), so `typify 0.10.0-alpha.3` precedes
+/// `typify 0.10.0-alpha.2` precedes `typify 0.8.0` precedes `typify 0.3.0`.
+/// Every version-shaped token counts, in order, so `json-schema-to-zod
+/// 2.8.1 + zod 4.6.7` precedes `... + zod 4.6.6`. Versions compare by
+/// numeric segments; a prerelease sorts before its release, and prereleases
+/// compare by dot-separated identifiers (numeric ones numerically), newest
+/// first. Build metadata (`+1d1774d`) is ignored.
+pub fn row_order(identity: &str) -> (String, Vec<VersionKey>) {
     let mut words = identity.split_whitespace();
     let tool = words.next().unwrap_or("").to_ascii_lowercase();
-    let version = words.next().unwrap_or("").trim_start_matches('v');
+    let versions = words
+        .filter(|w| w.trim_start_matches('v').starts_with(|c: char| c.is_ascii_digit()))
+        .map(version_key)
+        .collect();
+    (tool, versions)
+}
+
+/// Descending order key for one version token: negated numeric segments,
+/// a prerelease flag, then the prerelease identifiers newest first.
+pub type VersionKey = (Vec<i64>, std::cmp::Reverse<Vec<PreId>>);
+
+fn version_key(version: &str) -> VersionKey {
+    let version = version.trim_start_matches('v');
+    let version = version.split_once('+').map_or(version, |(v, _)| v);
     let (core, pre) = match version.split_once('-') {
-        Some((c, p)) => (c, p.to_string()),
-        None => (version, String::new()),
+        Some((c, p)) => (c, p),
+        None => (version, ""),
     };
     let mut nums: Vec<i64> = core.split('.').map(|n| n.parse::<i64>().unwrap_or(0)).collect();
     nums.resize(4, 0);
     // Descending version: negate. A prerelease is older than the release.
     let key: Vec<i64> = nums.iter().map(|n| -n).chain([if pre.is_empty() { 0 } else { 1 }]).collect();
-    (tool, key, pre)
+    let pre: Vec<PreId> = if pre.is_empty() {
+        Vec::new()
+    } else {
+        pre.split('.')
+            .map(|p| p.parse::<u64>().map_or_else(|_| PreId::Alpha(p.to_string()), PreId::Num))
+            .collect()
+    };
+    (key, std::cmp::Reverse(pre))
+}
+
+/// One dot-separated prerelease identifier; numeric sorts before alpha,
+/// as in semver.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub enum PreId {
+    Num(u64),
+    Alpha(String),
+}
+
+/// True when `a` and `b` agree on every group they both have: same bucket
+/// and the same per-case outcomes, position by position. Error text and
+/// timestamps don't count; groups in only one of them are ignored. No
+/// shared groups at all is not a match.
+pub fn same_results(a: &Results, b: &Results) -> bool {
+    let theirs: std::collections::HashMap<&str, &GroupResult> =
+        b.groups.iter().map(|g| (g.id.as_str(), g)).collect();
+    let mut shared = 0;
+    for g in &a.groups {
+        let Some(h) = theirs.get(g.id.as_str()) else { continue };
+        shared += 1;
+        if g.bucket != h.bucket
+            || g.cases.len() != h.cases.len()
+            || g.cases.iter().zip(&h.cases).any(|(x, y)| x.outcome != y.outcome)
+        {
+            return false;
+        }
+    }
+    shared > 0
 }
 
 /// A short link label for a homepage URL: `crates.io`, `npm`, `GitHub`,

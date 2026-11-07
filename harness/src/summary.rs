@@ -552,6 +552,29 @@ fn scoreboard_headline(all: &[&Results], tier: Tier, show_language: bool) -> Str
     )
 }
 
+/// Rows left off the scoreboard because a newer row from the same
+/// generator directory and language has the same results on every shared
+/// group (see `same_results`). `rows` must already be in `row_order`, newest
+/// first. Each entry is (superseded row, the newest identical row).
+fn superseded<'a>(rows: &[&'a Results]) -> Vec<(&'a Results, &'a Results)> {
+    let mut out = Vec::new();
+    for (i, old) in rows.iter().enumerate() {
+        if old.generator.is_empty() {
+            continue;
+        }
+        let newer = rows[..i].iter().find(|r| {
+            r.generator == old.generator
+                && r.language == old.language
+                && crate::results::row_order(&r.typify) < crate::results::row_order(&old.typify)
+                && crate::results::same_results(r, old)
+        });
+        if let Some(by) = newer {
+            out.push((*old, *by));
+        }
+    }
+    out
+}
+
 /// `RESULTS.md`: the cross-version scoreboard at the repo root. Just the
 /// headline tables (one row per generator version, one column per draft)
 /// and links to each generator's own page under `results/<version>/`.
@@ -562,6 +585,8 @@ pub fn render_scoreboard(all: &[Results]) -> String {
 
     let mut shown: Vec<&Results> = all.iter().filter(|r| !r.hidden).collect();
     shown.sort_by_key(|r| crate::results::row_order(&r.typify));
+    let superseded = superseded(&shown);
+    shown.retain(|r| !superseded.iter().any(|(old, _)| std::ptr::eq(*old, *r)));
     let (rust, other): (Vec<&Results>, Vec<&Results>) = shown.iter().partition(|r| r.language == "rust");
     for (title, rows, show_language) in [("Rust", rust, false), ("Other languages", other, true)] {
         if rows.is_empty() {
@@ -608,10 +633,31 @@ pub fn render_scoreboard(all: &[Results]) -> String {
             s.push_str("\n\n");
         }
     }
-    if shown.iter().any(|r| r.kind == "validator") {
+    let validators = shown.iter().any(|r| r.kind == "validator");
+    if validators || !superseded.is_empty() {
         s.push_str("## Notes\n\n");
     }
-    if shown.iter().any(|r| r.kind == "validator") {
+    if !superseded.is_empty() {
+        let names: Vec<String> = superseded
+            .iter()
+            .map(|(old, by)| {
+                let old_name = crate::results::display_name(&old.typify, &old.language);
+                let by_name = crate::results::display_name(&by.typify, &by.language);
+                // Same tool, so name the newer one by its version alone.
+                let tool = old_name.split_whitespace().next().unwrap_or("");
+                let by_short = by_name
+                    .strip_prefix(tool)
+                    .and_then(|v| v.strip_prefix(' '))
+                    .unwrap_or(&by_name);
+                format!("{} (by {})", escape_cell(&old_name), escape_cell(by_short))
+            })
+            .collect();
+        s.push_str(&format!(
+            "Left off: same results as a newer version of the same tool on every group both ran: {}.\n\n",
+            names.join(", ")
+        ));
+    }
+    if validators {
         s.push_str("𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.\n\n");
     }
     s
@@ -1024,6 +1070,125 @@ mod tests {
         );
         let term = render_terminal(&with_compound());
         assert!(term.find("  optional:").unwrap() < term.find("  compound:").unwrap());
+    }
+
+    /// Two rows from one generator directory: `typify 0.10.0-alpha.2`
+    /// (sample_results) and a newer `typify 0.10.0-alpha.3` with the same
+    /// outcomes but different error text, timestamps, and an extra group.
+    fn bump_pair() -> (Results, Results) {
+        let mut old = sample_results();
+        old.generator = "typify-0.10".to_string();
+        old.language = "rust".to_string();
+        let mut new = old.clone();
+        new.typify = "typify 0.10.0-alpha.3".to_string();
+        new.version = "typify-0.10.0-alpha.3".to_string();
+        new.generated_at = "2026-11-01T00:00:00Z".to_string();
+        for g in &mut new.groups {
+            g.error = g.error.as_ref().map(|e| format!("{e} (reworded)"));
+            g.generated_at = new.generated_at.clone();
+        }
+        new.groups.push(group(
+            "draft7",
+            "compound/new.json",
+            false,
+            "only in the new row",
+            Bucket::Pass,
+            None,
+            vec![case("c", true, CaseOutcome::Match)],
+        ));
+        (old, new)
+    }
+
+    fn table_has(out: &str, name: &str) -> bool {
+        out.lines().any(|l| l.starts_with(&format!("| [{name}]")))
+    }
+
+    #[test]
+    fn row_order_puts_newest_prerelease_first() {
+        use crate::results::row_order;
+        let mut ids = vec![
+            "typify 0.3.0",
+            "typify 0.10.0-alpha.2",
+            "typify 0.8.0",
+            "typify 0.10.0-alpha.10",
+            "typify 0.10.0",
+            "typify 0.10.0-alpha.3",
+        ];
+        ids.sort_by_key(|i| row_order(i));
+        assert_eq!(
+            ids,
+            [
+                "typify 0.10.0",
+                "typify 0.10.0-alpha.10",
+                "typify 0.10.0-alpha.3",
+                "typify 0.10.0-alpha.2",
+                "typify 0.8.0",
+                "typify 0.3.0",
+            ]
+        );
+        // Build metadata doesn't break the numeric part.
+        assert!(row_order("json-schema-rs 0.0.7+abc") < row_order("json-schema-rs 0.0.6+def"));
+        assert!(
+            row_order("json-schema-to-zod 2.8.1 + zod 4.6.7") < row_order("json-schema-to-zod 2.8.1 + zod 4.6.6")
+        );
+        assert_eq!(row_order("quicktype 26.0.0 rust"), row_order("quicktype 26.0.0 go"));
+    }
+
+    #[test]
+    fn identical_newer_row_supersedes_older() {
+        let (old, new) = bump_pair();
+        let out = render_scoreboard(&[old, new]);
+        assert!(table_has(&out, "typify 0.10.0-alpha.3"));
+        assert!(!table_has(&out, "typify 0.10.0-alpha.2"));
+        assert!(out.contains(
+            "## Notes\n\nLeft off: same results as a newer version of the same tool on every group both ran: typify 0.10.0-alpha.2 (by 0.10.0-alpha.3).\n"
+        ));
+    }
+
+    #[test]
+    fn different_bucket_on_shared_group_keeps_both() {
+        let (old, mut new) = bump_pair();
+        new.groups[0].bucket = Bucket::FalseReject;
+        new.groups[0].cases[0].outcome = CaseOutcome::FalseReject;
+        let out = render_scoreboard(&[old, new]);
+        assert!(table_has(&out, "typify 0.10.0-alpha.3"));
+        assert!(table_has(&out, "typify 0.10.0-alpha.2"));
+        assert!(!out.contains("Left off"));
+        assert!(!out.contains("## Notes"));
+    }
+
+    #[test]
+    fn different_case_outcome_is_not_identical() {
+        let (old, mut new) = bump_pair();
+        assert!(crate::results::same_results(&old, &new));
+        // Same bucket, but the cases moved.
+        new.groups[5].cases.swap(0, 1);
+        assert!(!crate::results::same_results(&old, &new));
+    }
+
+    #[test]
+    fn different_generator_keeps_both() {
+        let (mut old, new) = bump_pair();
+        old.generator = "typify-0.8".to_string();
+        let out = render_scoreboard(&[old, new]);
+        assert!(table_has(&out, "typify 0.10.0-alpha.2"));
+        assert!(!out.contains("Left off"));
+        // An empty generator never participates either.
+        let (mut old, mut new) = bump_pair();
+        old.generator.clear();
+        new.generator.clear();
+        assert!(table_has(&render_scoreboard(&[old, new]), "typify 0.10.0-alpha.2"));
+    }
+
+    #[test]
+    fn no_shared_groups_keeps_both() {
+        let (old, mut new) = bump_pair();
+        for g in &mut new.groups {
+            g.id = format!("{} renamed", g.id);
+        }
+        let out = render_scoreboard(&[old, new]);
+        assert!(table_has(&out, "typify 0.10.0-alpha.2"));
+        assert!(!out.contains("Left off"));
     }
 
     #[test]

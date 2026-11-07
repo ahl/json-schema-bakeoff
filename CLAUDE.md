@@ -52,7 +52,9 @@ checklist; keep doing that.
   a homepage link; no bucket key and no regeneration instructions there
   (the key is on each per-tool page; the README has the commands). Rows sort
   by tool name, then newest version first. Manifest `hidden = true` keeps a
-  row off the tables.
+  row off the tables. So does being superseded: an older version whose
+  results match a newer one from the same generator directory and language
+  on every group both ran (listed in Notes).
 - Per-tool pages show all eight bucket columns in every table; the
   per-group glyph column is "Per group".
 - Descriptions in `generator.toml` are short and in Adam's voice (the
