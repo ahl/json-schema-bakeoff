@@ -10,13 +10,15 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 58.8% | 58.8% | 56.2% | 49.9% | 48.4% | 2026-11-07T15:37:55Z |
+| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 59.0% | 59.0% | 56.4% | 50.0% | 48.3% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 48.1% | 49.4% | 47.7% | 40.5% | 39.8% | 2026-10-31T16:46:40Z |
-| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T15:38:17Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.2% | 41.2% | 43.4% | 36.2% | 35.4% | 2026-11-07T15:38:21Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.5% | 23.2% | 25.6% | 21.7% | 20.8% | 2026-11-07T15:38:27Z |
-| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-11-07T15:38:36Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-11-07T15:38:39Z |
+| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T23:14:39Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T04:47:58Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.0% | 41.0% | 43.2% | 36.1% | 35.1% | 2026-11-07T23:15:04Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.3% | 23.1% | 25.5% | 21.7% | 20.5% | 2026-11-07T23:15:25Z |
+| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 27.8% | 2026-11-07T23:15:43Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 38.1% | 34.3% | 31.0% | 27.6% | 27.9% | 2026-11-07T04:48:17Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 27.8% | 2026-11-07T23:15:49Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | 30.2% | 26.8% | 27.1% | 2026-10-11T19:27:54Z |
 
 ### Optional tests
@@ -25,13 +27,15 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 61.5% | 56.8% | 48.4% | 43.4% | 42.3% | 2026-11-07T15:37:55Z |
+| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 43.0% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 17.9% | 15.9% | 12.5% | 19.7% | 19.2% | 2026-10-31T16:46:40Z |
-| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-11-07T15:38:17Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.9% | 11.4% | 12.5% | 15.8% | 15.4% | 2026-11-07T15:38:21Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.9% | 11.4% | 12.5% | 11.8% | 11.5% | 2026-11-07T15:38:27Z |
-| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-11-07T15:38:36Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-11-07T15:38:39Z |
+| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.8% | 69.6% | 2026-11-07T23:14:39Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.4% | 69.2% | 2026-11-07T04:47:58Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.5% | 11.1% | 12.3% | 15.6% | 15.2% | 2026-11-07T23:15:04Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.5% | 11.1% | 12.3% | 11.7% | 11.4% | 2026-11-07T23:15:25Z |
+| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 55.0% | 44.4% | 30.8% | 27.3% | 26.6% | 2026-11-07T23:15:43Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-11-07T04:48:17Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 55.0% | 44.4% | 30.8% | 27.3% | 26.6% | 2026-11-07T23:15:49Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T19:27:54Z |
 
 ### Compound tests
@@ -40,12 +44,14 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T15:37:55Z |
-| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T15:38:17Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T15:38:21Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T15:38:27Z |
-| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T15:38:36Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T15:38:39Z |
+| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:41Z |
+| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:14:39Z |
+| [jsonschema 0.58.6](results/jsonschema-0.58.6/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T04:47:58Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:04Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:25Z |
+| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T23:15:43Z |
+| [typify 0.10.0-alpha.2](results/typify-0.10.0-alpha.2/README.md) | — | — | 25.0% | — | 25.0% | 2026-11-07T04:48:17Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T23:15:49Z |
 
 ## Other languages
 
@@ -55,13 +61,14 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 97.5% | 98.3% | 98.4% | 96.8% | 90.6% | 2026-11-07T15:37:49Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 2.1% | 2026-11-07T15:37:51Z |
-| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-11-07T16:42:30Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 21.9% | 18.0% | 20.2% | 20.6% | 19.0% | 2026-11-07T15:38:19Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 25.0% | 24.9% | 24.0% | 18.8% | 18.8% | 2026-11-07T15:38:23Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.8% | 43.3% | 45.3% | 40.5% | 39.6% | 2026-11-07T15:38:24Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.1% | 19.7% | 17.8% | 13.7% | 12.2% | 2026-11-07T15:38:29Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 97.5% | 98.3% | 98.5% | 96.8% | 90.6% | 2026-11-07T23:12:42Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 1.8% | 2026-11-07T23:13:05Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 38.5% | 40.6% | 41.7% | 36.4% | 35.6% | 2026-11-07T23:13:45Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 38.8% | 40.8% | 41.9% | 36.5% | 35.7% | 2026-11-07T15:37:57Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 21.7% | 17.9% | 20.1% | 20.6% | 19.0% | 2026-11-07T23:14:53Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 24.8% | 24.8% | 23.9% | 18.7% | 18.4% | 2026-11-07T23:15:06Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.5% | 43.2% | 45.2% | 40.4% | 39.2% | 2026-11-07T23:15:11Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.0% | 19.7% | 17.8% | 13.6% | 11.9% | 2026-11-07T23:15:30Z |
 
 ### Optional tests
 
@@ -69,13 +76,14 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 79.5% | 75.0% | 56.2% | 63.2% | 61.5% | 2026-11-07T15:37:49Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 23.1% | 18.2% | 12.5% | 11.8% | 10.3% | 2026-11-07T15:37:51Z |
-| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-11-07T16:42:30Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 56.4% | 34.1% | 28.1% | 25.0% | 24.4% | 2026-11-07T15:38:19Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.3% | 4.5% | 3.1% | 6.6% | 6.4% | 2026-11-07T15:38:23Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.9% | 15.9% | 15.6% | 18.4% | 17.9% | 2026-11-07T15:38:24Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.9% | 31.8% | 21.9% | 18.4% | 17.9% | 2026-11-07T15:38:29Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 77.5% | 73.3% | 55.4% | 62.3% | 60.8% | 2026-11-07T23:12:42Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 22.5% | 17.8% | 12.3% | 11.7% | 10.1% | 2026-11-07T23:13:05Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 45.0% | 40.0% | 32.3% | 29.9% | 29.1% | 2026-11-07T23:13:45Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | 46.2% | 40.9% | 32.8% | 30.3% | 29.5% | 2026-11-07T15:37:57Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 55.0% | 33.3% | 27.7% | 24.7% | 24.1% | 2026-11-07T23:14:53Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.0% | 4.4% | 3.1% | 6.5% | 6.3% | 2026-11-07T23:15:06Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.5% | 15.6% | 15.4% | 18.2% | 17.7% | 2026-11-07T23:15:11Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.0% | 31.1% | 21.5% | 18.2% | 17.7% | 2026-11-07T23:15:30Z |
 
 ### Compound tests
 
@@ -83,13 +91,14 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T15:37:49Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T15:37:51Z |
-| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T16:42:30Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T15:38:19Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T15:38:23Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | — | — | 40.0% | — | 40.0% | 2026-11-07T15:38:24Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | — | — | 100.0% | — | 100.0% | 2026-11-07T15:38:29Z |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:12:42Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:13:05Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:45Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.6 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.6/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T15:37:57Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:14:53Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:06Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | — | — | 40.0% | — | 40.0% | 2026-11-07T23:15:11Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:15:30Z |
 
 ## The tools
 
@@ -188,8 +197,6 @@ before the 0.4 through 0.8 releases and well before the rewrite. Same design
 center; it's here to show how much the last two years moved.
 
 ## Notes
-
-Left off: same results as a newer version of the same tool on every group both ran: json-schema-to-zod 2.8.1 + zod 4.6.6 (by 2.8.1 + zod 4.6.7), jsonschema 0.58.6 (by 0.60.2), typify 0.10.0-alpha.2 (by 0.10.0-alpha.3).
 
 𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.
 

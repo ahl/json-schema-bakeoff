@@ -6,7 +6,7 @@
   "kind": "generator",
   "generator": "quicktype",
   "homepage": "https://quicktype.io",
-  "generated_at": "2026-11-07T15:38:23Z",
+  "generated_at": "2026-11-07T23:15:06Z",
   "groups": [
     {
       "id": "draft4/additionalItems.json::additionalItems as schema",
@@ -2609,6 +2609,29 @@
       ]
     },
     {
+      "id": "draft4/multipleOf.json::by very small number",
+      "draft": "draft4",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "b4a098180f99cfd15216d13aa6fa1b847f4e1e9c3554efc6178ac9d48589d5f2",
+      "generated_at": "2026-11-07T23:15:04Z",
+      "bucket": "compile_fail",
+      "error": "g_ce83525b39d50121/g_ce83525b39d50121.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft4/multipleOf.json::float division = inf",
       "draft": "draft4",
       "file": "multipleOf.json",
@@ -3161,6 +3184,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft4/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft4",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "53ae083a748cd213402065c41a6f9c8cf0012e12382bef1d48b017ff5ff4b4d4",
+      "generated_at": "2026-11-07T23:15:04Z",
+      "bucket": "compile_fail",
+      "error": "g_92d1b00d9afd19fb/g_92d1b00d9afd19fb.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -4415,8 +4461,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "7395ef43430ccd49a4e7cf17031c60824b21c23af58ee00ed8b0288e7e63f637",
-      "generated_at": "2026-10-11T18:51:29Z",
+      "hash": "fc1b9d8c6501513301b8eec4217b1e0a442b2babd379866da2e6a21d594f34fd",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_6721f10638cacf96/g_6721f10638cacf96.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -4567,6 +4613,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -5117,8 +5173,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "a416e385db46fc688d0369edeff0f48a59e7727bcc233a1eed6d236fd18f12a1",
-      "generated_at": "2026-10-11T18:51:29Z",
+      "hash": "6b4f77cfae56d8079f36f5209a7a77586542973a741d20684b26ad71ebb2457c",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_7c24122fa07b5c5e/g_7c24122fa07b5c5e.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -5354,6 +5410,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -7273,8 +7334,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "3b528e09528090d507190d1b35b25d3ebe9de8429aedc87dfd2fe85edd9f8cc6",
-      "generated_at": "2026-10-11T18:51:29Z",
+      "hash": "7336b009b097733ff4ad0fdf6fafe084ca65b1fb9b3b1f9a3a75ebc228275abd",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_23f03e21a7f37608/g_23f03e21a7f37608.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -7356,16 +7417,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -7521,8 +7572,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "b9fec76f85e431b5a4f7d4455079ce31b1fb26ddfff67c931f49f86d561ae5fd",
-      "generated_at": "2026-10-11T18:51:29Z",
+      "hash": "49912cf7a3dc67115ded136a965690f1bdd44f139349dd436ace95cd098baaae",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_548eba266406e72f/g_548eba266406e72f.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -7578,16 +7629,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -11548,6 +11589,29 @@
       ]
     },
     {
+      "id": "draft6/multipleOf.json::by very small number",
+      "draft": "draft6",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "b7a04705dedc490c6abc0accb34d7b77c6133a4f8c64823d340a1e04b54c582b",
+      "generated_at": "2026-11-07T23:15:04Z",
+      "bucket": "compile_fail",
+      "error": "g_f15038b666587275/g_f15038b666587275.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft6/multipleOf.json::float division = inf",
       "draft": "draft6",
       "file": "multipleOf.json",
@@ -12288,6 +12352,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft6/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft6",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "8b5c38ec0eae7de79dc756d978d8e756012088eb75b20539fa33859054116ad5",
+      "generated_at": "2026-11-07T23:15:04Z",
+      "bucket": "compile_fail",
+      "error": "g_cab4b175ea07df00/g_cab4b175ea07df00.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -13564,8 +13651,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "5f1cbf7ddbd4f4ca64f9a4cb388a1b8f2905ce784833e6b6c05dcb9c46d2ee9b",
-      "generated_at": "2026-10-11T18:51:30Z",
+      "hash": "6c25b9562fec3049fed50c6b6d12dab76bfab23a7590d9842c924313be324bda",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_a5d4be75aff27cad/g_a5d4be75aff27cad.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -13716,6 +13803,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -14900,8 +14997,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "3a3b5d00ff572bc4954a6d78770768fde360fec487355009728232a4fa37e99a",
-      "generated_at": "2026-10-11T18:51:30Z",
+      "hash": "17562fb8271b6d6afab2985cb06cf49c9d10b39dbe46a5f82dc87257642c0fc4",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_6431f3cc0e8c1bab/g_6431f3cc0e8c1bab.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -15137,6 +15234,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -17747,8 +17849,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "e12f963c0ee30ff4d166eabcb33d922a1fbdee725ec02c2c7713989362e5e607",
-      "generated_at": "2026-10-11T18:51:30Z",
+      "hash": "ddf52ebcc1e3bf814fb5857918b4eb4dfb02818f6203ed7e974cd626dee4ed38",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_c5bb8a3a3b47ad08/g_c5bb8a3a3b47ad08.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -17830,16 +17932,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -17995,8 +18087,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "2755384a565fc0cb4e2542d4581ef6fdd8aed344c1a7a78df08370ebb1e6fe5d",
-      "generated_at": "2026-10-11T18:51:30Z",
+      "hash": "f151de6a311e4fb642a44ccebcd2ffe5503d75d7a3d0fed61ec9d3d843fa704d",
+      "generated_at": "2026-11-07T23:15:04Z",
       "bucket": "compile_fail",
       "error": "g_f7e3f62d72528e42/g_f7e3f62d72528e42.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -18052,16 +18144,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -22695,6 +22777,29 @@
       ]
     },
     {
+      "id": "draft7/multipleOf.json::by very small number",
+      "draft": "draft7",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "859e99340215cc99ca704aa8722ff211b93ba12d19d90e52090b59430923e293",
+      "generated_at": "2026-11-07T23:15:05Z",
+      "bucket": "compile_fail",
+      "error": "g_79cc56a71dd26209/g_79cc56a71dd26209.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft7/multipleOf.json::float division = inf",
       "draft": "draft7",
       "file": "multipleOf.json",
@@ -23435,6 +23540,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft7/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft7",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "9899be17334fc8b4c94efbc805ffdb55188006d3e8c6875bc607062aba2ec642",
+      "generated_at": "2026-11-07T23:15:05Z",
+      "bucket": "compile_fail",
+      "error": "g_6530de6854c0c581/g_6530de6854c0c581.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -25379,8 +25507,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "5f021171975afbb3073dd266dbc7c0ce3582c33eb5ddad8a63a403c9012fe41d",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "5e1cc30bf89a2eae951ac65b3717ce64157c31787b0bc67c6a90a2b92b2110d8",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_c7c41c120326cda8/g_c7c41c120326cda8.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -25501,6 +25629,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -25858,8 +25996,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "4ceddf1c43badb03d649017ba2c2dce5c780418f41d2d3a6b25a8e52a3b2c21d",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "43428c6c4b4a51ebdea573f05c071a1dbb0d493e3459a8ac37b50a4fc581c6e2",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_4bfd06b7c3fb0fde/g_4bfd06b7c3fb0fde.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -26150,6 +26288,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -26860,8 +27013,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "edc3c284140c85dd1d24f99715e99a35174f9c8042b8fdd102b890c0a991129e",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "73f9d9304714f5d36163329b6636f92cfaaba0c01a49cf195ce442bd9cb3ab4e",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_0328d1e35526f1bd/g_0328d1e35526f1bd.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -26969,6 +27122,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -26978,8 +27151,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "4471017feaae015aa9ea240a9464e84562cb77ed90134875a89f44e1ac3fbead",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "f4c8f36049cc74ed9a528ac2724b24fc0adea9365018a85197b1f4bf7bdf1cd6",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_593ff857452563eb/g_593ff857452563eb.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -27111,6 +27284,36 @@
         {
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
           "outcome": "not_run"
         }
       ]
@@ -27334,8 +27537,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "11f7c71e2f685343de018e9e4463b01a628a0a428db4be9a06cbfc90a2da61df",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "5ef83f27129d78b71e8271b943a189b397d67a9ea5dc85e7eaf2110f454b109e",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_52b6126a3075d4dc/g_52b6126a3075d4dc.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -27403,6 +27606,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -27412,8 +27640,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "08f835b6cd18effccf3b663c7514512867132a77d914d564d3c585c0bfe45f44",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "7f12ac10d207e73a6a51275ad35fe84d4b71c2e6ab3726ecc2892cbd73df09dc",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_6222bb9cde967719/g_6222bb9cde967719.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -27540,6 +27768,31 @@
         {
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -28317,8 +28570,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "68a64625b64f6e72bd11efe96f87158eb16437af408d01686d949abbb7b474c4",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "ceda644ac9ac2325e6feff14fe60b164779743c5887ffbcf1726eb6ef2074f0f",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_6dc494d4a6468fc7/g_6dc494d4a6468fc7.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -28554,6 +28807,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -31256,8 +31514,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "b0a4123dafc7ab3a567117d1f8bc0aa82ac3aa01e1899a91d1b842e3446d9f03",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "04fa0b775b7567e2ed9ee48b02bde5244929577c7b63a74769d3164c2ed6d479",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_314d5091dd95b544/g_314d5091dd95b544.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -31339,16 +31597,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -31504,8 +31752,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "3e069d76f359751ce04946744637b13d22b59b92d575615c67357bb4dc7abc1e",
-      "generated_at": "2026-10-11T18:51:32Z",
+      "hash": "25d5a1ce691e4e66e10770a7fa56a10c30b3c8f9cf727b5c57dbf3c056b9d179",
+      "generated_at": "2026-11-07T23:15:05Z",
       "bucket": "compile_fail",
       "error": "g_3e07971a252a2fda/g_3e07971a252a2fda.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -31561,16 +31809,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -35947,10 +36185,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "c7c8f841e01297358ca15719522f0a32861fca717207a37f89ae8b582cce2797",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "6aa02b0e9542a598cdc69447e509c724dff3df945b6c70ef9c002f152a65a733",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
-      "error": "g_16d25a56bf935153/g_16d25a56bf935153.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_57ebd146008265e3/g_57ebd146008265e3.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -35970,10 +36208,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "f11029bd31844ae7645c681ac75376dc05016ef93642a44aa334c509f35681ca",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "16c9a673f4d30c931d052324ba787dd2d02049ac7b08ca4c1427a23ac8bd1d8f",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
-      "error": "g_564dc73c2d5236dc/g_564dc73c2d5236dc.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_3392f13524d687a2/g_3392f13524d687a2.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -37277,6 +37515,29 @@
       ]
     },
     {
+      "id": "draft2019-09/multipleOf.json::by very small number",
+      "draft": "draft2019-09",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "8ae1e086206b44eb8abc6930aeda16ceac9ca31f0527877bb6df720574ebeb79",
+      "generated_at": "2026-11-07T23:15:06Z",
+      "bucket": "compile_fail",
+      "error": "g_18eaccddaf71ad68/g_18eaccddaf71ad68.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft2019-09/multipleOf.json::float division = inf",
       "draft": "draft2019-09",
       "file": "multipleOf.json",
@@ -38079,6 +38340,29 @@
       ]
     },
     {
+      "id": "draft2019-09/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft2019-09",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "a2bc87019943c1e233b23fccafbf52273fac278a5807fe9f6ca35c2b35251d85",
+      "generated_at": "2026-11-07T23:15:06Z",
+      "bucket": "compile_fail",
+      "error": "g_0c5a1144232edd4f/g_0c5a1144232edd4f.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft2019-09/optional/cross-draft.json::refs to future drafts are processed as future drafts",
       "draft": "draft2019-09",
       "file": "optional/cross-draft.json",
@@ -38107,8 +38391,8 @@
       "file": "optional/cross-draft.json",
       "optional": true,
       "group": "refs to historic drafts are processed as historic drafts",
-      "hash": "bf77a38db35b98294d068b40a4b9df6c5bffc3c5e62238f26f2a6f12c9d97a07",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "e2227b666a10326a02ce6ceb60fc298a867c43daf9b10fe0e7d0e73b09ec4797",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "generation_error",
       "error": "SchemaFetchError: Could not fetch schema http://localhost:1234/draft7/ignore-dependentRequired.json, referred to from Root#/allOf/1",
       "cases": [
@@ -39711,8 +39995,8 @@
       "file": "optional/format/duration.json",
       "optional": true,
       "group": "validation of duration strings",
-      "hash": "cfc93ae79e786715fee8f1f16038dfe94786e69289e51b3560d4c1420092d98b",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "81560b63c18d6d699ce6405d33e37eb17b51b8c5a2d22f29c7515b85dac0e4ad",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_e85f3af34bce531f/g_e85f3af34bce531f.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -39904,11 +40188,6 @@
         {
           "description": "years and days cannot appear without months",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "months and days can appear without years",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -40490,8 +40769,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "00e9fbaf0faaed13ec5670f63c2cadc9f5d517c046bc7b984eacd64afb82c838",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "c1b54efcd12f3046071538da23def0d9000edde80860219df5e8161499a82e61",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_a3d37899d578e289/g_a3d37899d578e289.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -40612,6 +40891,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -40969,8 +41258,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "0dc7b7bdd9a9d9b490218a1abb2bc44d51111cd7b7fa36b00edd8c2df0d8b44e",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "4d04373d230292daa708c0dfd41906cc29ec0ff8a1fce7b1dbcef3d275e1dc27",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_e81f57d077e765d4/g_e81f57d077e765d4.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -41261,6 +41550,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -41971,8 +42275,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "453662ae766bca7672dae64f09ea87fd5c4820eaa6baa10b07f7da32e2bd3e97",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "f12c8b363fae59e97264650ec1455a9299fa8842dfbfa1ef1b4e3b03a917a924",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_e0e542924f09989e/g_e0e542924f09989e.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -42080,6 +42384,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -42089,8 +42413,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "83d2aff2e76afd290a45488f6df0db18a49004e66e73951745b746e981890e2f",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "d3cb3da7b939b082c9f0dd30e12b1fd4f5ed588a9930ce648152ed9fb9783174",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_98a2282267107fea/g_98a2282267107fea.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -42222,6 +42546,36 @@
         {
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
           "outcome": "not_run"
         }
       ]
@@ -42445,8 +42799,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "7762d07dfa080b11cf0c33946d3dfbd99d189bd814ca71e0cabed85eb2dc7c60",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "3a7160d776296df80a3d9ec5edaa85c91a72f787cf5b004fa2a4106646af7e72",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_5c57d6c018e6471b/g_5c57d6c018e6471b.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -42514,6 +42868,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -42523,8 +42902,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "5c8047d2fb1aa86f874ebc19e00dcc3e3f4b70b4b1cd64a1bd1d51f52b126f31",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "c1aec358240b4f98b673d4bcfefd306a14040446271d7c21a66701be6c5f58f6",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_ea45aeb0dc1abfb3/g_ea45aeb0dc1abfb3.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -42651,6 +43030,31 @@
         {
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -43428,8 +43832,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "e080ba7143c3f8e7f1ddf3451884095f7ef09f55ce2bb7241668673a71d7f4bb",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "a6b4a698f502f601c53371a9d8283be829354615da882977006d2a58c7e60d62",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_5510cafe96bc5931/g_5510cafe96bc5931.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -43665,6 +44069,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -48555,13 +48964,13 @@
       ]
     },
     {
-      "id": "draft2019-09/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2019-09/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2019-09",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "a459e2a309a92cac8e434c03812b52d3e6d3d20756c6de6b801ff78f8577bd21",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "18a6accbfc159f3b2cef49b7a2365b81e170a6714d8079b57452991c90f536cb",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "false_accept",
       "error": "accepted `Empty is invalid` though valid: false",
       "cases": [
@@ -48877,8 +49286,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "0b6397212675030a5384326b24910f502499682d41fde78184c9cd9c807f20f8",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "a894fab276cdf9d1fd4a6134b58eecbbd7de276680070a50bcb6aee77d5079d1",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_8fbb3bc11811d895/g_8fbb3bc11811d895.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -48960,16 +49369,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -49125,8 +49524,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "f350c6dbe6eb549f839a430a17151591343c60aeae0a441982ab884f077fad8d",
-      "generated_at": "2026-10-11T18:51:34Z",
+      "hash": "5116d9e14bec52b9d11bb91c8818fa80f0952d98a2185c3f97a43fbcd4de7916",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_32b1085e4c446d7f/g_32b1085e4c446d7f.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -49182,16 +49581,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
@@ -51920,8 +52309,8 @@
       "file": "dynamicRef.json",
       "optional": false,
       "group": "$ref to $dynamicRef finds detached $dynamicAnchor",
-      "hash": "9563a2279b5a09ee103a47ad891affff608537f123c36220d446464aa39eb4a8",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "c9a119db2fac72726ec9d25e7ff24ca841dd9c1c8e6098492d4ef0dc4340184f",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "generation_error",
       "error": "SchemaFetchError: Could not fetch schema http://localhost:1234/draft2020-12/detached-dynamicref.json, referred to from Root#",
       "cases": [
@@ -53730,10 +54119,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "then: false fails when condition matches",
-      "hash": "b0f610df212b27fd5e3c372878f8e15d6693bacffc439eb7aa0233b0dc425ee9",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "a24d9a4f229e0e19c5622c671531369aa517ac586f0f40241f80789d840cea4e",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
-      "error": "g_666ae1bc932b91ed/g_666ae1bc932b91ed.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_d4054ee9ea2d1c6e/g_d4054ee9ea2d1c6e.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → then=false → invalid",
@@ -53753,10 +54142,10 @@
       "file": "if-then-else.json",
       "optional": false,
       "group": "else: false fails when condition does not match",
-      "hash": "a58ef4f910ccf81b0d02f5742c35c6fef8cec6ed5c55f8ea10d221ddd418aabd",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "1a423eea28e550c50d406439a68d78458f3642d02d174c5497d4a2d46bb588bc",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
-      "error": "g_8311a4bf002df499/g_8311a4bf002df499.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "error": "g_240045f14d487a00/g_240045f14d487a00.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
         {
           "description": "matches if → else ignored → valid",
@@ -55078,6 +55467,29 @@
       ]
     },
     {
+      "id": "draft2020-12/multipleOf.json::by very small number",
+      "draft": "draft2020-12",
+      "file": "multipleOf.json",
+      "optional": false,
+      "group": "by very small number",
+      "hash": "a54a437b93b6d6ec8d8ce84742b5a96b4c520e4fec7828b670c219fd53f8849b",
+      "generated_at": "2026-11-07T23:15:06Z",
+      "bucket": "compile_fail",
+      "error": "g_5eba211f05952685/g_5eba211f05952685.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "4e-8 is multiple of 1e-8",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1.5e-8 is not multiple of 1e-8",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
       "id": "draft2020-12/multipleOf.json::float division = inf",
       "draft": "draft2020-12",
       "file": "multipleOf.json",
@@ -55874,6 +56286,29 @@
       "cases": [
         {
           "description": "comparison works for very negative numbers",
+          "valid": false,
+          "outcome": "not_run"
+        }
+      ]
+    },
+    {
+      "id": "draft2020-12/optional/bignum.json::multipleOf with integers above 2^53",
+      "draft": "draft2020-12",
+      "file": "optional/bignum.json",
+      "optional": true,
+      "group": "multipleOf with integers above 2^53",
+      "hash": "ebf189e13895c37ffab9bbd9beb0e50b24b7189fcc5b08cbd470d1057722f744",
+      "generated_at": "2026-11-07T23:15:06Z",
+      "bucket": "compile_fail",
+      "error": "g_9b44bde2460626da/g_9b44bde2460626da.go:19:10: invalid receiver type Root (pointer or interface type)",
+      "cases": [
+        {
+          "description": "3e20 is multiple of 3",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "1e20 is not multiple of 3",
           "valid": false,
           "outcome": "not_run"
         }
@@ -57512,8 +57947,8 @@
       "file": "optional/format/duration.json",
       "optional": true,
       "group": "validation of duration strings",
-      "hash": "68886aaf2ea6c2b82b448282e7f593f65b0bd7202d8e8f35187c1899aa723956",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "1884ba6604348ca1eca534e4e99e979ddc5121e6c79278b56a6b0df2b7f0a293",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_9a979d4ca7e5a547/g_9a979d4ca7e5a547.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -57705,11 +58140,6 @@
         {
           "description": "years and days cannot appear without months",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "months and days can appear without years",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -58291,8 +58721,8 @@
       "file": "optional/format/hostname.json",
       "optional": true,
       "group": "validation of host names",
-      "hash": "eabb882bda57564bb1aa8e2d59a354fd43d5680ed22038bbbf32c884001df0c5",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "a414d433c90b35a268d05b65685f0a8dde27b2970ad11689b89f761ae7c323ce",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_64447f2046e12f22/g_64447f2046e12f22.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -58413,6 +58843,16 @@
         },
         {
           "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -58770,8 +59210,8 @@
       "file": "optional/format/idn-hostname.json",
       "optional": true,
       "group": "validation of internationalized host names",
-      "hash": "bb5640f2bac76b2711da43da590e8d8dfc5809abeaef89da2a341b68c59b547e",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "355f51abed96ce1e5c66801179fa48e8eb74307d7ce1160f9a94ed24466952fb",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_5a3b4523bcab5264/g_5a3b4523bcab5264.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -59062,6 +59502,21 @@
         },
         {
           "description": "empty string",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "trailing newline is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "leading space is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "space inside a label is invalid",
           "valid": false,
           "outcome": "not_run"
         },
@@ -59772,8 +60227,8 @@
       "file": "optional/format/iri-reference.json",
       "optional": true,
       "group": "validation of IRI References",
-      "hash": "7899e727e8223ceb93ddc8894e2f567d89d3f8d193cc586ae7adf24042353e10",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "c2f201372e92891c0c7886eabcdfbccab2db22d15d5515cd8c8e09852dc5ac29",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_1a6ed2c6448d0746/g_1a6ed2c6448d0746.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -59881,6 +60336,26 @@
           "description": "lone percent sign is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "a non-numeric port in a network-path reference is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment of a relative-path reference",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a colon in the first segment preceded by a dot-segment",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -59890,8 +60365,8 @@
       "file": "optional/format/iri.json",
       "optional": true,
       "group": "validation of IRIs",
-      "hash": "373d0bcb331942e9356dd680773afa4d512780752ec0885fa245c51fee91a9de",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "940629be371cdb0e8fdff7bbb3d2cb94a86fe7eee9efd2af4248c4bb47896272",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_af7c0f08e1e7391e/g_af7c0f08e1e7391e.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -60023,6 +60498,36 @@
         {
           "description": "a valid IRI with a supplementary-plane private-use char in query",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-ASCII character in scheme is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "scheme starting with a digit is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "invalid character in scheme",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "non-numeric port is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "more than one at-sign in the authority is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "square brackets are not allowed in a path segment",
+          "valid": false,
           "outcome": "not_run"
         }
       ]
@@ -60246,8 +60751,8 @@
       "file": "optional/format/regex.json",
       "optional": true,
       "group": "validation of regular expressions",
-      "hash": "232f432758d74d22e1c4b47d7767830cbbda572fbe0d95a7d8682d5ed2f32621",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "210b38b8305c612edd257cf9d520f7c6fe72e9ee5f963224e59461da3e1fac49",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_fa90e59e503b70d8/g_fa90e59e503b70d8.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -60315,6 +60820,31 @@
           "description": "an unterminated character class is invalid",
           "valid": false,
           "outcome": "not_run"
+        },
+        {
+          "description": "an empty regular expression is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "alternation is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a bounded quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a negated range character class is valid",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "a lazy quantifier is valid",
+          "valid": true,
+          "outcome": "not_run"
         }
       ]
     },
@@ -60324,8 +60854,8 @@
       "file": "optional/format/relative-json-pointer.json",
       "optional": true,
       "group": "validation of Relative JSON Pointers (RJP)",
-      "hash": "e8ca59bc5de3a7b02abdfc7977de38922a1f488f054c574d494e7aec82d737bf",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "46600a3d27347a0b8a002c5b1d03f9ec7faac91fe18db77c4d65735797c900a0",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_642a3313c7243c1d/g_642a3313c7243c1d.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -60452,6 +60982,31 @@
         {
           "description": "empty reference tokens in the json-pointer part",
           "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped slash (~1) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "valid escaped tilde (~0) in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple escaped characters in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "- used as a member name in the json-pointer part",
+          "valid": true,
+          "outcome": "not_run"
+        },
+        {
+          "description": "multiple unescaped tildes in the json-pointer part",
+          "valid": false,
           "outcome": "not_run"
         },
         {
@@ -61229,8 +61784,8 @@
       "file": "optional/format/uri.json",
       "optional": true,
       "group": "validation of URIs",
-      "hash": "177467f40cd7aa5a4642b4a4fc53c0f9497ff77c9ee6842fb1b59a5dbc0b35a9",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "9baa1448fa23175115cdc102b80674f7e09595144944cb0abcebdfbf9f2e4c5a",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_18ed9822caaa3c88/g_18ed9822caaa3c88.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -61466,6 +62021,11 @@
         },
         {
           "description": "a trailing newline after a valid URI is invalid",
+          "valid": false,
+          "outcome": "not_run"
+        },
+        {
+          "description": "an IPv6 address without enclosing brackets is invalid",
           "valid": false,
           "outcome": "not_run"
         }
@@ -62245,14 +62805,20 @@
       "file": "patternProperties.json",
       "optional": false,
       "group": "patternProperties with Unicode property escape",
-      "hash": "aef6dfa6e06ac604a9c8f881ec33c2a0f37626d92eec0f37321a75f23d0c8748",
-      "generated_at": "2026-10-11T18:51:36Z",
-      "bucket": "pass",
+      "hash": "a7d1e795f164cd552d1a68ca27ae5c6279468ca1607fbc23b1edde8d0c12f3a6",
+      "generated_at": "2026-11-07T23:15:06Z",
+      "bucket": "false_accept",
+      "error": "accepted `Unicode letter property name matches but value type is incorrect` though valid: false",
       "cases": [
         {
           "description": "Unicode letter property name matches",
           "valid": true,
           "outcome": "match"
+        },
+        {
+          "description": "Unicode letter property name matches but value type is incorrect",
+          "valid": false,
+          "outcome": "false_accept"
         },
         {
           "description": "Non-letter property name does not match pattern",
@@ -66362,13 +66928,13 @@
       ]
     },
     {
-      "id": "draft2020-12/unevaluatedProperties.json::dynamic evalation inside nested refs",
+      "id": "draft2020-12/unevaluatedProperties.json::dynamic evaluation inside nested refs",
       "draft": "draft2020-12",
       "file": "unevaluatedProperties.json",
       "optional": false,
-      "group": "dynamic evalation inside nested refs",
-      "hash": "ebaf6d02a3fb764620864cf8ace5c40978c43bfe0f93002e977d9e61ce6dceee",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "group": "dynamic evaluation inside nested refs",
+      "hash": "5f63134f2a8d047323b18ccf3277fd674853f0dddd03b7bdb64233ae692d429f",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "false_accept",
       "error": "accepted `Empty is invalid` though valid: false",
       "cases": [
@@ -66684,8 +67250,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems validation",
-      "hash": "d54a0cf84bdb011dc74209aa878e8ffadd6ca542fda5dca4f9c8aa9e293bb69b",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "8992a6fb234e70c93237e20f8298d24c2272a2e0d18ce617befaabcbc44d5bec",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_3829959cdedd35d5/g_3829959cdedd35d5.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -66767,16 +67333,6 @@
         {
           "description": "non-unique array of more than two arrays is invalid",
           "valid": false,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
-          "valid": true,
           "outcome": "not_run"
         },
         {
@@ -66932,8 +67488,8 @@
       "file": "uniqueItems.json",
       "optional": false,
       "group": "uniqueItems=false validation",
-      "hash": "4f9402efd124c8814880c308fbc27b62183fd64a2e9ffdf7bad256804796e796",
-      "generated_at": "2026-10-11T18:51:36Z",
+      "hash": "25782fa2e803deca81e171369e3e0bef0c673a22de239b51139a5b912bcd197f",
+      "generated_at": "2026-11-07T23:15:06Z",
       "bucket": "compile_fail",
       "error": "g_d0b5523d0295960c/g_d0b5523d0295960c.go:19:10: invalid receiver type Root (pointer or interface type)",
       "cases": [
@@ -66989,16 +67545,6 @@
         },
         {
           "description": "non-unique array of arrays is valid",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "1 and true are unique",
-          "valid": true,
-          "outcome": "not_run"
-        },
-        {
-          "description": "0 and false are unique",
           "valid": true,
           "outcome": "not_run"
         },
