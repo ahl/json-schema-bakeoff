@@ -272,6 +272,7 @@ mod tests {
             draft: draft.to_string(),
             file: file.to_string(),
             optional: file.starts_with("optional/"),
+            compound: file.starts_with("compound/"),
             group: desc.to_string(),
             hash: String::new(),
             generated_at: String::new(),

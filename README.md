@@ -27,6 +27,10 @@ There are two actions. `run` executes the suite and stores data under
 pages. A filtered run prints per-case detail with the path to the generated
 code and writes under `target/` so it never touches stored results.
 Everything scratch lives in `target/`; delete it freely.
+`compound/` holds our own groups, in the suite's format, for the
+compositions the suite doesn't test; they're scored in their own tier.
+`--no-optional` and `--no-compound` skip those tiers (a full run then drops
+their stored records for that draft).
 
 [DESIGN.md](DESIGN.md) has the generator contract, the layout, the buckets,
 and the caching rules. To add a generator, create `generators/<name>/` with

@@ -1,13 +1,13 @@
 //! `summary.md`: key, pass rate per draft, bucket chart per keyword file.
 //!
 //! This is the report Adam reads after a run. It has three parts:
-//! headline tables (bucket counts and pass rate per draft, non-optional
-//! and optional reported separately), a per-draft chart (one glyph per
+//! headline tables (bucket counts and pass rate per draft, with core,
+//! optional and compound groups reported separately), a per-draft chart (one glyph per
 //! group, one row per keyword file, in suite order), and a "Failures"
 //! section with the first error and offending cases for every non-pass
 //! group.
 
-use crate::results::{Bucket, CaseOutcome, GroupResult, Results};
+use crate::results::{Bucket, CaseOutcome, GroupResult, Results, Tier};
 use std::collections::BTreeMap;
 
 /// Canonical draft ordering for display; anything not listed here sorts
@@ -82,21 +82,25 @@ struct FileGroup<'a> {
     groups: Vec<&'a GroupResult>,
 }
 
-/// Groups of one draft, split by `optional`, bucketed by file (files
+/// Groups of one draft in one tier, bucketed by file (files
 /// sorted alphabetically; groups within a file keep the order they
 /// appear in `results.groups`, i.e. suite order).
-fn files_for_draft<'a>(results: &'a Results, draft: &str, optional: bool) -> Vec<FileGroup<'a>> {
+fn files_for_draft<'a>(results: &'a Results, draft: &str, tier: Tier) -> Vec<FileGroup<'a>> {
     let mut map: BTreeMap<String, Vec<&'a GroupResult>> = BTreeMap::new();
     for g in &results.groups {
-        if g.draft == draft && g.optional == optional {
+        if g.draft == draft && g.tier() == tier {
             map.entry(g.file.clone()).or_default().push(g);
         }
     }
     map.into_iter().map(|(file, groups)| FileGroup { file, groups }).collect()
 }
 
-fn groups_for<'a>(results: &'a Results, draft: &str, optional: bool) -> Vec<&'a GroupResult> {
-    results.groups.iter().filter(|g| g.draft == draft && g.optional == optional).collect()
+fn groups_for<'a>(results: &'a Results, draft: &str, tier: Tier) -> Vec<&'a GroupResult> {
+    results.groups.iter().filter(|g| g.draft == draft && g.tier() == tier).collect()
+}
+
+fn groups_in(results: &Results, tier: Tier) -> Vec<&GroupResult> {
+    results.groups.iter().filter(|g| g.tier() == tier).collect()
 }
 
 fn chart_string(groups: &[&GroupResult]) -> String {
@@ -121,11 +125,10 @@ fn case_stats(groups: &[&GroupResult]) -> (usize, usize, usize) {
     (matched, reached, total)
 }
 
-/// Bucket counts, total and pass rate for `optional` (or non-optional)
-/// groups, one row per draft plus a totals row. `None` if there are no
-/// matching groups at all.
-fn groups_table(results: &Results, drafts: &[String], optional: bool) -> Option<String> {
-    let all: Vec<&GroupResult> = results.groups.iter().filter(|g| g.optional == optional).collect();
+/// Bucket counts, total and pass rate for one tier's groups, one row per
+/// draft plus a totals row. `None` if there are no matching groups at all.
+fn groups_table(results: &Results, drafts: &[String], tier: Tier) -> Option<String> {
+    let all = groups_in(results, tier);
     if all.is_empty() {
         return None;
     }
@@ -142,7 +145,7 @@ fn groups_table(results: &Results, drafts: &[String], optional: bool) -> Option<
     s.push_str("---:|---:|\n");
 
     for draft in drafts {
-        let groups = groups_for(results, draft, optional);
+        let groups = groups_for(results, draft, tier);
         if groups.is_empty() {
             continue;
         }
@@ -171,13 +174,13 @@ fn groups_table(results: &Results, drafts: &[String], optional: bool) -> Option<
 
 /// One small table: per-case match rate, reached-run and overall, one row
 /// per draft plus a totals row. `None` if there are no cases.
-fn case_rate_table(results: &Results, drafts: &[String], optional: bool) -> Option<String> {
+fn case_rate_table(results: &Results, drafts: &[String], tier: Tier) -> Option<String> {
     let mut rows = String::new();
     let mut tot_matched = 0;
     let mut tot_reached = 0;
     let mut tot_total = 0;
     for draft in drafts {
-        let (matched, reached, total) = case_stats(&groups_for(results, draft, optional));
+        let (matched, reached, total) = case_stats(&groups_for(results, draft, tier));
         if total == 0 {
             continue;
         }
@@ -312,9 +315,10 @@ fn failures_section(results: &Results) -> String {
             continue;
         }
         any = true;
-        // Required groups before optional ones, drafts in canonical order;
-        // suite order within (sort_by_key is stable).
-        groups.sort_by_key(|g| (g.optional, draft_rank(&g.draft)));
+        // Compound groups first (they are few and hand-written, so they
+        // must never fall past the cap), then core, then optional; drafts
+        // in canonical order; suite order within (sort_by_key is stable).
+        groups.sort_by_key(|g| (g.tier() != Tier::Compound, g.tier(), draft_rank(&g.draft)));
         s.push_str(&format!("### {} `{}` ({})\n\n", bucket.glyph(), bucket.name(), groups.len()));
         if let Some(rollup) = error_rollup(&groups) {
             s.push_str(&rollup);
@@ -349,8 +353,8 @@ pub fn render(results: &Results) -> String {
     s.push_str(&format!("_generated {}_\n\n", results.generated_at));
 
     let drafts = sorted_drafts(results);
-    let required: Vec<&GroupResult> = results.groups.iter().filter(|g| !g.optional).collect();
-    let optional_n = results.groups.len() - required.len();
+    let required = groups_in(results, Tier::Core);
+    let optional_n = groups_in(results, Tier::Optional).len();
     s.push_str(&format!(
         "**{} of {} non-optional groups pass ({})**{}\n\n",
         count(&required, Bucket::Pass),
@@ -362,29 +366,48 @@ pub fn render(results: &Results) -> String {
             String::new()
         },
     ));
+    let compound = groups_in(results, Tier::Compound);
+    if !compound.is_empty() {
+        s.push_str(&format!(
+            "**{} of {} compound groups pass ({})**\n\n",
+            count(&compound, Bucket::Pass),
+            compound.len(),
+            pass_rate(count(&compound, Bucket::Pass), compound.len()),
+        ));
+    }
 
     s.push_str(&Bucket::key_markdown());
     s.push('\n');
 
     s.push_str("## Core\n\n");
     s.push_str("### Groups\n\n");
-    match groups_table(results, &drafts, false) {
+    match groups_table(results, &drafts, Tier::Core) {
         Some(t) => s.push_str(&t),
         None => s.push_str("_no groups_\n"),
     }
     s.push('\n');
-    if let Some(t) = groups_table(results, &drafts, true) {
+    if let Some(t) = groups_table(results, &drafts, Tier::Optional) {
         s.push_str("### Optional groups\n\n");
         s.push_str(&t);
         s.push('\n');
     }
-    if let Some(t) = case_rate_table(results, &drafts, false) {
+    if let Some(t) = groups_table(results, &drafts, Tier::Compound) {
+        s.push_str("### Compound groups\n\n");
+        s.push_str(&t);
+        s.push('\n');
+    }
+    if let Some(t) = case_rate_table(results, &drafts, Tier::Core) {
         s.push_str("### Per-case match rate\n\n");
         s.push_str(&t);
         s.push('\n');
     }
-    if let Some(t) = case_rate_table(results, &drafts, true) {
+    if let Some(t) = case_rate_table(results, &drafts, Tier::Optional) {
         s.push_str("### Per-case match rate (optional)\n\n");
+        s.push_str(&t);
+        s.push('\n');
+    }
+    if let Some(t) = case_rate_table(results, &drafts, Tier::Compound) {
+        s.push_str("### Per-case match rate (compound)\n\n");
         s.push_str(&t);
         s.push('\n');
     }
@@ -392,18 +415,20 @@ pub fn render(results: &Results) -> String {
     s.push_str("## Chart\n\n");
     for draft in &drafts {
         s.push_str(&format!("### {draft}\n\n"));
-        let non_opt = files_for_draft(results, draft, false);
+        let non_opt = files_for_draft(results, draft, Tier::Core);
         if non_opt.is_empty() {
             s.push_str("_no groups_\n\n");
         } else {
             s.push_str(&chart_table(&non_opt));
             s.push('\n');
         }
-        let opt = files_for_draft(results, draft, true);
-        if !opt.is_empty() {
-            s.push_str("#### optional\n\n");
-            s.push_str(&chart_table(&opt));
-            s.push('\n');
+        for (tier, label) in [(Tier::Optional, "optional"), (Tier::Compound, "compound")] {
+            let files = files_for_draft(results, draft, tier);
+            if !files.is_empty() {
+                s.push_str(&format!("#### {label}\n\n"));
+                s.push_str(&chart_table(&files));
+                s.push('\n');
+            }
         }
     }
 
@@ -457,19 +482,21 @@ pub fn render_terminal(results: &Results) -> String {
     let drafts = sorted_drafts(results);
     for draft in &drafts {
         s.push_str(&format!("{draft}:\n"));
-        let non_opt = files_for_draft(results, draft, false);
+        let non_opt = files_for_draft(results, draft, Tier::Core);
         if !non_opt.is_empty() {
             render_terminal_files(&mut s, &non_opt, "  ");
         }
-        let opt = files_for_draft(results, draft, true);
-        if !opt.is_empty() {
-            s.push_str("  optional:\n");
-            render_terminal_files(&mut s, &opt, "    ");
+        for (tier, label) in [(Tier::Optional, "optional"), (Tier::Compound, "compound")] {
+            let files = files_for_draft(results, draft, tier);
+            if !files.is_empty() {
+                s.push_str(&format!("  {label}:\n"));
+                render_terminal_files(&mut s, &files, "    ");
+            }
         }
         s.push('\n');
     }
     if drafts.len() > 1 {
-        let required: Vec<&GroupResult> = results.groups.iter().filter(|g| !g.optional).collect();
+        let required = groups_in(results, Tier::Core);
         s.push_str(&format!("all drafts, non-optional: {}\n", totals_line(&required)));
     }
     s
@@ -480,7 +507,7 @@ const VALIDATOR_MARK: &str = " [𝓥](#notes)";
 
 /// One row per version, one column per draft (pass rate),
 /// plus the generation date; empty if nothing qualifies.
-fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) -> String {
+fn scoreboard_headline(all: &[&Results], tier: Tier, show_language: bool) -> String {
     let mut drafts: Vec<String> = all.iter().flat_map(|r| sorted_drafts(r)).collect();
     drafts.sort_by_key(|d| draft_rank(d));
     drafts.dedup();
@@ -489,7 +516,7 @@ fn scoreboard_headline(all: &[&Results], optional: bool, show_language: bool) ->
         let cells: Vec<String> = drafts
             .iter()
             .map(|draft| {
-                let groups = groups_for(r, draft, optional);
+                let groups = groups_for(r, draft, tier);
                 if groups.is_empty() {
                     "—".to_string()
                 } else {
@@ -543,13 +570,20 @@ pub fn render_scoreboard(all: &[Results]) -> String {
         s.push_str(&format!("## {title}\n\n"));
         s.push_str("### Core\n\n");
         s.push_str("Pass rate per draft: groups where every test case matched, over all groups in the draft.\n\n");
-        s.push_str(&scoreboard_headline(&rows, false, show_language));
+        s.push_str(&scoreboard_headline(&rows, Tier::Core, show_language));
         s.push('\n');
-        let opt_table = scoreboard_headline(&rows, true, show_language);
+        let opt_table = scoreboard_headline(&rows, Tier::Optional, show_language);
         if !opt_table.is_empty() {
             s.push_str("### Optional tests\n\n");
             s.push_str("`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...).\n\n");
             s.push_str(&opt_table);
+            s.push('\n');
+        }
+        let compound_table = scoreboard_headline(&rows, Tier::Compound, show_language);
+        if !compound_table.is_empty() {
+            s.push_str("### Compound tests\n\n");
+            s.push_str("Our own groups, in the suite's format, for the compositions a validator suite has no reason to write: see `compound/`. The validator rows score 100% here, which is how the expected verdicts are checked.\n\n");
+            s.push_str(&compound_table);
             s.push('\n');
         }
     }
@@ -606,6 +640,7 @@ mod tests {
             draft: draft.to_string(),
             file: file.to_string(),
             optional,
+            compound: file.starts_with("compound/"),
             group: group_desc.to_string(),
             hash: String::new(),
             generated_at: String::new(),
@@ -940,5 +975,76 @@ mod tests {
         // pass/total column, and a cross-draft line when >1 draft.
         assert!(out.contains("1/2"));
         assert!(out.contains("all drafts, non-optional: totals:"));
+    }
+
+    fn with_compound() -> Results {
+        let mut r = sample_results();
+        r.groups.push(group(
+            "draft7",
+            "compound/union-one-required-key.json",
+            false,
+            "union inline",
+            Bucket::GenerationPanic,
+            Some("panicked"),
+            vec![],
+        ));
+        r.groups.push(group(
+            "draft7",
+            "compound/union-one-required-key.json",
+            false,
+            "union named",
+            Bucket::Pass,
+            None,
+            vec![case("c", true, CaseOutcome::Match)],
+        ));
+        r
+    }
+
+    #[test]
+    fn compound_page_sections_only_when_present() {
+        let out = render(&sample_results());
+        assert!(!out.contains("### Compound groups"));
+        assert!(!out.contains("#### compound"));
+        assert!(!out.contains("compound groups pass"));
+        assert!(!render_terminal(&sample_results()).contains("compound:"));
+
+        let out = render(&with_compound());
+        // Core numbers don't move.
+        assert!(out.contains("**1 of 7 non-optional groups pass (14.3%)**"));
+        assert!(out.contains("**1 of 2 compound groups pass (50.0%)**"));
+        let table = out.split("### Compound groups\n\n").nth(1).unwrap();
+        assert_eq!(row(table, "draft7"), ["draft7", "1", "0", "0", "0", "0", "0", "0", "1", "2", "50.0%"]);
+        // The chart lists compound files after optional ones.
+        let opt = out.find("#### optional").unwrap();
+        let comp = out.find("#### compound").unwrap();
+        assert!(opt < comp);
+        assert_eq!(
+            row(&out[comp..], "compound/union-one-required-key.json"),
+            ["compound/union-one-required-key.json", "1", "0", "0", "0", "0", "0", "0", "1", "2", "🤯✅"]
+        );
+        let term = render_terminal(&with_compound());
+        assert!(term.find("  optional:").unwrap() < term.find("  compound:").unwrap());
+    }
+
+    #[test]
+    fn scoreboard_compound_table_only_when_some_row_has_groups() {
+        let mut other = sample_results();
+        other.typify = "zzz 1.0.0".to_string();
+        other.version = "zzz-1.0.0".to_string();
+        let out = render_scoreboard(&[sample_results(), other.clone()]);
+        assert!(!out.contains("### Compound tests"));
+
+        let out = render_scoreboard(&[with_compound(), other]);
+        let table = out.split("### Compound tests\n\n").nth(1).unwrap();
+        assert!(table.starts_with("Our own groups, in the suite's format"));
+        // Only draft7 has compound groups for this row, but the columns are
+        // every draft any row has, like the other tables.
+        let typify = table.lines().find(|l| l.contains("typify 0.10.0-alpha.2")).unwrap();
+        assert!(typify.contains("| 50.0% | — |"), "got {typify}");
+        // A row with no compound groups at all is left out, as for an
+        // unrun draft.
+        assert!(!table.split("## ").next().unwrap().contains("zzz"));
+        // Core comes first and is unchanged.
+        assert!(out.find("### Core").unwrap() < out.find("### Compound tests").unwrap());
     }
 }

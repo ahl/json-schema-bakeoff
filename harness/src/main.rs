@@ -37,6 +37,10 @@ enum Cmd {
         /// counted in headline numbers).
         #[arg(long)]
         no_optional: bool,
+        /// Skip our own groups under compound/ (they are reported
+        /// separately, never counted in headline numbers).
+        #[arg(long)]
+        no_compound: bool,
         /// Recompute every selected group even if the stored results
         /// already have a record with a matching hash.
         #[arg(long)]
@@ -58,13 +62,22 @@ enum Cmd {
 
 fn main() -> Result<()> {
     match Cli::parse().cmd {
-        Cmd::Run { generator, target, draft, filter, no_optional, no_cache, out } => {
+        Cmd::Run { generator, target, draft, filter, no_optional, no_compound, no_cache, out } => {
             let drafts: Vec<String> = if draft == "all" {
                 summary::DRAFT_ORDER.iter().map(|d| d.to_string()).collect()
             } else {
                 vec![draft]
             };
-            pipeline::run(pipeline::RunOpts { generator, target, drafts, filter, optional: !no_optional, no_cache, out })
+            pipeline::run(pipeline::RunOpts {
+                generator,
+                target,
+                drafts,
+                filter,
+                optional: !no_optional,
+                compound: !no_compound,
+                no_cache,
+                out,
+            })
         }
         Cmd::Render => pipeline::render_all(),
         Cmd::Diff { a, b } => {

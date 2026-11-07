@@ -154,6 +154,20 @@ change in a way that should invalidate stored records.
 `tests/<draft>/optional/` runs by default and is reported in its own
 section, never in headline numbers. `--no-optional` skips it.
 
+## Compound tier
+
+The suite isolates one keyword per group and never composes a realistic
+document, which is where generators fail: naming anonymous nested objects,
+choosing a union representation. `compound/tests/<draft>/**/*.json` holds
+our own groups in the suite's exact file format (a `comment` per group says
+what it's probing). They load after the suite's files with `file` set to
+`compound/<path>`, so ids read `draft7/compound/<path>::<group>` and can't
+collide with official ones. They run by default, are reported in their own
+section, never in headline numbers; `--no-compound` skips them. The
+validator rows are the oracle: every compound group must pass on both, or
+the expected verdicts are wrong. Groups are added sparingly, a file at a
+time, when a generator turns up a failure worth pinning down.
+
 ## Remote references
 
 `http://localhost:1234/...` references are not resolved for code

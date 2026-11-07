@@ -132,6 +132,10 @@ pub struct GroupResult {
     pub file: String,
     /// True for anything under `optional/`.
     pub optional: bool,
+    /// True for our own groups from `compound/tests/<draft>/`; `file`
+    /// then starts with `compound/`.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub compound: bool,
     pub group: String,
     /// Hash of everything that determined this record (typify version,
     /// schema, cases, harness revision). A rerun reuses the record when
@@ -148,7 +152,29 @@ pub struct GroupResult {
     pub cases: Vec<CaseResult>,
 }
 
+/// Which part of the test corpus a group comes from. Reported
+/// separately everywhere; only `Core` feeds the headline numbers.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum Tier {
+    /// The official suite outside `optional/`.
+    Core,
+    /// The official suite's `optional/`.
+    Optional,
+    /// Our own groups under `compound/`.
+    Compound,
+}
+
 impl GroupResult {
+    pub fn tier(&self) -> Tier {
+        if self.compound {
+            Tier::Compound
+        } else if self.optional {
+            Tier::Optional
+        } else {
+            Tier::Core
+        }
+    }
+
     /// Derive the group bucket from per-case outcomes (for groups that
     /// reached the run step).
     pub fn bucket_from_cases(cases: &[CaseResult]) -> Bucket {

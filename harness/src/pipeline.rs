@@ -26,6 +26,7 @@ pub struct RunOpts {
     pub drafts: Vec<String>,
     pub filter: Option<String>,
     pub optional: bool,
+    pub compound: bool,
     pub no_cache: bool,
     pub out: Option<PathBuf>,
 }
@@ -181,7 +182,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
     std::fs::create_dir_all(&gen_dir)?;
     let headline_dir = root.join("results").join(&slug);
 
-    let groups = suite::load_draft(draft, opts.optional)?;
+    let groups = suite::load_draft(draft, opts.optional, opts.compound)?;
     let filter = opts.filter.as_deref();
     let selected: Vec<&Group> = groups.iter().filter(|g| filter.is_none_or(|f| g.matches(f))).collect();
     anyhow::ensure!(!selected.is_empty(), "no groups match");
@@ -344,6 +345,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
             draft: group.draft.clone(),
             file: group.file.clone(),
             optional: group.optional,
+            compound: group.compound,
             group: group.description.clone(),
             hash: item.hash.clone(),
             generated_at: now.clone(),
