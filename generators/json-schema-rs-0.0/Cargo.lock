@@ -171,7 +171,7 @@ checksum = "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682"
 [[package]]
 name = "json-schema-rs"
 version = "0.0.6"
-source = "git+https://github.com/goddtriffin/json-schema-rs.git?rev=892e0882d2339236f8e58b460154b838349c5cc4#892e0882d2339236f8e58b460154b838349c5cc4"
+source = "git+https://github.com/goddtriffin/json-schema-rs.git?rev=1d1774d1ae3183f2290ac1472323754a335e5dd9#1d1774d1ae3183f2290ac1472323754a335e5dd9"
 dependencies = [
  "clap",
  "fluent-uri",

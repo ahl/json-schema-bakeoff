@@ -2,7 +2,7 @@
 
 use json_schema_rs::sanitizers::sanitize_struct_name;
 use json_schema_rs::{
-    CodeGenSettings, DedupeMode, JsonSchema, JsonSchemaSettings, SpecVersion, generate_rust,
+    CodeGenSettings, DedupeMode, JsonSchemaSettings, Schema, SpecVersion, generate_rust,
 };
 use std::collections::{BTreeSet, HashMap};
 use std::sync::mpsc::RecvTimeoutError;
@@ -131,7 +131,7 @@ fn generate_inner(schema_value: serde_json::Value, spec: SpecVersion) -> Result<
         // parsing (unknown keywords kept in `extensions`, not rejected) and
         // `UnknownSchemaUri::Fallback`.
         let settings = JsonSchemaSettings::builder().default_spec_version(spec).build();
-        let parsed = JsonSchema::new_from_serde_value(&schema_value, &settings).map_err(|e| e.to_string())?;
+        let parsed = Schema::new_from_serde_value(&schema_value, &settings).map_err(|e| e.to_string())?;
         // `DedupeMode::Disabled` rather than the default `Full`. With one
         // schema per call no mode ever produces a shared buffer (only items
         // used by two or more schemas are shared), and serde behavior is the
@@ -439,8 +439,12 @@ mod tests {
         let (code, root, rule) = code_and_root(serde_json::json!({"type": "integer"}));
         assert_eq!((root.as_str(), rule), ("Root", "alias"));
         assert!(code.contains("pub type Root = "), "{code}");
-        let (_, root, rule) = code_and_root(serde_json::json!({"minLength": 2}));
-        assert_eq!((root.as_str(), rule), ("Root", "alias"));
+        // A constrained scalar is a newtype (constrained newtypes are on by
+        // default), validated through the embedded schema.
+        let (code, root, rule) = code_and_root(serde_json::json!({"minLength": 2}));
+        assert_eq!((root.as_str(), rule), ("Root", "position"));
+        assert!(code.contains("pub struct Root(String);"), "{code}");
+        assert!(code.contains("constrained_newtype!(string, Root, TYPE_VALIDATORS, 0)"), "{code}");
     }
 
     #[test]
@@ -557,10 +561,16 @@ mod tests {
         assert!(code.contains("Option<Box<Root>>"), "{code}");
     }
 
+    /// Boolean documents get a type since PR #75: `true` is a `Value` alias
+    /// and `false` an uninhabited enum.
     #[test]
-    fn a_boolean_document_is_an_error() {
-        assert!(matches!(generate(&serde_json::json!(true), SPEC, T), GenOutcome::Error(_)));
-        assert!(matches!(generate(&serde_json::json!(false), SPEC, T), GenOutcome::Error(_)));
+    fn boolean_documents_generate() {
+        let (code, root, rule) = code_and_root(serde_json::json!(true));
+        assert_eq!((root.as_str(), rule), ("Root", "alias"));
+        assert!(code.contains("pub type Root = serde_json::Value;"), "{code}");
+        let (code, root, rule) = code_and_root(serde_json::json!(false));
+        assert_eq!((root.as_str(), rule), ("Root", "position"));
+        assert!(code.contains("pub enum Root {\n}"), "{code}");
     }
 
     /// Every suite directory has a `SpecVersion`, and nothing else does.

@@ -7,15 +7,15 @@ language = "rust"
 homepage = "https://github.com/goddtriffin/json-schema-rs"
 description = """
 A young Rust generator aimed at hand-written config schemas, pinned to an
-unreleased main: codegen rebuilt around an intermediate graph that
-handles any root shape, recursion, `allOf` as a conjunction, and `const`.
-Unions are `#[serde(untagged)]`, so `oneOf` exclusivity isn't checked, and
-constraints come out as attributes for its own validator, which serde ignores.
-The published 0.0.6 row (results kept, hidden) refused any root that wasn't
-an object. The codegen measured here was written by Claude Code: the repo
-is run from a CLAUDE.md and a contribution skill, and every commit of the
-type-graph rewrite (about 38k lines, five days in October 2026) carries a
-Claude session tag.
+unreleased main that is moving fast: a type-graph IR, then self-validating
+types on by default. Constrained scalars are newtypes checked by the crate's
+own validator, embedded in the output, and `oneOf` picks its variant by
+validation. But a schema with no `type` is `serde_json::Value`, with no
+validator at all, so `not`, `if`/`then`/`else`, `contains`, `propertyNames`
+and most of `unevaluated*` accept anything; and a struct's `Deserialize` is
+shape-only (the validating path is `TryFrom<Value>`). Written by Claude Code: the
+repo runs from a CLAUDE.md and the codegen commits carry session tags. The
+published 0.0.6 (results kept, hidden) refused any root that wasn't an object.
 """
 
 [commands]
