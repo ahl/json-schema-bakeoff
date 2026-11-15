@@ -12,6 +12,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 59.0% | 59.0% | 56.4% | 50.0% | 48.3% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 48.1% | 49.4% | 47.7% | 40.5% | 39.8% | 2026-10-31T16:46:40Z |
+| [jsonschema 0.61.2](results/jsonschema-0.61.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 99.7% | 99.7% | 2026-11-15T14:55:08Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.0% | 41.0% | 43.2% | 36.1% | 35.1% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.3% | 23.1% | 25.5% | 21.7% | 20.5% | 2026-11-07T23:15:25Z |
@@ -27,6 +28,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 43.0% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 17.9% | 15.9% | 12.5% | 19.7% | 19.2% | 2026-10-31T16:46:40Z |
+| [jsonschema 0.61.2](results/jsonschema-0.61.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.8% | 67.1% | 2026-11-15T14:55:08Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.8% | 69.6% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.5% | 11.1% | 12.3% | 15.6% | 15.2% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.5% | 11.1% | 12.3% | 11.7% | 11.4% | 2026-11-07T23:15:25Z |
@@ -41,6 +43,7 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
 | [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:41Z |
+| [jsonschema 0.61.2](results/jsonschema-0.61.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-15T14:55:08Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:25Z |
@@ -129,7 +132,7 @@ on `type`: a typed schema picks up bounds, lengths, patterns, enums and
 says. It has no `$ref` resolver. Unmaintained since March 2026; 2.8.1 is the
 last release, and it runs on zod 4 here.
 
-**jsonschema 0.60.2** — [crates.io](https://crates.io/crates/jsonschema)  
+**jsonschema 0.61.2** — [crates.io](https://crates.io/crates/jsonschema)  
 A Rust validator, not a generator: it interprets the schema at run time, so
 it can enforce every keyword, which a type generator structurally can't. It's
 the reference row: the ceiling the suite allows, a check on the harness, and
