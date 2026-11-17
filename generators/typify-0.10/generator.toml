@@ -10,7 +10,7 @@ Rust types for serde from JSON Schema, built to generate OpenAPI clients
 `deny_unknown_fields` when the schema is closed. Validation is whatever the
 type system can say; anything else is silently absent, and a construct it
 can't model fails at generation rather than producing a wrong type. The 0.10
-line is the in-progress rewrite on top of typespace.
+line is the rewrite on top of typespace.
 """
 
 [commands]

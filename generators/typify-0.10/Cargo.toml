@@ -15,4 +15,4 @@ schemars = "0.8"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip"] }
 syn = { version = "3", features = ["full"] }
-typify = { version = "0.10.0-alpha.2", default-features = false }
+typify = { version = "0.10.1", default-features = false }

@@ -15,6 +15,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.0% | 41.0% | 43.2% | 36.1% | 35.1% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.3% | 23.1% | 25.5% | 21.7% | 20.5% | 2026-11-07T23:15:25Z |
+| [typify 0.10.1](results/typify-0.10.1/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 28.1% | 2026-11-17T05:21:51Z |
 | [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 27.8% | 2026-11-07T23:15:43Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 27.8% | 2026-11-07T23:15:49Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | 30.2% | 26.8% | 27.1% | 2026-10-11T19:27:54Z |
@@ -30,6 +31,7 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.8% | 69.6% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.5% | 11.1% | 12.3% | 15.6% | 15.2% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.5% | 11.1% | 12.3% | 11.7% | 11.4% | 2026-11-07T23:15:25Z |
+| [typify 0.10.1](results/typify-0.10.1/README.md) | 65.0% | 53.3% | 36.9% | 32.5% | 31.6% | 2026-11-17T05:21:51Z |
 | [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 55.0% | 44.4% | 30.8% | 27.3% | 26.6% | 2026-11-07T23:15:43Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 55.0% | 44.4% | 30.8% | 27.3% | 26.6% | 2026-11-07T23:15:49Z |
 | [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T19:27:54Z |
@@ -44,6 +46,7 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:25Z |
+| [typify 0.10.1](results/typify-0.10.1/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-17T05:21:51Z |
 | [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T23:15:43Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T23:15:49Z |
 
@@ -170,13 +173,13 @@ TypeBox needs a separate generator; this row uses schema2typebox, the one
 TypeBox's readme points at. Most of what it can't express becomes
 `Type.Unknown()`.
 
-**typify 0.10.0-alpha.3** — [crates.io](https://crates.io/crates/typify)  
+**typify 0.10.1** — [crates.io](https://crates.io/crates/typify)  
 Rust types for serde from JSON Schema, built to generate OpenAPI clients
 (progenitor). Its design center is idiomatic Rust: structs, enums, newtypes,
 `deny_unknown_fields` when the schema is closed. Validation is whatever the
 type system can say; anything else is silently absent, and a construct it
 can't model fails at generation rather than producing a wrong type. The 0.10
-line is the in-progress rewrite on top of typespace.
+line is the rewrite on top of typespace.
 
 **typify 0.8.0** — [crates.io](https://crates.io/crates/typify)  
 The last typify release before the typespace rewrite. Same design center as
