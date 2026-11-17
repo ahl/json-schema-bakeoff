@@ -2,10 +2,10 @@
 
 [json-schema-rs](https://github.com/goddtriffin/json-schema-rs) built from
 unreleased main, pinned in `Cargo.toml` to
-`rev = "1d1774d1ae3183f2290ac1472323754a335e5dd9"` (2026-11-03). The workspace
+`rev = "8032443b0cd62c8f99ee1b4776e715fe553f8111"` (2026-11-16). The workspace
 version is still 0.0.6, so `build.rs` reads both the version and the sha out of
-`Cargo.lock`, `version` prints `json-schema-rs 0.0.6+1d1774d`, and results
-land in `results/json-schema-rs-0.0.6-1d1774d/`. Bumping the `rev` starts a
+`Cargo.lock`, `version` prints `json-schema-rs 0.0.6+8032443`, and results
+land in `results/json-schema-rs-0.0.6-8032443/`. Bumping the `rev` starts a
 new results directory; the earlier pins keep theirs.
 
 ## What changed since 0.0.6
@@ -14,13 +14,16 @@ new results directory; the earlier pins keep theirs.
 held a 0.0.6 integration; its results stay under `results/json-schema-rs-0.0.6/`,
 hidden from the tables, and that glue is gone. Required groups passed, by pin:
 
-| draft | 0.0.6 | 892e088 (2026-10-30) | 1d1774d (2026-11-03) |
-|---|---|---|---|
-| draft4 | 2/160 (1.2%) | 77/160 (48.1%) | 94/160 (58.8%) |
-| draft6 | 2/233 (0.9%) | 115/233 (49.4%) | 137/233 (58.8%) |
-| draft7 | 2/258 (0.8%) | 123/258 (47.7%) | 145/258 (56.2%) |
-| draft2019-09 | 5/373 (1.3%) | 151/373 (40.5%) | 186/373 (49.9%) |
-| draft2020-12 | 5/384 (1.3%) | 153/384 (39.8%) | 186/384 (48.4%) |
+| draft | 0.0.6 | 892e088 (2026-10-30) | 1d1774d (2026-11-03) | 8032443 (2026-11-16) |
+|---|---|---|---|---|
+| draft4 | 2/160 (1.2%) | 77/160 (48.1%) | 95/161 (59.0%) | 95/161 (59.0%) |
+| draft6 | 2/233 (0.9%) | 115/233 (49.4%) | 138/234 (59.0%) | 136/234 (58.1%) |
+| draft7 | 2/258 (0.8%) | 123/258 (47.7%) | 146/259 (56.4%) | 144/259 (55.6%) |
+| draft2019-09 | 5/373 (1.3%) | 151/373 (40.5%) | 187/374 (50.0%) | 185/374 (49.5%) |
+| draft2020-12 | 5/384 (1.3%) | 153/384 (39.8%) | 186/385 (48.3%) | 184/385 (47.8%) |
+
+The two newest columns are on the suite at 245a45a, which added a required
+`multipleOf` group to every draft; the earlier pins were not rerun.
 
 - **0.0.6 → 892e088** is PR #68, the `feat/codegen-type-graph` branch: 0.0.6
   refused any root that wasn't an object with `properties` (1,298 of 1,408
@@ -43,33 +46,77 @@ hidden from the tables, and that glue is gone. Required groups passed, by pin:
   `arbitrary-precision` feature is off by default), 2019-09's
   `$recursiveRef with nesting`, and the two `vocabulary.json` groups that
   moved from false accept to mixed.
+- **1d1774d → 8032443** is two weeks of codegen work: types "accept every
+  schema-valid instance" (a key only `then`/`else` names,
+  `additionalProperties` beside `patternProperties`, and `items` beside
+  `prefixItems` no longer narrow the Rust type), integers read `1.0` from
+  draft 6 on, a root map or array is a self-validating newtype instead of an
+  alias, typed formats (`std::net` for `ipv4`/`ipv6`; `uuid` and `chrono`
+  behind features that are off), lighter unions, `Nullable<T>`, string-enum
+  impls, and the output naming its root type. In `cargo run -- diff`: 11
+  groups improved, 49 regressed, none of them to a generation failure.
+  Required passes drop by two in every draft but 4. The regressions, largest
+  first:
+  - `patternProperties` now types the keys the schema doesn't name. So
+    `{"additionalProperties": false, "patternProperties": ...}` is a struct
+    with a flattened `additional` map, and a bare `patternProperties` root is
+    a newtype over `BTreeMap<String, Value>`; both deserialize shape-only,
+    and only `TryFrom` checks the patterns, where before the constraint
+    reached `Deserialize` through a newtype. That is the five
+    `ecmascript-regex.json` `patternProperties` groups per draft (optional,
+    25) and, per draft, `patternProperties validates properties matching a
+    regex`, `additionalProperties being false does not allow other
+    properties` and `non-ASCII pattern with additionalProperties` (15).
+  - `oneOf with boolean schemas, all true` and `more than one true` (draft 6
+    on, 8): a `oneOf` whose branches are all `true` (or `{}`) now gets
+    `deserialize_untagged!`, first variant wins, instead of the validated
+    `deserialize_union!`, so every value is accepted where every value should
+    be rejected. `record_variant_targets` (`type_graph/passes.rs`) drops a
+    union when no branch has a validation target, and `BufferValidators::new`
+    then skips it. A tool bug, and the one regression that isn't a design
+    choice.
+  - 2020-12 `prefixItems validation adjusts the starting index for items`:
+    `items` beside `prefixItems` no longer types the elements.
 
-The glue differs from the 0.0.6 glue: the root-type detection is new, the
-dialect setting moved, and the batch crate's dependencies are git pins.
+  The improvements: `properties, patternProperties, additionalProperties
+  interaction` (every draft) from mixed to false accept, 2020-12's two
+  `format-assertion` groups to pass, and the optional `ipv4`/`ipv6` groups in
+  2019-09 and 2020-12 from mixed to false reject: formats are typed by default
+  (`FormatTypes::Typed`), so an invalid address is rejected where the dialect
+  says `format` is only an annotation. The crate documents that as a
+  deliberate divergence; `FollowDialect` is the spec-exact setting and isn't
+  the default.
+
+The glue differs from the 0.0.6 glue: the dialect setting moved, the root
+comes from the output, and the batch crate's dependencies are git pins.
 
 ## Provenance
 
-The repo is run by Claude Code. At the pinned commit it has a `CLAUDE.md`
-(added 2026-07-04) of "hard requirements" addressed to the agent and a
-`.claude/skills/contribution-guide` skill it must invoke before any change.
-Of the 79 non-merge commits since July 2026, 62 carry a
-`Claude-Session:` trailer or a Claude `Co-Authored-By`; the rest are written
-in the same register and say nothing about who wrote them. The
-January-to-March 2026 commits that built the validator carry no trailer
-either. Everything this row measures is from late October 2026 on: PRs #68
-and #71 (85 files, about 37,600 insertions, 2026-10-26 to 10-30) and the
-self-validating work (81 files, about 24,700 insertions, 10-31 to 11-03).
+The repo is run by Claude Code. At the pinned commit it has a `CLAUDE.md` of
+"hard requirements" addressed to the agent and five skills under
+`.claude/skills/` (`contribution-guide`, `optimize-library`, `release-notes`,
+`competitor-json-schema-codegen-analysis`,
+`synthetic-schema-codegen-test`). At 1d1774d, 62 of the 79 non-merge commits
+since July 2026 carried a `Claude-Session:` trailer or a Claude
+`Co-Authored-By`. The history has been rewritten since: 1d1774d is no longer
+an ancestor of main (a commit with its subject and date is there under
+another sha), and of the 187 non-merge commits since July 2026 at 8032443,
+none carries either. The commits are written in the same register as before
+and say nothing about who wrote them. Everything this row measures is from
+late October 2026 on: the type-graph codegen (PRs #68 and #71), the
+self-validating work (to 11-03), and two more weeks of codegen, validator and
+benchmark PRs; GitHub's compare view lists 222 commits between the pins.
 
 ## Toolchain
 
-The crate declares `rust-version = "1.99"`, and cargo refuses to build it on
+The crate declares `rust-version = "1.100"`, and cargo refuses to build it on
 anything older, both here and in the rust-batch crate that compiles its
-output. So every command in `generator.toml` runs `cargo +1.99.1`. A
+output. So every command in `generator.toml` runs `cargo +1.100.0`. A
 `rust-toolchain.toml` doesn't work: the harness itself runs under cargo, and
 the `RUSTUP_TOOLCHAIN` rustup sets for it wins over a toolchain file. rustup
-sets `RUSTUP_TOOLCHAIN=1.99.1` for what `cargo +1.99.1` runs, so the cargo
-rust-batch spawns for the batch crate uses 1.99.1 too. To run the unit tests:
-`CARGO_TARGET_DIR=../../target cargo +1.99.1 test`.
+sets `RUSTUP_TOOLCHAIN=1.100.0` for what `cargo +1.100.0` runs, so the cargo
+rust-batch spawns for the batch crate uses 1.100.0 too. To run the unit tests:
+`CARGO_TARGET_DIR=../../target cargo +1.100.0 test`.
 
 ## API changes from 0.0.6
 
@@ -100,6 +147,29 @@ rust-batch spawns for the batch crate uses 1.99.1 too. To run the unit tests:
   root's name is gone (references now go through a `Registry`), and the type
   graph that decides names is private.
 
+At 8032443:
+
+- `GenerateRustOutput` has `root_types`, the name of each input's root type,
+  in scope in that schema's buffer. The glue uses it; the root-detection
+  heuristic of the earlier pins is gone (see below).
+- `CodeGenInput` carries `JsonSchemaSettings` (`.settings(...)`), which the
+  backend bakes into the embedded validators' `DialectSettings`. The glue
+  passes the settings it parsed with, as the CLI does; without them the
+  embedded validator of a draft 4 to 7 root, which has no `$schema`, would
+  run under the default dialect.
+- The CLI is its own crate, `jsonschemars`; the library no longer depends on
+  clap.
+- `CodeGenSettings` gained `format_types` (default `Typed`), `root_name`,
+  `visibility`, `crate_path`, `macro_crate_path`, `builders`,
+  `string_enum_impls` (default on), `schema_defaults`, `extra_derives`,
+  `patches`, `conversions`, `replacements` and `crates`. All at their
+  defaults here.
+- Generated structs derive `json_schema_rs_macro::Deserialize` rather than
+  serde's (serde's semantics, linear compile time for wide structs); unions
+  are `deserialize_union!` or `deserialize_untagged!` calls; an optional
+  property that allows `null` is `json_schema_rs::Nullable<T>` (no suite
+  group produces one).
+
 ## Draft
 
 Each item's `draft` maps onto a `SpecVersion` (`draft4` → `Draft04`, `draft6`
@@ -121,73 +191,40 @@ that a draft-4 boolean `exclusiveMaximum` changes the output.
 ## Settings
 
 `JsonSchemaSettings` defaults apart from the draft: lenient parsing, so
-keywords the crate doesn't model are kept in `extensions`, not rejected.
-`CodeGenSettings` with `dedupe_mode(DedupeMode::Disabled)`, everything else
-default (`ModelNameSource::TitleFirst`, no `unknown_properties` override, and
-`self_validating` and `constrained_newtypes` at their default of on).
+keywords the crate doesn't model are kept in `extensions`, not rejected. The
+same settings go into `CodeGenInput`, so the embedded validators use the
+suite's draft too. `CodeGenSettings::default()`: `DedupeMode::Full`,
+`ModelNameSource::TitleFirst`, no `unknown_properties` override,
+`self_validating` and `constrained_newtypes` on, `FormatTypes::Typed`. That
+is what `jsonschemars generate` emits with no flags, apart from the draft.
 
-`Disabled` is not the default (`Full` is), and it doesn't change what serde
-accepts. With one schema per call no mode produces a shared buffer (only
-items used by two or more schemas are shared). Across the suite, `Full` and
-`Disabled` output differed in 9 groups at 892e088 (`definitions.json::validate
-definition against metaschema`, `ref.json::remote ref, containing refs
-itself`, and the optional `id`/`anchor` "inside an enum" groups), and only
-by merging structurally identical items or dropping an unused duplicate
-enum. The reason to pick `Disabled` is the root detection below: `Full` can
-fold the root into an identical `$defs` entry and give it that entry's name,
-which is the one thing the detection counts on not happening. The glue errors
-if a shared buffer ever shows up anyway.
+Earlier pins ran with `DedupeMode::Disabled` to protect the root detection;
+with the root reported there's no reason to. With one schema per call no
+mode produces a shared buffer (only items used by two or more schemas are
+shared); the glue errors if one shows up, and none did across the suite. A
+full run with `Disabled` at this pin gave the same bucket and case outcomes
+in every group.
 
 ## The root type's name
 
-There's no "call the root `Root`" setting, and nothing in the output marks
-the root. From the backend's source:
-
-- A root that isn't a struct, enum or union gets `pub type <Name> = ...;`,
-  emitted last, and that is the only `pub type` the backend writes. Rule
-  `alias`.
-- Otherwise the root is a named item. Items are rendered in depth-first
-  post-order from the root, then from each `$defs`/`definitions` entry, so
-  the root closes the first run: it's an item `i` whose reachable items are
-  exactly items `0..=i`. References are read from the item text, skipping
-  comments, string literals, and enum variant names (a variant called `Bar`
-  isn't a reference to `struct Bar`). Items before the root can qualify too
-  (a leaf first item always does); the root is the last item of the first
-  run, so the last qualifying item wins. Rule `position`.
-- The one way an item after the root qualifies is a definition the root
-  doesn't reach that refers back to the root. A definition's node is named
-  for its key (that's the best-ranked name proposal), so a qualifying item
-  named for a definition key is passed over, unless it's the root's own
-  `$ref` target (`#/$defs/<key>`, `#/definitions/<key>`, or an entry whose
-  `$id` is the `$ref` as written; a `$ref`-only root and its target are one
-  node) or nothing earlier qualifies. Rule `position-past-def`.
-
-Each module records which rule it used in a `// root type: X (rule)`
-comment, and the detection runs outside the tool's `catch_unwind`, so a bug
-in it kills `generate` instead of being recorded against the tool. Across
-all drafts at 1d1774d: 676 `alias`, 834 `position`, 0 `position-past-def`
-(1,510 modules). A reviewer cross-checked every `position` pick against an
-independent oracle, the type whose `TYPE_VALIDATORS` entry is the root's own
-location (`<base>#`), and read the rest by hand; all agree. The roots not
-named `Root` or the title: numeric suffixes from a name clash (`Root0`/`Root1`
-for a type-array root whose object branch refers back to the root,
-`CoreSchemaMetaSchema0` for the metaschema groups), `RootAnyOf`/`RootOneOf`
-for a root that is a union (134 modules), a root whose `$ref` is a relative
-URI (`BaseSchema`), and `Bigint` for the `$id`/`$ref` order-of-evaluation
-groups whose root is a `$ref` to that definition. An earlier version
-narrowed the candidates by the root's predicted name; a reviewer found
-schemas where that picks a leaf called `Root`, and others where an enum
-variant name breaks the reachability. None of them is in the suite (the
-results didn't move when the rule changed), and they're unit tests now.
+`GenerateRustOutput::root_types[0]` names the root: the alias for a root
+that isn't a struct, enum or union, else the item, which can be the
+definition dedupe merged the root into. Every module records it in a
+`// root type: X (root_types)` comment. Earlier pins had no such report and
+the glue inferred the root from item order; that heuristic, its rules
+(`alias`, `position`, `position-past-def`) and the cross-check against the
+`TYPE_VALIDATORS` entries are gone. The unit tests pin that the reported
+name is declared in the buffer for a titled root, a `$ref` root, a root
+identical to a definition, a union root, scalar and newtype roots, a
+self-reference and boolean documents.
 
 One case has no right answer. When the root is nullable and otherwise a
 named type, the crate's root is `Option<Root>` internally but it emits only
-`Root`; no item or alias names the nullable root. The glue measures `Root`,
-what a user gets, so `null` is a false reject. That's two groups in each of
-the five drafts: `type.json::type: array, object or null` (the enum
-`Root` has array and object variants) and `enum.json::heterogeneous
-enum-with-null validation` (`{"enum": [6, null]}` comes out as
-`enum Root { N6 }`, with `null` split off into the wrapper).
+`Root`; the reported root is `Root`, what a user gets, so `null` is a false
+reject. That's two groups in each of the five drafts: `type.json::type:
+array, object or null` (the enum `Root` has array and object variants) and
+`enum.json::heterogeneous enum-with-null validation` (`{"enum": [6, null]}`
+comes out as `enum Root { N6 }`, with `null` split off into the wrapper).
 
 ## Self-validating types, and what the harness measures
 
@@ -200,38 +237,42 @@ run time. Three cases, and they don't check the same things:
   scalar is a newtype whose `Deserialize` validates
   (`json_schema_rs::constrained_newtype!`), so `minLength`, `pattern`,
   `maximum`, `multipleOf` and the rest are enforced at the field. An
-  `anyOf`/`oneOf` union's `Deserialize` buffers the value and asks the
-  validator which branches it satisfies (`oneOf`: exactly one), so exclusivity
-  and constrained branches are real.
+  `anyOf`/`oneOf` union's `Deserialize` (`deserialize_union!`, 119 modules)
+  buffers the value and asks the validator which branches it satisfies
+  (`oneOf`: exactly one), so exclusivity and constrained branches are real.
+  A union none of whose branches has anything to check gets
+  `deserialize_untagged!` (56 modules), first variant wins, which is the
+  `oneOf`-of-`true`s bug above.
 - **Structs and enums validate only through `TryFrom<serde_json::Value>` and
   `validate(&self)`**, generated for every type with a validation target. Their
-  `Deserialize` is serde's and checks the shape (`deserialize_struct!` reads
-  keys into fields and an `additional` map and never calls the validator);
-  design.md: "it stays as fast as before".
+  `Deserialize` checks the shape (the macro crate's derive reads keys into
+  fields and an `additional` map and never calls the validator); design.md:
+  "it stays as fast as before". Since 8032443 there is also
+  `json_schema_rs::Validated<T>`, a wrapper whose `Deserialize` runs the full
+  validation; it is opt-in, so not what this row measures.
 - **An untyped schema is an alias with no validator.** `{"not": {...}}`,
   `{"contains": {...}}`, `{"if": ..., "then": ...}`, `{"propertyNames": ...}`
-  and the like come out as `pub type Root = serde_json::Value;` (or
-  `Vec<serde_json::Value>` for array keywords without `type`), and an alias
-  gets no `TYPE_VALIDATORS`, no `validate` and no `TryFrom`. 676 of the 1,510
-  modules are aliases; 382 of those are `serde_json::Value`.
+  and the like come out as `pub type Root = serde_json::Value;`, and an alias
+  gets no `TYPE_VALIDATORS`, no `validate` and no `TryFrom`. 501 of the 1,530
+  modules are aliases; 352 of those are `serde_json::Value`. (Fewer than at
+  1d1774d: a root map or array is a self-validating newtype now.)
 
 The harness calls `serde_json::from_value::<Root>(v)`, the same entry point as
 every other Rust row, because that's what a program that deserializes into the
-generated types gets. Of the 395 required false accepts, 315 have an alias
-root, so no entry point would catch them: all of `if-then-else` (24),
-`contains` (23), `additionalItems` (20), `uniqueItems` (20), `propertyNames`
-(20), `patternProperties` (19) and `items` (18), 26 of the 31 in `not`, and 32
-of the 38 in `unevaluatedItems`. The struct case is mainly
-`unevaluatedProperties` (13 of 58 are aliases). A reviewer's one-off run with
-`TryFrom<Value>` on every root that implements it (not kept) turned 79
-required groups to pass across all drafts, 44 of them `unevaluatedProperties`,
-and moved 8 others between failure buckets. Both are the crate's choices,
-which this row reports as made: an untyped schema is `Value`, and a struct's
-`Deserialize` is shape-only for speed.
+generated types gets. Of the 410 required false accepts, most have an alias
+root, so no entry point would catch them (at 1d1774d it was 315 of 395):
+`unevaluatedProperties` (58), `unevaluatedItems` (38), `not` (31),
+`if-then-else` (24), `contains` (23), `additionalItems` (20), `uniqueItems`
+(20), `propertyNames` (20), `items` (19), `dependencies` (17),
+`patternProperties` (15), `maxProperties` (14). A reviewer's one-off run at
+1d1774d with `TryFrom<Value>` on every root that implements it (not kept)
+turned 79 required groups to pass across all drafts, 44 of them
+`unevaluatedProperties`, and moved 8 others between failure buckets. Both
+are the crate's choices, which this row reports as made: an untyped schema
+is `Value`, and a struct's `Deserialize` is shape-only for speed.
 
 Nothing is stripped from the generated code. The module is the buffer
-followed by `__conformance_check`. In `DedupeMode::Disabled` it never refers
-to a `shared` module.
+followed by `__conformance_check`. No module refers to a `shared` module.
 
 ### What the validator is worth: a run with it off
 
@@ -273,9 +314,11 @@ json-schema-rs-macro = { git = "https://github.com/goddtriffin/json-schema-rs.gi
 ```
 
 The sha comes from the same `Cargo.lock` entry that names the results
-directory. The library is needed for the derive's `impl
-::json_schema_rs::ToJsonSchema` and for `json_equal`; the macro for
-`#[derive(json_schema_rs_macro::ToJsonSchema)]` and its helper attributes.
+directory. The library is needed for the `self_validating!`, `constrained_newtype!`
+and `deserialize_union!` macros, `json_equal` and the derive's `impl
+::json_schema_rs::ToJsonSchema`; the macro crate for
+`#[derive(json_schema_rs_macro::Deserialize, json_schema_rs_macro::ToJsonSchema)]`
+and their helper attributes.
 The 0.0.6 integration's `syn` build-dependency workaround isn't needed: the
 macro crate now enables syn's `full` feature itself.
 
@@ -308,8 +351,8 @@ macro crate now enables syn's `full` feature itself.
   `#[json_schema(value = 9007199254740992)]` into an `i32` literal, and the
   backend's own `Serialize`/`Deserialize` impls write
   `serde_json::json!(9007199254740992)`, which is inferred as `i32` too.
-- Against typify 0.10.0-alpha.2 on draft 7 (required): json-schema-rs 145,
-  typify 80. typify still wins ten groups outright: `not` (forbidden property,
+- Against typify 0.10.1 on draft 7 (required): json-schema-rs 144, typify
+  80. typify still wins ten groups outright: `not` (forbidden property,
   forbid everything with an empty or `true` schema), `propertyNames` with
   `pattern` or `enum`, `additionalProperties` not looking in applicators and
   its non-ASCII `pattern` group, `items: false`, and the two nullable-root

@@ -72,14 +72,15 @@ fn generate_all(out_dir: PathBuf) -> Result<()> {
             }
         };
         let status = match generate::generate(&g.schema, spec, TIMEOUT) {
-            generate::GenOutcome::Code { code, root, rule } => {
+            generate::GenOutcome::Code { code, root } => {
                 // The generated buffer is used verbatim: it opens with a
                 // `//!` doc comment and `use` items, both of which are fine
-                // at the top of a module file, and in `DedupeMode::Disabled`
-                // it never refers to a sibling `shared` module.
+                // at the top of a module file, and with one schema per call
+                // there is no `shared` buffer for it to refer to (the glue
+                // checks).
                 let source = format!(
                     "{code}\n\
-                     // root type: {root} ({rule})\n\
+                     // root type: {root} (root_types)\n\
                      pub fn __conformance_check(v: ::serde_json::Value) -> ::std::result::Result<(), ::std::string::String> {{\n\
                      \x20   ::serde_json::from_value::<{root}>(v).map(|_| ()).map_err(|e| e.to_string())\n\
                      }}\n"
