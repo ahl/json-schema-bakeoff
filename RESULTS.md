@@ -10,8 +10,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 59.0% | 59.0% | 56.4% | 50.0% | 48.3% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 59.0% | 58.1% | 55.6% | 49.5% | 47.8% | 2026-11-17T05:23:59Z |
+| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 59.0% | 59.0% | 56.4% | 50.0% | 48.3% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 48.1% | 49.4% | 47.7% | 40.5% | 39.8% | 2026-10-31T16:46:40Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.0% | 41.0% | 43.2% | 36.1% | 35.1% | 2026-11-07T23:15:04Z |
@@ -27,8 +27,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 43.0% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 45.6% | 2026-11-17T05:23:59Z |
+| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 43.0% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 17.9% | 15.9% | 12.5% | 19.7% | 19.2% | 2026-10-31T16:46:40Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.8% | 69.6% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.5% | 11.1% | 12.3% | 15.6% | 15.2% | 2026-11-07T23:15:04Z |
@@ -44,8 +44,8 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 
 | | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
 |---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:41Z |
 | [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-17T05:23:59Z |
+| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:41Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:14:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:04Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:25Z |
@@ -65,8 +65,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 1.8% | 2026-11-07T23:13:05Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 38.5% | 40.6% | 41.7% | 36.4% | 35.6% | 2026-11-07T23:13:45Z |
 | [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 21.7% | 17.9% | 20.1% | 20.6% | 19.0% | 2026-11-07T23:14:53Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 24.8% | 24.8% | 23.9% | 18.7% | 18.4% | 2026-11-07T23:15:06Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.5% | 43.2% | 45.2% | 40.4% | 39.2% | 2026-11-07T23:15:11Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 24.8% | 24.8% | 23.9% | 18.7% | 18.4% | 2026-11-07T23:15:06Z |
 | [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.0% | 19.7% | 17.8% | 13.6% | 11.9% | 2026-11-07T23:15:30Z |
 
 ### Optional tests
@@ -79,8 +79,8 @@ Pass rate per draft: groups where every test case matched, over all groups in th
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 22.5% | 17.8% | 12.3% | 11.7% | 10.1% | 2026-11-07T23:13:05Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 45.0% | 40.0% | 32.3% | 29.9% | 29.1% | 2026-11-07T23:13:45Z |
 | [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 55.0% | 33.3% | 27.7% | 24.7% | 24.1% | 2026-11-07T23:14:53Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.0% | 4.4% | 3.1% | 6.5% | 6.3% | 2026-11-07T23:15:06Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.5% | 15.6% | 15.4% | 18.2% | 17.7% | 2026-11-07T23:15:11Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.0% | 4.4% | 3.1% | 6.5% | 6.3% | 2026-11-07T23:15:06Z |
 | [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.0% | 31.1% | 21.5% | 18.2% | 17.7% | 2026-11-07T23:15:30Z |
 
 ### Compound tests
@@ -93,8 +93,8 @@ Our own groups, in the suite's format, for the compositions a validator suite ha
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:13:05Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:45Z |
 | [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:14:53Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:06Z |
 | [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | — | — | 40.0% | — | 40.0% | 2026-11-07T23:15:11Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:06Z |
 | [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:15:30Z |
 
 ## The tools
@@ -115,17 +115,19 @@ the unmarshaller rather than left to the type system. The flip side is that a
 root with no `type` keyword produces no root type at all, and the combinators
 collapse into a merged type or `interface{}`.
 
-**json-schema-rs 0.0.6+1d1774d** — [GitHub](https://github.com/goddtriffin/json-schema-rs)  
+**json-schema-rs 0.0.6+8032443** — [GitHub](https://github.com/goddtriffin/json-schema-rs)  
 A young Rust generator aimed at hand-written config schemas, pinned to an
 unreleased main that is moving fast: a type-graph IR, then self-validating
 types on by default. Constrained scalars are newtypes checked by the crate's
 own validator, embedded in the output, and `oneOf` picks its variant by
-validation. But a schema with no `type` is `serde_json::Value`, with no
-validator at all, so `not`, `if`/`then`/`else`, `contains`, `propertyNames`
-and most of `unevaluated*` accept anything; and a struct's `Deserialize` is
-shape-only (the validating path is `TryFrom<Value>`). Written by Claude Code: the
-repo runs from a CLAUDE.md and the codegen commits carry session tags. The
-published 0.0.6 (results kept, hidden) refused any root that wasn't an object.
+validation, unless no branch has anything to check. But a schema with no
+`type` is `serde_json::Value`, with no validator at all, so `not`,
+`if`/`then`/`else`, `contains`, `propertyNames` and most of `unevaluated*`
+accept anything; and a struct's `Deserialize` is shape-only (the validating
+path is `TryFrom<Value>`). Written by Claude Code: the repo runs from a
+CLAUDE.md, though the session tags its commits once carried are gone from
+the history. The published 0.0.6 (results kept, hidden) refused any root
+that wasn't an object.
 
 **json-schema-to-zod 2.8.1 + zod 4.6.7** — [npm](https://www.npmjs.com/package/json-schema-to-zod)  
 Turns a JSON Schema into a zod schema expression, so you get a static

@@ -51,7 +51,8 @@ checklist; keep doing that.
   𝓥 linking to a Notes footnote; "The tools" has one paragraph per tool with
   a homepage link; no bucket key and no regeneration instructions there
   (the key is on each per-tool page; the README has the commands). Rows sort
-  by tool name, then newest version first. Manifest `hidden = true` keeps a
+  by tool name, then newest version first (git pins of one version: the
+  one first measured last goes first). Manifest `hidden = true` keeps a
   row off the tables. So does being superseded: an older version whose
   results match a newer one from the same generator directory and language
   on every group both ran (listed in Notes).

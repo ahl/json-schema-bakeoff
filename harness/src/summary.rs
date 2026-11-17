@@ -552,10 +552,20 @@ fn scoreboard_headline(all: &[&Results], tier: Tier, show_language: bool) -> Str
     )
 }
 
+/// Scoreboard order: by tool, newest version first (`row_order`). Rows whose
+/// versions tie differ only past the version, which for a git pin is the
+/// build metadata (`0.0.6+<sha>`) semver says not to order by; the one first
+/// measured last goes first. A record's `generated_at` survives reruns
+/// through the cache, so a row's earliest one is when its pin was first run.
+fn order_key(r: &Results) -> ((String, Vec<crate::results::VersionKey>), std::cmp::Reverse<String>) {
+    let first = r.groups.iter().map(|g| g.generated_at.as_str()).min().unwrap_or("").to_string();
+    (crate::results::row_order(&r.typify), std::cmp::Reverse(first))
+}
+
 /// Rows left off the scoreboard because a newer row from the same
 /// generator directory and language has the same results on every shared
-/// group (see `same_results`). `rows` must already be in `row_order`, newest
-/// first. Each entry is (superseded row, the newest identical row).
+/// group (see `same_results`). `rows` must already be in `order_key` order,
+/// newest first. Each entry is (superseded row, the newest identical row).
 fn superseded<'a>(rows: &[&'a Results]) -> Vec<(&'a Results, &'a Results)> {
     let mut out = Vec::new();
     for (i, old) in rows.iter().enumerate() {
@@ -565,7 +575,7 @@ fn superseded<'a>(rows: &[&'a Results]) -> Vec<(&'a Results, &'a Results)> {
         let newer = rows[..i].iter().find(|r| {
             r.generator == old.generator
                 && r.language == old.language
-                && crate::results::row_order(&r.typify) < crate::results::row_order(&old.typify)
+                && order_key(r) < order_key(old)
                 && crate::results::same_results(r, old)
         });
         if let Some(by) = newer {
@@ -584,7 +594,7 @@ pub fn render_scoreboard(all: &[Results]) -> String {
     s.push_str("Each row links to that generator's page, which lists every failing group with its error.\n\n");
 
     let mut shown: Vec<&Results> = all.iter().filter(|r| !r.hidden).collect();
-    shown.sort_by_key(|r| crate::results::row_order(&r.typify));
+    shown.sort_by_key(|r| order_key(r));
     let superseded = superseded(&shown);
     shown.retain(|r| !superseded.iter().any(|(old, _)| std::ptr::eq(*old, *r)));
     let (rust, other): (Vec<&Results>, Vec<&Results>) = shown.iter().partition(|r| r.language == "rust");
@@ -1132,6 +1142,34 @@ mod tests {
             row_order("json-schema-to-zod 2.8.1 + zod 4.6.7") < row_order("json-schema-to-zod 2.8.1 + zod 4.6.6")
         );
         assert_eq!(row_order("quicktype 26.0.0 rust"), row_order("quicktype 26.0.0 go"));
+    }
+
+    /// Two git pins of one version differ only in build metadata, which
+    /// `row_order` ignores; the pin measured later comes first even when its
+    /// sha sorts after the other's.
+    #[test]
+    fn git_pins_order_by_first_measurement() {
+        let mut old = sample_results();
+        old.typify = "json-schema-rs 0.0.6+9999999".to_string();
+        old.version = "json-schema-rs-0.0.6-9999999".to_string();
+        for g in &mut old.groups {
+            g.generated_at = "2026-11-03T00:00:00Z".to_string();
+        }
+        let mut new = old.clone();
+        new.typify = "json-schema-rs 0.0.6+1111111".to_string();
+        new.version = "json-schema-rs-0.0.6-1111111".to_string();
+        new.groups[0].bucket = Bucket::FalseReject;
+        new.groups[0].cases[0].outcome = CaseOutcome::FalseReject;
+        for g in &mut new.groups {
+            g.generated_at = "2026-11-16T00:00:00Z".to_string();
+        }
+        // Group order doesn't matter: the earliest record decides, and a
+        // rerun that refreshed some records leaves it alone.
+        new.groups[1].generated_at = "2026-11-20T00:00:00Z".to_string();
+        old.groups[1].generated_at = "2026-11-21T00:00:00Z".to_string();
+        let out = render_scoreboard(&[old, new]);
+        assert!(table_has(&out, "json-schema-rs 0.0.6+1111111") && table_has(&out, "json-schema-rs 0.0.6+9999999"));
+        assert!(out.find("0.0.6+1111111").unwrap() < out.find("0.0.6+9999999").unwrap(), "{out}");
     }
 
     #[test]
