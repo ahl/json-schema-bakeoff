@@ -56,7 +56,7 @@ section has a paragraph on each tool's design center.
   as PR #68; no tag since 0.0.6). The published 0.0.6 keeps its results under
   `results/json-schema-rs-0.0.6/`, hidden from the tables (that version
   refused any root that wasn't an object); only the current pin can be rerun.
-  Needs Rust 1.99 (`cargo +1.99.1`).
+  Needs Rust 1.100 (`cargo +1.100.0`).
 - `json-schema-to-zod`: [json-schema-to-zod](https://www.npmjs.com/package/json-schema-to-zod)
   with zod 4, TypeScript. Node runs the emitted code directly; the build step
   is a load probe.
