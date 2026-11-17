@@ -121,6 +121,16 @@ pub fn run(opts: RunOpts) -> Result<()> {
     Ok(())
 }
 
+/// The groups of a results file after one draft's run: the earlier file's
+/// groups for every other draft, then this draft's fresh groups, in
+/// canonical draft order.
+fn accumulate(prior: Vec<GroupResult>, mut fresh: Vec<GroupResult>, draft: &str) -> Vec<GroupResult> {
+    let mut kept: Vec<GroupResult> = prior.into_iter().filter(|g| g.draft != draft).collect();
+    kept.append(&mut fresh);
+    kept.sort_by_key(|g| summary::draft_rank(&g.draft));
+    kept
+}
+
 /// Make stored error text machine-independent and deterministic: the
 /// cargo registry path and the repo root become placeholders, and the Rust
 /// runtime's thread id in "thread 'x' (12345) panicked" is dropped.
@@ -378,14 +388,15 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
         (None, None) => headline_dir.clone(),
         (None, Some(_)) => scratch.join("filtered"),
     };
-    if headline {
-        // The headline file accumulates drafts: this run replaces only its
-        // own draft's groups. Drafts are kept in canonical order.
-        if let Some(prev) = previous {
-            let mut kept: Vec<GroupResult> = prev.groups.into_iter().filter(|g| g.draft != draft).collect();
-            kept.append(&mut results.groups);
-            kept.sort_by_key(|g| summary::draft_rank(&g.draft));
-            results.groups = kept;
+    // An unfiltered run accumulates drafts: it replaces only its own
+    // draft's groups in the file it writes. For the headline file that is
+    // the stored results; for --out it is whatever an earlier draft of this
+    // run (or an earlier run) left there, since a cache hit never writes
+    // there.
+    if filter.is_none() {
+        let prior = if opts.out.is_some() { Results::load(&out_dir.join("results.json")).ok() } else { previous };
+        if let Some(prev) = prior {
+            results.groups = accumulate(prev.groups, results.groups, draft);
         }
     }
     results.generated_at = results.groups.iter().map(|g| g.generated_at.clone()).max().unwrap_or_default();
@@ -509,6 +520,33 @@ fn chrono_free_timestamp() -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn group(draft: &str, file: &str) -> GroupResult {
+        GroupResult {
+            id: format!("{draft}/{file}::g"),
+            draft: draft.to_string(),
+            file: file.to_string(),
+            optional: false,
+            compound: false,
+            group: "g".to_string(),
+            hash: String::new(),
+            generated_at: String::new(),
+            bucket: Bucket::Pass,
+            error: None,
+            cases: Vec::new(),
+        }
+    }
+
+    /// A draft's run replaces only its own groups; the others survive, and
+    /// the file ends up in canonical draft order whatever order it was run
+    /// in.
+    #[test]
+    fn accumulate_replaces_one_draft_and_keeps_the_rest() {
+        let prior = vec![group("draft7", "old.json"), group("draft2020-12", "a.json"), group("draft4", "b.json")];
+        let fresh = vec![group("draft7", "new.json")];
+        let ids: Vec<String> = accumulate(prior, fresh, "draft7").into_iter().map(|g| g.id).collect();
+        assert_eq!(ids, ["draft4/b.json::g", "draft7/new.json::g", "draft2020-12/a.json::g"]);
+    }
 
     #[test]
     fn scrub_makes_text_portable() {
