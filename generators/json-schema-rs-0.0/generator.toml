@@ -16,8 +16,8 @@ validation, unless no branch has anything to check. But a schema with no
 accept anything; and a struct's `Deserialize` is shape-only (the validating
 path is `TryFrom<Value>`). Written by Claude Code: the repo runs from a
 CLAUDE.md, though the session tags its commits once carried are gone from
-the history. The published 0.0.6 (results kept, hidden) refused any root
-that wasn't an object.
+the history. The published 0.0.6 (results in `archive/suite-1.041/`) refused
+any root that wasn't an object.
 """
 
 [commands]

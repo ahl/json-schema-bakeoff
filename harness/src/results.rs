@@ -123,23 +123,21 @@ pub struct CaseResult {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GroupResult {
-    /// Unique id: `<draft>/<file>::<group description>`, e.g.
-    /// `draft7/allOf.json::allOf with base schema`.
+    /// Unique id: `<file>::<group description>`, e.g.
+    /// `allOf.json::allOf with base schema`.
     pub id: String,
+    /// Dialect the group ran under: `draft4` ... `draft2020-12`, or `v1`.
     pub draft: String,
-    /// Path relative to `suite/tests/<draft>/`, e.g. `allOf.json` or
-    /// `optional/format/date.json`.
+    /// Path relative to `suite/validation/tests/`, e.g. `allOf.json` or
+    /// `optional/bignum.json`; for our own groups, `compound/` plus the path
+    /// relative to `compound/tests/`.
     pub file: String,
-    /// True for anything under `optional/`.
-    pub optional: bool,
-    /// True for our own groups from `compound/tests/<draft>/`; `file`
-    /// then starts with `compound/`.
-    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
-    pub compound: bool,
+    pub tier: Tier,
     pub group: String,
-    /// Hash of everything that determined this record (typify version,
-    /// schema, cases, harness revision). A rerun reuses the record when
-    /// the hash matches, so the results file doubles as the cache.
+    /// Hash of everything that determined this record (tool identity,
+    /// dialect, tier, schema, external schemas, cases, harness revision).
+    /// A rerun reuses the record when the hash matches, so the results file
+    /// doubles as the cache.
     #[serde(default)]
     pub hash: String,
     /// When this record was computed (RFC 3339, UTC).
@@ -153,28 +151,36 @@ pub struct GroupResult {
 }
 
 /// Which part of the test corpus a group comes from. Reported
-/// separately everywhere; only `Core` feeds the headline numbers.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+/// separately everywhere: `Standard` is the pass rate a per-tool page leads
+/// with, `Optional` and `Compound` have their own columns, and `Upcoming`
+/// has its own section.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum Tier {
-    /// The official suite outside `optional/`.
-    Core,
-    /// The official suite's `optional/`.
+    /// The official suite, outside the other tiers.
+    Standard,
+    /// The official suite's `optional/`, and cases tagged
+    /// `format-assertion`.
     Optional,
     /// Our own groups under `compound/`.
     Compound,
+    /// The official suite's cases for unreleased features, run as `v1`.
+    Upcoming,
+}
+
+impl Tier {
+    /// The serialized form: `standard`, `optional`, `compound`, `upcoming`.
+    pub fn name(self) -> &'static str {
+        match self {
+            Tier::Standard => "standard",
+            Tier::Optional => "optional",
+            Tier::Compound => "compound",
+            Tier::Upcoming => "upcoming",
+        }
+    }
 }
 
 impl GroupResult {
-    pub fn tier(&self) -> Tier {
-        if self.compound {
-            Tier::Compound
-        } else if self.optional {
-            Tier::Optional
-        } else {
-            Tier::Core
-        }
-    }
-
     /// Derive the group bucket from per-case outcomes (for groups that
     /// reached the run step).
     pub fn bucket_from_cases(cases: &[CaseResult]) -> Bucket {

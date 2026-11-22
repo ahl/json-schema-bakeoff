@@ -47,20 +47,20 @@ pub enum GenOutcome {
     Panic(String),
 }
 
-/// The suite directory name as a `SpecVersion`.
+/// The harness's dialect name as a `SpecVersion`.
 ///
 /// It goes in as `JsonSchemaSettings::default_spec_version`: the draft for a
 /// document whose root has no `$schema`. That is the setting the crate
 /// documents for exactly this use (its own suite and Bowtie harnesses pass
 /// the suite directory's draft there), and it is what the jsonschema row
 /// does too (`with_draft` sets the root's draft and lets embedded resources
-/// follow their own `$schema`). Drafts 4 through 7 in the suite never carry a
-/// root `$schema`; 2019-09 and 2020-12 nearly always carry the directory's
-/// own, so the directory decides every root either way. The other knob,
+/// follow their own `$schema`). The unified suite's schemas carry no
+/// `$schema` (six custom metaschema cases aside), so the dialect field
+/// decides every root. The other knob,
 /// `forced_spec_version`, would also override an embedded resource's
 /// `$schema`, which the spec says it must not.
 ///
-/// All five suite directories map onto a variant, so the `Err` arm is for a
+/// All five released dialects map onto a variant, so the `Err` arm is for a
 /// draft this integration has never seen: the group is recorded as an
 /// `error` naming it rather than generated against a guessed dialect.
 pub fn spec_version(draft: Option<&str>) -> Result<SpecVersion, String> {
@@ -73,7 +73,9 @@ pub fn spec_version(draft: Option<&str>) -> Result<SpecVersion, String> {
         "draft7" => Ok(SpecVersion::Draft07),
         "draft2019-09" => Ok(SpecVersion::Draft201909),
         "draft2020-12" => Ok(SpecVersion::Draft202012),
-        other => Err(format!("no json-schema-rs SpecVersion for suite draft {other:?}")),
+        other => Err(format!(
+            "no json-schema-rs SpecVersion for dialect {other:?}"
+        )),
     }
 }
 
@@ -291,9 +293,9 @@ mod tests {
         assert!(code.contains("pub enum Root {"), "{code}");
     }
 
-    /// Every suite directory has a `SpecVersion`, and nothing else does.
+    /// Every released dialect has a `SpecVersion`, and nothing else does.
     #[test]
-    fn every_suite_draft_maps_and_nothing_else_does() {
+    fn every_released_dialect_maps_and_nothing_else_does() {
         for (dir, spec) in [
             ("draft4", SpecVersion::Draft04),
             ("draft6", SpecVersion::Draft06),

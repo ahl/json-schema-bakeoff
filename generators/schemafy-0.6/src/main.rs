@@ -1,7 +1,8 @@
 //! schemafy 0.6 generator for the bakeoff harness.
 //!
 //!   version                → "schemafy <schemafy_lib version>"
-//!   generate <out_dir>     → stdin: JSON array of {key, draft, schema};
+//!   generate <out_dir>     → stdin: JSON array of
+//!                             {key, draft, schema, externalSchemas?};
 //!                             writes <out_dir>/<key>.rs (module +
 //!                             __conformance_check); stdout: JSON array of
 //!                             {key, status, message?}
@@ -11,7 +12,8 @@
 //!
 //! `draft` is accepted and ignored: schemafy has one dialect (draft 4, the
 //! meta-schema its `Schema` type was generated from) and no setting to
-//! choose another, so its results are identical in every draft directory.
+//! choose another, so its results are the same whatever dialect the harness
+//! passes.
 //!
 //! Unlike the typify generators, `generate` is a supervisor over a worker
 //! subprocess (`generate-worker`, a private third verb) rather than doing
@@ -23,7 +25,7 @@
 //! matter how big the stack or how careful the `catch_unwind`. The worker
 //! streams one status line per group, and a
 //! worker that dies costs exactly one group (recorded as a `panic`, with
-//! the runtime's message) instead of the whole draft. This is the same
+//! the runtime's message) instead of the whole run. This is the same
 //! restart-past-the-cursor shape the harness uses for runner processes,
 //! down to the `ready` handshake that tells a crash on a schema apart from
 //! a worker that never got going.
@@ -44,7 +46,7 @@ mod crashguard;
 #[derive(Deserialize)]
 struct Group {
     key: String,
-    /// The suite directory the schema came from. schemafy has no dialect
+    /// The dialect the harness assigned the schema. schemafy has no dialect
     /// setting, so this is accepted and otherwise unused.
     #[allow(dead_code)]
     draft: Option<String>,

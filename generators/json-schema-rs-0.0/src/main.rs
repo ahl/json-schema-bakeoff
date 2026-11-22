@@ -2,7 +2,8 @@
 //! for the bakeoff harness.
 //!
 //!   version                → "json-schema-rs <crate version>+<short sha>"
-//!   generate <out_dir>     → stdin: JSON array of {key, draft, schema}; writes
+//!   generate <out_dir>     → stdin: JSON array of
+//!                             {key, draft, schema, externalSchemas?}; writes
 //!                             <out_dir>/<key>.rs (module + __conformance_check)
 //!                             and <out_dir>/batch-deps.toml;
 //!                             stdout: JSON array of {key, status, message?}
@@ -23,7 +24,7 @@ mod crashguard;
 #[derive(Deserialize)]
 struct Group {
     key: String,
-    /// Suite directory the schema came from (`draft7`, ...). Selects the
+    /// The dialect the harness assigned the schema (`draft7`, ...). Selects the
     /// dialect; absent or unrecognized is an `error` for the group.
     #[serde(default)]
     draft: Option<String>,

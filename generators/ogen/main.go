@@ -3,13 +3,15 @@
 // three commands of the generator contract in DESIGN.md:
 //
 //	version                      → "ogen vX.Y.Z"
-//	generate <out_dir>           → stdin [{key, draft, schema}];
+//	generate <out_dir>           → stdin [{key, draft, schema,
+//	                               externalSchemas?}];
 //	                               writes <out_dir>/<key>.go;
 //	                               stdout [{key, status, message?}]
 //	build <gen_dir> <batch_dir>  → stdin [key]; stdout {outcomes, runner}
 //
 // plus one internal command, `worker`, which is how `generate` survives a
-// generation that takes the process down (see generate.go).
+// generation that takes the process down (see generate.go). `generate`
+// ignores `externalSchemas`.
 //
 // The tool is used as a library (`gen`), not as a subprocess: its CLI takes
 // one OpenAPI document per invocation and writes a package to disk, so a
@@ -64,7 +66,7 @@ func main() {
 func usage() {
 	fmt.Fprint(os.Stderr, `usage:
   go run . version
-  go run . generate <out_dir>              # stdin: [{key, draft, schema}]
+  go run . generate <out_dir>              # stdin: [{key, draft, schema, externalSchemas?}]
   go run . build <gen_dir> <batch_dir>     # stdin: [key]
   go run . worker <plan.json> <out_dir> <start>   # internal
 `)

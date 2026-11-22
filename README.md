@@ -13,8 +13,8 @@ generated: `cargo run -- run` rewrites them after storing results, and
 ```sh
 git submodule update --init
 cargo run -- generators                       # what's under generators/
-cargo run -- run                              # every generator, every draft
-cargo run -- run --generator typify-0.10 --draft draft7
+cargo run -- run                              # every generator
+cargo run -- run --generator typify-0.10
 cargo run -- run --generator quicktype --target go
 cargo run -- run --generator typify-0.10 --filter 'ref.json::relative pointer'
 cargo run -- render                           # pages from stored data only
@@ -27,11 +27,14 @@ There are two actions. `run` executes the suite and stores data under
 pages. A filtered run prints per-case detail with the path to the generated
 code and writes under `target/` so it never touches stored results.
 Everything scratch lives in `target/`; delete it freely.
-`compound/` holds our own groups, in the suite's format, for the
+`compound/tests/` holds our own groups, in the suite's format, for the
 compositions the suite doesn't test; they're scored in their own tier.
-`--no-optional` and `--no-compound` skip those tiers (a full run then drops
-their stored records for that draft).
-
+`--no-optional`, `--no-compound` and `--no-upcoming` skip those tiers (a full
+run then drops their stored records). Each group (one schema with its cases)
+runs once, under the newest dialect it allows (draft4 through draft2020-12);
+cases for unreleased features run under `v1` and are scored in the Upcoming
+tier, which has its own section on the scoreboard. Results from the old
+per-draft suite are in `archive/suite-1.041/`.
 [DESIGN.md](DESIGN.md) has the generator contract, the layout, the buckets,
 and the caching rules. To add a generator, create `generators/<name>/` with
 a `generator.toml` and the three commands it names.
@@ -43,9 +46,9 @@ the options chosen, and the quirks found. The scoreboard's "The tools"
 section has a paragraph on each tool's design center.
 
 - `typify-0.10`, `typify-0.8`: [typify](https://crates.io/crates/typify), Rust.
-  typify 0.3.0 has results but no generator; it was measured once with a copy
-  of `typify-0.8` pinned to `=0.3.0` (plus a redirect of the tool's stray
-  stdout) and the glue was then removed.
+  typify 0.3.0 has no generator; its results are in `archive/suite-1.041/`.
+  It was measured once with a copy of `typify-0.8` pinned to `=0.3.0` (plus a
+  redirect of the tool's stray stdout) and the glue was then removed.
 - `quicktype`: [quicktype](https://quicktype.io) via `quicktype-core`, targets
   `rust`, `go`, `typescript`.
 - `schemafy-0.6`: [schemafy_lib](https://crates.io/crates/schemafy_lib), Rust.
@@ -53,10 +56,10 @@ section has a paragraph on each tool's design center.
   on some schemas.
 - `json-schema-rs-0.0`: [json-schema-rs](https://github.com/goddtriffin/json-schema-rs),
   Rust, pinned to unreleased main by commit (the type-graph codegen landed
-  as PR #68; no tag since 0.0.6). The published 0.0.6 keeps its results under
-  `results/json-schema-rs-0.0.6/`, hidden from the tables (that version
-  refused any root that wasn't an object); only the current pin can be rerun.
-  Needs Rust 1.100 (`cargo +1.100.0`).
+  as PR #68; no tag since 0.0.6). The published 0.0.6 refused any root that
+  wasn't an object; its results, and those of two earlier pins, are in the
+  archive. Only the current pin can be rerun. Needs Rust 1.100
+  (`cargo +1.100.0`).
 - `json-schema-to-zod`: [json-schema-to-zod](https://www.npmjs.com/package/json-schema-to-zod)
   with zod 4, TypeScript. Node runs the emitted code directly; the build step
   is a load probe.
@@ -78,8 +81,8 @@ section has a paragraph on each tool's design center.
   whose TypeScript output is types-only and whose Go output is
   openapi-generator's).
 - `jsonschema-0.58`, `ajv`: validators, not generators (marked 𝓥 on the
-  scoreboard). They calibrate the Rust and Node paths and resolve the suite's
-  `localhost:1234` remotes from `suite/remotes/`. jsonschema leaves `format` at
+  scoreboard). They calibrate the Rust and Node paths and resolve each case's
+  `externalSchemas` from the request payload. jsonschema leaves `format` at
   the library default (asserted through draft 7; 2020-12's required tests
   say it must be annotation-only); ajv ships no formats and ignores it.
 

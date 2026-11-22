@@ -20,9 +20,10 @@ serde_json = { version = "1", features = ["float_roundtrip", "raw_value"] }
 # and lets the unit tests check the generated code's assumptions.
 #
 # default-features = false drops `resolve-http` (and its reqwest/rustls/TLS
-# stack): remote references are served from suite/remotes by the retriever
-# in the generated code, and with no HTTP resolver compiled in, a reference
-# we don't recognize cannot reach the network even by accident.
+# stack): remote references are served from the case's external schemas by
+# the retriever in the generated code, and with no HTTP resolver compiled
+# in, a reference we don't recognize cannot reach the network even by
+# accident.
 #
 # `idna` is put back by hand. It is a default feature, and it is what backs
 # the `idn-hostname`/`idn-email` formats; without it those two are unknown

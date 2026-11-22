@@ -12,7 +12,8 @@ enabling stricter modes or stripping output a tool really produces.
 
 ## Two actions
 
-- `cargo run -- run [--generator <name>] [--target <t>] [--draft <d>|all] [--filter <s>] [--no-cache]`
+- `cargo run -- run [--generator <name>] [--target <t>] [--filter <s>]
+  [--no-optional] [--no-compound] [--no-upcoming] [--no-cache] [--out <path>]`
   executes the suite and stores `results/<tool version>/results.json`, then
   renders. A filtered run prints per-case detail and writes under `target/`.
 - `cargo run -- render` regenerates every `results/*/README.md` and
@@ -24,13 +25,20 @@ prints the bucket glyphs; `cargo run -- generators` lists what's installed.
 ## Layout and contract
 
 `DESIGN.md` is the contract: the generator directory shape
-(`generators/<name>/generator.toml` with `version`, `generate`, `build`
-commands run as subprocesses), the runner protocol, the buckets, the record
-cache (hash of harness revision, tool identity, generator sources, group,
-schema, cases), and the policies (remote refs left to fail for generators,
-resolved from `suite/remotes/` only by validator rows; `format` at library
-defaults (asserting it fails required 2020-12 tests); dialect passed as
-`draft`).
+(`generators/<name>/generator.toml` with `version`, `generate`, `build` commands
+run as subprocesses), the runner protocol, the buckets, the record cache (hash
+of harness revision, tool identity, generator sources, group, dialect, tier,
+schema, external schemas, cases), and the policies (remote refs left to fail for
+generators, resolved from the request's `externalSchemas` only by validator
+rows; `format` at library defaults (asserting it fails required 2020-12 tests);
+dialect passed as `draft`).
+
+The suite is `suite/validation/tests/`. Each group runs once, under the
+newest dialect its `compatibility` allows (draft4 through draft2020-12, or
+`v1` for unreleased features). Tiers: Standard (the headline number),
+Optional, Compound, Upcoming. Ids are `<file>::<description>`. Our own
+groups are `compound/tests/<path>.json`. Results against the old per-draft
+suite are in `archive/suite-1.041/` and are never regenerated.
 
 `harness/` orchestrates. `rust-batch/` is the shared build step for Rust
 output. Everything scratch is under `target/`; Adam deletes it freely.
@@ -46,23 +54,24 @@ checklist; keep doing that.
   🦀 compile_fail, 💀 runtime_panic, 🤪 mixed, 🚧 false_reject,
   🙈 false_accept, ✅ pass. A tool that succeeds but emits no root type is
   `compile_fail`, not `generation_error`.
-- `RESULTS.md`: Rust section then Other languages, each with Core and
-  Optional tables; rows are "name (lang)" outside Rust; validator rows carry
-  𝓥 linking to a Notes footnote; "The tools" has one paragraph per tool with
-  a homepage link; no bucket key and no regeneration instructions there
-  (the key is on each per-tool page; the README has the commands). Rows sort
-  by tool name, then newest version first (git pins of one version: the
-  one first measured last goes first). Manifest `hidden = true` keeps a
-  row off the tables. So does being superseded: an older version whose
-  results match a newer one from the same generator directory and language
-  on every group both ran (listed in Notes).
+- `RESULTS.md`: Rust section then Other languages, each with one headline table
+  (Standard, Optional, Compound, Generated), then one Upcoming section shared by
+  both language sections; rows are "name (lang)" outside Rust; validator rows
+  carry 𝓥 linking to a Notes footnote; "The tools" has one paragraph per tool
+  with a homepage link; no bucket key and no regeneration instructions there
+  (the key is on each per-tool page; the README has the commands). Rows sort by
+  tool name, then newest version first (git pins of one version: the one first
+  measured last goes first). Manifest `hidden = true` keeps a row off the
+  tables. So does being superseded: an older version whose results match a newer
+  one from the same generator directory and language on every group both ran
+  (listed in Notes).
 - Per-tool pages show all eight bucket columns in every table; the
-  per-group glyph column is "Per group".
+  per-group glyph column is "Per group". One section per tier present.
 - Descriptions in `generator.toml` are short and in Adam's voice (the
   `writing-like-ahl` skill); manifest metadata doesn't feed the record hash.
 - Results are keyed by the exact tool version; bumping a pin starts a new
   directory and old results stay. A results directory may outlive its
-  generator (typify 0.3.0).
+  generator.
 - `.github/`: Dependabot bumps generator pins; `results.yml` reruns the
   changed generator on the PR and commits the results; `ci.yml` checks that
   stored results are current. Needs a `RESULTS_TOKEN` secret on GitHub.

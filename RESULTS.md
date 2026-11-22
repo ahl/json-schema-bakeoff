@@ -4,98 +4,48 @@ Each row links to that generator's page, which lists every failing group with it
 
 ## Rust
 
-### Core
+Standard is the suite outside `optional/`, less the format cases tagged `format-assertion` and the `v1` cases; Optional is `optional/` plus the format cases the suite tags `format-assertion`; Compound is our own groups under `compound/`, which the validator rows must pass in full.
 
-Pass rate per draft: groups where every test case matched, over all groups in the draft.
-
-| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 59.0% | 58.1% | 55.6% | 49.5% | 47.8% | 2026-11-17T05:23:59Z |
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 59.0% | 59.0% | 56.4% | 50.0% | 48.3% | 2026-11-07T23:13:41Z |
-| [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 48.1% | 49.4% | 47.7% | 40.5% | 39.8% | 2026-10-31T16:46:40Z |
-| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 2026-11-07T23:14:39Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 41.0% | 41.0% | 43.2% | 36.1% | 35.1% | 2026-11-07T23:15:04Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 27.3% | 23.1% | 25.5% | 21.7% | 20.5% | 2026-11-07T23:15:25Z |
-| [typify 0.10.1](results/typify-0.10.1/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 28.1% | 2026-11-17T05:21:51Z |
-| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 27.8% | 2026-11-07T23:15:43Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 37.9% | 34.2% | 30.9% | 27.5% | 27.8% | 2026-11-07T23:15:49Z |
-| [typify 0.3.0](results/typify-0.3.0/README.md) | 36.9% | 33.5% | 30.2% | 26.8% | 27.1% | 2026-10-11T19:27:54Z |
-
-### Optional tests
-
-`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...).
-
-| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 45.6% | 2026-11-17T05:23:59Z |
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | 62.5% | 57.8% | 49.2% | 44.2% | 43.0% | 2026-11-07T23:13:41Z |
-| [json-schema-rs 0.0.6+892e088](results/json-schema-rs-0.0.6-892e088/README.md) | 17.9% | 15.9% | 12.5% | 19.7% | 19.2% | 2026-10-31T16:46:40Z |
-| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 100.0% | 100.0% | 68.8% | 69.6% | 2026-11-07T23:14:39Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 17.5% | 11.1% | 12.3% | 15.6% | 15.2% | 2026-11-07T23:15:04Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 17.5% | 11.1% | 12.3% | 11.7% | 11.4% | 2026-11-07T23:15:25Z |
-| [typify 0.10.1](results/typify-0.10.1/README.md) | 65.0% | 53.3% | 36.9% | 32.5% | 31.6% | 2026-11-17T05:21:51Z |
-| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | 55.0% | 44.4% | 30.8% | 27.3% | 26.6% | 2026-11-07T23:15:43Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | 55.0% | 44.4% | 30.8% | 27.3% | 26.6% | 2026-11-07T23:15:49Z |
-| [typify 0.3.0](results/typify-0.3.0/README.md) | 56.4% | 45.5% | 31.2% | 27.6% | 26.9% | 2026-10-11T19:27:54Z |
-
-### Compound tests
-
-Our own groups, in the suite's format, for the compositions a validator suite has no reason to write: see `compound/`. The validator rows score 100% here, which is how the expected verdicts are checked.
-
-| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|:---:|:---:|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-17T05:23:59Z |
-| [json-schema-rs 0.0.6+1d1774d](results/json-schema-rs-0.0.6-1d1774d/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:41Z |
-| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:14:39Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:04Z |
-| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:25Z |
-| [typify 0.10.1](results/typify-0.10.1/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-17T05:21:51Z |
-| [typify 0.10.0-alpha.3](results/typify-0.10.0-alpha.3/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T23:15:43Z |
-| [typify 0.8.0](results/typify-0.8.0/README.md) | — | — | 20.0% | — | 20.0% | 2026-11-07T23:15:49Z |
+| | Standard | Optional | Compound | Generated |
+|---|:---:|:---:|:---:|---|
+| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 49.8% | 44.9% | 80.0% | 2026-11-22T02:41:23Z |
+| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 65.3% | 100.0% | 2026-11-22T01:59:39Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 35.7% | 13.3% | 0.0% | 2026-11-22T02:30:55Z |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 23.3% | 10.2% | 0.0% | 2026-11-22T02:41:27Z |
+| [typify 0.10.1](results/typify-0.10.1/README.md) | 25.0% | 28.6% | 20.0% | 2026-11-22T01:57:31Z |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 24.6% | 24.5% | 20.0% | 2026-11-22T01:57:36Z |
 
 ## Other languages
 
-### Core
+| | Standard | Optional | Compound | Generated |
+|---|:---:|:---:|:---:|---|
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 92.2% | 48.0% | 100.0% | 2026-11-22T02:30:50Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 2.6% | 10.2% | 0.0% | 2026-11-22T02:41:34Z |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 32.0% | 22.4% | 80.0% | 2026-11-22T02:41:31Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 18.7% | 25.5% | 80.0% | 2026-11-22T02:41:40Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 38.7% | 13.3% | 40.0% | 2026-11-22T02:31:01Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 18.7% | 8.2% | 0.0% | 2026-11-22T02:30:57Z |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 10.9% | 15.3% | 100.0% | 2026-11-22T02:41:30Z |
 
-Pass rate per draft: groups where every test case matched, over all groups in the draft.
+## Upcoming
 
-| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 97.5% | 98.3% | 98.5% | 96.8% | 90.6% | 2026-11-07T23:12:42Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 1.9% | 1.3% | 1.2% | 2.9% | 1.8% | 2026-11-07T23:13:05Z |
-| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 38.5% | 40.6% | 41.7% | 36.4% | 35.6% | 2026-11-07T23:13:45Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 21.7% | 17.9% | 20.1% | 20.6% | 19.0% | 2026-11-07T23:14:53Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.5% | 43.2% | 45.2% | 40.4% | 39.2% | 2026-11-07T23:15:11Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 24.8% | 24.8% | 23.9% | 18.7% | 18.4% | 2026-11-07T23:15:06Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 23.0% | 19.7% | 17.8% | 13.6% | 11.9% | 2026-11-07T23:15:30Z |
+Cases the suite marks for features of the unreleased JSON Schema v1, run under dialect `v1`. They are not part of the tables above.
 
-### Optional tests
-
-`tests/<draft>/optional/` covers behavior the spec leaves optional (formats, bignum, regex dialects, ...).
-
-| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 77.5% | 73.3% | 55.4% | 62.3% | 60.8% | 2026-11-07T23:12:42Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 22.5% | 17.8% | 12.3% | 11.7% | 10.1% | 2026-11-07T23:13:05Z |
-| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 45.0% | 40.0% | 32.3% | 29.9% | 29.1% | 2026-11-07T23:13:45Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 55.0% | 33.3% | 27.7% | 24.7% | 24.1% | 2026-11-07T23:14:53Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 17.5% | 15.6% | 15.4% | 18.2% | 17.7% | 2026-11-07T23:15:11Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 10.0% | 4.4% | 3.1% | 6.5% | 6.3% | 2026-11-07T23:15:06Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 35.0% | 31.1% | 21.5% | 18.2% | 17.7% | 2026-11-07T23:15:30Z |
-
-### Compound tests
-
-Our own groups, in the suite's format, for the compositions a validator suite has no reason to write: see `compound/`. The validator rows score 100% here, which is how the expected verdicts are checked.
-
-| | 4 | 6 | 7 | 2019-09 | 2020-12 | Generated |
-|---|:---:|:---:|:---:|:---:|:---:|---|
-| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:12:42Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:13:05Z |
-| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:13:45Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | — | — | 80.0% | — | 80.0% | 2026-11-07T23:14:53Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | — | — | 40.0% | — | 40.0% | 2026-11-07T23:15:11Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | — | — | 0.0% | — | 0.0% | 2026-11-07T23:15:06Z |
-| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | — | — | 100.0% | — | 100.0% | 2026-11-07T23:15:30Z |
+| | Pass | Per group |
+|---|:---:|---|
+| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
+| [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 12.0% | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈🙈🙈❌🙈🙈🙈✅✅🙈🙈🙈🙈🙈 |
+| [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 8.0% | 🙈🤯🤯🤯🙈🤯🤯🤯🤯🤯🦀🤯🙈🙈🦀🙈🙈🙈✅✅🙈🙈🙈🤯🤯 |
+| [typify 0.10.1](results/typify-0.10.1/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
+| [typify 0.8.0](results/typify-0.8.0/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
+| [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 0.0% | 🙈🦀❌🦀❌🦀🦀🦀🦀🦀❌🦀🦀🦀❌🦀❌❌❌❌❌🦀🦀🦀🦀 |
+| [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 12.0% | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈 |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 8.0% | 🙈❌❌❌🙈❌❌❌❌❌❌❌🦀🦀❌🙈🙈🙈✅✅🙈🙈🙈❌❌ |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 16.0% | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈🙈🙈❌✅🙈🙈✅✅🙈🚧🚧🙈🚧 |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 4.0% | 🙈🙈🙈✅🦀❌❌❌❌❌🙈🦀🦀🦀❌🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈 |
+| [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
 
 ## The tools
 
@@ -104,7 +54,8 @@ The JSON Schema validator for JavaScript, and for much of the ecosystem the
 reference implementation: it compiles a schema into purpose-built JS and runs
 that at the boundary. No types come out; the schema stays the artifact. It's
 the reference row for the Node path, resolving `localhost:1234` remotes from
-`suite/remotes/` and shipping no formats, so `format` is ignored everywhere.
+the case's own `externalSchemas` and shipping no formats, so `format` is
+ignored everywhere.
 
 **go-jsonschema v0.24.1** — [GitHub](https://github.com/omissis/go-jsonschema)  
 Go structs from JSON Schema, plus hand-written `UnmarshalJSON` methods that
@@ -126,8 +77,8 @@ validation, unless no branch has anything to check. But a schema with no
 accept anything; and a struct's `Deserialize` is shape-only (the validating
 path is `TryFrom<Value>`). Written by Claude Code: the repo runs from a
 CLAUDE.md, though the session tags its commits once carried are gone from
-the history. The published 0.0.6 (results kept, hidden) refused any root
-that wasn't an object.
+the history. The published 0.0.6 (results in `archive/suite-1.041/`) refused
+any root that wasn't an object.
 
 **json-schema-to-zod 2.8.1 + zod 4.6.7** — [npm](https://www.npmjs.com/package/json-schema-to-zod)  
 Turns a JSON Schema into a zod schema expression, so you get a static
@@ -142,9 +93,9 @@ A Rust validator, not a generator: it interprets the schema at run time, so
 it can enforce every keyword, which a type generator structurally can't. It's
 the reference row: the ceiling the suite allows, a check on the harness, and
 a price tag on the policies the generators live with. Remote refs come from
-`suite/remotes/`, the dialect from the suite directory, and `format` stays at
-the library default (asserted through draft 7, annotation-only after), because
-2020-12's required tests say so.
+the case's own `externalSchemas`, the dialect from the harness, and `format`
+stays at the library default (asserted through draft 7, annotation-only
+after), because 2020-12's required tests say so.
 
 **ogen v1.24.0** — [ogen.dev](https://ogen.dev)  
 An OpenAPI v3 generator for Go: its design center is an API document, and
@@ -190,14 +141,7 @@ line is the rewrite on top of typespace.
 The last typify release before the typespace rewrite. Same design center as
 0.10; it's here so the rewrite has something to be measured against.
 
-**typify 0.3.0** — [crates.io](https://crates.io/crates/typify)  
-typify 0.3.0, from December 2024: the version most typify users were on
-before the 0.4 through 0.8 releases and well before the rewrite. Same design
-center; it's here to show how much the last two years moved.
-
 ## Notes
 
-Left off: same results as a newer version of the same tool on every group both ran: json-schema-to-zod 2.8.1 + zod 4.6.6 (by 2.8.1 + zod 4.6.7), jsonschema 0.58.6 (by 0.60.2), typify 0.10.0-alpha.2 (by 0.10.0-alpha.3).
-
-𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows rather than a competing approach.
+𝓥 A validator, not a code generator: it checks each instance against the schema at run time and generates no types. Every other row deserializes into generated types, so a validator marks the ceiling the suite allows on the Standard tier rather than a competing approach.
 

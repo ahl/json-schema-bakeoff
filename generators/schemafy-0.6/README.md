@@ -83,12 +83,14 @@ part of schemafy's output contract, so the batch crate carries them.
 **`draft` is passed and ignored.** schemafy has exactly one dialect and no
 setting to change it: its input type is `schemafy_lib::Schema`, a struct
 generated from the draft-4 meta-schema, and `$schema` is just another field
-it reads and never acts on. Its results are therefore identical in every
-suite directory, and the per-draft differences on the scoreboard come
-entirely from the suite's own contents — including the structural fact that
-`exclusiveMaximum`/`exclusiveMinimum` are booleans in draft 4 and numbers
-from draft 6 on, which is why draft 4 has no `generation_error` groups and
-the later drafts have many.
+it reads and never acts on. (The suite's schemas carry no `$schema` anyway;
+the dialect arrives only as the harness's `draft` field.) Where the dialect
+shows up in the results, it's the suite's doing: `exclusiveMaximum` and
+`exclusiveMinimum` are booleans in draft 4 and numbers from draft 6 on, so
+`maximum.json::exclusiveMaximum validation (boolean form)` (draft 4)
+deserializes and comes out a false accept, while
+`maximum.json::exclusiveMaximum validation` (2020-12) is a
+`generation_error`.
 
 ## Quirks
 
@@ -115,11 +117,11 @@ the later drafts have many.
   `catch_unwind`. `generate` is therefore a supervisor over a
   `generate-worker` subprocess that streams one status line per group; a
   worker that dies costs that one group (recorded as a panic with the
-  runtime's message) rather than the whole draft. This is the same
+  runtime's message) rather than the whole run. This is the same
   restart-past-the-cursor shape the harness uses for runner processes, and
   it is the one structural difference from the typify generators. Five
-  groups in the suite reach it, all in draft2019-09's
-  `unevaluatedProperties.json`: a root with `type: "object"`, `properties`,
+  groups in the suite reach it, all in `unevaluatedProperties.json`
+  (2020-12): a root with `type: "object"`, `properties`,
   and an `allOf` whose merged subschema contributes no properties of its own
   sends `Expander`'s `allOf` merging into unbounded recursion. (A plainly
   self-referential `$ref`, by contrast, does *not* overflow — schemafy turns
@@ -131,7 +133,7 @@ the later drafts have many.
     list, the way the harness's runner protocol does. Without it, a worker
     that fails *before* generating anything (an unreadable group file, a
     broken executable) looks exactly like a worker that crashed on the
-    group at the cursor, and the supervisor would blame the whole draft on
+    group at the cursor, and the supervisor would blame the whole run on
     schemas one group at a time. No handshake is a hard failure instead.
   - A generation that exceeds the 60 s timeout is abandoned, and the
     abandoned thread still holds the panic-hook mutex and may yet overflow
@@ -144,15 +146,17 @@ the later drafts have many.
     it is stuck somewhere its own per-group timeout doesn't cover, killing
     it, and blaming the group at the cursor. The per-group timeout is the
     first line of defense; this is the backstop, and it means no single
-    group can stall a draft indefinitely.
+    group can stall a run indefinitely.
 - **A `$ref` in a field position is never resolved — it is turned into a
   type name.** `{"$ref": "#/properties/foo"}` becomes the type `Foo`, from
   the last path component, whether or not anything defines `Foo`. Only
-  `definitions` entries get types emitted, so most of `ref.json` and all of
-  `refRemote.json` either name a type that doesn't exist (`compile_fail`) or
-  panic. Remote `http://localhost:1234/...` references are left to fail,
-  per the harness policy; schemafy takes the fragment and ignores the host,
-  so they come out as dangling names or panics, never fetches.
+  `definitions` entries get types emitted, so most of `ref.json`, `id.json`
+  and `anchor.json` (and their `-legacy` twins) either name a type that
+  doesn't exist (`compile_fail`) or panic. Remote
+  `http://localhost:1234/...` references are left to fail, per the harness
+  policy, and the group's `externalSchemas` are ignored; schemafy takes the
+  fragment and ignores the host, so they come out as dangling names or
+  panics, never fetches.
 - **Field and variant names collide.** Names are snake_cased and
   PascalCased with `Inflector` and sanitized by replacing every
   non-alphanumeric character with `_`, with no uniquifying pass, so
@@ -173,5 +177,7 @@ the later drafts have many.
 - **Required-ness is the only constraint it models.** A property not in
   `required` becomes `Option<T>` with `skip_serializing_if`; everything else
   — `minimum`, `maxLength`, `pattern`, `uniqueItems`, `format`, `multipleOf`
-  — is absent from the type. `format.json` is 100% precisely because the
-  non-optional format tests all assert that a mismatched format is *valid*.
+  — is absent from the type. All 39 Standard `format-*.json` groups pass
+  precisely because they're the `format-annotation` ones, which assert that
+  a mismatched format is *valid*; 22 of the 23 Optional `format-assertion`
+  groups are false accepts.

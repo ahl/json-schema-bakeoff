@@ -82,19 +82,20 @@ export function depVersion(name) {
  * set is HTTP plus filesystem, and both have to go.
  *
  * - **HTTP.** Left alone the tool would fetch
- *   `http://localhost:1234/...` from the suite's `refRemote.json` *and*
+ *   `http://localhost:1234/...`, where the suite's remote refs point, *and*
  *   `http://json-schema.org/draft-07/schema` from the handful of groups
- *   that `$ref` a meta-schema. The resolver holds the `http` and `https`
- *   module objects and calls `protocol.get(...)` per request, so replacing
- *   those two functions before schema2typebox is imported is enough.
+ *   that `$ref` a meta-schema. The schemas behind those remote refs arrive
+ *   as `externalSchemas` on the generate item; this generator ignores them.
+ *   The resolver holds the `http` and `https` module objects and calls
+ *   `protocol.get(...)` per request, so replacing those two functions before
+ *   schema2typebox is imported is enough.
  * - **Filesystem.** The file resolver resolves a relative `$ref` against
  *   the process's cwd, which for a generator command is the generator
  *   directory — so `{"$ref": "package.json"}` would actually be read, an
  *   absolute `$ref` would read anywhere on disk, and the row's results
- *   would depend on what happens to sit next to this file. SKILL.md's
- *   trap list is explicit that a retriever must refuse anything outside
- *   `suite/remotes/`; a code generator resolves nothing at all, so the
- *   resolver's `read` is replaced too.
+ *   would depend on what happens to sit next to this file. A code
+ *   generator resolves nothing at all, so the resolver's `read` is
+ *   replaced too: it must not read disk or network.
  *
  * Either way the tool sees a `ResolverError` and the message says why,
  * which is recorded like any other error it returns — the same shape as

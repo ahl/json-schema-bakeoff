@@ -1,14 +1,14 @@
 // Embedded verbatim into every generated module by generate.mjs, below the
-// four constants the generator writes out (AJV_MODULES, REMOTES_DIR, DRAFT,
-// SCHEMA_TEXT). Kept in its own file so it is readable, reviewable and part
-// of the generator's source hash rather than a string in a template.
+// four constants the generator writes out (AJV_MODULES, DRAFT, SCHEMA_TEXT,
+// EXTERNAL_SCHEMAS_TEXT). Kept in its own file so it is readable,
+// reviewable and part of the generator's source hash rather than a string
+// in a template.
 //
 // CommonJS on purpose: the generated modules live under target/, where
 // there is no package.json of our own to declare ESM, and `require` of an
 // absolute path is how a module reaches the packages installed next to the
 // generator.
 
-const fs = require("fs");
 const path = require("path");
 
 /** `require` a package installed next to the generator, by absolute path. */
@@ -17,46 +17,10 @@ function dep(spec) {
 }
 
 /**
- * Every file under `suite/remotes/`, keyed by the URL the suite references
- * it as: `http://localhost:1234/<path relative to remotes/>`.
+ * A fresh Ajv for the dialect the harness runs this group under.
  *
- * This is the whole of the remote-reference policy. ajv does not fetch
- * anything unless it is handed a `loadSchema`, and it is not: these 79
- * files are the only remotes that exist, they come off the local disk, and
- * any other URI is a missing reference.
- */
-function loadRemotes() {
-  const out = [];
-  const walk = (dir, base) => {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    entries.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
-    for (const entry of entries) {
-      const rel = base ? `${base}/${entry.name}` : entry.name;
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) walk(full, rel);
-      else if (entry.name.endsWith(".json")) {
-        out.push({ url: `http://localhost:1234/${rel}`, schema: JSON.parse(fs.readFileSync(full, "utf8")) });
-      }
-    }
-  };
-  walk(REMOTES_DIR, "");
-  return out;
-}
-
-/**
- * The remotes, read once per process rather than once per module: a draft
- * is a thousand-odd modules in one node process and they all want the same
- * 79 files.
- */
-function remotes() {
-  return (globalThis.__bakeoffAjvRemotes ??= loadRemotes());
-}
-
-/**
- * A fresh Ajv for the suite directory this group came from.
- *
- * The dialect is the class, so the suite directory picks it and a schema's
- * own `$schema` cannot change it — which is the policy this row wants (see
+ * The dialect is the class, so the harness picks it and a schema's own
+ * `$schema` cannot change it — which is the policy this row wants (see
  * README.md). Options:
  *
  * - `strict: false`, because the suite is full of keywords, `$id` shapes
@@ -93,7 +57,8 @@ function newAjv(draft) {
     case "draft2020-12":
       return new (dep("ajv/dist/2020").default)(opts);
     default:
-      throw new Error(`unknown draft ${draft}`);
+      // `v1` lands here: ajv has no class for it.
+      throw new Error(`unsupported dialect ${draft}: ajv has no class for it`);
   }
 }
 
@@ -104,15 +69,18 @@ let COMPILED = false;
 
 function compile() {
   const ajv = newAjv(DRAFT);
-  for (const { url, schema } of remotes()) {
-    // A remote that declares `$vocabulary` is a meta-schema — there are
-    // six, and the suite points some group's `$schema` at every one of
-    // them — and ajv will only accept a `$schema` it was given as one.
+  // This case's external schemas and nothing else, each under the URL the
+  // case gives it. ajv does not fetch anything unless it is handed a
+  // `loadSchema`, and it is not, so any other URI is a missing reference.
+  for (const [url, schema] of Object.entries(JSON.parse(EXTERNAL_SCHEMAS_TEXT))) {
+    // A schema that declares `$vocabulary` is a meta-schema (the suite
+    // points a case's `$schema` at each one it supplies) and ajv will only
+    // accept a `$schema` it was given as one.
     //
-    // Both calls pass `_validateSchema = false`. The remotes are fixtures,
-    // not the subject, and every remote is registered on every instance,
-    // so a 2020-12 remote would otherwise be checked against draft 4's
-    // meta-schema and rejected for saying `$defs`.
+    // Both calls pass `_validateSchema = false`. The external schemas are
+    // fixtures, not the subject, and one may be written in another dialect
+    // than the case runs under (`optional/cross-draft.json`), so it would
+    // otherwise be checked against the wrong meta-schema and rejected.
     if (schema !== null && typeof schema === "object" && schema.$vocabulary !== undefined) {
       ajv.addMetaSchema(schema, url, false);
     } else {
@@ -162,4 +130,4 @@ function __conformanceCheck(instance) {
   throw new Error(AJV.errorsText(VALIDATE.errors));
 }
 
-module.exports = { __conformanceCheck, __conformanceCompile, DRAFT, SCHEMA_TEXT };
+module.exports = { __conformanceCheck, __conformanceCompile, DRAFT, SCHEMA_TEXT, EXTERNAL_SCHEMAS_TEXT };

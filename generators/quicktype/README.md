@@ -6,9 +6,9 @@
 `typescript`.
 
 ```sh
-cargo run -- run --generator quicktype --target rust --draft draft7
-cargo run -- run --generator quicktype --target go --draft draft7
-cargo run -- run --generator quicktype --target typescript --draft draft7
+cargo run -- run --generator quicktype --target rust
+cargo run -- run --generator quicktype --target go
+cargo run -- run --generator quicktype --target typescript
 ```
 
 ## Files
@@ -44,9 +44,13 @@ References are resolved against a `JSONSchemaStore` whose `fetch` always
 returns `undefined`. That is the no-network policy, and returning
 `undefined` rather than throwing is deliberate — it is how quicktype
 learns an address is unresolvable, and it comes back as a labelled
-`SchemaFetchError` instead of an opaque exception. Every
-`http://localhost:1234/...` remote is therefore a `generation_error`: 14
-groups in draft 7, all of `refRemote.json` among them.
+`SchemaFetchError` instead of an opaque exception. A group's
+`externalSchemas` are ignored, so every reference into them is a
+`generation_error`: 51 groups, across `ref.json`, `id.json`, `anchor.json`
+and friends. Another 11 `SchemaFetchError`s are references that should
+resolve inside the document, against an embedded `$id` (`anchor.json::same
+$anchor with different base uri (2020-12)`); quicktype tries to fetch those
+too.
 
 Exceptions are bucketed by what they are, not by where they came from:
 
@@ -56,18 +60,20 @@ Exceptions are bucketed by what they are, not by where they came from:
 - a `QuickTypeError` whose `messageName` is `InternalError` is what
   `assert()` and `panic()` raise from inside the type graph — a crash
   wearing an error's clothes → `generation_panic`;
-- anything that isn't a `QuickTypeError` → `generation_panic`. In draft 7
-  this is three `ref.json` groups with `urn:` base URIs, where `urijs`
-  throws `URNs do not have any generally defined hierarchical components`
-  straight out through quicktype;
+- anything that isn't a `QuickTypeError` → `generation_panic`. This is
+  13 groups in `id.json`, `anchor.json` and their `-legacy` twins with
+  `urn:`, `tag:` or arbitrary-scheme base URIs, where `urijs` throws `URNs do
+  not have any generally defined hierarchical components` straight out
+  through quicktype;
 - a 30s timeout → `generation_panic`. The timer is a `Promise.race`, so it
   catches a hang in quicktype's async plumbing but not a synchronous
   infinite loop; nothing in the suite has hit either so far.
 
-A self-referential root (`{"type": "array", "items": {"$ref": "#"}}`)
-raises `RangeError: Maximum call stack size exceeded`, which is also a
-`generation_panic`. It is catchable in Node, so it doesn't take the process
-down.
+A root whose `items` refers back to itself through `$recursiveAnchor`
+(`recursiveRef.json::$ref with $recursiveAnchor (2019-09)`) raises
+`RangeError: Maximum call stack size exceeded` for the TypeScript target
+only, which is also a `generation_panic`. It is catchable in Node, so it
+doesn't take the process down.
 
 ## Renderer options
 
@@ -140,7 +146,8 @@ and that one the harness sees for itself.
 ## quicktype quirks worth knowing
 
 **Go output doesn't compile when the root type is `interface{}`.** This is
-the big one: 147 of draft 7's 322 groups. quicktype emits
+the big one: 183 of the 540 Standard groups, 251 across every tier.
+quicktype emits
 
 ```go
 type Root interface{}
@@ -151,16 +158,17 @@ func (r *Root) Marshal() ([]byte, error) { return json.Marshal(r) }
 and Go rejects a method on a pointer-to-interface:
 `invalid receiver type Root (pointer or interface type)`. Every schema that
 constrains nothing about its root's *type* lands here — `maxLength.json`,
-`minimum.json`, `pattern.json`, `format.json`, all of `if-then-else.json`,
-`not.json`, `propertyNames.json`. It is quicktype's bug, not the harness's,
-so it is recorded as `compile_fail` and not worked around; dropping the
-three-line `Marshal` method from the Go output would turn those 147 groups
+`minimum.json`, `pattern.json`, the `format-*.json` files, all of
+`if-then-else.json`, `not.json`, `propertyNames.json`. It is quicktype's
+bug, not the harness's, so it is recorded as `compile_fail` and not worked
+around; dropping the three-line `Marshal` method from the Go output would
+turn those 251 groups
 into whatever `json.Unmarshal` into `interface{}` does (almost all of them
 `false_accept`), which is a different question than "does the generated
 code compile".
 
 **`Cannot read properties of null (reading 'literal')` is a quicktype bug
-in its own error formatter, not a lost verdict.** 66 of the TypeScript
+in its own error formatter, not a lost verdict.** 140 of the TypeScript
 target's stored case errors read that way. quicktype's `prettyTypeName`
 does `typeof typ === "object" && typ.literal !== undefined`, and
 `typeof null` is `"object"`, so a `null` member of a union crashes it. It
@@ -170,8 +178,9 @@ right; all that's lost is a readable message. Don't read those rejects as
 runtime crashes.
 
 **TypeScript index signatures can conflict with declared properties.** Two
-draft-7 groups (`additionalProperties with schema`,
-`properties, patternProperties, additionalProperties interaction`) emit an
+groups (`additionalProperties.json::additionalProperties with schema` and
+`properties.json::properties, patternProperties, additionalProperties
+interaction`, both 2020-12) emit an
 interface whose `[property: string]: boolean` index type contradicts the
 properties above it: `error TS2411`.
 
@@ -182,7 +191,7 @@ edition 2018+ — and otherwise uses `serde_json::Value`,
 already provides. The `extern crate` lines quicktype knows about are inside
 the leading-comment block, which `leading-comments: false` suppresses;
 `generate.mjs` filters uncommented `extern crate` lines anyway, as
-insurance. Nothing else is stripped, and draft 7 produces zero Rust
+insurance. Nothing else is stripped, and the suite produces zero Rust
 compile failures.
 
 **`Root` is always `Root`.** A `title` on the schema does not rename the
@@ -198,16 +207,17 @@ reads `cases.json` with a `JSON.parse` reviver that captures each number's
 a round trip through a float64 inside the runner. That is what keeps
 `9007199254740992.0` from arriving as `9007199254740992`.
 
-The limit is upstream of all three: the harness writes `cases.json` from a
-`serde_json::Value`, and without `arbitrary_precision` an integer too big
-for `i64`/`u64` is already an `f64` by then —
-`optional/bignum.json`'s `12345678910111213141516171819202122232425262728293031`
-reaches every runner as `1.2345678910111214e+52`. No runner can recover
-the digits the suite wrote; those four bignum groups are measuring the
-harness, not the generator.
+Past that, each language's parser decides. `optional/bignum.json::integer
+(2020-12)` hands all three
+`12345678910111213141516171819202122232425262728293031`: serde_json reads
+it as `1.2345678910111214e+52` and the Rust `i64` rejects that float, Go's
+`int64` refuses to unmarshal it, and TypeScript, whose integers are just
+numbers, accepts it. That's a `false_reject` for Rust and Go and a pass
+for TypeScript, and it is what a user of each target would see.
 
 **Nothing validates but the type.** quicktype models types, not
 constraints, so `maxLength`, `minimum`, `multipleOf`, `pattern`, `format`,
 `uniqueItems`, `not`, `if`/`then`/`else` and friends are all absent from
-the output. That is why `false_accept` dominates: 93 groups for rust, 88
-for typescript. It is the finding, not a defect in the integration.
+the output. That is why `false_accept` dominates the Standard tier: 218
+groups for rust, 186 for typescript. It is the finding, not a defect in the
+integration.

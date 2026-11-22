@@ -44,7 +44,7 @@ function truncate(s, max = MAX_DIAG_LEN) {
 /**
  * The runner, written into the batch directory.
  *
- * Modules are required on first use rather than all at once, so a draft
+ * Modules are required on first use rather than all at once, so a run
  * whose cases only touch some of them pays only for those, and a runner
  * restarted after a dead case doesn't reload the whole batch.
  */

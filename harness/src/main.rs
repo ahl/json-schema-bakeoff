@@ -27,20 +27,23 @@ enum Cmd {
         /// Target within the generator, e.g. go (default: every target it lists).
         #[arg(long)]
         target: Option<String>,
-        /// Draft directory under suite/tests (e.g. draft7), or `all`.
-        #[arg(long, default_value = "all")]
-        draft: String,
         /// Substring filter on `<file>::<group>::<case>`.
         #[arg(long)]
         filter: Option<String>,
-        /// Skip tests under optional/ (they are reported separately, never
-        /// counted in headline numbers).
+        /// Skip tests under optional/ and cases tagged format-assertion
+        /// (they are reported separately, never counted in headline
+        /// numbers).
         #[arg(long)]
         no_optional: bool,
         /// Skip our own groups under compound/ (they are reported
         /// separately, never counted in headline numbers).
         #[arg(long)]
         no_compound: bool,
+        /// Skip cases for unreleased features, which run as dialect v1
+        /// (they are reported separately, never counted in headline
+        /// numbers).
+        #[arg(long)]
+        no_upcoming: bool,
         /// Recompute every selected group even if the stored results
         /// already have a record with a matching hash.
         #[arg(long)]
@@ -62,19 +65,14 @@ enum Cmd {
 
 fn main() -> Result<()> {
     match Cli::parse().cmd {
-        Cmd::Run { generator, target, draft, filter, no_optional, no_compound, no_cache, out } => {
-            let drafts: Vec<String> = if draft == "all" {
-                summary::DRAFT_ORDER.iter().map(|d| d.to_string()).collect()
-            } else {
-                vec![draft]
-            };
+        Cmd::Run { generator, target, filter, no_optional, no_compound, no_upcoming, no_cache, out } => {
             pipeline::run(pipeline::RunOpts {
                 generator,
                 target,
-                drafts,
                 filter,
                 optional: !no_optional,
                 compound: !no_compound,
+                upcoming: !no_upcoming,
                 no_cache,
                 out,
             })

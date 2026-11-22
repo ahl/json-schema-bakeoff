@@ -50,7 +50,7 @@ const MAX_DIAG_LEN = 4000;
  * still has to import.
  *
  * `spawnSync` can only bound the whole process, not the gap between two
- * lines, so the cap has to cover a whole draft's worth of imports — 1,000
+ * lines, so the cap has to cover a whole run's worth of imports — 1,000
  * of them in 2020-12. Importing one is milliseconds (zod itself is loaded
  * once and cached), so this is roughly two orders of magnitude of slack: a
  * loaded machine must not turn into a spurious `compile_fail`, which is

@@ -11,7 +11,7 @@ from this binary's build info, so bumping the pin moves
 `results/ogen-v1.24.0/` by itself.
 
 ```sh
-cargo run -- run --generator ogen --draft draft7
+cargo run -- run --generator ogen
 cargo run -- run --generator ogen --filter 'required.json::required validation'
 ```
 
@@ -81,20 +81,20 @@ hoisted `tags` or `servers` would be read as part of the API description, and
 a `swagger` would make ogen call the document v2. Nothing in the suite uses
 any of them.
 
-**What the hoist is worth, measured:** not one pass. Draft 7 has 52 passes
-either way, with 15 groups moving out of `generation_error` into
-`false_accept` or `compile_fail`; draft 2020-12 has 73 either way with 18
-moving. It buys honesty about *where* ogen stops, not score.
+**What the hoist is worth, measured:** not one pass. Against the old
+per-draft suite ([1.041][archive]), draft 7 had 52 passes either way, with
+15 groups moving out of `generation_error` into `false_accept` or
+`compile_fail`, and draft 2020-12 had 73 either way with 18 moving. It buys
+honesty about *where* ogen stops, not score.
 
 ## No batching, because it isn't needed
 
 Measured before deciding: with client and server generation off, ogen turns
-one of these documents into a package in **6–7 ms**. Generation is 1.7 s
-(draft 4, 199 groups) to 2.6 s (2019-09, 449 groups) — about 10 s for all five
-drafts, out of 20 s for a complete `--no-cache` run of all five including
-compiling and running everything (warm Go build cache). A naive probe says
-23 ms, which is with the default feature set, i.e. rendering the HTTP plumbing
-too.
+one of these documents into a package in **6–7 ms**. On the old per-draft
+suite ([1.041][archive]), generation for all five drafts was about 10 s of
+a 20 s `--no-cache` run that also compiled and ran everything (warm Go
+build cache). A naive probe says 23 ms, which is with the default feature
+set, i.e. rendering the HTTP plumbing too.
 
 So one invocation per group in one long-lived process is the whole strategy.
 Batching into one document would have bought nothing and cost a lot: the
@@ -124,9 +124,10 @@ Everything is ogen's default except the feature set.
   in-process; see "No network".
 - **`Parser.InferSchemaType` off** (its default, and the CLI's —
   `--infer-types` is opt-in). The biggest lever on the row's numbers, so it
-  was measured: with inference on, draft 7 goes from 52 ✅ / 118 🙈 / 2 🚧 to
-  83 ✅ / 53 🙈 / 28 🚧 — 20.2% → 32.2% pass. It stays at the default because
-  the contract is to measure the tool as it comes. What it changes is the
+  was measured against the old per-draft suite ([1.041][archive]): with
+  inference on, draft 7 went from 52 ✅ / 118 🙈 / 2 🚧 to 83 ✅ / 53 🙈 /
+  28 🚧 -- 20.2% to 32.2% pass. It stays at the default because the
+  contract is to measure the tool as it comes. What it changes is the
   suite's dominant shape, `{"properties": …}` with no `type`: off, that is an
   untyped schema rendered `type Root jx.Raw`, which accepts anything; on, it
   is inferred to be an object. The 🚧 column is why it isn't free.
@@ -136,8 +137,8 @@ Everything is ogen's default except the feature set.
   nothing ogen decides about the schema: the type graph, the jx codecs and the
   validators are not features and are built in `NewGenerator` either way. It
   buys not rendering ~25 KB of `net/http` plumbing, a router and an otel
-  middleware per group, which the batch would compile 1,067 times and whose
-  dependencies it would have to pin.
+  middleware per group, which the batch would compile once per module and
+  whose dependencies it would have to pin.
 
 `AllowCrossTypeConstraints` stays at its default (`true`), so a `pattern` on a
 number is interpreted rather than rejected. `draft` is passed and **ignored**:
@@ -208,13 +209,15 @@ reference's name and names the type after the *operation* — `CheckReq`, from
 the `operationId` this wrapper picked. That is the wrapper showing through, so
 `assemble` emits `type Root = CheckReq` when ogen declared the latter and not
 the former: an alias, so the method set is ogen's own and nothing is renamed
-or synthesized. Worth 5 groups. What it deliberately does *not* do is invent a
-root type when ogen emitted none — 35 groups stay `compile_fail` with the
-compiler's `undefined: Root`: a root `$ref`, where ogen names the type after
-the *reference target* (`{"$ref": "#/definitions/a"}` gives `type A`), and
-`allOf.json`'s "allOf combined with anyOf, oneOf", where ogen emitted no
-schema type at all. That is the convention DESIGN.md sets and the one
-go-jsonschema's row follows.
+or synthesized. Worth 1 group: `oneOf.json::nested oneOf, to check
+validation semantics`. What it deliberately does *not* do is invent a root
+type when ogen emitted none -- 16 groups stay `compile_fail` with the
+compiler's `undefined: Root`: a root `$ref` (most of them, in `ref.json`,
+`id.json`, `id-legacy.json` and the `unevaluated*` files), where ogen
+names the type after the *reference target* (`{"$ref": "#/definitions/a"}`
+gives `type A`), and `allOf.json`'s "allOf combined with anyOf, oneOf",
+where ogen emitted no schema type at all. That is the convention DESIGN.md
+sets and the one go-jsonschema's row follows.
 
 ## Build
 
@@ -257,25 +260,30 @@ parse spec: at 1:1: parse components: schemas: "Root": resolve
 get "http://localhost:1234/integer.json": external references are disabled
 ```
 
-That is every group of `refRemote.json` on every draft — 60, all ❌ — which is
-the verification asked for: a remote ref must fail without the network, and it
-does. 163 groups report that refusal and only 51 name `localhost:1234`; the
-rest are the other things ogen classifies as external — a relative file
-reference (`./bar.json`), a non-pointer reference (`{"$ref": "node"}`), and
-`definitions.json`'s meta-schema reference — all of which become `get
-"jsonschema://dummy/<name>": external references are disabled`, so the
-policy's failures are legible at a glance. Belt as well as braces: the worker
-also replaces `http.DefaultTransport` and `http.DefaultClient` with one that
-errors on every request.
+Of the 57 groups that carry `externalSchemas`, 49 fail with exactly that
+refusal, all ❌ (the other eight stop before their remote ref, or never
+reach it), which is the verification asked for: a remote ref must fail
+without the network, and it does. The glue ignores `externalSchemas`, per
+the harness's policy. 116 groups report the refusal and only 41 name
+`localhost:1234`. The rest are other things ogen classifies as external: 55
+are a relative file reference (`./bar.json`, `folderInteger.json`) or a
+non-pointer reference (`{"$ref": "list"}`), which become `get
+"jsonschema://dummy/<name>": external references are disabled`; 20 are an
+absolute URI that a sibling `$id` declares (`urn:uuid:...`, `tag:...`,
+`https://example.com/...`), which ogen can't know because `$id` isn't in
+its model. So the policy's failures are legible at a glance. Belt as well as
+braces: the worker also replaces `http.DefaultTransport` and
+`http.DefaultClient` with one that errors on every request.
 
 ## Quirks
 
 - **No `type` keyword means no type.** ogen doesn't infer, so a schema with no
   `type` and no combinator is "any JSON": `type Root jx.Raw`, which accepts
-  everything and has no validator. That is where all 645 🙈 come from, and it
-  is most of the suite — `const.json` 0/68, `enum.json` 0/78, and most of
-  `required.json`, `maxLength.json`, `minimum.json`, `maxProperties.json`,
-  `propertyNames.json`, `contains.json`, `dependencies.json`.
+  everything and has no validator. That is where most of the 220 Standard 🙈
+  come from, and it is most of the suite -- `const.json` 0/17, `enum.json`
+  0/17, and most of `required.json`, `minimum.json`, `maxProperties.json`,
+  `propertyNames.json`, `contains.json`, `dependentRequired.json` and
+  `dependentSchemas.json`.
 - **The schema model is the whole story.** `jsonschema.RawSchema` is a flat
   struct, and the keywords it has no field for are invisible rather than
   merely unsupported: `not`, `if`/`then`/`else`, `contains`/`maxContains`/
@@ -289,56 +297,62 @@ errors on every request.
   draft 4's `{"maximum": 3, "exclusiveMaximum": true}` is the form ogen
   understands and **drafts 6 through 2020-12's numeric form is a type error**
   (`cannot unmarshal number into Go struct field .exclusiveMaximum of type
-  bool`). Every other generator here fails the other way round.
+  bool`): the `exclusiveMaximum` and `exclusiveMinimum` groups in
+  `maximum.json` and `minimum.json`, and two in `optional/bignum.json`.
+  Every other generator here fails the other way round.
 - **Boolean schemas never reach the generator.** `true`/`false` as a schema is
-  `cannot unmarshal bool into Go value of type struct { ogen.plain; … }`: 63
-  required groups directly, 27 more prefixed `callback:` (the same failure
+  `cannot unmarshal bool into Go value of type struct { ogen.plain; … }`: 22
+  Standard groups directly, 11 more prefixed `callback:` (the same failure
   through `jx`'s `Arr`/`Obj` decoders, which wrap a failing per-element
-  callback that way), 15 as `unexpected type bool` inside `items`.
+  callback that way), 9 as `unexpected type bool` inside `items`, and 6
+  where a `$ref` lands on one (`decode: yaml: ... cannot unmarshal !!bool`).
 - **`type` as a list only works for nullability.** `["string", "null"]`
   collapses to `string` + `Nullable`; anything else is `multiple types are not
   supported`.
-- **The `not implemented` family is large and explicit,** which makes the 412
-  ❌ unusually readable: `empty uniqueItems not implemented` (14), `complex
-  anyOf not implemented` (13), `sum types with same names not implemented`
-  (31), `discriminator inference not implemented` (10+), and `set multipleOf:
-  float as int: non-zero fractional part` / `unexpected floating point
-  character` (10) — a fractional or exponent `multipleOf` is refused at
-  generation rather than mis-compiled.
+- **The `not implemented` family is large and explicit,** which makes the 186
+  Standard ❌ unusually readable: `sum types with same names not implemented`
+  (10), `empty uniqueItems not implemented` (4), `complex anyOf not
+  implemented` (4), `discriminator inference not implemented` (2), and `set
+  multipleOf: float as int: non-zero fractional part` / `unexpected floating
+  point character` (one each in `multipleOf.json`) -- a fractional or
+  exponent `multipleOf` is refused at generation rather than mis-compiled.
 - **ogen emits uncompilable Go for a `format` on an untyped schema.** A real
   bug, worth filing: `{"format": "ipv4"}` with no `type` gives `type Root
   jx.Raw` *and* a decoder calling `json.DecodeIPv4(d)`, so `cannot use v
   (variable of struct type netip.Addr) as jx.Raw value in assignment`. Eight
-  formats hit it, and they are all 62 of the non-`undefined: Root`
-  `compile_fail` groups — `netip.Addr` (22), `time.Time` (22), `url.URL` (10),
-  `uuid.UUID` (4), `time.Duration` (4).
+  formats hit it, and they are all 29 of the non-`undefined: Root`
+  `compile_fail` groups (16 Standard) -- `time.Time` (12), `netip.Addr` (8),
+  `url.URL` (3), `uuid.UUID` (3), `time.Duration` (3).
 - **`pattern` goes to ECMA-262, not RE2, and it shows.** `ogenregex` uses Go's
   `regexp` where it can and `dlclark/regexp2` otherwise, so
-  `optional/ecmascript-regex.json` is the row's best file at 55/100: all 50
-  groups spelled `{"type": "string", "pattern": …}` pass — `\cC`, `\t`,
-  `$`-vs-trailing-newline, the ASCII-only `\d`/`\w`/`\s` classes — plus 5 of
-  the 25 `patternProperties` groups (the other 20 ❌); the 25 untyped
-  `{"pattern": …}` groups are 🙈.
-- **`format.json` passes for the right reason by accident.** Those groups
-  assert that `format` is an annotation (every case `valid: true`), and an
-  untyped `jx.Raw` root accepts everything, so ogen is 40/70 where
-  quicktype-go is 0/70. `Validate` does enforce `format`, but only for a
-  *typed* string, which those groups never declare.
-- **`$ref` is where the row loses to quicktype:** 0 of 158 required `ref.json`
-  groups, against quicktype-go's 95. Local pointers resolve, but a root `$ref`
+  `optional/ecmascript-regex.json` is the row's best suite file at 15/20:
+  all 10 groups spelled `{"type": "string", "pattern": …}` pass -- `\cC`,
+  `\t`, `$`-vs-trailing-newline, the ASCII-only `\d`/`\w`/`\s` classes --
+  and so do the 5 `patternProperties` groups; the 5 untyped `{"pattern": …}`
+  groups are 🙈.
+- **The Standard format groups pass for the right reason by accident.** The
+  39 Standard groups in the `format-*.json` files assert that `format` is an
+  annotation or ignores non-strings (every case `valid: true`), and an
+  untyped `jx.Raw` root accepts everything, so ogen passes 23 of them; the
+  other 16 are the compile bug above. `Validate` does enforce `format`, but
+  only for a *typed* string, which those groups never declare.
+- **`$ref` is where the row falls apart:** 0 of 23 `ref.json` groups (8 🙈,
+  9 ❌, 6 compile failures). Local pointers resolve, but a root `$ref`
   leaves no `Root`, `$id` is not in the model so a sibling `$id` never changes
   the base URI, `$anchor`/`$dynamicRef` are unknown, and a non-pointer
   reference is treated as remote.
-- **`jx` is strict where `encoding/json` is lax, worth 36/55 on `type.json`.**
+- **`jx` is strict where `encoding/json` is lax, worth 8/12 on `type.json`.**
   `type Root int` rejects `null` (go-jsonschema's row, through
   `encoding/json`, accepts it), and `true`, `"1"`, `{}`, `[]`. The one thing it
-  gets wrong is `1.0`, which the spec says is an integer.
-- **Nine 🚧, and they are interesting.** `default.json`'s "the default keyword
+  gets wrong is `1.0`, which the spec says is an integer; the other three
+  misses are multi-type roots (`multiple types are not supported`).
+- **Three 🚧, and they are interesting.** `default.json`'s "the default keyword
   does not do anything if the property is missing" — ogen's `default` support
   is real and lives in the *decoder*, so `{}` against `{"alpha": {"type":
   "number", "maximum": 3, "default": 5}}` is filled in with 5 and then
-  rejected for exceeding `maximum`. Plus `type.json`'s `1.0` and
-  `optional/bignum.json`'s `value out of range`, times the drafts with them.
+  rejected for exceeding `maximum`. Plus `type.json`'s `1.0` (in "integer
+  type matches integers (6)") and `optional/bignum.json`'s `value out of
+  range` (in "integer").
 
 ## Stored messages
 
@@ -349,3 +363,5 @@ function, the file's base name and the line, and rewrites machine words as
 `0x?` and goroutine ids as `goroutine ?`, so the same crash stores the same
 text on any machine and across runs. Nothing panics today, so a version bump
 that does will produce a diff worth reading.
+
+[archive]: ../../archive/suite-1.041/results/ogen-v1.24.0/README.md

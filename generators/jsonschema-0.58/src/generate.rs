@@ -2,9 +2,10 @@
 //! `jsonschema` crate.
 //!
 //! There is no code generation here in the usual sense: the module embeds
-//! the group's schema verbatim and `__conformance_check` compiles it with
-//! `jsonschema` (once, lazily) and validates the instance. "Deserialize
-//! succeeded" means the validator found no error.
+//! the group's schema and its external schemas verbatim, and
+//! `__conformance_check` compiles the schema with `jsonschema` (once,
+//! lazily) and validates the instance. "Deserialize succeeded" means the
+//! validator found no error.
 //!
 //! Why this row exists: `jsonschema` passes essentially the whole official
 //! suite, so wherever the bakeoff doesn't show ✅ for it, the cause is a
@@ -18,22 +19,19 @@ pub const VERSION: &str = concat!("jsonschema ", env!("JSONSCHEMA_CRATE_VERSION"
 /// The pinned version on its own, for `batch-deps.toml`.
 pub const CRATE_VERSION: &str = env!("JSONSCHEMA_CRATE_VERSION");
 
-/// URI prefix the suite uses for its remote schemas.
-pub const REMOTE_PREFIX: &str = "http://localhost:1234/";
-
 /// The `jsonschema::Retrieve` implementation every module embeds, kept in
 /// its own file so this crate's tests can `include!` the same text the
-/// generated modules get. It uses the `REMOTES_DIR` and `REMOTE_PREFIX`
-/// consts its includer defines.
+/// generated modules get.
 const RETRIEVE: &str = include_str!("retrieve.inc.rs");
 
-/// The `jsonschema::Draft` variant for a suite directory name.
+/// The `jsonschema::Draft` variant for a harness dialect name.
 ///
-/// The harness hands every group the directory it came from, and that is
+/// The harness hands every group the dialect it runs under, and that is
 /// taken as the authority on the schema's dialect -- see `module()` for why
-/// it outranks the schema's own `$schema`.
-pub fn draft_variant(suite_draft: &str) -> Option<&'static str> {
-    Some(match suite_draft {
+/// it outranks the schema's own `$schema`. `v1` has no variant in the
+/// pinned crate.
+pub fn draft_variant(dialect: &str) -> Option<&'static str> {
+    Some(match dialect {
         "draft4" => "Draft4",
         "draft6" => "Draft6",
         "draft7" => "Draft7",
@@ -47,7 +45,7 @@ pub fn draft_variant(suite_draft: &str) -> Option<&'static str> {
 pub enum GenOutcome {
     /// A complete module body (items only), including `__conformance_check`.
     Code(String),
-    /// A suite draft name this generator has no `jsonschema::Draft` for.
+    /// A dialect this generator has no `jsonschema::Draft` for.
     Error(String),
     Panic(String),
 }
@@ -59,29 +57,29 @@ pub enum GenOutcome {
 /// the bytes the validator sees -- no round trip through `f64` to blunt
 /// `multipleOf: 0.0001` or a bignum bound.
 ///
-/// `suite_draft` is the suite directory the group came from (`draft7`,
+/// `dialect` is the dialect the harness runs the group under (`draft7`,
 /// `draft2020-12`, ...); it selects the `jsonschema::Draft` the module
 /// compiles with.
 ///
-/// `remotes_dir` is an absolute path to `suite/remotes`; it is baked into
-/// the module, because the batch crate runs with its own cwd and shouldn't
-/// have to be told where the repo is.
+/// `external_json` is the case's `externalSchemas` object as JSON text,
+/// taken off the wire the same way, or `None` when the case has none. It is
+/// embedded in the module and served by the retriever, and nothing else is.
 ///
 /// Nothing in here can realistically panic, but it runs under the same
 /// big-stack thread and `catch_unwind` as the real code generators do, so a
 /// surprise lands in `generation_panic` instead of killing the run.
-pub fn generate(schema_json: &str, suite_draft: &str, remotes_dir: &str, timeout: Duration) -> GenOutcome {
-    let Some(draft) = draft_variant(suite_draft) else {
-        return GenOutcome::Error(format!("no jsonschema::Draft for suite draft {suite_draft:?}"));
+pub fn generate(schema_json: &str, external_json: Option<&str>, dialect: &str, timeout: Duration) -> GenOutcome {
+    let Some(draft) = draft_variant(dialect) else {
+        return GenOutcome::Error(format!("unsupported dialect {dialect:?}: no jsonschema::Draft for it"));
     };
     let schema_json = schema_json.to_string();
-    let remotes_dir = remotes_dir.to_string();
+    let external_json = external_json.unwrap_or("{}").to_string();
     let (tx, rx) = std::sync::mpsc::channel();
     std::thread::Builder::new()
         .name("generate".to_string())
         .stack_size(256 * 1024 * 1024)
         .spawn(move || {
-            let outcome = match std::panic::catch_unwind(|| module(&schema_json, draft, &remotes_dir)) {
+            let outcome = match std::panic::catch_unwind(|| module(&schema_json, &external_json, draft)) {
                 Ok(code) => GenOutcome::Code(code),
                 Err(payload) => GenOutcome::Panic(panic_message(&payload)),
             };
@@ -103,24 +101,21 @@ fn panic_message(payload: &Box<dyn std::any::Any + Send>) -> String {
 }
 
 /// The module source for one schema.
-fn module(schema_json: &str, draft: &str, remotes_dir: &str) -> String {
+fn module(schema_json: &str, external_json: &str, draft: &str) -> String {
     let hashes = raw_string_hashes(schema_json);
+    let external_hashes = raw_string_hashes(external_json);
     format!(
-        r##"// jsonschema {version}: validate against the group's schema.
+        r##"// {version}: validate against the group's schema.
 //
-// The schema is embedded verbatim. The draft is the suite directory the
-// group came from, passed to `with_draft` below; in this crate that
+// The schema is embedded verbatim. The draft is the dialect the harness
+// runs the group under, passed to `with_draft` below; in this crate that
 // outranks the schema's own `$schema`. See the generator's README.
 
-/// Absolute path to the suite's `remotes/` directory, baked in at generate
-/// time: the batch crate runs from a scratch directory of its own.
-const REMOTES_DIR: &::std::primitive::str = {remotes_dir:?};
-
-/// The one URI prefix we serve. Anything else is an error, so a run can
-/// never reach the network.
-const REMOTE_PREFIX: &::std::primitive::str = {remote_prefix:?};
-
 static SCHEMA_JSON: &::std::primitive::str = r{h}"{schema}"{h};
+
+/// The case's external schemas, retrieval URI to schema, as the text the
+/// harness sent. The retriever serves these and refuses everything else.
+static EXTERNAL_SCHEMAS_JSON: &::std::primitive::str = r{eh}"{external}"{eh};
 
 /// Compiled once per process, on first use. A schema `jsonschema` refuses
 /// to compile is kept as the error so every case in the group reports it.
@@ -132,6 +127,7 @@ static VALIDATOR: ::std::sync::LazyLock<
 fn build() -> ::std::result::Result<::jsonschema::Validator, ::std::string::String> {{
     let schema: ::serde_json::Value =
         ::serde_json::from_str(SCHEMA_JSON).map_err(|e| e.to_string())?;
+    let external = ExternalSchemas::parse(EXTERNAL_SCHEMAS_JSON)?;
     // Formats are left at the crate's default, which is the spec's: an
     // assertion in draft 4/6/7, an annotation from 2019-09 on.
     ::jsonschema::options()
@@ -141,7 +137,7 @@ fn build() -> ::std::result::Result<::jsonschema::Validator, ::std::string::Stri
         // optional format files for 2019-09 and 2020-12 but fail 19 required
         // 2020-12 groups whose cases say an invalid string "is only an
         // annotation by default" and mark it valid. Required conformance wins.
-        .with_retriever(SuiteRemotes)
+        .with_retriever(external)
         .build(&schema)
         .map_err(|e| e.to_string())
 }}
@@ -159,11 +155,11 @@ pub fn __conformance_check(
 "##,
         version = VERSION,
         draft = draft,
-        remotes_dir = remotes_dir,
-        remote_prefix = REMOTE_PREFIX,
         retrieve = RETRIEVE,
         h = hashes,
         schema = schema_json,
+        eh = external_hashes,
+        external = external_json,
     )
 }
 
@@ -182,20 +178,60 @@ fn raw_string_hashes(s: &str) -> String {
 }
 
 /// The embedded retriever, compiled here too so it can be tested against
-/// the pinned crate instead of only pasted into generated modules. The two
-/// consts stand in for the ones `module()` writes above the include; the
-/// suite's own `remotes/` is the fixture.
+/// the pinned crate instead of only pasted into generated modules.
 #[cfg(test)]
 mod retrieve {
-    pub const REMOTES_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../suite/remotes");
-    pub const REMOTE_PREFIX: &str = super::REMOTE_PREFIX;
     include!("retrieve.inc.rs");
+
+    /// The fixture: two external schemas as a case would supply them, one a
+    /// plain schema and one a custom meta-schema.
+    pub const EXTERNAL: &str = r#"{
+        "http://localhost:1234/integer.json": {"type": "integer"},
+        "http://localhost:1234/nested/string.json": {"type": "string"},
+        "http://localhost:1234/draft2020-12/metaschema-no-validation.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "http://localhost:1234/draft2020-12/metaschema-no-validation.json",
+            "$vocabulary": {
+                "https://json-schema.org/draft/2020-12/vocab/applicator": true,
+                "https://json-schema.org/draft/2020-12/vocab/core": true
+            },
+            "$dynamicAnchor": "meta",
+            "allOf": [
+                {"$ref": "https://json-schema.org/draft/2020-12/meta/applicator"},
+                {"$ref": "https://json-schema.org/draft/2020-12/meta/core"}
+            ]
+        }
+    }"#;
+
+    fn external() -> ExternalSchemas {
+        ExternalSchemas::parse(EXTERNAL).expect("parse fixture")
+    }
+
+    /// Whether `text` parses as a case's external schemas.
+    pub fn parse(text: &str) -> Result<(), String> {
+        ExternalSchemas::parse(text).map(|_| ())
+    }
+
+    /// What the retriever for external schemas `text` serves for `uri`.
+    pub fn retrieve_in(text: &str, uri: &str) -> Result<serde_json::Value, String> {
+        use jsonschema::Retrieve;
+        ExternalSchemas::parse(text)
+            .expect("parse external schemas")
+            .retrieve(&jsonschema::Uri::parse(uri.to_string()).expect("parse uri").normalize())
+            .map_err(|e| e.to_string())
+    }
 
     /// What a generated module's `build()` would get back for `uri`.
     pub fn retrieve(uri: &str) -> Result<serde_json::Value, String> {
-        use jsonschema::Retrieve;
-        SuiteRemotes
-            .retrieve(&jsonschema::Uri::parse(uri.to_string()).expect("parse uri"))
+        retrieve_in(EXTERNAL, uri)
+    }
+
+    /// A validator built the way a generated module builds one.
+    pub fn build(draft: jsonschema::Draft, schema: serde_json::Value) -> Result<jsonschema::Validator, String> {
+        jsonschema::options()
+            .with_draft(draft)
+            .with_retriever(external())
+            .build(&schema)
             .map_err(|e| e.to_string())
     }
 }
@@ -206,12 +242,12 @@ mod tests {
 
     const T: Duration = Duration::from_secs(10);
 
-    /// The retriever serves the suite's remotes and nothing else. The
-    /// refusals matter: this row is the only one that resolves remote
-    /// references at all, and it must not be a way to read the filesystem
-    /// or reach the network.
+    /// The retriever serves the case's external schemas and nothing else.
+    /// The refusals matter: the validator rows are the only ones that
+    /// resolve remote references at all, and a URI the case did not supply
+    /// must never turn into a read or a fetch.
     #[test]
-    fn retriever_serves_only_the_suite_remotes() {
+    fn retriever_serves_only_the_case_schemas() {
         assert_eq!(
             super::retrieve::retrieve("http://localhost:1234/integer.json").unwrap(),
             serde_json::json!({"type": "integer"})
@@ -222,42 +258,72 @@ mod tests {
         );
 
         // Another scheme, host or port is refused rather than fetched;
-        // `https://localhost:1234/...` appears in the suite on purpose.
+        // `https://localhost:1234/...` appears in the suite on purpose. So
+        // is a suite remote this case did not supply, and anything that
+        // looks like a path on disk.
         for uri in [
             "https://localhost:1234/integer.json",
             "http://localhost:5678/integer.json",
             "http://example.com/integer.json",
             "json-schema:///integer.json",
+            "http://localhost:1234/name-defs.json",
+            "http://localhost:1234/",
+            "http://localhost:1234//etc/hosts",
+            "file:///etc/hosts",
         ] {
             let e = super::retrieve::retrieve(uri).unwrap_err();
             assert!(e.contains("refusing to retrieve"), "{uri}: {e}");
+            assert!(e.contains(uri), "{uri}: {e}");
         }
 
-        // An empty path, an absolute one (`join` would drop REMOTES_DIR and
-        // read the file named by the URI), or a parent segment that somehow
-        // survived normalization: all refused before any read.
-        for uri in ["http://localhost:1234/", "http://localhost:1234//etc/hosts", "http://localhost:1234/sub/../x.json"] {
-            let e = super::retrieve::retrieve(uri).unwrap_err();
-            assert!(e.contains("not a plain path"), "{uri}: {e}");
-        }
-        // An interior `//` is not an escape: `Path` ignores the empty
-        // segment, so it just names `nested/string.json`.
+        // A case with no external schemas serves nothing.
+        assert!(super::retrieve::retrieve_in("{}", "http://localhost:1234/integer.json").is_err());
+
+        // Something other than an object is an error, not an empty map.
+        assert!(super::retrieve::parse("[]").is_err());
+    }
+
+    /// Keys are normalized like the URIs the reference layer hands the
+    /// retriever, so a lookup matches whichever way the suite spelled one.
+    #[test]
+    fn keys_are_normalized() {
+        let text = r#"{"HTTP://LOCALHOST:1234/a/../integer.json": true}"#;
         assert_eq!(
-            super::retrieve::retrieve("http://localhost:1234/nested//string.json").unwrap(),
-            serde_json::json!({"type": "string"})
+            super::retrieve::retrieve_in(text, "http://localhost:1234/integer.json").unwrap(),
+            serde_json::json!(true)
         );
+    }
 
-        // A remote that isn't there is an error naming the file, which the
-        // harness surfaces as a per-case reject.
-        let e = super::retrieve::retrieve("http://localhost:1234/nope.json").unwrap_err();
-        assert!(e.contains("nope.json"), "{e}");
-        assert!(e.contains("No such file"), "{e}");
+    /// End to end against the pinned crate: a `$ref` to an external schema
+    /// resolves through the retriever, so does a `$schema` naming a custom
+    /// meta-schema, and a `$ref` the case did not supply fails the compile
+    /// with the retriever's message.
+    #[test]
+    fn retriever_backs_ref_and_schema() {
+        use jsonschema::Draft;
+        let v = super::retrieve::build(Draft::Draft202012, serde_json::json!({"$ref": "http://localhost:1234/integer.json"})).unwrap();
+        assert!(v.is_valid(&serde_json::json!(1)));
+        assert!(!v.is_valid(&serde_json::json!("a")));
+
+        // The custom meta-schema leaves out the validation vocabulary, so
+        // `minimum` is not a keyword here; the suite's
+        // `vocabulary.json` case relies on this.
+        let meta = serde_json::json!({
+            "$schema": "http://localhost:1234/draft2020-12/metaschema-no-validation.json",
+            "properties": {"numberProperty": {"minimum": 10}}
+        });
+        let v = super::retrieve::build(Draft::Draft202012, meta).unwrap();
+        assert!(v.is_valid(&serde_json::json!({"numberProperty": 1})));
+
+        let e = super::retrieve::build(Draft::Draft202012, serde_json::json!({"$ref": "http://localhost:1234/name-defs.json"}))
+            .unwrap_err();
+        assert!(e.contains("refusing to retrieve"), "{e}");
     }
 
     /// `..` never reaches the retriever: the referencing layer normalizes
-    /// the reference first, and percent-decodes `%2e` on the way. Pinned
-    /// because the guard above is otherwise the only thing standing between
-    /// a `$ref` and the rest of the disk.
+    /// the reference first, and percent-decodes `%2e` on the way. The
+    /// retriever normalizes its keys the same way, so its lookups depend on
+    /// this.
     #[test]
     fn dot_segments_are_normalized_before_retrieval() {
         for uri in ["http://localhost:1234/../../etc/hosts", "http://localhost:1234/%2e%2e/%2e%2e/etc/hosts"] {
@@ -277,17 +343,24 @@ mod tests {
     #[test]
     fn module_embeds_the_schema_verbatim() {
         let schema = r###"{"multipleOf":1e-8,"const":"has a \"quote\"#"}"###;
-        let GenOutcome::Code(code) = generate(schema, "draft7", "/tmp/remotes", T) else {
+        let external = r###"{"http://localhost:1234/a.json":{"maximum":18446744073709551615,"const":"\"##"}}"###;
+        let GenOutcome::Code(code) = generate(schema, Some(external), "draft7", T) else {
             panic!("expected code");
         };
         assert!(code.contains(schema), "schema text not embedded as-is");
+        assert!(code.contains(&format!("r###\"{external}\"###")), "external schemas not embedded as-is");
         assert!(code.contains("__conformance_check"));
-        assert!(code.contains(r#""/tmp/remotes""#));
         assert!(code.contains("Draft::Draft7"));
+
+        // No external schemas is an empty map, not a missing constant.
+        let GenOutcome::Code(code) = generate(schema, None, "draft7", T) else {
+            panic!("expected code");
+        };
+        assert!(code.contains(r##"EXTERNAL_SCHEMAS_JSON: &::std::primitive::str = r#"{}"#;"##));
     }
 
     #[test]
-    fn every_suite_draft_maps_and_nothing_else_does() {
+    fn every_released_dialect_maps_and_nothing_else_does() {
         for (dir, variant) in [
             ("draft4", "Draft4"),
             ("draft6", "Draft6"),
@@ -296,13 +369,19 @@ mod tests {
             ("draft2020-12", "Draft202012"),
         ] {
             assert_eq!(draft_variant(dir), Some(variant));
-            let GenOutcome::Code(code) = generate("true", dir, "/tmp/remotes", T) else {
+            let GenOutcome::Code(code) = generate("true", None, dir, T) else {
                 panic!("{dir}: expected code");
             };
             assert!(code.contains(&format!("Draft::{variant}")), "{dir}");
         }
-        // An unknown draft is an error, not a module that won't compile.
-        assert!(matches!(generate("true", "draft3", "/tmp/remotes", T), GenOutcome::Error(_)));
+        // An unknown dialect, `v1` among them, is an error, not a module that
+        // won't compile.
+        for dialect in ["v1", "draft3"] {
+            let GenOutcome::Error(m) = generate("true", None, dialect, T) else {
+                panic!("{dialect}: expected an error");
+            };
+            assert!(m.contains("unsupported dialect") && m.contains(dialect), "{m}");
+        }
     }
 
     /// The generated module's assumptions about the pinned API, checked
@@ -323,7 +402,7 @@ mod tests {
         // `with_draft` is what the modules use, and in this crate it is an
         // override rather than a default: it wins over the schema's own
         // `$schema`, in both directions. The generated modules rely on that,
-        // so that the suite directory decides the dialect.
+        // so that the harness's dialect decides.
         let v = jsonschema::options()
             .with_draft(jsonschema::Draft::Draft7)
             .build(&serde_json::json!({"format": "ipv4"}))

@@ -5,6 +5,10 @@ group in the official JSON Schema Test Suite into a type, the generated
 code is compiled, and each test case is deserialized into that type. The
 outcome is compared with the suite's `valid` flag.
 
+The suite's files live in `suite/validation/tests/`; each file holds cases
+(here, groups) that name the dialects they apply to. Every group runs once,
+under the newest dialect it allows (see Dialects and tiers).
+
 ## Two actions
 
 - `run` executes the suite through generators and stores data under
@@ -14,7 +18,8 @@ outcome is compared with the suite's `valid` flag.
 
 Stored results never need regenerating when a generator is added or the
 pages change. A generator's results are only recomputed when the generator
-version, the schema, the cases, or the harness revision changes.
+version, the dialect, the tier, the schema, the cases, or the harness
+revision changes.
 
 ## Layout
 
@@ -23,8 +28,10 @@ harness/            orchestrator: suite loader, buckets, cache, runner protocol,
 rust-batch/         shared build step for generators that emit Rust
 generators/<name>/  one directory per generator integration (see below)
 suite/              json-schema-org/JSON-Schema-Test-Suite, as a submodule
+compound/tests/     our own groups, in the suite's file format
 results/<id>/       committed data (results.json) and its rendered page (README.md)
 RESULTS.md          rendered scoreboard: one row per results/<id>
+archive/suite-1.041/ results against the old per-draft suite; never regenerated
 target/             everything scratch: cargo output, generated sources, batch crates
 ```
 
@@ -44,23 +51,28 @@ build    = "sh build.sh {target} {gen_dir} {batch_dir}"
 
 The harness never links a generator. It runs the three commands as
 subprocesses through `sh -c`, with cwd set to the generator directory,
-`CARGO_TARGET_DIR=<repo>/target`, `BAKEOFF_ROOT`, `BAKEOFF_TARGET`, and (for
-generate and build) `BAKEOFF_DRAFT` in the environment, and `{root}`,
-`{target}`, `{out_dir}`, `{gen_dir}`, `{batch_dir}` substituted. stdout is the protocol; stderr is inherited so
+`CARGO_TARGET_DIR=<repo>/target`, `BAKEOFF_ROOT`, and `BAKEOFF_TARGET` in the
+environment, and `{root}`, `{target}`, `{out_dir}`, `{gen_dir}`,
+`{batch_dir}` substituted. stdout is the protocol; stderr is inherited so
 build noise reaches the terminal.
 
 1. **`version`** prints an identity string, e.g. `typify 0.10.0-alpha.2` or
    `quicktype 26.0.0 go`. Slugged, it names the results directory and the
    scoreboard row, and it is part of every cache hash.
-2. **`generate <out_dir>`** reads a JSON array of `{key, draft, schema}` on
-   stdin in one long-lived process (never one process per group), writes
-   `<out_dir>/<key>.<ext>` for each schema it can handle, and prints a JSON
-   array of `{key, status, message?}` with status `ok`, `error` (the tool
-   returned an error) or `panic` (the tool crashed or hung). The root type
-   must be named `Root` where the tool lets the caller choose. `draft` is
-   the suite directory the schema came from (`draft4` ... `draft2020-12`);
-   a generator that can select a dialect should use it, and one that can't
-   should ignore it (its results don't change either way).
+2. **`generate <out_dir>`** reads a JSON array of `{key, draft, schema,
+   externalSchemas?}` on stdin in one long-lived process (never one process per
+   group), writes `<out_dir>/<key>.<ext>` for each schema it can handle, and
+   prints a JSON array of `{key, status, message?}` with status `ok`, `error`
+   (the tool returned an error) or `panic` (the tool crashed or hung). The root
+   type must be named `Root` where the tool lets the caller choose. `draft` is
+   the dialect the group runs under (`draft4`, `draft6`, `draft7`,
+   `draft2019-09`, `draft2020-12`, or `v1`); a generator that can select a
+   dialect should use it, and one that can't should ignore it. A generator that
+   can't handle `v1` reports status `error` for that item and keeps going.
+   `externalSchemas` is present only when the group has any: an object from
+   retrieval URI to schema, as the suite wrote it. Generators ignore it (see
+   Remote references). One `generate` call covers every selected group, so the
+   array mixes dialects; `build` is likewise called once.
 3. **`build <gen_dir> <batch_dir>`** reads a JSON array of keys on stdin,
    compiles those modules together, attributes compiler diagnostics back
    to keys, drops the failures, repeats until clean, and prints
@@ -150,42 +162,72 @@ non-pass group, plus per-case detail.
 
 Each stored record carries a hash of the harness revision, the generator
 identity, a hash of the generator directory's own sources (everything but
-`*.md`, dotfiles, `node_modules/` and `target/`), the group id, the schema,
-and the selected cases. `run` reuses any record whose hash matches and
-recomputes the rest; an unchanged rerun is a byte-for-byte no-op, and an
-edit to a generator's glue code recomputes that generator's records. A draft run replaces only that draft's records, so
-drafts accumulate. `--no-cache` recomputes everything selected. Bump
-`HARNESS_REV` in `harness/src/pipeline.rs` when the pipeline's semantics
-change in a way that should invalidate stored records.
+`*.md`, dotfiles, `node_modules/` and `target/`), the group id, the dialect, the
+tier, the schema, the external schemas, and the selected cases. `run` reuses any
+record whose hash matches and recomputes the rest; an unchanged rerun is a
+byte-for-byte no-op, and an edit to a generator's glue code recomputes that
+generator's records. A run writes `results.json` whole. `--no-cache` recomputes
+everything selected. Bump `HARNESS_REV` in `harness/src/pipeline.rs` when the
+pipeline's semantics change in a way that should invalidate stored records.
 
-## Optional tests
+## Dialects and tiers
 
-`tests/<draft>/optional/` runs by default and is reported in its own
-section, never in headline numbers. `--no-optional` skips it.
+A group's `compatibility` says which dialects it applies to: a comma list
+of `[op]N`, with op one of "" (N or newer), `<=` (N or older), `=` (only
+N), and N one of 3, 4, 6, 7, 2019, 2020, 9999. Absent means every dialect.
+The harness applies the suite README's matching rule exactly, early break
+included.
+
+Each group runs once, under the newest of draft4, draft6, draft7,
+draft2019-09, draft2020-12 it allows. A group that allows none of those
+but allows 9999 (an unreleased v1 feature) runs under `v1`. A group that
+allows neither (draft 3 only) is skipped.
+
+Four tiers, in the order they are reported:
+
+- Standard: suite groups not in another tier. Only this tier feeds the
+  headline number.
+- Optional: groups from `optional/` or tagged `format-assertion`.
+  `--no-optional` skips it.
+- Compound: our own groups (below). `--no-compound` skips it.
+- Upcoming: groups that run under `v1`, including everything under
+  `proposals/`. `--no-upcoming` skips it. It is reported in its own
+  section, never as a column in the main tables.
+
+Optional, Compound and Upcoming never enter the headline number.
+
+A group id is `<file>::<description>`, where `file` is relative to
+`suite/validation/tests/` (`allOf.json`, `optional/bignum.json`,
+`compound/externally-tagged-union.json`). The loader errors on a duplicate
+id.
 
 ## Compound tier
 
 The suite isolates one keyword per group and never composes a realistic
 document, which is where generators fail: naming anonymous nested objects,
-choosing a union representation. `compound/tests/<draft>/**/*.json` holds
-our own groups in the suite's exact file format (a `comment` per group says
-what it's probing). They load after the suite's files with `file` set to
-`compound/<path>`, so ids read `draft7/compound/<path>::<group>` and can't
-collide with official ones. They run by default, are reported in their own
-section, never in headline numbers; `--no-compound` skips them. The
-validator rows are the oracle: every compound group must pass on both, or
-the expected verdicts are wrong. Groups are added sparingly, a file at a
-time, when a generator turns up a failure worth pinning down.
+choosing a union representation. `compound/tests/<path>.json` holds
+our own groups in the suite's exact file format (`{description, tests}`,
+with `compatibility` per group and a `comment` per group that says what
+it's probing). They load after the suite's files, by the same
+compatibility rule, with `file` set to `compound/<path>`, so ids read
+`compound/<path>::<group>` and can't collide with official ones. They run
+by default and are reported in their own section. The validator rows are
+the oracle: every compound group must pass on both, or the expected
+verdicts are wrong. Groups are added sparingly, a file at a time, when a
+generator turns up a failure worth pinning down.
 
 ## Remote references
 
 `http://localhost:1234/...` references are not resolved for code
 generators; a generator records whatever its tool does with them (typify
-panics, quicktype reports a fetch error). A validator row may resolve them
-from `suite/remotes/`, never from the network, precisely to show what that
-policy costs the generators. Validator rows leave `format` at the library
-default: asserting it everywhere fails 19 required 2020-12 groups whose
-cases state that an invalid string is only an annotation by default.
+panics, quicktype reports a fetch error). A group's `externalSchemas` (the
+documents its references need, keyed by retrieval URI) travel with the generate
+request and generators ignore them. A validator row resolves references from
+that payload only, scoped to the group, never from the network or the
+filesystem, precisely to show what that policy costs the generators. Validator
+rows leave `format` at the library default: asserting it everywhere fails 19
+required 2020-12 groups whose cases state that an invalid string is only an
+annotation by default.
 
 ## Where number precision stops
 

@@ -13,7 +13,8 @@
 //! targets = ["rust", "go", "typescript"]   # optional; omitted = one target
 //! [commands]
 //! version  = "..."   # stdout: identity string, e.g. "quicktype 26.0.0 go"
-//! generate = "..."   # stdin: [{key, draft, schema}]; writes {out_dir}/<key>.<ext>;
+//! generate = "..."   # stdin: [{key, draft, schema, externalSchemas?}];
+//!                    # writes {out_dir}/<key>.<ext>;
 //!                    # stdout: [{key, status: ok|error|panic, message?}]
 //! build    = "..."   # stdin: [key]; stdout: {outcomes: {key: "ok"|{fail}},
 //!                    #                       runner: [exe, args...]}
@@ -22,12 +23,11 @@
 //! Commands are run through `sh -c` with cwd = the generator directory.
 //! Placeholders: `{root}` (repo root), `{target}`, `{out_dir}`, `{gen_dir}`,
 //! `{batch_dir}`. Environment: `CARGO_TARGET_DIR=<root>/target`,
-//! `BAKEOFF_ROOT`, `BAKEOFF_TARGET`, and for generate/build `BAKEOFF_DRAFT`
-//! (the suite directory name, e.g. `draft7`). stderr is inherited so build
-//! noise and progress reach the terminal; stdout is the protocol.
+//! `BAKEOFF_ROOT`, and `BAKEOFF_TARGET`. stderr is inherited so build noise
+//! and progress reach the terminal; stdout is the protocol.
 
 use anyhow::{Context, Result};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -86,6 +86,19 @@ pub struct Generator {
     /// implicit target and `{target}` expands to "".
     pub targets: Vec<String>,
     commands: Commands,
+}
+
+/// One item of the generate request.
+#[derive(Debug, Clone, Serialize)]
+pub struct GenRequest {
+    pub key: String,
+    /// Dialect the schema runs under: `draft4` ... `draft2020-12`, or `v1`.
+    pub draft: String,
+    pub schema: serde_json::Value,
+    /// Retrieval URI -> schema, as the suite case wrote it; omitted when
+    /// empty.
+    #[serde(rename = "externalSchemas", skip_serializing_if = "BTreeMap::is_empty")]
+    pub external_schemas: BTreeMap<String, serde_json::Value>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -216,32 +229,26 @@ impl Generator {
         Ok(v)
     }
 
-    /// Generate code for every group (all from `draft`) into `out_dir`.
-    pub fn generate(&self, target: &str, draft: &str, out_dir: &Path, groups: &[(String, serde_json::Value)]) -> Result<Vec<GenStatus>> {
+    /// Generate code for every requested group into `out_dir`.
+    pub fn generate(&self, target: &str, out_dir: &Path, groups: &[GenRequest]) -> Result<Vec<GenStatus>> {
         std::fs::create_dir_all(out_dir)?;
-        let input: Vec<serde_json::Value> = groups
-            .iter()
-            .map(|(key, schema)| serde_json::json!({ "key": key, "draft": draft, "schema": schema }))
-            .collect();
-        let out = self.run_in_draft(
+        let out = self.run(
             &self.commands.generate,
             target,
-            draft,
             &[("{out_dir}", &out_dir.to_string_lossy())],
-            Some(&serde_json::to_vec(&input)?),
+            Some(&serde_json::to_vec(groups)?),
         )?;
         let statuses: Vec<GenStatus> =
             serde_json::from_str(&out).with_context(|| format!("{}: generate printed something other than a status array", self.name))?;
         Ok(statuses)
     }
 
-    /// Build the generated modules named by `keys` (all from `draft`) into a runner.
-    pub fn build(&self, target: &str, draft: &str, gen_dir: &Path, batch_dir: &Path, keys: &[String]) -> Result<BuildResult> {
+    /// Build the generated modules named by `keys` into a runner.
+    pub fn build(&self, target: &str, gen_dir: &Path, batch_dir: &Path, keys: &[String]) -> Result<BuildResult> {
         std::fs::create_dir_all(batch_dir)?;
-        let out = self.run_in_draft(
+        let out = self.run(
             &self.commands.build,
             target,
-            draft,
             &[("{gen_dir}", &gen_dir.to_string_lossy()), ("{batch_dir}", &batch_dir.to_string_lossy())],
             Some(&serde_json::to_vec(keys)?),
         )?;
@@ -267,10 +274,6 @@ impl Generator {
     }
 
     fn run(&self, template: &str, target: &str, subst: &[(&str, &str)], stdin: Option<&[u8]>) -> Result<String> {
-        self.run_in_draft(template, target, "", subst, stdin)
-    }
-
-    fn run_in_draft(&self, template: &str, target: &str, draft: &str, subst: &[(&str, &str)], stdin: Option<&[u8]>) -> Result<String> {
         let mut cmd_line = template.replace("{root}", &self.root.to_string_lossy()).replace("{target}", target);
         for (k, v) in subst {
             cmd_line = cmd_line.replace(k, v);
@@ -282,7 +285,6 @@ impl Generator {
             .env("CARGO_TARGET_DIR", self.root.join("target"))
             .env("BAKEOFF_ROOT", &self.root)
             .env("BAKEOFF_TARGET", target)
-            .env("BAKEOFF_DRAFT", draft)
             .stdin(if stdin.is_some() { Stdio::piped() } else { Stdio::null() })
             .stdout(Stdio::piped())
             .stderr(Stdio::inherit());
@@ -296,5 +298,29 @@ impl Generator {
         let out = child.wait_with_output()?;
         anyhow::ensure!(out.status.success(), "{}: `{cmd_line}` failed with {}", self.name, out.status);
         Ok(String::from_utf8_lossy(&out.stdout).into_owned())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn external_schemas_appear_only_when_present() {
+        let mut item = GenRequest {
+            key: "g_1".to_string(),
+            draft: "draft7".to_string(),
+            schema: serde_json::json!({"$ref": "http://example.com/s.json"}),
+            external_schemas: BTreeMap::new(),
+        };
+        assert_eq!(
+            serde_json::to_value(&item).unwrap(),
+            serde_json::json!({"key": "g_1", "draft": "draft7", "schema": {"$ref": "http://example.com/s.json"}})
+        );
+        item.external_schemas.insert("http://example.com/s.json".to_string(), serde_json::json!({"type": "integer"}));
+        assert_eq!(
+            serde_json::to_value(&item).unwrap()["externalSchemas"],
+            serde_json::json!({"http://example.com/s.json": {"type": "integer"}})
+        );
     }
 }

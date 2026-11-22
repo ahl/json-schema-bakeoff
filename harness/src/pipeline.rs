@@ -1,7 +1,7 @@
 //! `run`: for each generator flavor, load the suite, reuse stored records
 //! whose hash matches, generate → build → run the rest, store, render.
 
-use crate::generator::{self, BuildOutcome, Generator};
+use crate::generator::{self, BuildOutcome, GenRequest, Generator};
 use crate::results::{version_slug, Bucket, CaseOutcome, CaseResult, GroupResult, Results};
 use crate::runner::{self, RunCase, RunOutcome};
 use crate::suite::{self, Group};
@@ -14,7 +14,7 @@ use std::time::{Duration, Instant};
 
 /// Bump when the pipeline changes in a way that invalidates stored results
 /// (e.g. the runner protocol semantics or the bucket rules).
-const HARNESS_REV: &str = "4";
+const HARNESS_REV: &str = "5";
 
 const RUN_TIMEOUT: Duration = Duration::from_secs(120);
 
@@ -23,10 +23,10 @@ pub struct RunOpts {
     pub generator: Option<String>,
     /// Target within the generator; `None` runs every target it lists.
     pub target: Option<String>,
-    pub drafts: Vec<String>,
     pub filter: Option<String>,
     pub optional: bool,
     pub compound: bool,
+    pub upcoming: bool,
     pub no_cache: bool,
     pub out: Option<PathBuf>,
 }
@@ -48,8 +48,16 @@ fn group_hash(group: &Group, identity: &str, glue: &str, cases: &[(usize, &suite
     h.update([0]);
     h.update(group.id());
     h.update([0]);
+    h.update(&group.draft);
+    h.update([0]);
+    // The tier follows from the file and the case's tags; a tag change
+    // upstream must not leave a record counted in the wrong section.
+    h.update(group.tier.name());
+    h.update([0]);
     // serde_json::Value serializes object keys sorted, so this is canonical.
     h.update(serde_json::to_vec(&group.schema).unwrap());
+    h.update([0]);
+    h.update(serde_json::to_vec(&group.external_schemas).unwrap());
     h.update([0]);
     for (i, c) in cases {
         h.update(i.to_string());
@@ -61,8 +69,8 @@ fn group_hash(group: &Group, identity: &str, glue: &str, cases: &[(usize, &suite
 }
 
 /// Module key for a group's generated code, which depends on the generator
-/// identity, the draft (a generator may read it), and the schema. Identical
-/// schemas within a draft share one module.
+/// identity, the draft (a generator may read it), the schema, and the
+/// external schemas. Groups that agree on all of these share one module.
 fn module_key(group: &Group, identity: &str) -> String {
     let mut h = Sha256::new();
     h.update(identity);
@@ -70,6 +78,8 @@ fn module_key(group: &Group, identity: &str) -> String {
     h.update(&group.draft);
     h.update([0]);
     h.update(serde_json::to_vec(&group.schema).unwrap());
+    h.update([0]);
+    h.update(serde_json::to_vec(&group.external_schemas).unwrap());
     format!("g_{}", &hex::encode(h.finalize())[..16])
 }
 
@@ -109,26 +119,10 @@ pub fn run(opts: RunOpts) -> Result<()> {
     for flavor in flavors(&opts)? {
         let identity = flavor.generator.version(&flavor.target)?;
         let glue = flavor.generator.source_hash()?;
-        let mut last = None;
-        for draft in &opts.drafts {
-            last = Some(run_one(&opts, &flavor, &identity, &glue, draft)?);
-        }
-        // One terminal summary per flavor, covering every draft stored.
-        if let Some(results) = last {
-            println!("{}", summary::render_terminal(&results));
-        }
+        let results = run_one(&opts, &flavor, &identity, &glue)?;
+        println!("{}", summary::render_terminal(&results));
     }
     Ok(())
-}
-
-/// The groups of a results file after one draft's run: the earlier file's
-/// groups for every other draft, then this draft's fresh groups, in
-/// canonical draft order.
-fn accumulate(prior: Vec<GroupResult>, mut fresh: Vec<GroupResult>, draft: &str) -> Vec<GroupResult> {
-    let mut kept: Vec<GroupResult> = prior.into_iter().filter(|g| g.draft != draft).collect();
-    kept.append(&mut fresh);
-    kept.sort_by_key(|g| summary::draft_rank(&g.draft));
-    kept
 }
 
 /// Make stored error text machine-independent and deterministic: the
@@ -182,7 +176,7 @@ struct Item<'a> {
     result: Option<GroupResult>,
 }
 
-fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &str) -> Result<Results> {
+fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str) -> Result<Results> {
     let started = Instant::now();
     let root = repo_root();
     let slug = version_slug(identity);
@@ -192,12 +186,13 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
     std::fs::create_dir_all(&gen_dir)?;
     let headline_dir = root.join("results").join(&slug);
 
-    let groups = suite::load_draft(draft, opts.optional, opts.compound)?;
+    let groups =
+        suite::load(suite::Tiers { optional: opts.optional, compound: opts.compound, upcoming: opts.upcoming })?;
     let filter = opts.filter.as_deref();
     let selected: Vec<&Group> = groups.iter().filter(|g| filter.is_none_or(|f| g.matches(f))).collect();
     anyhow::ensure!(!selected.is_empty(), "no groups match");
     eprintln!(
-        "{draft} on {identity}: {} of {} groups selected ({} cases)",
+        "{identity}: {} of {} groups selected ({} cases)",
         selected.len(),
         groups.len(),
         selected.iter().map(|g| g.filtered_cases(filter).count()).sum::<usize>()
@@ -229,16 +224,21 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
 
     // Step 1: generate, one module per distinct key.
     let t = Instant::now();
-    let mut to_generate: Vec<(String, serde_json::Value)> = Vec::new();
+    let mut to_generate: Vec<GenRequest> = Vec::new();
     let mut seen = std::collections::BTreeSet::new();
     for item in items.iter().filter(|i| i.result.is_none()) {
         if seen.insert(item.key.clone()) {
-            to_generate.push((item.key.clone(), item.group.schema.clone()));
+            to_generate.push(GenRequest {
+                key: item.key.clone(),
+                draft: item.group.draft.clone(),
+                schema: item.group.schema.clone(),
+                external_schemas: item.group.external_schemas.clone(),
+            });
         }
     }
     let mut gen_status: BTreeMap<String, (String, Option<String>)> = BTreeMap::new();
     if !to_generate.is_empty() {
-        for s in flavor.generator.generate(&flavor.target, draft, &gen_dir, &to_generate)? {
+        for s in flavor.generator.generate(&flavor.target, &gen_dir, &to_generate)? {
             gen_status.insert(s.key, (s.status, s.message));
         }
     }
@@ -260,7 +260,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
     let built = if ok_keys.is_empty() {
         None
     } else {
-        Some(flavor.generator.build(&flavor.target, draft, &gen_dir, &batch_dir, &ok_keys)?)
+        Some(flavor.generator.build(&flavor.target, &gen_dir, &batch_dir, &ok_keys)?)
     };
     if let Some(b) = &built {
         let ok = b.outcomes.values().filter(|o| **o == BuildOutcome::Ok).count();
@@ -354,8 +354,7 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
             id: group.id(),
             draft: group.draft.clone(),
             file: group.file.clone(),
-            optional: group.optional,
-            compound: group.compound,
+            tier: group.tier,
             group: group.description.clone(),
             hash: item.hash.clone(),
             generated_at: now.clone(),
@@ -388,17 +387,6 @@ fn run_one(opts: &RunOpts, flavor: &Flavor, identity: &str, glue: &str, draft: &
         (None, None) => headline_dir.clone(),
         (None, Some(_)) => scratch.join("filtered"),
     };
-    // An unfiltered run accumulates drafts: it replaces only its own
-    // draft's groups in the file it writes. For the headline file that is
-    // the stored results; for --out it is whatever an earlier draft of this
-    // run (or an earlier run) left there, since a cache hit never writes
-    // there.
-    if filter.is_none() {
-        let prior = if opts.out.is_some() { Results::load(&out_dir.join("results.json")).ok() } else { previous };
-        if let Some(prev) = prior {
-            results.groups = accumulate(prev.groups, results.groups, draft);
-        }
-    }
     results.generated_at = results.groups.iter().map(|g| g.generated_at.clone()).max().unwrap_or_default();
     results.save(&out_dir.join("results.json"))?;
     std::fs::write(out_dir.join("README.md"), summary::render(&results))?;
@@ -453,7 +441,7 @@ pub fn render_all() -> Result<()> {
 /// Per-group, per-case detail for filtered runs.
 fn print_detail(results: &Results, gen_dir: &Path, keys: &BTreeMap<String, String>) {
     for g in &results.groups {
-        println!("{} {}  [{}]", g.bucket.glyph(), g.id, g.bucket.name());
+        println!("{} {} ({})  [{}]", g.bucket.glyph(), g.id, g.draft, g.bucket.name());
         if let Some(k) = keys.get(&g.id) {
             // Whatever extension the generator used.
             if let Some(path) = std::fs::read_dir(gen_dir)
@@ -520,33 +508,6 @@ fn chrono_free_timestamp() -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    fn group(draft: &str, file: &str) -> GroupResult {
-        GroupResult {
-            id: format!("{draft}/{file}::g"),
-            draft: draft.to_string(),
-            file: file.to_string(),
-            optional: false,
-            compound: false,
-            group: "g".to_string(),
-            hash: String::new(),
-            generated_at: String::new(),
-            bucket: Bucket::Pass,
-            error: None,
-            cases: Vec::new(),
-        }
-    }
-
-    /// A draft's run replaces only its own groups; the others survive, and
-    /// the file ends up in canonical draft order whatever order it was run
-    /// in.
-    #[test]
-    fn accumulate_replaces_one_draft_and_keeps_the_rest() {
-        let prior = vec![group("draft7", "old.json"), group("draft2020-12", "a.json"), group("draft4", "b.json")];
-        let fresh = vec![group("draft7", "new.json")];
-        let ids: Vec<String> = accumulate(prior, fresh, "draft7").into_iter().map(|g| g.id).collect();
-        assert_eq!(ids, ["draft4/b.json::g", "draft7/new.json::g", "draft2020-12/a.json::g"]);
-    }
 
     #[test]
     fn scrub_makes_text_portable() {

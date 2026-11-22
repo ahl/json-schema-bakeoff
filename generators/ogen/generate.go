@@ -14,11 +14,11 @@ package main
 //
 // Why no batching: measured, ogen turns one of these documents into a
 // package in 6–7 ms with client and server generation off (23 ms with its
-// default feature set, which also renders the HTTP plumbing), so the whole
-// five-draft suite is about 10 s of generation. Batching many components
-// into one document would buy nothing and cost a lot: the components would
-// land in one Go package, which this harness cannot attribute per group,
-// and one bad schema would take its batch down. See the README.
+// default feature set, which also renders the HTTP plumbing), so generating
+// the whole suite takes seconds. Batching many components into one document
+// would buy nothing and cost a lot: the components would land in one Go
+// package, which this harness cannot attribute per group, and one bad schema
+// would take its batch down. See the README.
 //
 // The fallback: a generation can still take the process down for real (a
 // stack overflow on a recursive schema is fatal and unrecoverable in Go).

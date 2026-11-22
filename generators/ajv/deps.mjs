@@ -33,7 +33,7 @@ export function quietStdout() {
  * `process.stdout` (which `quietStdout` does), and a single `writeSync` to
  * a non-blocking pipe stops at the pipe buffer — 64 KiB on macOS — and
  * reports the short count instead of failing. The generate status array
- * for a full draft clears that easily, and the harness would see
+ * for a full run clears that easily, and the harness would see
  * truncated JSON. So loop, and treat `EAGAIN` as "the reader hasn't caught
  * up yet".
  */

@@ -29,6 +29,6 @@ jobs:
       - name: Stored results are current
         run: |
           # Progress lines go to stderr; capture both.
-          cargo run --release -- run --generator typify-0.10 --draft draft7 2>&1 | tee run.log
+          cargo run --release -- run --generator typify-0.10 2>&1 | tee run.log
           grep -Eq "cache: [0-9]+ hit, 0 to run" run.log
           git diff --exit-code -- results RESULTS.md

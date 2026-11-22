@@ -56,7 +56,7 @@ const MAX_DIAG_LEN = 4000;
  * still has to load.
  *
  * `spawnSync` can only bound the whole process, not the gap between two
- * lines, so the cap has to cover a whole draft's worth of loads. Each one
+ * lines, so the cap has to cover a whole run's worth of loads. Each one
  * is a `require` plus a `TypeCompiler.Compile`, i.e. milliseconds, so this
  * is two orders of magnitude of slack: a loaded machine must not turn into
  * a spurious `compile_fail`.
@@ -65,7 +65,7 @@ const PROBE_BASE_MS = 60_000;
 const PROBE_PER_MODULE_MS = 250;
 
 /**
- * How long one `tsc` pass gets. A whole draft compiles in a second or two;
+ * How long one `tsc` pass gets. A whole run compiles in a second or two;
  * the point of the bound is that a hung compiler must not hang the run
  * with nothing to show for it.
  */
@@ -454,7 +454,7 @@ function probe(compiled) {
       if (typeof rec.i !== "number" || rec.i < next || rec.i >= compiled.length) continue;
       // Anything but a literal "ok" is a failure, including a line whose
       // shape we don't recognize: reading `.fail` off it unguarded would
-      // throw out of the build step and cost the whole draft.
+      // throw out of the build step and cost the whole run.
       if (rec.r !== "ok") {
         const fail = rec.r !== null && typeof rec.r === "object" ? rec.r.fail : undefined;
         failures[compiled[rec.i]] = truncate(String(fail ?? `probe reported ${JSON.stringify(rec.r)}`));

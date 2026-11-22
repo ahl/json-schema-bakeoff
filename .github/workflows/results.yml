@@ -5,9 +5,11 @@
 #   version bump lands in a new results/<version>/ directory; old results
 #   stay).
 # - A change to suite/ (the test-suite submodule) reruns every generator;
-#   the record cache recomputes only groups whose schema or cases changed.
+#   the record cache recomputes only groups whose dialect, tier, schema,
+#   external schemas or cases changed.
 # - A change to harness/ or rust-batch/ reruns everything too, since the
 #   harness revision may have moved.
+# - A change to compound/ (our own groups) reruns every generator.
 #
 # pull_request_target runs with a write token so results can be pushed back
 # to Dependabot's branches; the job is limited to Dependabot and same-repo
@@ -20,6 +22,7 @@ on:
       - "generators/**"
       - "harness/**"
       - "rust-batch/**"
+      - "compound/**"
       - "suite"
       - ".gitmodules"
   workflow_dispatch:
@@ -92,7 +95,7 @@ jobs:
           base="${{ github.event.pull_request.base.sha }}"
           head="${{ github.event.pull_request.head.sha }}"
           changed=$(git diff --name-only "$base" "$head")
-          if echo "$changed" | grep -qE '^(harness/|rust-batch/|suite$|\.gitmodules$)'; then
+          if echo "$changed" | grep -qE '^(harness/|rust-batch/|compound/|suite$|\.gitmodules$)'; then
             echo "generators=" >> "$GITHUB_OUTPUT"   # all
           else
             gens=$(echo "$changed" | grep -E '^generators/[^/]+/' | cut -d/ -f2 | sort -u | tr '\n' ' ')

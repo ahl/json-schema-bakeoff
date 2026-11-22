@@ -4,10 +4,11 @@
 //! line, a transition matrix, then Improved / Regressed /
 //! Changed-within-bucket lists (ordering per `Bucket`'s derived `Ord`,
 //! which runs worst-to-best, so `a.bucket < b.bucket` means things got
-//! better), then any ids that only exist on one side.
+//! better), then any ids that only exist on one side. Each list is split by
+//! tier, and each id carries the dialect it ran under.
 
-use crate::results::{Bucket, CaseOutcome, GroupResult, Results};
-use crate::summary::{draft_rank, escape_code_span, first_line_trunc};
+use crate::results::{Bucket, CaseOutcome, GroupResult, Results, Tier};
+use crate::summary::{TIERS, dialect_label, escape_code_span, first_line_trunc, labeled_id, tier_name};
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
@@ -20,12 +21,6 @@ const ONLY_IN_CAP: usize = 50;
 struct Pair<'a> {
     a: &'a GroupResult,
     b: &'a GroupResult,
-}
-
-impl Pair<'_> {
-    fn id(&self) -> &str {
-        &self.b.id
-    }
 }
 
 /// Per-case outcomes keyed by case description, so that reordering alone
@@ -55,14 +50,47 @@ fn changed_cases(a: &GroupResult, b: &GroupResult) -> Vec<String> {
         .collect()
 }
 
-fn id_list(s: &mut String, ids: &[&str], cap: usize) {
-    for id in ids.iter().take(cap) {
-        s.push_str(&format!("- `{}`\n", escape_code_span(id)));
+/// `items`, in any order, as one list per tier under a `###`
+/// heading, each item rendered by `line`. At most `cap` items appear in all.
+fn tiered<T>(s: &mut String, items: &[T], tier: impl Fn(&T) -> Tier, line: impl Fn(&T) -> String, cap: usize) {
+    if items.is_empty() {
+        s.push_str("_none_\n\n");
+        return;
     }
-    if ids.len() > cap {
-        s.push_str(&format!("- … and {} more\n", ids.len() - cap));
+    let mut shown = 0;
+    for t in TIERS {
+        let in_tier: Vec<&T> = items.iter().filter(|i| tier(i) == t).collect();
+        if in_tier.is_empty() || shown == cap {
+            continue;
+        }
+        s.push_str(&format!("### {}\n\n", tier_name(t)));
+        for item in in_tier.iter().take(cap - shown) {
+            s.push_str(&line(item));
+            shown += 1;
+        }
+        s.push('\n');
     }
-    s.push('\n');
+    if items.len() > cap {
+        s.push_str(&format!("… and {} more\n\n", items.len() - cap));
+    }
+}
+
+/// The group label for a pair: both dialects, `a` then `b`, when they
+/// differ, as in `ref.json::x (2020-12, then v1)`.
+fn pair_label(p: &Pair) -> String {
+    if p.a.draft == p.b.draft {
+        return labeled_id(p.b);
+    }
+    escape_code_span(&format!(
+        "{} ({}, then {})",
+        p.b.id,
+        dialect_label(&p.a.draft),
+        dialect_label(&p.b.draft)
+    ))
+}
+
+fn id_line(g: &&GroupResult) -> String {
+    format!("- `{}`\n", labeled_id(g))
 }
 
 /// `<glyph> <name> → <glyph> <name>`, plus the first line of the new
@@ -70,7 +98,7 @@ fn id_list(s: &mut String, ids: &[&str], cap: usize) {
 fn transition_line(p: &Pair) -> String {
     let mut s = format!(
         "- `{}`: {} {} → {} {}",
-        escape_code_span(p.id()),
+        pair_label(p),
         p.a.bucket.glyph(),
         p.a.bucket.name(),
         p.b.bucket.glyph(),
@@ -127,22 +155,22 @@ fn transition_matrix(pairs: &[Pair]) -> String {
     s
 }
 
-/// Compare two results files by group id. Returns the markdown diff.
+/// Compare two results files by group id. Returns the markdown diff: a
+/// headline line, the bucket key, the transition matrix, and the Improved,
+/// Regressed, Changed-within-bucket and one-sided lists, each split by tier.
 pub fn render(a: &Results, b: &Results) -> String {
     let a_map: HashMap<&str, &GroupResult> =
         a.groups.iter().map(|g| (g.id.as_str(), g)).collect();
     let b_map: HashMap<&str, &GroupResult> =
         b.groups.iter().map(|g| (g.id.as_str(), g)).collect();
 
-    // Walk `a` in suite order and keep the groups present in both, then
-    // put the drafts in canonical order (the sort is stable, so suite
-    // order survives within a draft).
-    let mut pairs: Vec<Pair> = a
+    // Walk `a` in suite order and keep the groups present in both. `tiered`
+    // groups them by tier at report time.
+    let pairs: Vec<Pair> = a
         .groups
         .iter()
         .filter_map(|ag| b_map.get(ag.id.as_str()).map(|bg| Pair { a: ag, b: bg }))
         .collect();
-    pairs.sort_by_key(|p| draft_rank(&p.a.draft));
 
     let mut improved: Vec<&Pair> = Vec::new();
     let mut regressed: Vec<&Pair> = Vec::new();
@@ -162,10 +190,10 @@ pub fn render(a: &Results, b: &Results) -> String {
         }
     }
 
-    let only_a: Vec<&str> =
-        a.groups.iter().map(|g| g.id.as_str()).filter(|id| !b_map.contains_key(id)).collect();
-    let only_b: Vec<&str> =
-        b.groups.iter().map(|g| g.id.as_str()).filter(|id| !a_map.contains_key(id)).collect();
+    let only_a: Vec<&GroupResult> =
+        a.groups.iter().filter(|g| !b_map.contains_key(g.id.as_str())).collect();
+    let only_b: Vec<&GroupResult> =
+        b.groups.iter().filter(|g| !a_map.contains_key(g.id.as_str())).collect();
 
     let mut s = String::new();
     s.push_str(&format!(
@@ -200,31 +228,20 @@ pub fn render(a: &Results, b: &Results) -> String {
     s.push_str("## Transition matrix\n\n");
     s.push_str(&transition_matrix(&pairs));
 
+    let pair_tier = |p: &&Pair| p.b.tier;
+
     s.push_str(&format!("## Improved ({})\n\n", improved.len()));
-    if improved.is_empty() {
-        s.push_str("_none_\n\n");
-    } else {
-        for p in &improved {
-            s.push_str(&transition_line(p));
-        }
-        s.push('\n');
-    }
+    tiered(&mut s, &improved, pair_tier, |p| transition_line(p), usize::MAX);
 
     s.push_str(&format!("## Regressed ({})\n\n", regressed.len()));
-    if regressed.is_empty() {
-        s.push_str("_none_\n\n");
-    } else {
-        for p in &regressed {
-            s.push_str(&transition_line(p));
-        }
-        s.push('\n');
-    }
+    tiered(&mut s, &regressed, pair_tier, |p| transition_line(p), usize::MAX);
 
     s.push_str(&format!("## Changed within the same bucket ({})\n\n", changed_same.len()));
-    if changed_same.is_empty() {
-        s.push_str("_none_\n\n");
-    } else {
-        for p in &changed_same {
+    tiered(
+        &mut s,
+        &changed_same,
+        pair_tier,
+        |p| {
             let cases = changed_cases(p.a, p.b);
             const CASE_CAP: usize = 4;
             let shown = cases.iter().take(CASE_CAP).cloned().collect::<Vec<_>>().join("; ");
@@ -233,23 +250,23 @@ pub fn render(a: &Results, b: &Results) -> String {
             } else {
                 String::new()
             };
-            s.push_str(&format!(
+            format!(
                 "- `{}`: {} {} — cases: {shown}{more}\n",
-                escape_code_span(p.id()),
+                pair_label(p),
                 p.b.bucket.glyph(),
                 p.b.bucket.name(),
-            ));
-        }
-        s.push('\n');
-    }
+            )
+        },
+        usize::MAX,
+    );
 
     if !only_a.is_empty() {
         s.push_str(&format!("## Only in {} ({})\n\n", a.version, only_a.len()));
-        id_list(&mut s, &only_a, ONLY_IN_CAP);
+        tiered(&mut s, &only_a, |g| g.tier, id_line, ONLY_IN_CAP);
     }
     if !only_b.is_empty() {
         s.push_str(&format!("## Only in {} ({})\n\n", b.version, only_b.len()));
-        id_list(&mut s, &only_b, ONLY_IN_CAP);
+        tiered(&mut s, &only_b, |g| g.tier, id_line, ONLY_IN_CAP);
     }
 
     s
@@ -258,21 +275,29 @@ pub fn render(a: &Results, b: &Results) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::results::CaseResult;
+    use crate::results::{CaseResult, Tier};
 
     fn case(description: &str, valid: bool, outcome: CaseOutcome) -> CaseResult {
         CaseResult { description: description.to_string(), valid, outcome, error: None }
     }
 
-    fn group(id: &str, bucket: Bucket, error: Option<&str>, cases: Vec<CaseResult>) -> GroupResult {
-        let (draft, rest) = id.split_once('/').unwrap();
-        let (file, desc) = rest.split_once("::").unwrap();
+    /// A group from `<dialect>/<id>`, e.g. `draft7/ref.json::ref panics`.
+    fn group(spec: &str, bucket: Bucket, error: Option<&str>, cases: Vec<CaseResult>) -> GroupResult {
+        let (draft, id) = spec.split_once('/').unwrap();
+        let (file, desc) = id.split_once("::").unwrap();
         GroupResult {
             id: id.to_string(),
             draft: draft.to_string(),
             file: file.to_string(),
-            optional: file.starts_with("optional/"),
-            compound: file.starts_with("compound/"),
+            tier: if draft == "v1" {
+                Tier::Upcoming
+            } else if file.starts_with("compound/") {
+                Tier::Compound
+            } else if file.starts_with("optional/") {
+                Tier::Optional
+            } else {
+                Tier::Standard
+            },
             group: desc.to_string(),
             hash: String::new(),
             generated_at: String::new(),
@@ -388,11 +413,26 @@ mod tests {
         let regressed_pos = out.find("## Regressed").unwrap();
         assert!(improved_pos < regressed_pos);
 
-        assert!(out.contains("`draft7/ref.json::ref panics`: 🤯 generation_panic → ✅ pass"));
-        assert!(out.contains("`draft7/allOf.json::allOf ok`: ✅ pass → 🙈 false_accept"));
+        assert!(out.contains("`ref.json::ref panics (7)`: 🤯 generation_panic → ✅ pass"));
+        assert!(out.contains("`allOf.json::allOf ok (7)`: ✅ pass → 🙈 false_accept"));
         // regression includes the first line of the new error.
         assert!(out.contains("now accepts garbage"));
         assert!(!out.contains("extra context"));
+    }
+
+    #[test]
+    fn pair_label_shows_both_dialects_when_they_differ() {
+        let a = results_a();
+        let mut b = results_b();
+        let g = b.groups.iter_mut().find(|g| g.id == "ref.json::ref panics").unwrap();
+        g.draft = "v1".to_string();
+        let out = render(&a, &b);
+        assert!(
+            out.contains("`ref.json::ref panics (7, then v1)`: 🤯 generation_panic → ✅ pass"),
+            "got:\n{out}"
+        );
+        // Unchanged dialects keep the single label.
+        assert!(out.contains("`allOf.json::allOf ok (7)`: "));
     }
 
     #[test]
@@ -401,7 +441,7 @@ mod tests {
         assert!(out.contains("## Changed within the same bucket (1)"));
         assert!(
             out.contains(
-                "`draft7/enum.json::enum loose`: 🙈 false_accept — cases: first: FalseAccept → Match; second: Match → FalseAccept"
+                "`enum.json::enum loose (7)`: 🙈 false_accept — cases: first: FalseAccept → Match; second: Match → FalseAccept"
             ),
             "got:\n{out}"
         );
@@ -413,9 +453,9 @@ mod tests {
     fn only_in_a_and_b() {
         let out = render(&results_a(), &results_b());
         assert!(out.contains("## Only in typify1 (1)"));
-        assert!(out.contains("draft7/const.json::const only a"));
+        assert!(out.contains("- `const.json::const only a (7)`"));
         assert!(out.contains("## Only in typify2 (1)"));
-        assert!(out.contains("draft7/if-then-else.json::only b"));
+        assert!(out.contains("- `if-then-else.json::only b (7)`"));
     }
 
     #[test]
@@ -444,18 +484,29 @@ mod tests {
     }
 
     #[test]
-    fn drafts_in_canonical_order_not_lexical() {
+    fn lists_split_by_tier_in_report_order() {
         let mut a = results_a();
         let mut b = results_b();
         for (r, bucket) in [(&mut a, Bucket::CompileFail), (&mut b, Bucket::Pass)] {
-            r.groups.push(group("draft2019-09/ref.json::later draft", bucket, Some("x"), vec![]));
-            r.groups.push(group("draft4/ref.json::early draft", bucket, Some("x"), vec![]));
+            r.groups.insert(0, group("v1/proposals/p/p.json::upcoming", bucket, Some("x"), vec![]));
+            r.groups.insert(0, group("draft2020-12/compound/c.json::compound", bucket, Some("x"), vec![]));
+            r.groups.insert(0, group("draft4/optional/o.json::optional", bucket, Some("x"), vec![]));
         }
         let out = render(&a, &b);
-        let d4 = out.find("draft4/ref.json::early draft").unwrap();
-        let d7 = out.find("draft7/ref.json::ref panics").unwrap();
-        let d2019 = out.find("draft2019-09/ref.json::later draft").unwrap();
-        assert!(d4 < d7 && d7 < d2019, "improved list must run draft4, draft7, draft2019-09");
+        let improved = out.split("## Improved (4)\n\n").nth(1).unwrap();
+        let improved = improved.split("\n## ").next().unwrap();
+        let pos = |s: &str| improved.find(s).unwrap_or_else(|| panic!("no {s} in:\n{improved}"));
+        assert!(pos("### Standard") < pos("ref.json::ref panics (7)"));
+        assert!(pos("ref.json::ref panics (7)") < pos("### Optional"));
+        assert!(pos("### Optional") < pos("optional/o.json::optional (4)"));
+        assert!(pos("optional/o.json::optional (4)") < pos("### Compound"));
+        assert!(pos("### Compound") < pos("compound/c.json::compound (2020-12)"));
+        assert!(pos("compound/c.json::compound (2020-12)") < pos("### Upcoming"));
+        assert!(pos("### Upcoming") < pos("proposals/p/p.json::upcoming (v1)"));
+        // A list with groups in one tier only has one heading.
+        let regressed = out.split("## Regressed (1)\n\n").nth(1).unwrap();
+        assert!(regressed.starts_with("### Standard\n\n- `allOf.json::allOf ok (7)`"), "got:\n{regressed}");
+        assert!(!regressed.split("\n## ").next().unwrap().contains("### Optional"));
     }
 
     #[test]

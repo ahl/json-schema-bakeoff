@@ -1,7 +1,8 @@
 //! TypeBox generator for the bakeoff harness.
 //!
 //!   version              → "typebox <version> + schema2typebox <version>"
-//!   generate <out_dir>   → stdin: JSON array of {key, draft, schema};
+//!   generate <out_dir>   → stdin: JSON array of
+//!                          {key, draft, schema, externalSchemas?};
 //!                          writes <out_dir>/<key>.ts;
 //!                          stdout: JSON array of {key, status, message?}
 //!
@@ -74,7 +75,7 @@
 //! Ignored. TypeBox targets Json Schema draft 7 and has no dialect
 //! setting; schema2typebox has none either and never reads `$schema`. The
 //! `draft` field arrives on stdin and is dropped, so no result here
-//! depends on which suite directory a group came from.
+//! depends on which dialect the harness assigned a group.
 //!
 //! ## References
 //!

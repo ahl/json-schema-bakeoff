@@ -1,7 +1,8 @@
 //! jsonschema 0.58 generator for the bakeoff harness.
 //!
 //!   version                → "jsonschema <crate version>"
-//!   generate <out_dir>     → stdin: JSON array of {key, draft, schema}; writes
+//!   generate <out_dir>     → stdin: JSON array of
+//!                             {key, draft, schema, externalSchemas?}; writes
 //!                             <out_dir>/<key>.rs (module + __conformance_check)
 //!                             and <out_dir>/batch-deps.toml;
 //!                             stdout: JSON array of {key, status, message?}
@@ -23,13 +24,15 @@ mod crashguard;
 #[derive(Deserialize)]
 struct Group {
     key: String,
-    /// The suite directory the group came from (`draft7`, ...). It picks
-    /// the `jsonschema::Draft` the module compiles with. Also in the
-    /// environment as `BAKEOFF_DRAFT`, but the per-item field is what we
-    /// read: it is the one that travels with the schema.
+    /// The dialect the group runs under (`draft7`, ..., `v1`). It picks
+    /// the `jsonschema::Draft` the module compiles with.
     draft: String,
     /// Kept as raw JSON text so it is embedded byte for byte.
     schema: Box<RawValue>,
+    /// The case's retrieval URI to schema map, present only when the case
+    /// has one. Kept as raw JSON text for the same reason as `schema`.
+    #[serde(rename = "externalSchemas")]
+    external_schemas: Option<Box<RawValue>>,
 }
 
 #[derive(Serialize)]
@@ -55,17 +58,8 @@ fn main() -> Result<()> {
     }
 }
 
-/// `suite/remotes` under `BAKEOFF_ROOT`, which the harness always sets.
-fn remotes_dir() -> Result<String> {
-    let root = std::env::var("BAKEOFF_ROOT").context("BAKEOFF_ROOT is not set")?;
-    let dir = PathBuf::from(root).join("suite").join("remotes");
-    anyhow::ensure!(dir.is_dir(), "{} is not a directory (is the suite submodule checked out?)", dir.display());
-    Ok(dir.to_string_lossy().into_owned())
-}
-
 fn generate_all(out_dir: PathBuf) -> Result<()> {
     std::fs::create_dir_all(&out_dir)?;
-    let remotes = remotes_dir()?;
     let groups: Vec<Group> = serde_json::from_reader(std::io::stdin().lock()).context("reading groups from stdin")?;
 
     // The batch crate doesn't know about jsonschema; tell it, with the same
@@ -80,7 +74,7 @@ fn generate_all(out_dir: PathBuf) -> Result<()> {
 
     let mut statuses = Vec::with_capacity(groups.len());
     for g in groups {
-        let status = match generate::generate(g.schema.get(), &g.draft, &remotes, TIMEOUT) {
+        let status = match generate::generate(g.schema.get(), g.external_schemas.as_deref().map(RawValue::get), &g.draft, TIMEOUT) {
             generate::GenOutcome::Code(source) => {
                 std::fs::write(out_dir.join(format!("{}.rs", g.key)), source)?;
                 Status { key: g.key, status: "ok", message: None }

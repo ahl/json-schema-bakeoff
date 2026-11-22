@@ -17,7 +17,7 @@ parsing `go.mod`), so bumping the pin moves the results directory
 (`results/go-jsonschema-v0.24.1/`) by itself.
 
 ```sh
-cargo run -- run --generator go-jsonschema --draft draft7
+cargo run -- run --generator go-jsonschema
 cargo run -- run --generator go-jsonschema --filter 'required.json::required validation'
 ```
 
@@ -77,7 +77,7 @@ Two cases where it isn't:
   when `len(schema.Type) == 0`, so `{"properties": {...}, "required": [...]}`
   — the shape most of the suite uses — produces a file with nothing in it
   but the package clause. That is `compile_fail` (`undefined: Root`), and it
-  is the single largest bucket on every draft. It is the tool's behavior,
+  is the single largest bucket in every tier. It is the tool's behavior,
   not a glue artifact; faking a root type would measure the harness instead.
 - **Root `$ref`.** `{"$ref": "#/definitions/x"}` emits `type X`, named after
   the definition, and no `Root`. Also `compile_fail`.
@@ -168,24 +168,26 @@ failed to load schema ...: the bakeoff harness runs offline:
 remote references are not fetched
 ```
 
-So nothing is ever fetched. In practice the transport is reached by only two
-groups in the whole suite (`optional/cross-draft.json`), because the tool
+So nothing is ever fetched. In practice the transport is reached by only
+four groups in the whole suite (`root ref in remote ref` in `ref.json` and
+`ref-legacy.json`, and two in `optional/cross-draft.json`), because the tool
 has to get as far as *resolving* a reference to try it: a schema whose root
 is `{"$ref": "http://localhost:1234/..."}` with no sibling `type` returns
 before any reference is followed, so it comes back `ok` with an empty module
-and lands in `compile_fail`. Most of `refRemote.json` fails earlier still —
-on a *relative* ref (`folderInteger.json`, `./bar.json`) that the file
-loader looks for next to the schema and doesn't find.
+and lands in `compile_fail`. Several of the `id.json` and `id-legacy.json`
+groups fail earlier still -- on a *relative* ref (`folderInteger.json`,
+`./bar.json`) that the file loader looks for next to the schema and doesn't
+find. The case's `externalSchemas` would have the answer, and the glue
+ignores them, per the harness's policy.
 
 ## Quirks worth knowing
 
 **A root with no `type` produces no type.** Covered above; it is the
-dominant outcome — 1084 of the 1408 required groups are
-`compile_fail: undefined: Root`. Keyword files whose groups never declare a
-root type (`allOf.json`, `anyOf.json`, `oneOf.json`, `not.json`,
-`if-then-else.json`, `const.json`, `maxLength.json`, `minimum.json`,
-`pattern.json`, `required.json`, `properties.json`, `ref.json`, ...) are
-`compile_fail` nearly end-to-end.
+dominant outcome -- 354 of the 540 Standard groups are
+`compile_fail: undefined: Root`, and only 14 pass. Keyword files whose
+groups never declare a root type (`allOf.json`, `anyOf.json`, `oneOf.json`,
+`not.json`, `const.json`, `minimum.json`, `required.json`,
+`properties.json`, `ref.json`, ...) are `compile_fail` nearly end-to-end.
 
 **Validation that does happen.** Where there *is* a root type, the generated
 `UnmarshalJSON` checks `required`, `enum` (by `reflect.DeepEqual` against the
@@ -193,9 +195,9 @@ literal values), `minLength`/`maxLength` (rune counts),
 `pattern`, `minimum`/`maximum`/`exclusiveMinimum`/`exclusiveMaximum`,
 `multipleOf` (with a `1e-10` tolerance on floats), `minItems`/`maxItems`,
 and `const` on string and boolean fields. That is unusually thorough for a
-code generator and is where this row's passes come from —
-`enum.json`, `items.json`, `pattern.json`, `patternProperties.json`,
-`type.json`, `unevaluatedProperties.json`.
+code generator and is where this row's passes come from --
+`unevaluatedProperties.json` (7), `pattern.json` and `vocabulary.json` (2
+each), and one each in `enum.json`, `items.json` and `type.json`.
 
 `pattern` goes to Go's `regexp`, i.e. RE2: no lookahead or backreferences,
 and a pattern RE2 can't compile makes *every* value fail, because the
@@ -219,42 +221,54 @@ wide open.
 **Go's `encoding/json` decides the rest.** A scalar root is where the
 measurement really becomes Go's: `type Root int` **accepts `null`**
 (unmarshalling null into a non-pointer is a documented no-op) and
-**rejects `1.0`**, which the spec says is an integer. That single pair is
-why every draft's `type.json` has `mixed` groups. No
+**rejects `1.0`**, which the spec says is an integer. The suite puts those
+in separate groups: `integer type matches integers` is `false_accept` on
+null, and `integer type matches integers (6)` is `false_reject` on `1.0`
+(both in `type.json`, both run as 2020-12). The two `mixed` groups are
+multi-type roots (`type: ["integer", "string"]`, `type: ["array",
+"object"]`): one type is picked, so the other is rejected, and null gets
+in. No
 `DisallowUnknownFields` is set, so unknown properties are ignored and
 missing ones zero-valued — Go's default, and part of what is measured.
 
 **`multipleOf` on an integer type can emit uncompilable Go.** A fractional
 `multipleOf` is truncated into the integer modulo operator:
 `{"type": "integer", "multipleOf": 0.123456789}` renders as `plain % 0`,
-and the compiler says `invalid operation: division by zero`. Ten required
-groups land there (`multipleOf.json`, and `optional/float-overflow.json`,
-whose `math.Mod(plain, 0.5)` on a `float64`-typed `Plain` is a type error).
+and the compiler says `invalid operation: division by zero`. Two Standard
+groups land there (`multipleOf.json::multipleOf when float division = inf`
+and `small multiple of large integer`, whose `1e-08` truncates the same
+way). Two Optional groups are a near relative: `optional/float-overflow.json`
+and `optional/bignum.json` share an "all integers are multiples of 0.5"
+schema, whose `math.Mod(plain, 0.5)` on a `float64`-typed `Plain` is a type
+error.
 
 **`format` is mostly nothing, except where it changes the type.**
 `date-time` becomes `*time.Time` (stdlib), and `date`, `time` and
 `duration` become `types.SerializableDate`/`SerializableTime`/
 `time.Duration` from the tool's own `pkg/types`. Every other format string
-is ignored, so `optional/format/*` would be `false_accept` — except that
-the suite's format groups don't declare a root `type`, so they are
-`compile_fail` instead and the type-changing formats never come up.
+is ignored, so the `format-*.json` groups would be `false_accept` --
+except that they don't declare a root `type`, so all 64 are `compile_fail`
+instead and the type-changing formats never come up.
 
 **Unparseable schemas are errors, not crashes.** The tool unmarshals a
 schema into a struct, so anything that isn't an object where it expects one
-is a parse error: boolean schemas (`true`/`false`, all of
-`boolean_schema.json`), draft 4's `exclusiveMaximum: true`,
-`"items": [...]` as a tuple, `"dependencies"` values. 107 required groups
-are that, plus 54 `schema has no root`.
+is a parse error: boolean schemas (`true`/`false`, both groups of
+`boolean_schema.json`), `"items": [...]` as a tuple (most of the 2019-09
+groups in `items.json`, `unevaluatedItems.json` and `uniqueItems.json`),
+and a decimal count like `maxLength: 2.0`, which won't go into the tool's
+integer field. 39 Standard groups are that, and another 74 are `schema has
+no root`, mostly `contains.json`, `unevaluatedItems.json` and
+`if-then-else.json`.
 
 **`$ref` support is top-level definitions in the same file, and little
-else.** `#/definitions/a/definitions/b` and a bare `#` inside a definition
-are `value must point to definition within file`; a relative file ref
+else.** A nested pointer (`#/definitions/baz/definitions/bar`) is
+`definition does not exist in schema`; a bare `#` or an anchor (`#items`)
+is `value must point to definition within file`; a relative file ref
 (`folderInteger.json`, `./bar.json`) is tried against the filesystem next to
-the schema and fails there, which is how most of `refRemote.json` reports.
-A root `$ref` with no sibling `type` emits the referenced type under the
-*definition's* name and never a `Root`.
+the schema and fails there. A root `$ref` with no sibling `type` emits the
+referenced type under the *definition's* name and never a `Root`.
 
-**It never panicked.** Across all five drafts no schema crashed the
+**It never panicked.** Across the whole suite no schema crashed the
 generator or hit the 60s timeout, so the worker was never restarted and
 there are no `generation_panic` rows.
 

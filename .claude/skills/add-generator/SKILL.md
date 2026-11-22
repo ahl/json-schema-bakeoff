@@ -1,6 +1,6 @@
 ---
 name: add-generator
-description: Onboard a new code generator or validator into the JSON Schema bakeoff — create generators/<name>/ with a generator.toml and the version/generate/build commands, wire it through rust-batch or a language runner, run it on every draft, verify idempotence, write its description, and commit. Use when asked to add, evaluate, or onboard a tool (typify, quicktype, zod, pydantic, ajv, ...) to the bakeoff.
+description: Onboard a new code generator or validator into the JSON Schema bakeoff — create generators/<name>/ with a generator.toml and the version/generate/build commands, wire it through rust-batch or a language runner, run it, verify idempotence, write its description, and commit. Use when asked to add, evaluate, or onboard a tool (typify, quicktype, zod, pydantic, ajv, ...) to the bakeoff.
 ---
 
 # Add a generator to the bakeoff
@@ -19,8 +19,9 @@ any language fits without touching Rust.
   emits several languages (quicktype). Otherwise no `targets`.
 - **Validator or generator?** A validator (jsonschema, ajv) fits the same
   contract: its "module" embeds the schema and `__conformance_check`
-  validates. Validator rows calibrate the harness and may resolve
-  `localhost:1234` remotes from `suite/remotes/` (never the network).
+  validates. Validator rows calibrate the harness and resolve
+  external references from the request's `externalSchemas` (never the
+  network or the filesystem).
   Generator rows leave remote refs to fail; record what the tool does.
 - **Does the output reject anything?** A tool that emits types plus
   converters that never fail (forge; openapi-typescript) has nothing the
@@ -60,14 +61,15 @@ build    = "... {gen_dir} {batch_dir}"
 ```
 
 Commands run via `sh -c` with cwd = the generator dir and
-`CARGO_TARGET_DIR=<repo>/target`, `BAKEOFF_ROOT`, `BAKEOFF_TARGET`,
-`BAKEOFF_DRAFT` set. Read the version from the pin (Cargo.lock,
-node_modules/<pkg>/package.json, go.mod), never hardcode it twice.
+`CARGO_TARGET_DIR=<repo>/target`, `BAKEOFF_ROOT`, `BAKEOFF_TARGET` set. Read
+the version from the pin (Cargo.lock, node_modules/<pkg>/package.json,
+go.mod), never hardcode it twice.
 
 ## 4. Implement `generate`
 
-- stdin: JSON array of `{key, draft, schema}`; one long-lived process, never
-  one spawn per group (1,700 groups × 0.5 s is 15 minutes).
+- stdin: JSON array of `{key, draft, schema, externalSchemas?}`; one
+  long-lived process, never one spawn per group (668 groups at 0.5 s each is
+  more than five minutes).
 - Root type named `Root` where the tool lets you choose; otherwise detect
   what it emitted and target that in the check function.
 - Write `<out_dir>/<key>.<ext>` containing the tool's output plus the check
@@ -81,8 +83,13 @@ node_modules/<pkg>/package.json, go.mod), never hardcode it twice.
   Isolate each group: catch_unwind / try-catch / recover, a timeout, and
   the crash guard (`rust-batch/src/crashguard.inc.rs`) in Rust so a
   SIGABRT doesn't raise the macOS crash dialog.
-- `draft`: use it if the tool has a dialect setting (validators do);
-  otherwise ignore it and say so.
+- `draft`: the dialect the group runs under (`draft4`, `draft6`, `draft7`,
+  `draft2019-09`, `draft2020-12`, or `v1`). Use it if the tool has a dialect
+  setting (validators do); otherwise ignore it and say so. A tool that
+  can't handle `v1` reports status `error` for that item, never exits.
+- `externalSchemas`: retrieval URI to schema, per item, present only when
+  the group has any. Generators ignore it. Validators resolve references
+  from it alone, scoped to the item.
 - **stdout carries only the status array.** Muzzle anything the tool
   prints (quicktype's `deps.mjs` shows how). Progress goes to stderr.
 - **Numbers**: the harness sends the suite's digits exactly. Parse with
@@ -122,9 +129,8 @@ Go passes `json.RawMessage`; JS uses a `JSON.parse` reviver with
 
 ```sh
 cargo run -- generators                                   # it's listed
-cargo run -- run --generator <name> --draft draft7 --filter 'type.json::integer type'   # per-case detail + generated file path
-cargo run -- run --generator <name> --draft draft7
-cargo run -- run --generator <name>                       # all drafts
+cargo run -- run --generator <name> --filter 'type.json::integer type'   # per-case detail + generated file path
+cargo run -- run --generator <name>
 cargo run -- run --generator <name>                       # again: must be "cache: N hit, 0 to run"
 git status --short results/<id>/                          # must be clean after the rerun
 ```
@@ -133,7 +139,8 @@ Then look at the generated code for two passing and two failing groups
 and make sure the outcome reflects the tool, not the glue. Expect to find
 a harness bug or two the first time a new language goes through; the
 jsonschema and ajv rows are the reference: if a validator row isn't 100%
-on required groups, it's the harness or a documented policy.
+on Standard groups, or the gap is documented in its README (ajv's
+deviations), it's the harness or a documented policy.
 
 ## 8. Document and commit
 
@@ -157,8 +164,8 @@ on required groups, it's the harness or a documented policy.
   f64 before the tool sees it (harness side is handled; be careful in glue).
 - A validator's `default-features = false` can silently drop format
   support (idna) and read as "too loose".
-- Remote-ref retrievers must refuse absolute paths and anything outside
-  `suite/remotes/`; `Path::join` with an absolute path discards the base.
+- A validator's retriever serves only the item's `externalSchemas` and
+  refuses every other URI.
 - A content-derived module key collides across suite files with identical
   schemas; the harness handles it, but your build must tolerate repeated
   keys (`outcomes` may be smaller than the input).

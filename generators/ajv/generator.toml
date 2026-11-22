@@ -15,7 +15,8 @@ The JSON Schema validator for JavaScript, and for much of the ecosystem the
 reference implementation: it compiles a schema into purpose-built JS and runs
 that at the boundary. No types come out; the schema stays the artifact. It's
 the reference row for the Node path, resolving `localhost:1234` remotes from
-`suite/remotes/` and shipping no formats, so `format` is ignored everywhere.
+the case's own `externalSchemas` and shipping no formats, so `format` is
+ignored everywhere.
 """
 
 [commands]

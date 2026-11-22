@@ -1,19 +1,40 @@
-// Serves `http://localhost:1234/<path>` out of the suite's `remotes/<path>`.
+// Serves the case's own external schemas, keyed by retrieval URI, and
+// nothing else.
 //
 // This file is embedded verbatim in every generated module and is also
-// `include!`d by this crate's tests, so the guard below is exercised
-// against the pinned `jsonschema` rather than only read. It depends on two
-// consts its includer defines:
+// `include!`d by this crate's tests, so what it serves and refuses is
+// exercised against the pinned `jsonschema` rather than only read. It must
+// stay free of anything that isn't `std`, `serde_json` or `jsonschema`.
 //
-//   REMOTES_DIR    absolute path to `suite/remotes`
-//   REMOTE_PREFIX  the one URI prefix we serve
-//
-// so it must stay free of anything else that isn't `std`, `serde_json` or
-// `jsonschema`.
+// `jsonschema` calls the retriever for every resource it does not already
+// hold: a `$ref` target, and a `$schema` that names a custom meta-schema.
+// Both are looked up in the same map. Nothing here touches the filesystem
+// or the network.
 
-struct SuiteRemotes;
+struct ExternalSchemas(::std::collections::HashMap<::std::string::String, ::serde_json::Value>);
 
-impl ::jsonschema::Retrieve for SuiteRemotes {
+impl ExternalSchemas {
+    /// Parse the case's `externalSchemas` object from the JSON text the
+    /// harness sent.
+    ///
+    /// Each key is normalized the way the reference layer normalizes a URI
+    /// before it calls the retriever, so a lookup matches whatever spelling
+    /// the suite used.
+    fn parse(text: &::std::primitive::str) -> ::std::result::Result<Self, ::std::string::String> {
+        let map: ::serde_json::Map<::std::string::String, ::serde_json::Value> =
+            ::serde_json::from_str(text).map_err(|e| ::std::format!("external schemas: {e}"))?;
+        let mut out = ::std::collections::HashMap::with_capacity(map.len());
+        for (key, schema) in map {
+            let uri = ::jsonschema::Uri::parse(key.clone())
+                .map_err(|(e, _)| ::std::format!("external schema {key:?}: {e}"))?
+                .normalize();
+            out.insert(uri.as_str().to_string(), schema);
+        }
+        ::std::result::Result::Ok(ExternalSchemas(out))
+    }
+}
+
+impl ::jsonschema::Retrieve for ExternalSchemas {
     fn retrieve(
         &self,
         uri: &::jsonschema::Uri<::std::string::String>,
@@ -22,28 +43,11 @@ impl ::jsonschema::Retrieve for SuiteRemotes {
         ::std::boxed::Box<dyn ::std::error::Error + ::std::marker::Send + ::std::marker::Sync>,
     > {
         let uri = uri.as_str();
-        let rest = uri.strip_prefix(REMOTE_PREFIX).ok_or_else(|| {
-            ::std::format!("refusing to retrieve {uri}: only {REMOTE_PREFIX} is served (from the suite's remotes/)")
-        })?;
-        // The suite's remotes are all plain relative paths. `..` and `.`
-        // segments are already gone by the time a reference reaches us (the
-        // referencing layer normalizes, and it decodes `%2e` first), and an
-        // absolute path would make `join` drop REMOTES_DIR entirely, so
-        // insist on nothing but ordinary names: no root, no prefix, no
-        // parent, no empty segment.
-        let rel = ::std::path::Path::new(rest);
-        let plain = !rest.is_empty()
-            && rel
-                .components()
-                .all(|c| ::std::matches!(c, ::std::path::Component::Normal(_)));
-        if !plain {
-            return ::std::result::Result::Err(
-                ::std::format!("{uri}: not a plain path under the suite's remotes/").into(),
-            );
+        match self.0.get(uri) {
+            ::std::option::Option::Some(schema) => ::std::result::Result::Ok(schema.clone()),
+            ::std::option::Option::None => ::std::result::Result::Err(
+                ::std::format!("refusing to retrieve {uri}: not one of this case's external schemas").into(),
+            ),
         }
-        let path = ::std::path::Path::new(REMOTES_DIR).join(rel);
-        let text = ::std::fs::read_to_string(&path)
-            .map_err(|e| ::std::format!("{uri}: reading {}: {e}", path.display()))?;
-        ::std::result::Result::Ok(::serde_json::from_str(&text)?)
     }
 }

@@ -79,7 +79,7 @@ below); schema2typebox's own `typescript` 5.0.4 stays nested under it, so
 
 ```sh
 node generate.mjs version                 # typebox 0.34.52 + schema2typebox 1.7.8
-node generate.mjs generate <out_dir>      # stdin: [{key, draft, schema}] → <out_dir>/<key>.ts
+node generate.mjs generate <out_dir>      # stdin: [{key, draft, schema, externalSchemas?}] → <out_dir>/<key>.ts
 node build.mjs <gen_dir> <batch_dir>      # stdin: [key] → {outcomes, runner}
 ```
 
@@ -139,28 +139,35 @@ of every case in the group — which is what the load probe in `build` is for.
 
 | status | when |
 |---|---|
-| `error` | the tool threw. Mostly `Error: Unsupported schema. Did not match any type of the parsers` — 1015 of the 1216 ❌ groups counting core and optional together (1011 of them are core) — plus `ResolverError` for a `$ref` it may not retrieve, and `SyntaxError` from prettier when the tool emits text that isn't TypeScript |
+| `error` | the tool threw. Mostly `Error: Unsupported schema. Did not match any type of the parsers` — 384 of the 517 ❌ groups across all four tiers (310 of the 417 in Standard) — plus `ResolverError` for a `$ref` it may not retrieve, `TypeError: ... Received 'Invalid port in url'` when the dereferencer meets a `urn:` or `tag:` base URI (13 groups), and `SyntaxError` from prettier when the tool emits text that isn't TypeScript |
 | `panic` | `RangeError` (stack exhausted on a cyclic dereferenced schema), `TypeError: Converting circular structure to JSON` (the same cycle, reached through the tool's own error message), or the 30 s timeout |
 
-Six of the seven 🤯 are the `TypeError`; exactly one — `draft2019-09`'s
-`unevaluatedProperties + single cyclic ref` — exhausts the stack first. The
-timeout is raced against the call but can only fire during the asynchronous
-half: the tool awaits the dereference and then generates synchronously, so
-a runaway recursion blocks the event loop. In practice the cycle is always
-caught — all five drafts generate in about 3 s total, and no group has ever
-taken the process down. That is luck rather than design, though: `generate`
-writes its status array once, at the end, in one process, so an uncatchable
-death (a V8 heap OOM on a cyclic structure) would cost the whole draft
-rather than one group. The Rust rows supervise a worker for exactly this;
-the Node rows, this one and `json-schema-to-zod`, do not.
+There are two 🤯, one of each: `ref.json::root pointer ref` (2020-12) is the
+`TypeError`, and `unevaluatedProperties.json::unevaluatedProperties + single
+cyclic ref` (2020-12) exhausts the stack first. The timeout is raced against the
+call but can only fire during the asynchronous half: the tool awaits the
+dereference and then generates synchronously, so a runaway recursion blocks the
+event loop. In practice the cycle is always caught — the whole suite generates
+in under a second, and no group has ever taken the process down. That is luck
+rather than design, though: `generate` writes its status array once, at the end,
+in one process, so an uncatchable death (a V8 heap OOM on a cyclic structure)
+would cost every group in the run rather than one. The Rust rows supervise a
+worker for exactly this; the Node rows, this one and `json-schema-to-zod`, do
+not.
 
 ### Dialect
 
 Ignored, and nothing is lost by that. TypeBox targets draft 7 and has no
 dialect setting; schema2typebox has none either and never reads `$schema`
 (it passes it through as an inert schema option). The `draft` field arrives
-on stdin and is dropped, so the per-draft columns differ only because the
-suite's schemas differ.
+on stdin and is dropped, `v1` included. So the 25 Upcoming ❌ aren't a
+refusal of `v1`; they come from the schemas themselves and would be the same
+under any dialect. 16 are `ResolverError`s: 15 `$dynamicRef` groups whose
+relative `$ref` (`"list"`, `"item"`, `"extendible-dynamic-ref.json"`) the
+dereferencer resolves against the cwd, because it ignores `$id`, and one
+`http://localhost:1234` remote. The other 9 are `Unsupported schema` for a
+root with no `type`: six `propertyDependencies` groups, two `format` groups
+and one bare `$dynamicRef`.
 
 ### No retrieval, over the network or off the disk
 
@@ -171,11 +178,10 @@ there is no way to configure that through the API — it calls
 is HTTP plus filesystem and `deps.mjs` shuts off both before the tool is
 imported.
 
-HTTP, because left alone it would fetch `http://localhost:1234/...` for
-`refRemote.json` *and* `http://json-schema.org/draft-07/schema` for the
-groups that `$ref` a meta-schema. The resolver holds the `http` and `https`
-module objects and calls `protocol.get(...)`, so those two functions are
-replaced:
+HTTP, because left alone it would fetch `http://localhost:1234/...` and
+`https://example.com/...` for every `$ref` to a remote. The resolver holds
+the `http` and `https` module objects and calls `protocol.get(...)`, so
+those two functions are replaced:
 
 ```
 ResolverError: Error downloading http://localhost:1234/integer.json
@@ -197,8 +203,11 @@ ResolverError: Error reading ".../generators/typebox/folderInteger.json": the ba
 ```
 
 Both patches fail loudly if the resolver module isn't where it was, rather
-than leaving the sandbox open. Nothing under `suite/remotes/` is reachable
-either way; a generator row is supposed to forfeit the remotes.
+than leaving the sandbox open. The remote documents themselves do arrive, as
+`externalSchemas` on the generate item, and `generate.mjs` ignores them the
+way it ignores `draft`: the tool takes schema text and nothing else, and a
+generator row is supposed to forfeit remote references. In Standard that is
+88 `ResolverError` groups, 39 at the network and 49 at the filesystem.
 
 Local pointers *are* inlined, but not reliably: a root `$ref` comes back
 rewritten to `"#"`, so `{"$ref": "#/definitions/a", "definitions": {...}}`
@@ -247,17 +256,16 @@ process. Case data arrives through the same `JSON.parse` reviver as in
 float64 by the time TypeBox sees it, which is what a user of this tool
 would get.
 
-In practice the two gates cost 86 groups — 6 in draft 4 and 20 in each
-draft from 6 onward — and every one is a schema2typebox bug that `tsc`
-catches. The whole distribution:
+In Standard the two gates cost 23 groups, and every one is a schema2typebox
+bug that `tsc` catches. The whole distribution:
 
 | groups | emitted | diagnostic | from |
 |---:|---|---|---|
-| 47 | `Type.Intersect([true])`, `Type.Union([false])` | `Type 'boolean' is not assignable to type 'TSchema'` | a boolean subschema inside `allOf`/`anyOf`/`oneOf` (and 3 inside `unevaluated*`): `collect` returns `JSON.stringify(schema)` for one, under a `// TODO: boolean schema support..?` |
-| 20 | `Type.Union([Type.Array([Type.Literal(1)]), …])` | `Argument of type 'TLiteral<1>[]' is not assignable to parameter of type 'TSchema'` | all in `enum.json`: `parseType` maps a JSON array *inside* an `enum` to `Type.Array([...])`, passing an array where a schema goes |
-| 10 | `Type.Not(true)` | `Argument of type 'boolean' is not assignable to parameter of type 'TSchema'` | the same boolean hole under `not` (8 in `not.json`, 2 in `unevaluatedProperties.json`) |
-| 5 | `Type.Array([])` | `Argument of type 'undefined[]' is not assignable to parameter of type 'TSchema'` | an *empty* array inside an `enum` |
-| 4 | `Type.Array(Type.Union(Type.Unknown()))` | `Argument of type 'TUnknown' is not assignable to parameter of type 'TSchema[]'` | tuple-form `items`: `parseArray` writes `Type.Array(Type.Union(${code}))` without the brackets `Type.Union` needs. These four (`items.json::items and subitems`, one per draft from 6 on) are the only tuple-`items` schemas that get far enough to compile at all |
+| 13 | `Type.Intersect([true])`, `Type.Union([false])` | `Type 'boolean' is not assignable to type 'TSchema'` | a boolean subschema inside `allOf`/`anyOf`/`oneOf` (one of them in `unevaluatedItems.json`, two in `ref-legacy.json` where a `$ref` to a boolean is inlined): `collect` returns `JSON.stringify(schema)` for one, under a `// TODO: boolean schema support..?` |
+| 4 | `Type.Union([Type.Array([Type.Literal(1)]), …])` | `Argument of type 'TLiteral<1>[]' is not assignable to parameter of type 'TSchema'` | all in `enum.json`: `parseType` maps a JSON array *inside* an `enum` to `Type.Array([...])`, passing an array where a schema goes |
+| 3 | `Type.Not(true)`, `Type.Record(Type.String(), true)` | `Argument of type 'boolean' is not assignable to parameter of type 'TSchema'` | the same boolean hole under `not` (2 in `not.json`) and `additionalProperties` (1 in `unevaluatedProperties.json`) |
+| 2 | `Type.Array(Type.Union(Type.Unknown(), …))` | `Argument of type 'TUnknown' is not assignable to parameter of type 'TSchema[]'` | tuple-form `items`: `parseArray` writes `Type.Array(Type.Union(${code}))` without the brackets `Type.Union` needs. These two (`items.json::items and subitems (7)` (draft7) and `(2019)` (2019-09)) are the only tuple-`items` schemas that get far enough to compile at all |
+| 1 | `Type.Array([])` | `Argument of type 'undefined[]' is not assignable to parameter of type 'TSchema'` | an *empty* array inside an `enum` (`enum.json::heterogeneous enum validation`) |
 
 Nothing reaches the probe as a result, so the probe currently finds nothing.
 It stays because it is the only gate for the things TypeBox itself refuses
@@ -277,30 +285,29 @@ also `propertyNames`, `patternProperties` and `unevaluatedProperties` all
 arrive in the schema TypeBox checks. Whether they do anything is TypeBox's
 decision, and `@sinclair/typebox/compiler` is the thing being measured.
 
-But there is a hole in front of all of it. `collect` tests
-`isObjectSchema` — `type === "object"` — **before** every combinator, and
-`parseObject` returns a bare `Type.Unknown()` when `properties` is absent.
-So `{"type": "object"}` is a checker that accepts everything, and
-`{"type": "object", "oneOf": [...]}`, `{"type": "object", "minProperties":
-1}` and `{"type": "object", "additionalProperties": {...}}` are *also*
-exactly `Type.Unknown()`: the `type` keyword silently swallows the rest of
-the schema. **49 of the 469 generated modules are literally
-`export const T = Type.Unknown();`** — a sixth of everything that gets
-past generation — and that, not any TypeBox gap, is the single largest
-cause of 🙈. Read every row below as "when the shape reaches TypeBox at
-all".
+But there is a hole in front of all of it. `collect` tests `isObjectSchema` —
+`type === "object"` — **before** every combinator, and `parseObject` returns a
+bare `Type.Unknown()` when `properties` is absent. So `{"type": "object"}` is a
+checker that accepts everything, and `{"type": "object", "oneOf": [...]}`,
+`{"type": "object", "minProperties": 1}` and `{"type": "object",
+"additionalProperties": {...}}` are *also* exactly `Type.Unknown()`: the `type`
+keyword silently swallows the rest of the schema. **21 of the 142 generated
+modules are literally `export const T = Type.Unknown();`** — a seventh of
+everything that gets past generation — and that, not any TypeBox gap, is the
+single largest cause of 🙈 (14 of the 30 in Standard). Read every row below as
+"when the shape reaches TypeBox at all".
 
 Enforced, with the semantics TypeBox gives them:
 
 | keyword | on | enforced? |
 |---|---|---|
 | `type: string/number/boolean/null/array` | the kind | yes |
-| `type: object` | `Type.Object` only with `properties`; otherwise `Type.Unknown()` | see above. `type.json::object type matches objects` is 🙈 in all five drafts for this reason |
-| `type: integer` | — | **no**: schema2typebox maps `integer` to `Type.Number()`, not `Type.Integer()`, so `1.5` passes. 5 of the 49 🙈 groups (one per draft) are this one line |
+| `type: object` | `Type.Object` only with `properties`; otherwise `Type.Unknown()` | see above. `type.json::object type matches objects` is 🙈 for this reason |
+| `type: integer` | — | **no**: schema2typebox maps `integer` to `Type.Number()`, not `Type.Integer()`, so `1.5` passes. `type.json::integer type matches integers` is 🙈 for this one line |
 | `minLength` / `maxLength` | `Type.String` | yes, by `value.length` — UTF-16 code units, where JSON Schema counts code points, so `"💩💩"` fails `maxLength: 2` |
 | `pattern` | `Type.String` | yes: `new RegExp(schema.pattern).test(value)` — **no flags**, so an unanchored search (correct) in non-unicode mode (`\p{Letter}` is an Annex B identity escape) |
-| `format` | `Type.String` | yes, as a *rejection*: `FormatRegistry.Has(format)` is consulted first and an unregistered format fails every value. The registry ships **empty** and is deliberately left empty, so any `format` that reached a checker here would be 🚧. None does — all 142 `optional/format/` group schemas across the five drafts declare no `type` (some carry `$schema`/`$id` as well as `format`), which schema2typebox refuses, so zero of the 469 generated modules contain a `format` |
-| `minimum` / `maximum` / `exclusiveMinimum` / `exclusiveMaximum` | `Type.Number` | yes, in the numeric form. Draft 4's **boolean** `exclusiveMinimum` is not ignored, it is fatal: `Type.Number({minimum: 2, exclusiveMinimum: true})` fails `TypeCompiler.Compile`'s preflight guard, which would be 🦀. No suite group reaches it — all four draft-4 boolean-exclusive groups omit `type` |
+| `format` | `Type.String` | yes, as a *rejection*: `FormatRegistry.Has(format)` is consulted first and an unregistered format fails every value. The registry ships **empty** and is deliberately left empty, so any `format` that reached a checker here would be 🚧. None does — all 64 `format-*.json` group schemas declare no `type`, which schema2typebox refuses, so zero of the 142 generated modules contain a `format` |
+| `minimum` / `maximum` / `exclusiveMinimum` / `exclusiveMaximum` | `Type.Number` | yes, in the numeric form. Draft 4's **boolean** `exclusiveMinimum` is not ignored, it is fatal: `Type.Number({minimum: 2, exclusiveMinimum: true})` fails `TypeCompiler.Compile`'s preflight guard, which would be 🦀. No suite group reaches it — all six draft-4 boolean-exclusive groups omit `type` |
 | `multipleOf` | `Type.Number` | yes, by `value % multipleOf === 0`, so `1e-8` and `0.0001` behave like float remainders |
 | `minItems` / `maxItems` | `Type.Array` | yes |
 | `uniqueItems` | `Type.Array` | yes, structurally — two objects with equal contents count as one |
@@ -323,11 +330,9 @@ the keywords above, so these are silently annotations:
 `dependentSchemas`, `if`/`then`/`else`, `unevaluatedProperties`,
 `unevaluatedItems`, `prefixItems`, `additionalItems`, `contentEncoding`,
 `contentMediaType`, `$schema`, `$comment`, `definitions`, `$defs`.
-`unevaluatedProperties.json` is 23 of the 49 🙈, all of them in 2019-09 —
-but only 12 of those 23 are TypeBox ignoring the keyword; the other 11 are
-`Type.Unknown()` modules, where the keyword never got that far. 2020-12's
-version of the same file mostly doesn't generate at all, which is the whole
-reason the 🙈 column is 28 in one draft and 5–6 in the others.
+`unevaluatedProperties.json` is 23 of the 30 🙈 in Standard — but only 12
+of those 23 are TypeBox ignoring the keyword; the other 11 are
+`Type.Unknown()` modules, where the keyword never got that far.
 
 ### The `$id` collision
 
@@ -351,35 +356,37 @@ is also the one case where `Check` returns false while
 type`, rather than a TypeBox message. This is the one place where the
 measurement depends on which TypeBox checker is used — `Value.Check` walks the schema and gets it right. `TypeCompiler` is
 kept because it is TypeBox's recommended path (and the one its own
-benchmarks publish); 10 of the 469 generated modules carry a duplicated
-`$id`, so that is the ceiling on the difference.
+benchmarks publish); 2 of the 142 generated modules carry a duplicated
+`$id` (`type.json::multiple types can be specified in an array` and
+`type.json::type: array, object or null`), so that is the ceiling on the
+difference.
 
 ### `const`, and what the tool does to it
 
 `parseConst` reads an **array** `const` as a union of its elements, so
 `{"const": [false]}` becomes "the value `false`", not "the array
-`[false]`"; an **object** `const` emits the literal text
+`[false]`" (3 groups, all 🚧); an **object** `const` emits the literal text
 `Type.Todo(const with object)`, which prettier then refuses to parse
-(`SyntaxError: Argument expression expected`, 18 groups); and a **string**
-`const` is interpolated unescaped into `Type.Literal("...")`, so a const
-containing a quote or a newline is `SyntaxError: Unterminated string
-literal` (5 groups). Those three account for most of `const.json`.
+(`SyntaxError: Argument expression expected`, 4 groups, one of them `const
+with null`, since `typeof null` is `"object"`). Those two are all seven of
+`const.json`'s failures. And a **string** literal is interpolated unescaped
+into `Type.Literal("...")`, so `enum.json::enum with escaped characters`,
+whose strings hold a newline, is `SyntaxError: Unterminated string
+literal`.
 
 ## Results
 
-| draft | core groups | pass | optional groups | pass |
-|---|---:|---:|---:|---:|
-| draft4 | 160 | 37 (23.1%) | 39 | 14 (35.9%) |
-| draft6 | 233 | 46 (19.7%) | 44 | 14 (31.8%) |
-| draft7 | 258 | 46 (17.8%) | 64 | 14 (21.9%) |
-| 2019-09 | 373 | 51 (13.7%) | 76 | 14 (18.4%) |
-| 2020-12 | 384 | 47 (12.2%) | 78 | 14 (17.9%) |
-| **all** | **1408** | **227 (16.1%)** | 301 | 70 (23.3%) |
+| tier | groups | pass |
+|---|---:|---:|
+| **Standard** | **540** | **59 (10.9%)** |
+| Optional | 98 | 15 (15.3%) |
+| Compound | 5 | 5 (100%) |
+| Upcoming | 25 | 0 |
 
-Core buckets across all drafts: ✅227 🙈49 🚧19 🤪9 🦀86 ❌1011 🤯7.
+Standard buckets: ✅59 🙈30 🚧6 🤪3 🦀23 ❌417 🤯2.
 
-The shape of the row is one number: **486 of the 1709 groups produce a
-module at all** (469 distinct `.ts` files, since groups with identical
+The shape of the row is one number: **149 of the 668 groups produce a
+module at all** (142 distinct `.ts` files, since groups with identical
 schemas share a key). `collect` needs `type: "object"`, `type: "array"`, a
 named scalar `type`, a combinator, `enum` or `const`, and the suite tests
 one keyword at a time without a `type` (`{"maxLength": 2}`,
@@ -394,19 +401,18 @@ That is the same wall `json-schema-to-zod` hits — its dispatcher keys on
 zod answers `z.any()`, which accepts everything, so those groups are 🙈 or
 accidentally ✅ and its row has no ❌ at all; schema2typebox throws for the
 untyped case and they are ❌ here. It is not that this tool has no
-accept-everything fallback — `Type.Unknown()` is one, and 49 modules are
+accept-everything fallback — `Type.Unknown()` is one, and 21 modules are
 exactly that — only that it is reached from `type: "object"` instead of
 from a missing `type`.
 
-Of the 304 core groups whose module compiles and loads, 227 pass — three in
-four. `pattern`, `uniqueItems`, the length, bound and property-count
-keywords, `additionalProperties: false`, `required`,
-`anyOf`/`allOf`/`oneOf` and `not` are all enforced properly, which is more
-than quicktype's TypeScript row models at all (it emits interfaces plus a
-hand-written `Convert` that checks shape). 🙈 is 49 groups here against
-quicktype TypeScript's 512 and zod's 774 — but on a tenth as many groups
-that got that far, and a third of this row's 🙈 is `Type.Unknown()`, which
-is the same `z.any()` failure wearing a different name.
+Of the 98 Standard groups whose module compiles and loads, 59 pass — three in
+five. `pattern`, `uniqueItems`, the length, bound and property-count keywords,
+`additionalProperties: false`, `required`, `anyOf`/`allOf`/`oneOf` and `not` are
+all enforced properly, which is more than quicktype's TypeScript row models at
+all (it emits interfaces plus a hand-written `Convert` that checks shape). 🙈 is
+30 Standard groups here against quicktype TypeScript's 186 and zod's 339 — but
+on a fifth as many groups that got that far, and nearly half of this row's 🙈 is
+`Type.Unknown()`, which is the same `z.any()` failure wearing a different name.
 
 Where it trails: everything that needs a front end. `$ref` (local or
 remote), `if`/`then`/`else`, `dependencies`, `patternProperties`,

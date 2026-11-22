@@ -1,11 +1,12 @@
 //! json-schema-to-zod generator for the bakeoff harness.
 //!
 //!   version              → "json-schema-to-zod <version> + zod <version>"
-//!   generate <out_dir>   → stdin: JSON array of {key, draft, schema};
+//!   generate <out_dir>   → stdin: JSON array of
+//!                          {key, draft, schema, externalSchemas?};
 //!                          writes <out_dir>/<key>.ts;
 //!                          stdout: JSON array of {key, status, message?}
 //!
-//! One long-lived process handles every group.
+//! One long-lived process handles every group. `externalSchemas` is ignored.
 //!
 //! The tool is a source-to-source converter: `jsonSchemaToZod(schema)`
 //! returns a *string* of JavaScript — a single zod expression such as
