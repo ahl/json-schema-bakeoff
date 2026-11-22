@@ -21,8 +21,9 @@ any language fits without touching Rust.
   contract: its "module" embeds the schema and `__conformance_check`
   validates. Validator rows calibrate the harness and resolve
   external references from the request's `externalSchemas` (never the
-  network or the filesystem).
-  Generator rows leave remote refs to fail; record what the tool does.
+  network or the filesystem). A generator with a facility for additional
+  documents is given them the same way; one without is left to fail on
+  the reference, and the row records what the tool does.
 - **Does the output reject anything?** A tool that emits types plus
   converters that never fail (forge; openapi-typescript) has nothing the
   harness can score: every case is "accepted". Checking its static types
@@ -88,8 +89,9 @@ go.mod), never hardcode it twice.
   setting (validators do); otherwise ignore it and say so. A tool that
   can't handle `v1` reports status `error` for that item, never exits.
 - `externalSchemas`: retrieval URI to schema, per item, present only when
-  the group has any. Generators ignore it. Validators resolve references
-  from it alone, scoped to the item.
+  the group has any. A tool that can take additional documents gets each
+  entry registered under its key, scoped to the item, and resolves from
+  it alone; a tool that can't ignores the field.
 - **stdout carries only the status array.** Muzzle anything the tool
   prints (quicktype's `deps.mjs` shows how). Progress goes to stderr.
 - **Numbers**: the harness sends the suite's digits exactly. Parse with
@@ -164,8 +166,8 @@ deviations), it's the harness or a documented policy.
   f64 before the tool sees it (harness side is handled; be careful in glue).
 - A validator's `default-features = false` can silently drop format
   support (idna) and read as "too loose".
-- A validator's retriever serves only the item's `externalSchemas` and
-  refuses every other URI.
+- A retriever serves only the item's `externalSchemas` and refuses every
+  other URI; the jsonschema row's `retrieve.inc.rs` is the template.
 - A content-derived module key collides across suite files with identical
   schemas; the harness handles it, but your build must tolerate repeated
   keys (`outcomes` may be smaller than the input).

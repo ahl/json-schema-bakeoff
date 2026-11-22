@@ -70,9 +70,10 @@ build noise reaches the terminal.
    dialect should use it, and one that can't should ignore it. A generator that
    can't handle `v1` reports status `error` for that item and keeps going.
    `externalSchemas` is present only when the group has any: an object from
-   retrieval URI to schema, as the suite wrote it. Generators ignore it (see
-   Remote references). One `generate` call covers every selected group, so the
-   array mixes dialects; `build` is likewise called once.
+   retrieval URI to schema, as the suite wrote it. A tool with a facility for
+   supplying additional documents is given them; one without ignores the field
+   (see Remote references). One `generate` call covers every selected group,
+   so the array mixes dialects; `build` is likewise called once.
 3. **`build <gen_dir> <batch_dir>`** reads a JSON array of keys on stdin,
    compiles those modules together, attributes compiler diagnostics back
    to keys, drops the failures, repeats until clean, and prints
@@ -218,16 +219,17 @@ generator turns up a failure worth pinning down.
 
 ## Remote references
 
-`http://localhost:1234/...` references are not resolved for code
-generators; a generator records whatever its tool does with them (typify
-panics, quicktype reports a fetch error). A group's `externalSchemas` (the
-documents its references need, keyed by retrieval URI) travel with the generate
-request and generators ignore them. A validator row resolves references from
-that payload only, scoped to the group, never from the network or the
-filesystem, precisely to show what that policy costs the generators. Validator
-rows leave `format` at the library default: asserting it everywhere fails 19
-required 2020-12 groups whose cases state that an invalid string is only an
-annotation by default.
+A group's `externalSchemas` (the documents its `http://localhost:1234/...`
+references need, keyed by retrieval URI) travel with the generate request.
+Any tool with a facility for supplying additional documents is given them
+through it: each entry registered under its key, scoped to the group, never
+read from the network or the filesystem. The validator rows do this, and a
+generator that accepts a document set should too; its README says how. A tool
+with no such facility gets the schema alone, and the row records whatever it
+does with the unresolvable reference (typify panics, quicktype reports a
+fetch error). Validator rows leave `format` at the library default: asserting
+it everywhere fails 19 required 2020-12 groups whose cases state that an
+invalid string is only an annotation by default.
 
 ## Where number precision stops
 

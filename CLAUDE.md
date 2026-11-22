@@ -28,10 +28,11 @@ prints the bucket glyphs; `cargo run -- generators` lists what's installed.
 (`generators/<name>/generator.toml` with `version`, `generate`, `build` commands
 run as subprocesses), the runner protocol, the buckets, the record cache (hash
 of harness revision, tool identity, generator sources, group, dialect, tier,
-schema, external schemas, cases), and the policies (remote refs left to fail for
-generators, resolved from the request's `externalSchemas` only by validator
-rows; `format` at library defaults (asserting it fails required 2020-12 tests);
-dialect passed as `draft`).
+schema, external schemas, cases), and the policies (the request's
+`externalSchemas` go to any tool with a facility for additional documents,
+validators included, and nothing is fetched from disk or network; a tool with
+no such facility is left to fail on the reference; `format` at library defaults
+(asserting it fails required 2020-12 tests); dialect passed as `draft`).
 
 The suite is `suite/validation/tests/`. Each group runs once, under the
 newest dialect its `compatibility` allows (draft4 through draft2020-12, or

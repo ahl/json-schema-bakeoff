@@ -82,7 +82,8 @@ section has a paragraph on each tool's design center.
   openapi-generator's).
 - `jsonschema-0.58`, `ajv`: validators, not generators (marked 𝓥 on the
   scoreboard). They calibrate the Rust and Node paths and resolve each case's
-  `externalSchemas` from the request payload. jsonschema leaves `format` at
+  `externalSchemas` from the request payload, as any tool that can take extra
+  documents does. jsonschema leaves `format` at
   the library default (asserted through draft 7; 2020-12's required tests
   say it must be annotation-only); ajv ships no formats and ignores it.
 
