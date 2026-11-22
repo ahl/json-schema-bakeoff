@@ -6,9 +6,9 @@ shape is out of scope, so bounds, lengths, patterns, `const`, and `oneOf`
 exclusivity sail through. TypeScript adds a runtime type check; Go leans on
 encoding/json's leniency.
 
-_generated 2026-11-22T02:31:01Z_
+_generated 2026-11-22T03:39:20Z_
 
-**209 of 540 standard groups pass (38.7%)**
+**232 of 540 standard groups pass (43.0%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -25,13 +25,13 @@ _generated 2026-11-22T02:31:01Z_
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 209 | 186 | 31 | 6 | 0 | 2 | 92 | 14 | 540 | 38.7% |
+| 232 | 191 | 31 | 6 | 0 | 2 | 64 | 14 | 540 | 43.0% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 1035 | 1405 | 73.7% | 1664 | 62.2% |
+| 1091 | 1466 | 74.4% | 1664 | 65.6% |
 
 ### Chart
 
@@ -39,7 +39,7 @@ _generated 2026-11-22T02:31:01Z_
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalProperties.json | 6 | 0 | 2 | 0 | 0 | 1 | 0 | 0 | 9 | 🚧🚧🦀✅✅✅✅✅✅ |
 | allOf.json | 8 | 2 | 0 | 0 | 0 | 0 | 2 | 0 | 12 | ✅✅🙈✅❌❌✅✅✅✅✅🙈 |
-| anchor-legacy.json | 3 | 0 | 0 | 0 | 0 | 0 | 9 | 2 | 14 | ✅❌✅❌✅❌🤯🤯❌❌❌❌❌❌ |
+| anchor-legacy.json | 5 | 0 | 0 | 0 | 0 | 0 | 7 | 2 | 14 | ✅❌✅❌✅❌🤯🤯❌❌✅❌✅❌ |
 | anchor.json | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 1 | 9 | ❌❌❌❌❌🤯❌❌❌ |
 | anyOf.json | 4 | 2 | 0 | 0 | 0 | 0 | 2 | 0 | 8 | 🙈🙈✅❌❌✅✅✅ |
 | boolean_schema.json | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 2 | ✅❌ |
@@ -49,7 +49,7 @@ _generated 2026-11-22T02:31:01Z_
 | default.json | 2 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅🙈 |
 | dependentRequired.json | 2 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈✅✅🙈🙈🙈🙈 |
 | dependentSchemas.json | 0 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈🙈🙈🙈🙈🙈🙈 |
-| dynamicRef.json | 4 | 12 | 0 | 0 | 0 | 0 | 5 | 0 | 21 | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈🙈🙈🙈✅✅🙈✅🙈🙈 |
+| dynamicRef.json | 4 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 21 | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈✅🙈🙈 |
 | enum.json | 10 | 1 | 1 | 0 | 0 | 0 | 5 | 0 | 17 | 🙈🚧✅✅✅✅❌✅❌✅❌✅❌✅❌✅✅ |
 | format-date-time.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | format-date.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
@@ -71,8 +71,8 @@ _generated 2026-11-22T02:31:01Z_
 | format-uri-template.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | format-uri.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | format-uuid.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
-| id-legacy.json | 16 | 0 | 0 | 1 | 0 | 0 | 17 | 6 | 40 | ❌❌❌❌❌🤪❌✅❌✅❌✅❌🤯🤯🤯✅✅✅✅✅✅✅✅🤯🤯✅❌✅✅✅✅❌🤯❌❌❌❌❌❌ |
-| id.json | 11 | 1 | 0 | 0 | 0 | 0 | 9 | 4 | 25 | ❌❌❌✅✅✅🙈❌✅🤯🤯🤯✅✅✅✅🤯✅✅✅❌❌❌❌❌ |
+| id-legacy.json | 21 | 0 | 0 | 1 | 0 | 0 | 12 | 6 | 40 | ❌❌❌❌❌🤪❌✅❌✅❌✅❌🤯🤯🤯✅✅✅✅✅✅✅✅🤯🤯✅❌✅✅✅✅❌🤯✅✅✅✅✅❌ |
+| id.json | 17 | 1 | 0 | 0 | 0 | 0 | 3 | 4 | 25 | ✅✅❌✅✅✅🙈❌✅🤯🤯🤯✅✅✅✅🤯✅✅✅❌✅✅✅✅ |
 | if-then-else.json | 4 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅🙈🙈🙈✅🙈🙈🙈🙈🙈 |
 | infinite-loop-detection-legacy.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
@@ -93,15 +93,15 @@ _generated 2026-11-22T02:31:01Z_
 | properties.json | 3 | 1 | 0 | 0 | 0 | 1 | 1 | 0 | 6 | ✅🦀❌✅✅🙈 |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
 | recursiveRef.json | 1 | 8 | 0 | 0 | 0 | 0 | 0 | 1 | 10 | 🙈🙈✅🙈🙈🙈🙈🙈🙈🤯 |
-| ref-legacy.json | 6 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 14 | ✅❌✅✅✅❌✅❌❌✅❌❌❌❌ |
-| ref.json | 11 | 2 | 0 | 0 | 0 | 0 | 10 | 0 | 23 | ✅✅✅❌✅🙈✅✅❌✅❌❌❌🙈✅✅✅✅❌❌❌❌❌ |
+| ref-legacy.json | 10 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 14 | ✅❌✅✅✅❌✅❌❌✅✅✅✅✅ |
+| ref.json | 17 | 2 | 0 | 0 | 0 | 0 | 4 | 0 | 23 | ✅✅✅❌✅🙈✅✅❌✅❌✅❌🙈✅✅✅✅✅✅✅✅✅ |
 | required.json | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈✅✅🙈🙈 |
 | type.json | 10 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 🙈✅✅✅✅✅✅✅✅🙈✅✅ |
 | unevaluatedItems.json | 7 | 32 | 8 | 0 | 0 | 0 | 0 | 0 | 47 | ✅🙈🙈✅🙈🙈🚧🚧✅🙈🙈🙈🙈🙈🚧🚧🚧🚧🙈🙈🙈🙈✅✅🚧🚧🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈 |
 | unevaluatedProperties.json | 19 | 10 | 16 | 0 | 0 | 0 | 0 | 0 | 45 | ✅🙈✅✅🚧✅✅🚧🚧🚧✅🚧🚧✅🚧🚧🚧🚧✅🚧🚧🚧🙈🙈🙈🚧🚧🙈✅🙈✅✅✅✅✅🙈🙈✅✅🙈🙈🚧✅✅✅ |
 | uniqueItems.json | 3 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 10 | 🙈✅🤪🤪🙈🙈🚧🚧✅✅ |
 | vocabulary.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 4 | ❌✅❌✅ |
-| **Total** | **209** | **186** | **31** | **6** | **0** | **2** | **92** | **14** | **540** |  |
+| **Total** | **232** | **191** | **31** | **6** | **0** | **2** | **64** | **14** | **540** |  |
 
 ### Failures
 
@@ -129,15 +129,15 @@ Per group:
 - `id.json::URN base URI with URN and JSON pointer ref (2020-12)` — `Error: URNs do not have any generally defined hierarchical components`
 - `recursiveRef.json::$ref with $recursiveAnchor (2019-09)` — `RangeError: Maximum call stack size exceeded`
 
-#### ❌ `generation_error` (92)
+#### ❌ `generation_error` (64)
 
-54 distinct first-line errors; most common:
+38 distinct first-line errors; most common:
 
 - **14×** `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
-- **6×** `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- **4×** `SchemaFetchError: Could not fetch schema http://localhost:1234/subSchemas.json, referred to from Root#`
-- **3×** `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-ref.json, referred to from Root#`
-- **3×** `SchemaFetchError: Could not fetch schema http://localhost:1234/different-id-ref-string.json, referred to from Root#`
+- **5×** `SchemaKeyNotInObject: Key foo not in schema object at http://localhost:1234/locationIndependentIdentifier.json#foo`
+- **2×** `SchemaFalseNotSupported: Schema "false" is not supported at Root#/properties/badProperty`
+- **2×** `SchemaFetchError: Could not fetch schema folderInteger.json, referred to from Root#/definitions/baz/definitions/bar/items`
+- **2×** `SchemaFetchError: Could not fetch schema folderInteger.json, referred to from Root#/definitions/baz/items`
 
 Per group:
 
@@ -146,20 +146,18 @@ Per group:
 - `anchor-legacy.json::Location-independent identifier (id) (4)` — `SchemaKeyNotInObject: Key foo not in schema object at Root#foo`
 - `anchor-legacy.json::Location-independent identifier with base URI change in subschema (id) (4)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/nested.json, referred to from Root#/properties/foo`
 - `anchor-legacy.json::Reference an anchor with a non-relative URI (id) (4)` — `SchemaFetchError: Could not fetch schema https://example.com/schema-with-anchor, referred to from Root#/properties/foo`
-- `anchor-legacy.json::anchor within remote ref (7)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- `anchor-legacy.json::anchor within remote ref (id) (4)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- `anchor-legacy.json::Location-independent identifier in remote ref (7)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- `anchor-legacy.json::Location-independent identifier in remote ref (id) (4)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- `anchor-legacy.json::$ref to $ref finds detached $anchor (7)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-ref.json, referred to from Root#`
-- `anchor-legacy.json::$ref to $ref finds detached $anchor (id) (4)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-ref.json, referred to from Root#`
+- `anchor-legacy.json::anchor within remote ref (7)` — `SchemaKeyNotInObject: Key foo not in schema object at http://localhost:1234/locationIndependentIdentifier.json#foo`
+- `anchor-legacy.json::anchor within remote ref (id) (4)` — `SchemaKeyNotInObject: Key foo not in schema object at http://localhost:1234/locationIndependentIdentifier.json#foo`
+- `anchor-legacy.json::Location-independent identifier in remote ref (id) (4)` — `SchemaKeyNotInObject: Key foo not in schema object at http://localhost:1234/locationIndependentIdentifier.json#foo`
+- `anchor-legacy.json::$ref to $ref finds detached $anchor (id) (4)` — `SchemaKeyNotInObject: Key detached not in schema object at http://localhost:1234/detached-ref.json#detached`
 - `anchor.json::Location-independent identifier (2020-12)` — `SchemaKeyNotInObject: Key foo not in schema object at Root#foo`
 - `anchor.json::Location-independent identifier with absolute URI (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/bar, referred to from Root#`
 - `anchor.json::Location-independent identifier with base URI change in subschema (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/nested.json, referred to from Root#`
 - `anchor.json::same $anchor with different base uri (2020-12)` — `SchemaFetchError: Could not fetch schema child1, referred to from Root#`
 - `anchor.json::Reference an anchor with a non-relative URI (2020-12)` — `SchemaFetchError: Could not fetch schema https://example.com/schema-with-anchor, referred to from Root#/allOf/0`
-- `anchor.json::anchor within remote ref (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- `anchor.json::Location-independent identifier in remote ref (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/locationIndependentIdentifier.json, referred to from Root#`
-- `anchor.json::$ref to $ref finds detached $anchor (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-ref.json, referred to from Root#`
+- `anchor.json::anchor within remote ref (2020-12)` — `SchemaKeyNotInObject: Key foo not in schema object at http://localhost:1234/locationIndependentIdentifier.json#foo`
+- `anchor.json::Location-independent identifier in remote ref (2020-12)` — `SchemaKeyNotInObject: Key foo not in schema object at http://localhost:1234/locationIndependentIdentifier.json#foo`
+- `anchor.json::$ref to $ref finds detached $anchor (2020-12)` — `SchemaKeyNotInObject: Key detached not in schema object at http://localhost:1234/detached-ref.json#detached`
 - `anyOf.json::anyOf with boolean schemas, some true (2020-12)` — `SchemaFalseNotSupported: Schema "false" is not supported at Root#/anyOf/1`
 - `anyOf.json::anyOf with boolean schemas, all false (2020-12)` — `SchemaFalseNotSupported: Schema "false" is not supported at Root#/anyOf/0`
 - `boolean_schema.json::boolean schema 'false' (2020-12)` — `SchemaFalseNotSupported: Schema "false" is not supported at Root#`
@@ -170,11 +168,6 @@ Per group:
 - `const.json::const with [true] does not match [1] (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
 - `const.json::const with {"a": false} does not match {"a": 0} (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
 - `const.json::const with {"a": true} does not match {"a": 1} (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
-- `dynamicRef.json::strict-tree schema, guards against misspelled properties (2020) (2020-12)` — `SchemaFetchError: Could not fetch schema tree.json, referred to from Root#`
-- `dynamicRef.json::tests for implementation dynamic anchor and reference link (2020) (2020-12)` — `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#`
-- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (2020) (2020-12)` — `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#/allOf/0`
-- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (2020) (2020-12)` — `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#/allOf/1`
-- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (2020) (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-dynamicref.json, referred to from Root#`
 - `enum.json::enum with [false] does not match [0] (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
 - `enum.json::enum with [true] does not match [1] (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
 - `enum.json::enum with [0] does not match [false] (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
@@ -191,7 +184,14 @@ Per group:
 - `id-legacy.json::id must be resolved against nearest parent, not just immediate parent (4)` — `SchemaFetchError: Could not fetch schema http://example.com/b/d.json, referred to from Root#/properties/foo`
 - `id-legacy.json::ref with absolute-path-reference (id) (4)` — `SchemaFetchError: Could not fetch schema /absref/foobar.json, referred to from Root#/properties/foo`
 - `id-legacy.json::URN ref with nested pointer ref (7)` — `SchemaKeyNotInObject: Key bar not in schema object at Root#bar`
-- … and 42 more
+- `id-legacy.json::remote HTTP ref with nested absolute ref (id) (4)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/the-nested-id.json, referred to from http://localhost:1234/nested-absolute-ref-to-string.json#/pr…`
+- `id.json::base URI change - change folder in subschema (2020-12)` — `SchemaFetchError: Could not fetch schema baseUriChangeFolderInSubschema/, referred to from Root#/properties/list`
+- `id.json::order of evaluation: $id and $anchor and $ref (2020-12)` — `SchemaKeyNotInObject: Key bigint not in schema object at Root#bigint`
+- `id.json::URN ref with nested pointer ref (2020-12)` — `SchemaKeyNotInObject: Key bar not in schema object at Root#bar`
+- `items.json::items with boolean schema (false) (2020-12)` — `SchemaArrayItemsMustBeStringOrArray: Array items must be an array or an object, but is false`
+- `items.json::prefixItems with boolean schemas (2020-12)` — `SchemaFalseNotSupported: Schema "false" is not supported at Root#/prefixItems/1`
+- `items.json::items as array with boolean schemas (2019-09)` — `SchemaFalseNotSupported: Schema "false" is not supported at Root#/items/1`
+- … and 14 more
 
 #### 🦀 `compile_fail` (2)
 
@@ -297,9 +297,9 @@ Per group:
 - `uniqueItems.json::uniqueItems=false with an array of items (2019-09)` — `unique array extended from [false, true] is valid: Cannot read properties of null (reading 'literal')`
   - cases: unique array extended from [false, true] is valid (rejected), unique array extended from [true, false] is valid (rejected), non-unique array extended from [false, true] is valid (rejected), non-unique array extended from [true, false] is valid (rejected)
 
-#### 🙈 `false_accept` (186)
+#### 🙈 `false_accept` (191)
 
-118 distinct first-line errors; most common:
+121 distinct first-line errors; most common:
 
 - **14×** `accepted 'with unevaluated items' though valid: false`
 - **6×** `accepted 'too long is invalid' though valid: false`
@@ -393,35 +393,35 @@ Per group:
   - cases: An array containing non-strings is invalid (accepted)
 - `dynamicRef.json::after leaving a dynamic scope, it is not used by a $dynamicRef (2020) (2020-12)` — `accepted 'string matches /$defs/thingy, but the $dynamicRef does not stop here' though valid: false`
   - cases: string matches /$defs/thingy, but the $dynamicRef does not stop here (accepted), first_scope is not in dynamic scope for the $dynamicRef (accepted)
+- `dynamicRef.json::strict-tree schema, guards against misspelled properties (2020) (2020-12)` — `accepted 'instance with misspelled field' though valid: false`
+  - cases: instance with misspelled field (accepted)
+- `dynamicRef.json::tests for implementation dynamic anchor and reference link (2020) (2020-12)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (2020) (2020-12)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (2020) (2020-12)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (2020) (2020-12)` — `accepted 'non-number is invalid' though valid: false`
+  - cases: non-number is invalid (accepted)
 - `dynamicRef.json::$dynamicRef skips over intermediate resources - direct reference (2020) (2020-12)` — `accepted 'string property fails' though valid: false`
   - cases: string property fails (accepted)
 - `dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered (2020) (2020-12)` — `accepted 'data is not sufficient for schema at second#/$defs/length' though valid: false`
   - cases: data is not sufficient for schema at second#/$defs/length (accepted)
 - `dynamicRef.json::A $dynamicRef to an $anchor in the same schema resource behaves like a normal $ref to an $anchor (2020-12)` — `accepted 'An array containing non-strings is invalid' though valid: false`
   - cases: An array containing non-strings is invalid (accepted)
-- `dynamicRef.json::A $ref to a $dynamicAnchor in the same schema resource behaves like a normal $ref to an $anchor (2020-12)` — `accepted 'An array containing non-strings is invalid' though valid: false`
-  - cases: An array containing non-strings is invalid (accepted)
-- `dynamicRef.json::A $dynamicRef without anchor in fragment behaves identical to $ref (2020-12)` — `accepted 'An array of strings is invalid' though valid: false`
-  - cases: An array of strings is invalid (accepted)
-- `dynamicRef.json::A $dynamicRef that initially resolves to a schema with a matching $dynamicAnchor resolves to the first $dynamicAnchor in the dynamic scope (2020-12)` — `accepted 'The recursive part is not valid against the root' though valid: false`
-  - cases: The recursive part is not valid against the root (accepted)
-- `dynamicRef.json::multiple dynamic paths to the $dynamicRef keyword (2020) (2020-12)` — `accepted 'number list with string values' though valid: false`
-  - cases: number list with string values (accepted), string list with number values (accepted)
-- `dynamicRef.json::$dynamicRef points to a boolean schema (2020-12)` — `accepted 'follow $dynamicRef to a false schema' though valid: false`
-  - cases: follow $dynamicRef to a false schema (accepted)
-- … and 136 more
+- … and 141 more
 
 ## Optional
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 13 | 67 | 5 | 0 | 0 | 0 | 13 | 0 | 98 | 13.3% |
+| 14 | 68 | 7 | 0 | 0 | 0 | 9 | 0 | 98 | 14.3% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 397 | 973 | 40.8% | 1006 | 39.5% |
+| 400 | 979 | 40.9% | 1006 | 39.8% |
 
 ### Chart
 
@@ -448,7 +448,7 @@ Per group:
 | format-uuid.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | optional/bignum.json | 4 | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 14 | ✅✅✅🙈🙈🙈🙈🙈🙈🙈🙈✅🙈🙈 |
 | optional/content.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈🙈🙈 |
-| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 4 | ❌❌❌❌ |
+| optional/cross-draft.json | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🚧✅🚧 |
 | optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
 | optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/ecmascript-regex.json | 0 | 15 | 5 | 0 | 0 | 0 | 0 | 0 | 20 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🚧🚧🚧🚧🚧 |
@@ -459,26 +459,20 @@ Per group:
 | optional/non-bmp-regex.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | optional/non-schemas.json | 3 | 2 | 0 | 0 | 0 | 0 | 8 | 0 | 13 | ❌❌❌🙈🙈❌❌❌✅❌✅✅❌ |
 | optional/zero-terminated-floats.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
-| **Total** | **13** | **67** | **5** | **0** | **0** | **0** | **13** | **0** | **98** |  |
+| **Total** | **14** | **68** | **7** | **0** | **0** | **0** | **9** | **0** | **98** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (13)
+#### ❌ `generation_error` (9)
 
-7 distinct first-line errors; most common:
+3 distinct first-line errors; most common:
 
 - **6×** `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
 - **2×** `SchemaKeyNotInObject: Key unknown~1keyword not in schema object at Root#unknown~1keyword`
 - **1×** `SchemaFetchError: Could not fetch schema bar, referred to from Root#/properties/bar-item`
-- **1×** `SchemaFetchError: Could not fetch schema http://localhost:1234/draft2019-09/dependentRequired.json, referred to from Root#/allOf/1`
-- **1×** `SchemaFetchError: Could not fetch schema http://localhost:1234/draft2019-09/ignore-prefixItems.json, referred to from Root#`
 
 Per group:
 
-- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2019) (7)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/draft2019-09/dependentRequired.json, referred to from Root#/allOf/1`
-- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/draft2020-12/prefixItems.json, referred to from Root#`
-- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (7) (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/draft7/ignore-dependentRequired.json, referred to from Root#/allOf/1`
-- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/draft2019-09/ignore-prefixItems.json, referred to from Root#`
 - `optional/dynamicRef.json::$dynamicRef skips over intermediate resources - pointer reference across resource boundary (2020) (2020-12)` — `SchemaFetchError: Could not fetch schema bar, referred to from Root#/properties/bar-item`
 - `optional/non-schemas.json::$id inside an enum is not a real identifier ($id/$defs) (2020-12)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
 - `optional/non-schemas.json::$id inside an enum is not a real identifier ($id/definitions) (7)` — `IRNoEmptyUnions: Trying to make an empty union - do you have an impossible type in your schema?`
@@ -489,8 +483,22 @@ Per group:
 - `optional/non-schemas.json::reference of a root arbitrary keyword with encoded ref (2020-12)` — `SchemaKeyNotInObject: Key unknown~1keyword not in schema object at Root#unknown~1keyword`
 - `optional/non-schemas.json::reference of an arbitrary keyword of a sub-schema with encoded ref (2020-12)` — `SchemaKeyNotInObject: Key unknown~1keyword not in schema object at Root#unknown~1keyword`
 
-#### 🚧 `false_reject` (5)
+#### 🚧 `false_reject` (7)
 
+5 distinct first-line errors; most common:
+
+- **2×** `ascii character in json string: Invalid value for key "l'ecole" on Root. Expected boolean but got "pas de vraie vie"`
+- **2×** `ascii digits: Invalid value for key "42" on Root. Expected boolean but got "life, the universe, and everything"`
+- **1×** `ascii characters match: Invalid value for key "l'ecole" on Root. Expected boolean but got "pas de vraie vie"`
+- **1×** `first item is a string is valid: Invalid value. Expected string but got 1`
+- **1×** `first item not a string is valid: Invalid value. Expected string but got 1`
+
+Per group:
+
+- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `first item is a string is valid: Invalid value. Expected string but got 1`
+  - cases: first item is a string is valid (rejected)
+- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `first item not a string is valid: Invalid value. Expected string but got 1`
+  - cases: first item not a string is valid (rejected)
 - `optional/ecmascript-regex.json::patterns always use unicode semantics with patternProperties (2020-12)` — `ascii character in json string: Invalid value for key "l'ecole" on Root. Expected boolean but got "pas de vraie vie"`
   - cases: ascii character in json string (rejected), literal unicode character in json string (rejected), unicode character in hex format in string (rejected)
 - `optional/ecmascript-regex.json::\w in patternProperties matches [A-Za-z0-9_], not unicode letters (2020-12)` — `ascii character in json string: Invalid value for key "l'ecole" on Root. Expected boolean but got "pas de vraie vie"`
@@ -502,9 +510,9 @@ Per group:
 - `optional/ecmascript-regex.json::patternProperties with non-ASCII digits (2020-12)` — `ascii digits: Invalid value for key "42" on Root. Expected boolean but got "life, the universe, and everything"`
   - cases: ascii digits (rejected), non-ascii digits (BENGALI DIGIT FOUR, BENGALI DIGIT TWO) (rejected)
 
-#### 🙈 `false_accept` (67)
+#### 🙈 `false_accept` (68)
 
-57 distinct first-line errors; most common:
+58 distinct first-line errors; most common:
 
 - **3×** `accepted 'does not match' though valid: false`
 - **2×** `accepted 'a slightly smaller decimal is invalid' though valid: false`
@@ -584,6 +592,8 @@ Per group:
   - cases: an invalid base64 string (% is not a valid character) (accepted)
 - `optional/content.json::validation of binary-encoded media type documents (7)` — `accepted 'a validly-encoded invalid JSON document' though valid: false`
   - cases: a validly-encoded invalid JSON document (accepted), an invalid base64 string that is valid JSON (accepted)
+- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2019) (7)` — `accepted 'missing bar is invalid' though valid: false`
+  - cases: missing bar is invalid (accepted)
 - `optional/dependencies-compatibility.json::single dependency (2020-12)` — `accepted 'missing dependency' though valid: false`
   - cases: missing dependency (accepted)
 - `optional/dependencies-compatibility.json::multiple dependents required (2020-12)` — `accepted 'missing dependency' though valid: false`
@@ -612,9 +622,7 @@ Per group:
   - cases: latin-1 e-acute does not match (unlike e.g. Python) (accepted)
 - `optional/ecmascript-regex.json::ECMA 262 \W matches everything but ascii letters (2020-12)` — `accepted 'ASCII 'a' does not match' though valid: false`
   - cases: ASCII 'a' does not match (accepted)
-- `optional/ecmascript-regex.json::ECMA 262 \s matches whitespace (2020-12)` — `accepted 'Non-whitespace control does not match' though valid: false`
-  - cases: Non-whitespace control does not match (accepted), Non-whitespace does not match (accepted)
-- … and 17 more
+- … and 18 more
 
 ## Compound
 
@@ -650,19 +658,19 @@ Per group:
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 4 | 12 | 3 | 0 | 0 | 0 | 6 | 0 | 25 | 16.0% |
+| 4 | 17 | 3 | 0 | 0 | 0 | 1 | 0 | 25 | 16.0% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 45 | 75 | 60.0% | 90 | 50.0% |
+| 53 | 88 | 60.2% | 90 | 58.9% |
 
 ### Chart
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| dynamicRef.json | 1 | 6 | 0 | 0 | 0 | 0 | 5 | 0 | 12 | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈 |
+| dynamicRef.json | 1 | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈 |
 | format-date-time.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | format-time.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
@@ -672,27 +680,12 @@ Per group:
 | proposals/propertyDependencies/unevaluatedProperties.json | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧🚧 |
 | unevaluatedItems.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | unevaluatedProperties.json | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 🚧 |
-| **Total** | **4** | **12** | **3** | **0** | **0** | **0** | **6** | **0** | **25** |  |
+| **Total** | **4** | **17** | **3** | **0** | **0** | **0** | **1** | **0** | **25** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (6)
+#### ❌ `generation_error` (1)
 
-6 distinct first-line errors; most common:
-
-- **1×** `SchemaFetchError: Could not fetch schema bar, referred to from Root#/properties/bar-item`
-- **1×** `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#`
-- **1×** `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#/allOf/0`
-- **1×** `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#/allOf/1`
-- **1×** `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-dynamicref.json, referred to from Root#`
-
-Per group:
-
-- `dynamicRef.json::strict-tree schema, guards against misspelled properties (v1)` — `SchemaFetchError: Could not fetch schema tree.json, referred to from Root#`
-- `dynamicRef.json::tests for implementation dynamic anchor and reference link (v1)` — `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#`
-- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (v1)` — `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#/allOf/0`
-- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (v1)` — `SchemaFetchError: Could not fetch schema extendible-dynamic-ref.json, referred to from Root#/allOf/1`
-- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (v1)` — `SchemaFetchError: Could not fetch schema http://localhost:1234/detached-dynamicref.json, referred to from Root#`
 - `optional/dynamicRef.json::$dynamicRef skips over intermediate resources - pointer reference across resource boundary (v1)` — `SchemaFetchError: Could not fetch schema bar, referred to from Root#/properties/bar-item`
 
 #### 🚧 `false_reject` (3)
@@ -704,15 +697,15 @@ Per group:
 - `unevaluatedProperties.json::unevaluatedProperties with $dynamicRef (v1)` — `with no unevaluated properties: Invalid value for key "bar" on Root. Expected boolean but got "bar"`
   - cases: with no unevaluated properties (rejected)
 
-#### 🙈 `false_accept` (12)
+#### 🙈 `false_accept` (17)
 
-10 distinct first-line errors; most common:
+13 distinct first-line errors; most common:
 
 - **3×** `accepted 'An array containing non-strings is invalid' though valid: false`
+- **3×** `accepted 'incorrect extended schema' though valid: false`
 - **1×** `accepted 'a leap second is not a valid time' though valid: false`
 - **1×** `accepted 'an invalid date-time-ext with an empty suffix' though valid: false`
 - **1×** `accepted 'bar with more than 2 properties is invalid' though valid: false`
-- **1×** `accepted 'data is not sufficient for schema at second#/$defs/length' though valid: false`
 
 Per group:
 
@@ -724,6 +717,16 @@ Per group:
   - cases: An array containing non-strings is invalid (accepted)
 - `dynamicRef.json::after leaving a dynamic scope, it is not used by a $dynamicRef (v1)` — `accepted 'string matches /$defs/thingy, but the $dynamicRef does not stop here' though valid: false`
   - cases: string matches /$defs/thingy, but the $dynamicRef does not stop here (accepted), first_scope is not in dynamic scope for the $dynamicRef (accepted)
+- `dynamicRef.json::strict-tree schema, guards against misspelled properties (v1)` — `accepted 'instance with misspelled field' though valid: false`
+  - cases: instance with misspelled field (accepted)
+- `dynamicRef.json::tests for implementation dynamic anchor and reference link (v1)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (v1)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (v1)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (v1)` — `accepted 'non-number is invalid' though valid: false`
+  - cases: non-number is invalid (accepted)
 - `dynamicRef.json::$dynamicRef skips over intermediate resources - direct reference (v1)` — `accepted 'string property fails' though valid: false`
   - cases: string property fails (accepted)
 - `dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered (v1)` — `accepted 'data is not sufficient for schema at second#/$defs/length' though valid: false`

@@ -8,7 +8,7 @@ the unmarshaller rather than left to the type system. The flip side is that a
 root with no `type` keyword produces no root type at all, and the combinators
 collapse into a merged type or `interface{}`.
 
-_generated 2026-11-22T02:41:34Z_
+_generated 2026-11-22T03:50:44Z_
 
 **14 of 540 standard groups pass (2.6%)**
 
@@ -27,13 +27,13 @@ _generated 2026-11-22T02:41:34Z_
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 14 | 36 | 2 | 2 | 0 | 356 | 130 | 0 | 540 | 2.6% |
+| 14 | 38 | 2 | 2 | 0 | 356 | 128 | 0 | 540 | 2.6% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 127 | 191 | 66.5% | 1664 | 7.6% |
+| 131 | 197 | 66.5% | 1664 | 7.9% |
 
 ### Chart
 
@@ -95,21 +95,21 @@ _generated 2026-11-22T02:41:34Z_
 | properties.json | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 6 | 🦀🦀🦀🦀🦀🦀 |
 | propertyNames.json | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 6 | ❌❌❌❌❌❌ |
 | recursiveRef.json | 0 | 0 | 0 | 0 | 0 | 7 | 3 | 0 | 10 | 🦀🦀🦀🦀🦀🦀🦀❌❌❌ |
-| ref-legacy.json | 0 | 0 | 0 | 0 | 0 | 12 | 2 | 0 | 14 | ❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀❌🦀 |
-| ref.json | 0 | 0 | 0 | 0 | 0 | 21 | 2 | 0 | 23 | 🦀🦀❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀❌🦀 |
+| ref-legacy.json | 0 | 1 | 0 | 0 | 0 | 12 | 1 | 0 | 14 | ❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🙈🦀 |
+| ref.json | 0 | 1 | 0 | 0 | 0 | 21 | 1 | 0 | 23 | 🦀🦀❌🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🙈🦀 |
 | required.json | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 | 🦀🦀🦀🦀🦀 |
 | type.json | 1 | 8 | 1 | 2 | 0 | 0 | 0 | 0 | 12 | 🙈🚧🙈🙈🙈🙈🙈🙈✅🤪🤪🙈 |
 | unevaluatedItems.json | 0 | 0 | 0 | 0 | 0 | 19 | 28 | 0 | 47 | ❌❌❌🦀❌❌🦀❌🦀🦀🦀❌🦀🦀🦀❌🦀❌🦀❌🦀❌🦀❌❌❌🦀🦀❌🦀❌🦀❌🦀❌🦀❌❌🦀❌❌❌❌❌❌❌❌ |
 | unevaluatedProperties.json | 7 | 21 | 0 | 0 | 0 | 12 | 5 | 0 | 45 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅🙈🙈🙈🙈🙈🙈🙈🙈🦀🦀🦀🦀🦀🦀✅✅🙈🙈🙈🙈🙈🙈🙈❌🦀🦀❌❌❌❌🦀🦀🦀🦀 |
 | uniqueItems.json | 0 | 0 | 0 | 0 | 0 | 6 | 4 | 0 | 10 | 🦀🦀🦀❌🦀❌🦀❌🦀❌ |
 | vocabulary.json | 2 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 4 | 🦀✅🦀✅ |
-| **Total** | **14** | **36** | **2** | **2** | **0** | **356** | **130** | **0** | **540** |  |
+| **Total** | **14** | **38** | **2** | **2** | **0** | **356** | **128** | **0** | **540** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (130)
+#### ❌ `generation_error` (128)
 
-15 distinct first-line errors; most common:
+13 distinct first-line errors; most common:
 
 - **74×** `schema has no root`
 - **39×** `error parsing from file <schema>: cannot load schema`
@@ -169,7 +169,7 @@ Per group:
 - `id.json::order of evaluation: $id and $ref on nested schema (2020-12)` — `could not follow $ref "./bar.json" to file "./bar.json": cannot load schema`
 - `id.json::URN ref with nested pointer ref (2020-12)` — `definition does not exist in schema: "bar" (from ref "#/$defs/bar")`
 - `if-then-else.json::ignore if without then or else (2020-12)` — `schema has no root`
-- … and 80 more
+- … and 78 more
 
 #### 🦀 `compile_fail` (356)
 
@@ -249,15 +249,15 @@ Per group:
 - `type.json::integer type matches integers (6) (2020-12)` — `a float with zero fractional part is an integer: json: cannot unmarshal number 1.0 into Go value of type g_c7901d42c855e895.Root`
   - cases: a float with zero fractional part is an integer (rejected)
 
-#### 🙈 `false_accept` (36)
+#### 🙈 `false_accept` (38)
 
-23 distinct first-line errors; most common:
+24 distinct first-line errors; most common:
 
 - **7×** `accepted 'with unevaluated properties' though valid: false`
 - **3×** `accepted 'when if is true and has unevaluated properties' though valid: false`
 - **2×** `accepted 'An array containing non-strings is invalid' though valid: false`
 - **2×** `accepted 'base case: both properties present' though valid: false`
-- **2×** `accepted 'with additional properties' though valid: false`
+- **2×** `accepted 'object is invalid' though valid: false`
 
 Per group:
 
@@ -275,6 +275,10 @@ Per group:
   - cases: both invalid - invalid (accepted), both valid - invalid (accepted)
 - `patternProperties.json::patternProperties with Unicode property escape (2020-12)` — `accepted 'Unicode letter property name matches but value type is incorrect' though valid: false`
   - cases: Unicode letter property name matches but value type is incorrect (accepted)
+- `ref-legacy.json::root ref in remote ref (7)` — `accepted 'object is invalid' though valid: false`
+  - cases: object is invalid (accepted)
+- `ref.json::root ref in remote ref (2020-12)` — `accepted 'object is invalid' though valid: false`
+  - cases: object is invalid (accepted)
 - `type.json::integer type matches integers (2020-12)` — `accepted 'null is not an integer' though valid: false`
   - cases: null is not an integer (accepted)
 - `type.json::number type matches numbers (2020-12)` — `accepted 'null is not a number' though valid: false`
@@ -338,13 +342,13 @@ Per group:
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 10 | 7 | 4 | 0 | 0 | 58 | 19 | 0 | 98 | 10.2% |
+| 10 | 7 | 6 | 0 | 0 | 58 | 17 | 0 | 98 | 10.2% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 42 | 66 | 63.6% | 1006 | 4.2% |
+| 43 | 69 | 62.3% | 1006 | 4.3% |
 
 ### Chart
 
@@ -371,7 +375,7 @@ Per group:
 | format-uuid.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | optional/bignum.json | 2 | 0 | 1 | 0 | 0 | 11 | 0 | 0 | 14 | 🚧✅✅🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀 |
 | optional/content.json | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 3 | ❌❌❌ |
-| optional/cross-draft.json | 1 | 1 | 0 | 0 | 0 | 0 | 2 | 0 | 4 | 🙈❌✅❌ |
+| optional/cross-draft.json | 1 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🚧✅🚧 |
 | optional/dependencies-compatibility.json | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 7 | ❌❌❌❌❌❌❌ |
 | optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/ecmascript-regex.json | 6 | 6 | 3 | 0 | 0 | 5 | 0 | 0 | 20 | ✅✅🚧🚧✅✅✅✅🚧🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈🙈 |
@@ -382,27 +386,25 @@ Per group:
 | optional/non-bmp-regex.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | optional/non-schemas.json | 0 | 0 | 0 | 0 | 0 | 7 | 6 | 0 | 13 | ❌❌❌🦀🦀❌❌❌🦀🦀🦀🦀🦀 |
 | optional/zero-terminated-floats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **10** | **7** | **4** | **0** | **0** | **58** | **19** | **0** | **98** |  |
+| **Total** | **10** | **7** | **6** | **0** | **0** | **58** | **17** | **0** | **98** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (19)
+#### ❌ `generation_error` (17)
 
-9 distinct first-line errors; most common:
+7 distinct first-line errors; most common:
 
 - **10×** `schema has no root`
 - **2×** `enum has non-primitive value map[$id:https://localhost:1234/id/my_identifier.json type:null]`
-- **1×** `could not follow $ref "http://localhost:1234/draft2019-09/ignore-prefixItems.json" to file "http://localhost:1234/draft2019-09/ignore-prefixItems.json": cannot …`
-- **1×** `could not follow $ref "http://localhost:1234/draft2020-12/prefixItems.json" to file "http://localhost:1234/draft2020-12/prefixItems.json": cannot load schema`
 - **1×** `could not follow $ref "item" to file "item": cannot load schema`
+- **1×** `enum has non-primitive value map[$anchor:my_anchor type:null]`
+- **1×** `enum has non-primitive value map[$id:#my_anchor type:null]`
 
 Per group:
 
 - `optional/content.json::validation of string-encoded content based on media type (7)` — `schema has no root`
 - `optional/content.json::validation of binary string-encoding (7)` — `schema has no root`
 - `optional/content.json::validation of binary-encoded media type documents (7)` — `schema has no root`
-- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `could not follow $ref "http://localhost:1234/draft2020-12/prefixItems.json" to file "http://localhost:1234/draft2020-12/prefixItems.json": cannot load schema`
-- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `could not follow $ref "http://localhost:1234/draft2019-09/ignore-prefixItems.json" to file "http://localhost:1234/draft2019-09/ignore-prefixItems.json": cannot …`
 - `optional/dependencies-compatibility.json::single dependency (2020-12)` — `schema has no root`
 - `optional/dependencies-compatibility.json::empty dependents (2020-12)` — `schema has no root`
 - `optional/dependencies-compatibility.json::multiple dependents required (2020-12)` — `schema has no root`
@@ -482,10 +484,24 @@ Per group:
 - `optional/non-bmp-regex.json::Proper UTF-16 surrogate pair handling: pattern (2020-12)` — `g_17b5500880e0cbff/g_17b5500880e0cbff.go:9:8: undefined: Root`
 - … and 8 more
 
-#### 🚧 `false_reject` (4)
+#### 🚧 `false_reject` (6)
+
+6 distinct first-line errors; most common:
+
+- **1×** `Line tabulation matches: field  pattern match: must match ^\s$`
+- **1×** `a bignum is an integer: json: cannot unmarshal number 12345678910111213141516171819202122232425262728293031 into Go value of type g_c7901d42c855e895.Root`
+- **1×** `first item is a string is valid: json: cannot unmarshal array into Go value of type g_9b0b814a04e3e281.Root`
+- **1×** `first item not a string is valid: json: cannot unmarshal array into Go value of type g_3ba614f45426e578.Root`
+- **1×** `matches: field  pattern match: must match ^\cC$`
+
+Per group:
 
 - `optional/bignum.json::integer (2020-12)` — `a bignum is an integer: json: cannot unmarshal number 12345678910111213141516171819202122232425262728293031 into Go value of type g_c7901d42c855e895.Root`
   - cases: a bignum is an integer (rejected), a negative bignum is an integer (rejected)
+- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `first item is a string is valid: json: cannot unmarshal array into Go value of type g_9b0b814a04e3e281.Root`
+  - cases: first item is a string is valid (rejected)
+- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `first item not a string is valid: json: cannot unmarshal array into Go value of type g_3ba614f45426e578.Root`
+  - cases: first item not a string is valid (rejected)
 - `optional/ecmascript-regex.json::ECMA 262 regex escapes control codes with \c and upper letter (2020-12)` — `matches: field  pattern match: must match ^\cC$`
   - cases: matches (rejected)
 - `optional/ecmascript-regex.json::ECMA 262 regex escapes control codes with \c and lower letter (2020-12)` — `matches: field  pattern match: must match ^\cc$`

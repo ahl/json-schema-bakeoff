@@ -68,12 +68,15 @@ const (
 	maxStderrTail = 1000
 )
 
-// A group as the harness sends it. The schema stays as raw bytes so the
-// suite's digits reach ogen exactly as written.
+// A group as the harness sends it. The schema and any external documents
+// stay as raw bytes so the suite's digits reach ogen exactly as written.
+// ExternalSchemas maps an absolute, fragment-free retrieval URI to the
+// document served there; the harness sends it only for groups that have any.
 type group struct {
-	Key    string          `json:"key"`
-	Draft  string          `json:"draft"`
-	Schema json.RawMessage `json:"schema"`
+	Key             string                     `json:"key"`
+	Draft           string                     `json:"draft"`
+	Schema          json.RawMessage            `json:"schema"`
+	ExternalSchemas map[string]json.RawMessage `json:"externalSchemas,omitempty"`
 }
 
 // One line of the generate status array.
@@ -85,8 +88,9 @@ type status struct {
 
 // An entry in the plan file the parent hands the worker.
 type planEntry struct {
-	Key    string          `json:"key"`
-	Schema json.RawMessage `json:"schema"`
+	Key             string                     `json:"key"`
+	Schema          json.RawMessage            `json:"schema"`
+	ExternalSchemas map[string]json.RawMessage `json:"externalSchemas,omitempty"`
 }
 
 // What the worker prints per group.
@@ -115,7 +119,11 @@ func cmdGenerate(outDir string) {
 	}
 	plan := make([]planEntry, 0, len(groups))
 	for _, g := range groups {
-		plan = append(plan, planEntry{Key: g.Key, Schema: g.Schema})
+		plan = append(plan, planEntry{
+			Key:             g.Key,
+			Schema:          g.Schema,
+			ExternalSchemas: g.ExternalSchemas,
+		})
 	}
 	planPath := filepath.Join(workDir, "plan.json")
 	planText, err := json.Marshal(plan)
@@ -261,14 +269,63 @@ reap:
 
 // offlineTransport is the belt to ogen's braces. ogen resolves remote
 // references only when `ParseOptions.AllowRemote` is set, which this glue
-// leaves off, so `http://localhost:1234/...` already fails in-process with
-// "external references are disabled". Replacing the default transport as
-// well means that no code path anywhere in the library can reach the
-// network even if that option's default ever changes.
+// leaves off for any group without external schemas, so
+// `http://localhost:1234/...` already fails in-process with "external
+// references are disabled". A group with external schemas gets its own
+// client (see tableTransport) and never touches the default one. Replacing
+// the default transport as well means that no code path anywhere in the
+// library can reach the network even if that option's default ever changes.
 type offlineTransport struct{}
 
 func (offlineTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	return nil, fmt.Errorf("%s: the bakeoff harness runs offline: remote references are not fetched", req.URL)
+}
+
+// tableTransport serves one group's external schemas to ogen's remote
+// resolver. A GET for a URI in the table gets that document's bytes, as the
+// harness sent them; anything else is an error from RoundTrip rather than a
+// 404, so the refusal reads as one in ogen's message. Nothing leaves the
+// process.
+type tableTransport map[string]json.RawMessage
+
+func (t tableTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	u := *req.URL
+	u.Fragment = ""
+	u.RawFragment = ""
+	doc, ok := t[u.String()]
+	if req.Method != http.MethodGet || !ok {
+		return nil, fmt.Errorf("%s %s: not among this group's external schemas: remote references are not fetched", req.Method, &u)
+	}
+	return &http.Response{
+		Status:        "200 OK",
+		StatusCode:    http.StatusOK,
+		Proto:         "HTTP/1.1",
+		ProtoMajor:    1,
+		ProtoMinor:    1,
+		Header:        http.Header{"Content-Type": {"application/json"}},
+		Body:          io.NopCloser(bytes.NewReader(doc)),
+		ContentLength: int64(len(doc)),
+		Request:       req,
+	}, nil
+}
+
+// remoteOptions returns ogen's parser options for one group: the
+// defaults when the group has no external schemas, and otherwise
+// AllowRemote with a resolver that can see only the group's table. Files
+// are refused outright.
+func remoteOptions(external map[string]json.RawMessage) gen.ParseOptions {
+	if len(external) == 0 {
+		return gen.ParseOptions{}
+	}
+	return gen.ParseOptions{
+		AllowRemote: true,
+		Remote: gen.RemoteOptions{
+			HTTPClient: &http.Client{Transport: tableTransport(external)},
+			ReadFile: func(p string) ([]byte, error) {
+				return nil, fmt.Errorf("%s: the bakeoff harness does not read files to resolve references", p)
+			},
+		},
+	}
 }
 
 func cmdWorker(planPath, outDir, startArg string) {
@@ -364,8 +421,10 @@ func generateOne(outDir string, entry planEntry) (st string, msg string) {
 	}
 
 	// Everything here is ogen's default except the feature set:
-	//   - AllowRemote stays off (its default), so remote references fail
-	//     in-process and nothing is fetched.
+	//   - AllowRemote stays off (its default) unless the group has external
+	//     schemas, so remote references fail in-process and nothing is
+	//     fetched. With external schemas it is on, and the resolver can see
+	//     only those documents (see remoteOptions).
 	//   - DisableAll turns off the six default features, all of which are
 	//     client, server, OpenTelemetry or stub-handler generation. The
 	//     type graph, the jx encoders and decoders and the validators are
@@ -374,6 +433,7 @@ func generateOne(outDir string, entry planEntry) (st string, msg string) {
 	//     group for the batch to compile. It changes which files ogen
 	//     writes, not what it decides about the schema.
 	g, err := gen.NewGenerator(&spec, gen.Options{
+		Parser: remoteOptions(entry.ExternalSchemas),
 		Generator: gen.GenerateOptions{
 			Features: &gen.FeatureOptions{DisableAll: true},
 		},

@@ -226,10 +226,10 @@ through it: each entry registered under its key, scoped to the group, never
 read from the network or the filesystem. The validator rows do this, and a
 generator that accepts a document set should too; its README says how. A tool
 with no such facility gets the schema alone, and the row records whatever it
-does with the unresolvable reference (typify panics, quicktype reports a
-fetch error). Validator rows leave `format` at the library default: asserting
-it everywhere fails 19 required 2020-12 groups whose cases state that an
-invalid string is only an annotation by default.
+does with the unresolvable reference (typify panics, schemafy panics looking
+for a local definition). Validator rows leave `format` at the library default:
+asserting it everywhere fails 19 required 2020-12 groups whose cases state
+that an invalid string is only an annotation by default.
 
 ## Where number precision stops
 

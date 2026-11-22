@@ -15,6 +15,7 @@ mod generate;
 
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 use std::path::PathBuf;
 use std::time::Duration;
 
@@ -29,6 +30,10 @@ struct Group {
     #[serde(default)]
     draft: Option<String>,
     schema: serde_json::Value,
+    /// The documents the group's remote references name, keyed by retrieval
+    /// URI; present only when the group has any.
+    #[serde(default, rename = "externalSchemas")]
+    external_schemas: Option<BTreeMap<String, serde_json::Value>>,
 }
 
 #[derive(Serialize)]
@@ -72,7 +77,7 @@ fn generate_all(out_dir: PathBuf) -> Result<()> {
                 continue;
             }
         };
-        let status = match generate::generate(&g.schema, spec, TIMEOUT) {
+        let status = match generate::generate(&g.schema, g.external_schemas, spec, TIMEOUT) {
             generate::GenOutcome::Code { code, root } => {
                 // The generated buffer is used verbatim: it opens with a
                 // `//!` doc comment and `use` items, both of which are fine

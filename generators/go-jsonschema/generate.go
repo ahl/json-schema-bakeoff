@@ -53,6 +53,9 @@ import (
 	"github.com/atombender/go-jsonschema/pkg/generator"
 )
 
+// The CLI's default YAML extensions.
+var yamlExtensions = []string{".yml", ".yaml"}
+
 // How long one schema gets before the parent calls it a hang.
 const generateTimeout = 60 * time.Second
 
@@ -65,9 +68,10 @@ const (
 // A group as the harness sends it. The schema stays as raw bytes so the
 // suite's digits reach the tool exactly as written.
 type group struct {
-	Key    string          `json:"key"`
-	Draft  string          `json:"draft"`
-	Schema json.RawMessage `json:"schema"`
+	Key             string                     `json:"key"`
+	Draft           string                     `json:"draft"`
+	Schema          json.RawMessage            `json:"schema"`
+	ExternalSchemas map[string]json.RawMessage `json:"externalSchemas,omitempty"`
 }
 
 // One line of the generate status array.
@@ -79,8 +83,9 @@ type status struct {
 
 // An entry in the plan file the parent hands the worker.
 type planEntry struct {
-	Key  string `json:"key"`
-	File string `json:"file"`
+	Key      string                     `json:"key"`
+	File     string                     `json:"file"`
+	External map[string]json.RawMessage `json:"external,omitempty"`
 }
 
 // What the worker prints per schema.
@@ -116,7 +121,7 @@ func cmdGenerate(outDir string) {
 		if err := os.WriteFile(file, g.Schema, 0o644); err != nil {
 			fatalf("writing %s: %v", file, err)
 		}
-		plan = append(plan, planEntry{Key: g.Key, File: file})
+		plan = append(plan, planEntry{Key: g.Key, File: file, External: g.ExternalSchemas})
 	}
 	planPath := filepath.Join(workDir, "plan.json")
 	planText, err := json.Marshal(plan)
@@ -258,13 +263,12 @@ reap:
 
 // ----------------------------------------------------------------- worker
 
-// offlineTransport is how the no-network policy is enforced: the tool's
-// schema loader fetches `http(s)://` references with `&http.Client{}`,
-// which uses http.DefaultTransport, so replacing it makes every remote
-// reference fail immediately and in-process. The suite's
-// `http://localhost:1234/...` remotes are therefore a generation error,
-// which is the point — nothing is ever fetched, and the cost of that
-// policy is recorded rather than papered over.
+// offlineTransport backs up the no-network policy: the tool's own HTTP
+// loader fetches `http(s)://` references with `&http.Client{}`, which uses
+// http.DefaultTransport, so replacing it makes any request fail immediately
+// and in-process. The loader in loader.go never hands a reference to that
+// HTTP loader, so this only matters if some other path in the tool reaches
+// for the network; nothing is ever fetched either way.
 type offlineTransport struct{}
 
 var errNoNetwork = errors.New("the bakeoff harness runs offline: remote references are not fetched")
@@ -304,7 +308,8 @@ func cmdWorker(planPath, outDir, startArg string) {
 // generateOne runs the tool over one schema. A returned error is a
 // generation `error`; a recovered panic is a `panic`. Everything the tool
 // is configured with here is its default except the package name, the
-// output file and the root type name, which the contract fixes.
+// output file and the root type name, which the contract fixes, and the
+// loader, which serves the group's external schemas.
 func generateOne(outDir string, entry planEntry) (st string, msg string) {
 	// The tool names the schema file in most of its messages, and that
 	// path is an absolute one under target/. Stored results are committed,
@@ -341,9 +346,16 @@ func generateOne(outDir string, entry planEntry) (st string, msg string) {
 		// The CLI's defaults, spelled out: YAML is recognized by
 		// extension (nothing here has one), all three struct tags are
 		// emitted, and no non-stdlib imports are allowed.
-		YAMLExtensions: []string{".yml", ".yaml"},
+		YAMLExtensions: yamlExtensions,
 		Tags:           []string{"json", "yaml", "mapstructure"},
 		ExtraImports:   false,
+		// The loader replaces the tool's file-plus-HTTP loader for every
+		// group. The root comes from its file, http URIs come from the
+		// group's external schemas, and every other file or URI is refused
+		// without touching disk. A relative ref that the default loader
+		// would have probed next to the root is refused instead (see
+		// loader.go).
+		Loader: newLoader(entry.File, entry.External, yamlExtensions),
 	}
 
 	gen, err := generator.New(cfg)

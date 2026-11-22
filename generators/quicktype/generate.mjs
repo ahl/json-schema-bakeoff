@@ -1,7 +1,8 @@
 //! quicktype generator for the bakeoff harness.
 //!
 //!   version <target>              → "quicktype <version> <target>"
-//!   generate <target> <out_dir>   → stdin: JSON array of {key, schema};
+//!   generate <target> <out_dir>   → stdin: JSON array of
+//!                                   {key, draft, schema, externalSchemas?};
 //!                                   writes <out_dir>/<key>.{rs,go,ts};
 //!                                   stdout: JSON array of {key, status, message?}
 //!
@@ -9,10 +10,11 @@
 //! `JSONSchemaInput` with a single source named `Root`, so the top-level
 //! type is `Root` in every language.
 //!
-//! References are resolved against a store that holds nothing: anything
-//! with an address (the suite's `http://localhost:1234/...` remotes) comes
-//! back undefined, which quicktype reports as `SchemaFetchError`. That is
-//! the policy — remotes are recorded, never fetched.
+//! References with an address are resolved against a store that holds
+//! exactly the item's `externalSchemas`, keyed by retrieval URI. Any other
+//! address comes back undefined, which quicktype reports as
+//! `SchemaFetchError`. Nothing is ever fetched from the network or read from
+//! disk.
 
 import { ensureDeps, depVersion, quietStdout, writeAll } from "./deps.mjs";
 
@@ -49,13 +51,25 @@ const { quicktype, InputData, JSONSchemaInput, JSONSchemaStore, QuickTypeError }
 const TIMEOUT_MS = 30_000;
 
 /**
- * A store with no schemas in it. `fetch` returning undefined is how
- * quicktype learns an address is unresolvable; throwing here instead would
- * escape as an opaque error and lose the `SchemaFetchError` label.
+ * A store holding one item's `externalSchemas` and nothing else. `fetch`
+ * returns the document for the exact address it is asked for; any other
+ * address returns undefined, which is how quicktype learns an address is
+ * unresolvable. Throwing here instead would escape as an opaque error and
+ * lose the `SchemaFetchError` label.
+ *
+ * The documents are the objects `JSON.parse` produced from stdin, the same
+ * parse the item's `schema` goes through, and the same form quicktype's own
+ * sources take after it parses them.
  */
-class EmptyStore extends JSONSchemaStore {
-  async fetch(_address) {
-    return undefined;
+class ExternalStore extends JSONSchemaStore {
+  constructor(externalSchemas) {
+    super();
+    this._external = externalSchemas ?? {};
+  }
+
+  async fetch(address) {
+    if (!Object.hasOwn(this._external, address)) return undefined;
+    return this._external[address];
   }
 }
 
@@ -139,8 +153,10 @@ function patchSource(target, code) {
     .join("\n");
 }
 
-async function generateOne(target, key, schema) {
-  const input = new JSONSchemaInput(new EmptyStore());
+async function generateOne(target, key, schema, externalSchemas) {
+  // One store per item: the same address can name different documents in
+  // different groups.
+  const input = new JSONSchemaInput(new ExternalStore(externalSchemas));
   // A single source named `Root` makes `Root` the top-level type name.
   await input.addSource({ name: "Root", schema: JSON.stringify(schema) });
   const inputData = new InputData();
@@ -188,11 +204,11 @@ async function main() {
   mkdirSync(outDir, { recursive: true });
   const ext = TARGETS[target];
   const statuses = [];
-  for (const { key, schema } of groups) {
+  for (const { key, schema, externalSchemas } of groups) {
     const guard = timeout(TIMEOUT_MS);
     // The loser of a `Promise.race` keeps running; settle the generation
     // into a value so a late rejection can't become an unhandled one.
-    const work = generateOne(target, key, schema).then(
+    const work = generateOne(target, key, schema, externalSchemas).then(
       (code) => ({ code }),
       (error) => ({ error }),
     );

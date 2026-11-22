@@ -13,9 +13,9 @@ CLAUDE.md, though the session tags its commits once carried are gone from
 the history. The published 0.0.6 (results in `archive/suite-1.041/`) refused
 any root that wasn't an object.
 
-_generated 2026-11-22T02:41:23Z_
+_generated 2026-11-22T03:39:29Z_
 
-**269 of 540 standard groups pass (49.8%)**
+**304 of 540 standard groups pass (56.3%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -32,13 +32,13 @@ _generated 2026-11-22T02:41:23Z_
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 269 | 173 | 42 | 7 | 0 | 1 | 48 | 0 | 540 | 49.8% |
+| 304 | 180 | 42 | 5 | 0 | 1 | 8 | 0 | 540 | 56.3% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 1093 | 1553 | 70.4% | 1664 | 65.7% |
+| 1175 | 1638 | 71.7% | 1664 | 70.6% |
 
 ### Chart
 
@@ -46,8 +46,8 @@ _generated 2026-11-22T02:41:23Z_
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | additionalProperties.json | 6 | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 9 | 🤪🙈✅✅✅🙈✅✅✅ |
 | allOf.json | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅✅✅✅✅✅✅✅✅✅ |
-| anchor-legacy.json | 8 | 0 | 0 | 0 | 0 | 0 | 6 | 0 | 14 | ✅✅✅✅✅✅✅✅❌❌❌❌❌❌ |
-| anchor.json | 6 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 9 | ✅✅✅✅✅✅❌❌❌ |
+| anchor-legacy.json | 14 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 14 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
+| anchor.json | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | ✅✅✅✅✅✅✅✅✅ |
 | anyOf.json | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | ✅✅✅✅✅✅✅✅ |
 | boolean_schema.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | const.json | 16 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 17 | ✅✅✅✅✅✅✅✅✅✅✅✅✅🦀✅✅✅ |
@@ -56,7 +56,7 @@ _generated 2026-11-22T02:41:23Z_
 | default.json | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅✅ |
 | dependentRequired.json | 2 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈✅✅🙈🙈🙈🙈 |
 | dependentSchemas.json | 0 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈🙈🙈🙈🙈🙈🙈 |
-| dynamicRef.json | 5 | 11 | 0 | 0 | 0 | 0 | 5 | 0 | 21 | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈🙈✅🙈✅✅🙈✅🙈🙈 |
+| dynamicRef.json | 5 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 21 | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈✅🙈✅✅🙈✅🙈🙈 |
 | enum.json | 16 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 17 | ✅✅🚧✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | format-date-time.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | format-date.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
@@ -78,8 +78,8 @@ _generated 2026-11-22T02:41:23Z_
 | format-uri-template.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | format-uri.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
 | format-uuid.json | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 2 | 🚧✅ |
-| id-legacy.json | 25 | 0 | 0 | 0 | 0 | 0 | 15 | 0 | 40 | ❌❌❌❌❌✅✅❌❌❌❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅❌❌❌❌❌❌ |
-| id.json | 16 | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 25 | ❌❌❌❌❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅❌❌❌❌ |
+| id-legacy.json | 35 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 40 | ❌✅✅✅✅✅✅❌❌❌❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
+| id.json | 22 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 25 | ❌✅✅❌❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | if-then-else.json | 4 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅🙈🙈🙈✅🙈🙈🙈🙈🙈 |
 | infinite-loop-detection-legacy.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
 | infinite-loop-detection.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
@@ -100,94 +100,42 @@ _generated 2026-11-22T02:41:23Z_
 | properties.json | 2 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 6 | 🚧🙈🙈✅✅🚧 |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
 | recursiveRef.json | 5 | 4 | 1 | 0 | 0 | 0 | 0 | 0 | 10 | 🙈✅🚧✅✅✅✅🙈🙈🙈 |
-| ref-legacy.json | 9 | 1 | 0 | 0 | 0 | 0 | 4 | 0 | 14 | 🙈✅✅✅✅✅✅✅✅✅❌❌❌❌ |
-| ref.json | 13 | 3 | 1 | 0 | 0 | 0 | 6 | 0 | 23 | 🚧✅🙈✅✅🙈✅✅✅✅✅❌✅🙈✅✅✅✅❌❌❌❌❌ |
+| ref-legacy.json | 13 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 14 | 🙈✅✅✅✅✅✅✅✅✅✅✅✅✅ |
+| ref.json | 19 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 23 | 🚧✅🙈✅✅🙈✅✅✅✅✅✅✅🙈✅✅✅✅✅✅✅✅✅ |
 | required.json | 2 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 5 | 🚧✅✅🙈🤪 |
 | type.json | 10 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 12 | ✅🚧✅✅✅✅✅✅✅✅✅🚧 |
 | unevaluatedItems.json | 13 | 34 | 0 | 0 | 0 | 0 | 0 | 0 | 47 | ✅🙈🙈✅🙈🙈✅✅✅🙈🙈🙈🙈🙈✅✅✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈✅✅🙈🙈🙈🙈 |
 | unevaluatedProperties.json | 15 | 30 | 0 | 0 | 0 | 0 | 0 | 0 | 45 | ✅🙈🙈🙈🙈✅✅🙈🙈✅✅✅✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈✅✅✅🙈✅🙈✅✅🙈🙈🙈🙈🙈🙈 |
 | uniqueItems.json | 3 | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 10 | 🙈✅🙈🙈🙈🙈✅✅🙈🙈 |
-| vocabulary.json | 2 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 4 | 🤪✅🤪✅ |
-| **Total** | **269** | **173** | **42** | **7** | **0** | **1** | **48** | **0** | **540** |  |
+| vocabulary.json | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈✅🙈✅ |
+| **Total** | **304** | **180** | **42** | **5** | **0** | **1** | **8** | **0** | **540** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (48)
+#### ❌ `generation_error` (8)
 
-31 distinct first-line errors; most common:
+3 distinct first-line errors; most common:
 
 - **4×** `schema at index 0: could not resolve $ref "#/definitions/inner": $ref "#/definitions/inner" is not in this schema's registry (the schema is not part of it)`
-- **3×** `schema at index 0: $ref "http://localhost:1234/different-id-ref-string.json" at root ("http://localhost:1234/different-id-ref-string.json") does not resolve: co…`
-- **3×** `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#foo" at root ("http://localhost:1234/locationIndependentIdentifier.json#foo") …`
-- **3×** `schema at index 0: $ref "http://localhost:1234/nested-absolute-ref-to-string.json" at root ("http://localhost:1234/nested-absolute-ref-to-string.json") does not…`
-- **3×** `schema at index 0: $ref "http://localhost:1234/urn-ref-string.json" at root ("http://localhost:1234/urn-ref-string.json") does not resolve: could not retrieve "…`
+- **2×** `schema at index 0: could not resolve $ref "#/$defs/inner": $ref "#/$defs/inner" is not in this schema's registry (the schema is not part of it)`
+- **2×** `schema at index 0: could not resolve $ref "folderInteger.json": $ref "folderInteger.json" is not in this schema's registry (the schema is not part of it)`
 
 Per group:
 
-- `anchor-legacy.json::anchor within remote ref (7)` — `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#foo" at root ("http://localhost:1234/locationIndependentIdentifier.json#foo") …`
-- `anchor-legacy.json::anchor within remote ref (id) (4)` — `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#foo" at root ("http://localhost:1234/locationIndependentIdentifier.json#foo") …`
-- `anchor-legacy.json::Location-independent identifier in remote ref (7)` — `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#/definitions/refToInteger" at root ("http://localhost:1234/locationIndependent…`
-- `anchor-legacy.json::Location-independent identifier in remote ref (id) (4)` — `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#/definitions/refToInteger" at root ("http://localhost:1234/locationIndependent…`
-- `anchor-legacy.json::$ref to $ref finds detached $anchor (7)` — `schema at index 0: $ref "http://localhost:1234/detached-ref.json#/definitions/foo" at root ("http://localhost:1234/detached-ref.json#/definitions/foo") does not…`
-- `anchor-legacy.json::$ref to $ref finds detached $anchor (id) (4)` — `schema at index 0: $ref "http://localhost:1234/detached-ref.json#/definitions/foo" at root ("http://localhost:1234/detached-ref.json#/definitions/foo") does not…`
-- `anchor.json::anchor within remote ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#foo" at root ("http://localhost:1234/locationIndependentIdentifier.json#foo") …`
-- `anchor.json::Location-independent identifier in remote ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/locationIndependentIdentifier.json#/$defs/refToInteger" at root ("http://localhost:1234/locationIndependentIdenti…`
-- `anchor.json::$ref to $ref finds detached $anchor (2020-12)` — `schema at index 0: $ref "http://localhost:1234/detached-ref.json#/$defs/foo" at root ("http://localhost:1234/detached-ref.json#/$defs/foo") does not resolve: co…`
-- `dynamicRef.json::strict-tree schema, guards against misspelled properties (2020) (2020-12)` — `schema at index 0: $ref "tree.json" at root ("http://localhost:1234/tree.json") does not resolve: could not retrieve "http://localhost:1234/tree.json": retrieva…`
-- `dynamicRef.json::tests for implementation dynamic anchor and reference link (2020) (2020-12)` — `schema at index 0: $ref "extendible-dynamic-ref.json" at root ("http://localhost:1234/extendible-dynamic-ref.json") does not resolve: could not retrieve "http:/…`
-- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (2020) (2020-12)` — `schema at index 0: $ref "extendible-dynamic-ref.json" at /allOf/0 ("http://localhost:1234/extendible-dynamic-ref.json") does not resolve: could not retrieve "ht…`
-- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (2020) (2020-12)` — `schema at index 0: $ref "extendible-dynamic-ref.json" at /allOf/1 ("http://localhost:1234/extendible-dynamic-ref.json") does not resolve: could not retrieve "ht…`
-- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (2020) (2020-12)` — `schema at index 0: $ref "http://localhost:1234/detached-dynamicref.json#/$defs/foo" at root ("http://localhost:1234/detached-dynamicref.json#/$defs/foo") does n…`
-- `id-legacy.json::base URI change (4)` — `schema at index 0: $ref "folderInteger.json" at /items/items ("http://localhost:1234/baseUriChange/folderInteger.json") does not resolve: could not retrieve "ht…`
-- `id-legacy.json::base URI change - change folder (7)` — `schema at index 0: $ref "folderInteger.json" at /definitions/baz/items ("http://localhost:1234/baseUriChangeFolder/folderInteger.json") does not resolve: could …`
-- `id-legacy.json::base URI change - change folder (id) (4)` — `schema at index 0: $ref "folderInteger.json" at /definitions/baz/items ("http://localhost:1234/baseUriChangeFolder/folderInteger.json") does not resolve: could …`
-- `id-legacy.json::base URI change - change folder in subschema (7)` — `schema at index 0: $ref "folderInteger.json" at /definitions/baz/definitions/bar/items ("http://localhost:1234/baseUriChangeFolderInSubschema/folderInteger.json…`
-- `id-legacy.json::base URI change - change folder in subschema (id) (4)` — `schema at index 0: $ref "folderInteger.json" at /definitions/baz/definitions/bar/items ("http://localhost:1234/baseUriChangeFolderInSubschema/folderInteger.json…`
+- `id-legacy.json::base URI change (4)` — `schema at index 0: could not resolve $ref "folderInteger.json": $ref "folderInteger.json" is not in this schema's registry (the schema is not part of it)`
 - `id-legacy.json::refs with relative uris and defs (7)` — `schema at index 0: could not resolve $ref "#/definitions/inner": $ref "#/definitions/inner" is not in this schema's registry (the schema is not part of it)`
 - `id-legacy.json::refs with relative uris and defs (id) (4)` — `schema at index 0: could not resolve $ref "#/definitions/inner": $ref "#/definitions/inner" is not in this schema's registry (the schema is not part of it)`
 - `id-legacy.json::relative refs with absolute uris and defs (7)` — `schema at index 0: could not resolve $ref "#/definitions/inner": $ref "#/definitions/inner" is not in this schema's registry (the schema is not part of it)`
 - `id-legacy.json::relative refs with absolute uris and defs (id) (4)` — `schema at index 0: could not resolve $ref "#/definitions/inner": $ref "#/definitions/inner" is not in this schema's registry (the schema is not part of it)`
-- `id-legacy.json::remote HTTP ref with different $id (7)` — `schema at index 0: $ref "http://localhost:1234/different-id-ref-string.json" at root ("http://localhost:1234/different-id-ref-string.json") does not resolve: co…`
-- `id-legacy.json::remote HTTP ref with different id (4)` — `schema at index 0: $ref "http://localhost:1234/different-id-ref-string.json" at root ("http://localhost:1234/different-id-ref-string.json") does not resolve: co…`
-- `id-legacy.json::remote HTTP ref with different URN $id (7)` — `schema at index 0: $ref "http://localhost:1234/urn-ref-string.json" at root ("http://localhost:1234/urn-ref-string.json") does not resolve: could not retrieve "…`
-- `id-legacy.json::remote HTTP ref with different URN id (4)` — `schema at index 0: $ref "http://localhost:1234/urn-ref-string.json" at root ("http://localhost:1234/urn-ref-string.json") does not resolve: could not retrieve "…`
-- `id-legacy.json::remote HTTP ref with nested absolute ref (7)` — `schema at index 0: $ref "http://localhost:1234/nested-absolute-ref-to-string.json" at root ("http://localhost:1234/nested-absolute-ref-to-string.json") does not…`
-- `id-legacy.json::remote HTTP ref with nested absolute ref (id) (4)` — `schema at index 0: $ref "http://localhost:1234/nested-absolute-ref-to-string.json" at root ("http://localhost:1234/nested-absolute-ref-to-string.json") does not…`
-- `id.json::base URI change (2020-12)` — `schema at index 0: $ref "folderInteger.json" at /items/items ("http://localhost:1234/baseUriChange/folderInteger.json") does not resolve: could not retrieve "ht…`
-- `id.json::base URI change - change folder (2020-12)` — `schema at index 0: $ref "folderInteger.json" at /$defs/baz/items ("http://localhost:1234/baseUriChangeFolder/folderInteger.json") does not resolve: could not re…`
-- `id.json::base URI change - change folder in subschema (2020-12)` — `schema at index 0: $ref "folderInteger.json" at /$defs/baz/$defs/bar/items ("http://localhost:1234/baseUriChangeFolderInSubschema/folderInteger.json") does not …`
+- `id.json::base URI change (2020-12)` — `schema at index 0: could not resolve $ref "folderInteger.json": $ref "folderInteger.json" is not in this schema's registry (the schema is not part of it)`
 - `id.json::refs with relative uris and defs (2020-12)` — `schema at index 0: could not resolve $ref "#/$defs/inner": $ref "#/$defs/inner" is not in this schema's registry (the schema is not part of it)`
 - `id.json::relative refs with absolute uris and defs (2020-12)` — `schema at index 0: could not resolve $ref "#/$defs/inner": $ref "#/$defs/inner" is not in this schema's registry (the schema is not part of it)`
-- `id.json::retrieved nested refs resolve relative to their URI not $id (2020-12)` — `schema at index 0: $ref "nested/foo-ref-string.json" at /properties/name ("http://localhost:1234/nested/foo-ref-string.json") does not resolve: could not retrie…`
-- `id.json::remote HTTP ref with different $id (2020-12)` — `schema at index 0: $ref "http://localhost:1234/different-id-ref-string.json" at root ("http://localhost:1234/different-id-ref-string.json") does not resolve: co…`
-- `id.json::remote HTTP ref with different URN $id (2020-12)` — `schema at index 0: $ref "http://localhost:1234/urn-ref-string.json" at root ("http://localhost:1234/urn-ref-string.json") does not resolve: could not retrieve "…`
-- `id.json::remote HTTP ref with nested absolute ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/nested-absolute-ref-to-string.json" at root ("http://localhost:1234/nested-absolute-ref-to-string.json") does not…`
-- `ref-legacy.json::fragment within remote ref (7)` — `schema at index 0: $ref "http://localhost:1234/subSchemas.json#/definitions/integer" at root ("http://localhost:1234/subSchemas.json#/definitions/integer") does…`
-- `ref-legacy.json::ref within remote ref (7)` — `schema at index 0: $ref "http://localhost:1234/subSchemas.json#/definitions/refToInteger" at root ("http://localhost:1234/subSchemas.json#/definitions/refToInte…`
-- `ref-legacy.json::root ref in remote ref (7)` — `schema at index 0: $ref "http://localhost:1234/name.json#/definitions/orNull" at /properties/name ("http://localhost:1234/name.json#/definitions/orNull") does n…`
-- `ref-legacy.json::remote ref with ref to definitions (7)` — `schema at index 0: $ref "http://localhost:1234/ref-and-definitions.json" at /allOf/0 ("http://localhost:1234/ref-and-definitions.json") does not resolve: could …`
-- `ref.json::Recursive references between schemas (2020-12)` — `schema at index 0: $ref "http://localhost:1234/tree" at root ("http://localhost:1234/tree") does not resolve: could not retrieve "http://localhost:1234/tree": r…`
-- `ref.json::remote ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/integer.json" at root ("http://localhost:1234/integer.json") does not resolve: could not retrieve "http://localho…`
-- `ref.json::fragment within remote ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/subSchemas.json#/$defs/integer" at root ("http://localhost:1234/subSchemas.json#/$defs/integer") does not resolve…`
-- `ref.json::ref within remote ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/subSchemas.json#/$defs/refToInteger" at root ("http://localhost:1234/subSchemas.json#/$defs/refToInteger") does n…`
-- `ref.json::root ref in remote ref (2020-12)` — `schema at index 0: $ref "http://localhost:1234/name-defs.json#/$defs/orNull" at /properties/name ("http://localhost:1234/name-defs.json#/$defs/orNull") does not…`
-- `ref.json::remote ref with ref to defs (2020-12)` — `schema at index 0: $ref "http://localhost:1234/ref-and-defs.json" at root ("http://localhost:1234/ref-and-defs.json") does not resolve: could not retrieve "http…`
 
 #### 🦀 `compile_fail` (1)
 
 - `const.json::float and integers are equal up to 64-bit representation limits (2020-12)` — `error: literal out of range for 'i32'`
 
-#### 🤪 `mixed` (7)
-
-6 distinct first-line errors; most common:
-
-- **2×** `accepted 'applicator vocabulary still works' though valid: false`
-- **1×** `accepted 'a single invalid match is invalid' though valid: false`
-- **1×** `accepted 'an additional property is invalid' though valid: false`
-- **1×** `accepted 'too long is invalid' though valid: false`
-- **1×** `accepted 'too short is invalid' though valid: false`
-
-Per group:
+#### 🤪 `mixed` (5)
 
 - `additionalProperties.json::additionalProperties being false does not allow other properties (2020-12)` — `accepted 'an additional property is invalid' though valid: false`
   - cases: an additional property is invalid (accepted), ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected)
@@ -199,10 +147,6 @@ Per group:
   - cases: a single invalid match is invalid (accepted), multiple invalid matches is invalid (accepted), ignores arrays (rejected), ignores strings (rejected), ignores other non-objects (rejected)
 - `required.json::required properties whose names are Javascript object property names (2020-12)` — `ignores arrays: invalid type: sequence, expected a map`
   - cases: ignores arrays (rejected), ignores other non-objects (rejected), none of the properties mentioned (accepted), __proto__ present (accepted), toString present (accepted), constructor present (accepted)
-- `vocabulary.json::schema that uses custom metaschema with no validation vocabulary (recursive anchor) (2019-09)` — `accepted 'applicator vocabulary still works' though valid: false`
-  - cases: applicator vocabulary still works (accepted), no validation: invalid number, but it still validates (rejected)
-- `vocabulary.json::schema that uses custom metaschema with no validation vocabulary (2020-12)` — `accepted 'applicator vocabulary still works' though valid: false`
-  - cases: applicator vocabulary still works (accepted), no validation: invalid number, but it still validates (rejected)
 
 #### 🚧 `false_reject` (42)
 
@@ -301,9 +245,9 @@ Per group:
 - `type.json::type: array, object or null (2020-12)` — `null is valid: data did not match any variant of untagged enum Root`
   - cases: null is valid (rejected)
 
-#### 🙈 `false_accept` (173)
+#### 🙈 `false_accept` (180)
 
-96 distinct first-line errors; most common:
+100 distinct first-line errors; most common:
 
 - **16×** `accepted 'with unevaluated items' though valid: false`
 - **10×** `accepted 'with unevaluated properties' though valid: false`
@@ -385,6 +329,16 @@ Per group:
   - cases: An array containing non-strings is invalid (accepted)
 - `dynamicRef.json::after leaving a dynamic scope, it is not used by a $dynamicRef (2020) (2020-12)` — `accepted 'string matches /$defs/thingy, but the $dynamicRef does not stop here' though valid: false`
   - cases: string matches /$defs/thingy, but the $dynamicRef does not stop here (accepted), first_scope is not in dynamic scope for the $dynamicRef (accepted)
+- `dynamicRef.json::strict-tree schema, guards against misspelled properties (2020) (2020-12)` — `accepted 'instance with misspelled field' though valid: false`
+  - cases: instance with misspelled field (accepted)
+- `dynamicRef.json::tests for implementation dynamic anchor and reference link (2020) (2020-12)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (2020) (2020-12)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (2020) (2020-12)` — `accepted 'incorrect extended schema' though valid: false`
+  - cases: incorrect extended schema (accepted)
+- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (2020) (2020-12)` — `accepted 'non-number is invalid' though valid: false`
+  - cases: non-number is invalid (accepted)
 - `dynamicRef.json::$dynamicRef skips over intermediate resources - direct reference (2020) (2020-12)` — `accepted 'string property fails' though valid: false`
   - cases: string property fails (accepted)
 - `dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered (2020) (2020-12)` — `accepted 'data is not sufficient for schema at second#/$defs/length' though valid: false`
@@ -403,29 +357,19 @@ Per group:
   - cases: invalid through then (accepted)
 - `if-then-else.json::if and else without then (2020-12)` — `accepted 'invalid through else' though valid: false`
   - cases: invalid through else (accepted)
-- `if-then-else.json::validate against correct branch, then vs else (2020-12)` — `accepted 'invalid through then' though valid: false`
-  - cases: invalid through then (accepted), invalid through else (accepted)
-- `if-then-else.json::if with boolean schema true (2020-12)` — `accepted 'boolean schema true in if always chooses the then path (invalid)' though valid: false`
-  - cases: boolean schema true in if always chooses the then path (invalid) (accepted)
-- `if-then-else.json::if with boolean schema false (2020-12)` — `accepted 'boolean schema false in if always chooses the else path (invalid)' though valid: false`
-  - cases: boolean schema false in if always chooses the else path (invalid) (accepted)
-- `if-then-else.json::if appears at the end when serialized (keyword processing sequence) (2020-12)` — `accepted 'no redirects to then and fails' though valid: false`
-  - cases: no redirects to then and fails (accepted), invalid redirects to else and fails (accepted)
-- `if-then-else.json::then: false fails when condition matches (2020-12)` — `accepted 'matches if → then=false → invalid' though valid: false`
-  - cases: matches if → then=false → invalid (accepted)
-- … and 123 more
+- … and 130 more
 
 ## Optional
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 44 | 44 | 6 | 0 | 0 | 0 | 4 | 0 | 98 | 44.9% |
+| 46 | 46 | 6 | 0 | 0 | 0 | 0 | 0 | 98 | 46.9% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 519 | 1000 | 51.9% | 1006 | 51.6% |
+| 523 | 1006 | 52.0% | 1006 | 52.0% |
 
 ### Chart
 
@@ -452,7 +396,7 @@ Per group:
 | format-uuid.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | optional/bignum.json | 4 | 4 | 6 | 0 | 0 | 0 | 0 | 0 | 14 | 🚧✅✅🚧🚧🚧🙈🚧🚧🙈🙈✅🙈✅ |
 | optional/content.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈🙈🙈 |
-| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 4 | ❌❌❌❌ |
+| optional/cross-draft.json | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 🙈🙈✅✅ |
 | optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
 | optional/dynamicRef.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | optional/ecmascript-regex.json | 15 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅🙈🙈🙈🙈🙈 |
@@ -463,16 +407,9 @@ Per group:
 | optional/non-bmp-regex.json | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅🙈 |
 | optional/non-schemas.json | 13 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 13 | ✅✅✅✅✅✅✅✅✅✅✅✅✅ |
 | optional/zero-terminated-floats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **44** | **44** | **6** | **0** | **0** | **0** | **4** | **0** | **98** |  |
+| **Total** | **46** | **46** | **6** | **0** | **0** | **0** | **0** | **0** | **98** |  |
 
 ### Failures
-
-#### ❌ `generation_error` (4)
-
-- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2019) (7)` — `schema at index 0: $ref "http://localhost:1234/draft2019-09/dependentRequired.json" at /allOf/1 ("http://localhost:1234/draft2019-09/dependentRequired.json") do…`
-- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `schema at index 0: $ref "http://localhost:1234/draft2020-12/prefixItems.json" at root ("http://localhost:1234/draft2020-12/prefixItems.json") does not resolve: …`
-- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (7) (2020-12)` — `schema at index 0: $ref "http://localhost:1234/draft7/ignore-dependentRequired.json" at /allOf/1 ("http://localhost:1234/draft7/ignore-dependentRequired.json") …`
-- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `schema at index 0: $ref "http://localhost:1234/draft2019-09/ignore-prefixItems.json" at root ("http://localhost:1234/draft2019-09/ignore-prefixItems.json") does…`
 
 #### 🚧 `false_reject` (6)
 
@@ -498,9 +435,9 @@ Per group:
 - `optional/bignum.json::float comparison with high precision on negative numbers (2020-12)` — `above the exclusive minimum is valid: value -9.727837981879871e+26 is not above exclusiveMinimum -9.727837981879871e+26`
   - cases: above the exclusive minimum is valid (rejected)
 
-#### 🙈 `false_accept` (44)
+#### 🙈 `false_accept` (46)
 
-40 distinct first-line errors; most common:
+42 distinct first-line errors; most common:
 
 - **2×** `accepted 'a slightly smaller decimal is invalid' though valid: false`
 - **2×** `accepted 'ascii non-digits' though valid: false`
@@ -564,6 +501,10 @@ Per group:
   - cases: an invalid base64 string (% is not a valid character) (accepted)
 - `optional/content.json::validation of binary-encoded media type documents (7)` — `accepted 'a validly-encoded invalid JSON document' though valid: false`
   - cases: a validly-encoded invalid JSON document (accepted), an invalid base64 string that is valid JSON (accepted)
+- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2019) (7)` — `accepted 'missing bar is invalid' though valid: false`
+  - cases: missing bar is invalid (accepted)
+- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `accepted 'first item not a string is invalid' though valid: false`
+  - cases: first item not a string is invalid (accepted)
 - `optional/dependencies-compatibility.json::single dependency (2020-12)` — `accepted 'missing dependency' though valid: false`
   - cases: missing dependency (accepted)
 - `optional/dependencies-compatibility.json::multiple dependents required (2020-12)` — `accepted 'missing dependency' though valid: false`

@@ -8,7 +8,7 @@ version is still 0.0.6, so `build.rs` reads both the version and the sha out of
 land in `results/json-schema-rs-0.0.6-8032443/`. Bumping the `rev` starts a
 new results directory.
 
-At 8032443, 269 of 540 Standard groups pass (49.8%), 44 of 98 Optional, 4 of
+At 8032443, 304 of 540 Standard groups pass (56.3%), 46 of 98 Optional, 4 of
 5 Compound, and none of the 25 Upcoming: the glue has no `SpecVersion` for
 `v1`, so each of those is a `generation_error` naming the dialect.
 
@@ -157,9 +157,10 @@ rust-batch spawns for the batch crate uses 1.100.0 too. To run the unit tests:
 - `generate_rust` takes `impl Into<CodeGenInput>` (PR #71); a `&[JsonSchema]`
   still converts, with no retrieval URI and the default `OfflineRetriever`,
   so a `$ref` to another document is an error naming the URI, as before.
+  `CodeGenInput::retriever` swaps in anything that implements `Retrieve`,
+  which is how the group's `externalSchemas` get in (see Remote references).
   `HttpRetriever` is behind an `http` feature that is off by default and
-  isn't enabled here: the suite's `localhost:1234` refs are left to fail by
-  policy, and that is also the tool's default.
+  isn't enabled here: nothing is fetched.
 - `CodeGenSettings`, `DedupeMode` and `GenerateRustOutput`
   keep their shape; `CodeGenSettings` gained `unknown_properties` (left at
   `None`: follow each schema's `additionalProperties`). Shared items are now
@@ -205,8 +206,8 @@ override an embedded resource's `$schema`, which the spec says it must not. For
 the suite the two agree at every root. The suite's schemas carry no `$schema`,
 so the dialect comes only from the harness's `draft` field, which the glue maps
 to `default_spec_version`; the six that do carry one name a custom
-`localhost:1234` metaschema the crate can't load, and it falls back to the
-default.
+`localhost:1234` metaschema, which the crate loads through the retriever like
+any other document (see Remote references).
 
 Unlike 0.0.6, the dialect is live: a unit test (`the_dialect_is_live`) pins
 that a draft-4 boolean `exclusiveMaximum` changes the output.
@@ -227,6 +228,38 @@ mode produces a shared buffer (only items used by two or more schemas are
 shared); the glue errors if one shows up, and none did across the suite. A
 full run with `Disabled` at this pin gave the same bucket and case outcomes
 in every group.
+
+## Remote references
+
+The crate has a facility for this: `CodeGenInput::retriever` takes anything
+that implements `Retrieve`, and the crate ships an impl for
+`BTreeMap<String, serde_json::Value>`. So a group with `externalSchemas` gets
+them as that map, built fresh for each item (the same URI can mean different
+documents in different groups), and a group without any keeps the default
+`OfflineRetriever`. The map is looked up by exact key, and the registry asks
+it only for absolute, fragment-free, normalised URIs (lower-case scheme and
+host, no default port), which the suite's keys already are. Anything not in
+the map is refused with an error naming the URI. The registry asks the
+retriever for custom `$schema` metaschemas too, not just `$ref` targets.
+
+With the registry, 44 groups with external documents generate. In Standard, 35
+remote-ref groups pass (`ref`, `anchor`, `id` and their legacy twins, a `$id`
+that differs from the retrieval URI, a URN `$id`, a relative ref resolved
+against the retrieved document's URI rather than its `$id`), and the five
+2020-12 `dynamicRef.json` groups with an external document are false accepts:
+the documents load, and the types don't check `$dynamicRef`. In Optional,
+`optional/cross-draft.json` is two passes (refs to historic drafts) and two
+false accepts (refs to future drafts, where a `dependentRequired` or
+`prefixItems` in the retrieved document goes unchecked). The two
+`vocabulary.json` "no validation vocabulary" groups (2019-09) are false accept:
+with the metaschema loaded, the crate honors its `$vocabulary` and drops
+`minimum`, so the number that the spec calls valid passes, and `badProperty:
+false` is accepted. The two `format-assertion` groups and the "ignore
+unrecognized optional vocabulary" pair pass.
+
+What's left is `id.json::base URI change` and its draft 4 twin, which carry
+an external document and never reach it: the `$ref` sits under an embedded
+`$id` and hits the registry bug in Notes.
 
 ## The root type's name
 
@@ -276,17 +309,17 @@ run time. Three cases, and they don't check the same things:
 - **An untyped schema is an alias with no validator.** `{"not": {...}}`,
   `{"contains": {...}}`, `{"if": ..., "then": ...}`, `{"propertyNames": ...}`
   and the like come out as `pub type Root = serde_json::Value;`, and an alias
-  gets no `TYPE_VALIDATORS`, no `validate` and no `TryFrom`. 199 of the 532
-  modules are aliases; 141 of those are `serde_json::Value`. (A root map or
+  gets no `TYPE_VALIDATORS`, no `validate` and no `TryFrom`. 218 of the 576
+  modules are aliases; 142 of those are `serde_json::Value`. (A root map or
   array is a self-validating newtype, not an alias.)
 
 The harness calls `serde_json::from_value::<Root>(v)`, the same entry point as
 every other Rust row, because that's what a program that deserializes into the
-generated types gets. Of the 173 Standard false accepts, 95 have a
+generated types gets. Of the 180 Standard false accepts, 96 have a
 `serde_json::Value` alias root, so no entry point would catch them:
 `unevaluatedItems` (27), `contains` (15), `if-then-else` (8), `items` (8),
 `dependentRequired` (6), `dependentSchemas` (6), `not` (6),
-`propertyNames` (5) and a handful more. The other 78 have a typed root and
+`propertyNames` (5) and a handful more. The other 84 have a typed root and
 are led by `unevaluatedProperties` (28). A reviewer's one-off run at
 1d1774d, against suite 1.041, with `TryFrom<Value>` on every root that
 implements it (not kept) turned 79 required groups to pass across all
@@ -340,14 +373,12 @@ macro crate now enables syn's `full` feature itself.
 
 ## Notes
 
-- 48 Standard groups are a `generation_error`: 42 are remote refs
-  (`localhost:1234`; the group's `externalSchemas` are ignored and the refs
-  left to fail, by policy), and 6 are `id.json::refs with relative uris and
-  defs` and `id.json::relative refs with absolute uris and defs` (2020-12)
-  and their four `id-legacy.json` twins (draft 7, and draft 4 with `id`),
-  where a `$ref` inside an embedded resource with its own `$id` fails to
-  resolve: "is not in this schema's registry". The four Optional ones are
-  `optional/cross-draft.json`, all remote refs. Boolean documents generate:
+- 8 Standard groups are a `generation_error`, all one bug: a `$ref` inside
+  an embedded resource with its own `$id` fails to resolve, "is not in this
+  schema's registry". That's `id.json::refs with relative uris and defs`,
+  `id.json::relative refs with absolute uris and defs` and `id.json::base
+  URI change` (2020-12) and their `id-legacy.json` twins (draft 7 and draft
+  4). No Optional group is. Boolean documents generate:
   `true` is `pub type Root = serde_json::Value;`, `false` an uninhabited
   enum.
 - Recursion works. The self-recursive schema that hung 0.0.6 comes out as
@@ -380,7 +411,7 @@ macro crate now enables syn's `full` feature itself.
   `#[json_schema(value = 9007199254740992)]` into an `i32` literal, and the
   backend's own `Serialize`/`Deserialize` impls write
   `serde_json::json!(9007199254740992)`, which is inferred as `i32` too.
-- Against typify 0.10.1 on Standard: json-schema-rs 269, typify 135. typify
+- Against typify 0.10.1 on Standard: json-schema-rs 304, typify 135. typify
   still wins eleven groups outright: `not` (forbidden property, forbid
   everything with an empty or `true` schema), `propertyNames` with `pattern`
   or `enum`, `additionalProperties` not looking in applicators and its

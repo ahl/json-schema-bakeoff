@@ -3,6 +3,7 @@
 use json_schema_rs::{
     CodeGenInput, CodeGenSettings, JsonSchemaSettings, Schema, SpecVersion, generate_rust,
 };
+use std::collections::BTreeMap;
 use std::sync::mpsc::RecvTimeoutError;
 use std::sync::Mutex;
 use std::sync::atomic::{AtomicUsize, Ordering};
@@ -79,19 +80,28 @@ pub fn spec_version(draft: Option<&str>) -> Result<SpecVersion, String> {
     }
 }
 
-/// Run json-schema-rs on a schema.
+/// The documents a group's remote references name, keyed by retrieval URI.
+pub type ExternalSchemas = BTreeMap<String, serde_json::Value>;
+
+/// Run json-schema-rs on a schema, with `external` as the only documents its
+/// `$ref`s may retrieve.
 ///
 /// Runs on a dedicated thread with a large stack and catches panics. A
 /// generation that exceeds `timeout` is abandoned (the thread is leaked) and
 /// recorded as a panic.
-pub fn generate(schema: &serde_json::Value, spec: SpecVersion, timeout: Duration) -> GenOutcome {
+pub fn generate(
+    schema: &serde_json::Value,
+    external: Option<ExternalSchemas>,
+    spec: SpecVersion,
+    timeout: Duration,
+) -> GenOutcome {
     let schema_value = schema.clone();
     let (tx, rx) = std::sync::mpsc::channel();
     std::thread::Builder::new()
         .name("generate".to_string())
         .stack_size(256 * 1024 * 1024)
         .spawn(move || {
-            let _ = tx.send(generate_inner(schema_value, spec));
+            let _ = tx.send(generate_inner(schema_value, external, spec));
         })
         .expect("spawn generation thread");
     match rx.recv_timeout(timeout) {
@@ -112,6 +122,7 @@ pub fn generate(schema: &serde_json::Value, spec: SpecVersion, timeout: Duration
 /// record instead.
 fn generate_inner(
     schema_value: serde_json::Value,
+    external: Option<ExternalSchemas>,
     spec: SpecVersion,
 ) -> Result<(String, String), GenOutcome> {
     // Panics are captured by a hook installed once (see `install_hook`), and
@@ -129,9 +140,18 @@ fn generate_inner(
         let parsed = Schema::new_from_serde_value(&schema_value, &settings).map_err(|e| e.to_string())?;
         // The codegen input carries the same settings: they are what any
         // document a `$ref` retrieves is parsed with (the crate's CLI passes
-        // its parse settings there too). The retriever is the default
-        // `OfflineRetriever`, so a remote ref fails, as policy wants.
-        let input = CodeGenInput::new().schema(&parsed).settings(settings);
+        // its parse settings there too).
+        let mut input = CodeGenInput::new().schema(&parsed).settings(settings);
+        // A group with external schemas gets them as the retriever: the
+        // crate's `BTreeMap` impl looks a URI up by exact key and refuses
+        // anything else, and it is asked only for absolute, fragment-free,
+        // normalised URIs, which is the form the suite's keys are already in.
+        // It serves custom `$schema` metaschemas as well as `$ref` targets.
+        // A group without any keeps the default `OfflineRetriever`, so a
+        // remote ref fails.
+        if let Some(external) = external {
+            input = input.retriever(external);
+        }
         // `CodeGenSettings` defaults throughout, `DedupeMode::Full`
         // included. Earlier pins used `Disabled` to keep a merge from folding
         // the root into an identical `$defs` entry and fooling the glue's
@@ -215,7 +235,7 @@ mod tests {
     const SPEC: SpecVersion = SpecVersion::Draft07;
 
     fn code_and_root(v: serde_json::Value) -> (String, String) {
-        match generate(&v, SPEC, T) {
+        match generate(&v, None, SPEC, T) {
             GenOutcome::Code { code, root } => (code, root),
             other => panic!("{other:?}"),
         }
@@ -319,9 +339,43 @@ mod tests {
             "properties": {"a": {"type": "integer", "minimum": 0, "maximum": 300, "exclusiveMaximum": true}}
         });
         assert_ne!(
-            generate(&schema, SpecVersion::Draft04, T),
-            generate(&schema, SpecVersion::Draft07, T)
+            generate(&schema, None, SpecVersion::Draft04, T),
+            generate(&schema, None, SpecVersion::Draft07, T)
         );
+    }
+
+    fn external(uri: &str, doc: serde_json::Value) -> Option<ExternalSchemas> {
+        Some(BTreeMap::from([(uri.to_string(), doc)]))
+    }
+
+    /// A `$ref` into a supplied document resolves, an unsupplied URI is
+    /// refused with a message naming it, and the documents are scoped to the
+    /// call: the same URI can mean different documents for different groups.
+    #[test]
+    fn external_schemas_are_retrieved_by_key_and_scoped_per_call() {
+        const URI: &str = "http://localhost:1234/thing.json";
+        let schema = serde_json::json!({
+            "type": "object",
+            "properties": {"a": {"$ref": "http://localhost:1234/thing.json#/$defs/a"}}
+        });
+        let int = external(URI, serde_json::json!({"$defs": {"a": {"type": "integer"}}}));
+        let string = external(URI, serde_json::json!({"$defs": {"a": {"type": "string"}}}));
+
+        let GenOutcome::Code { code: int_code, .. } = generate(&schema, int, SPEC, T) else {
+            panic!("integer document")
+        };
+        let GenOutcome::Code { code: string_code, .. } = generate(&schema, string, SPEC, T) else {
+            panic!("string document")
+        };
+        assert_ne!(int_code, string_code);
+        assert!(string_code.contains("String"), "{string_code}");
+
+        for supplied in [None, external("http://localhost:1234/other.json", serde_json::json!({}))] {
+            match generate(&schema, supplied, SPEC, T) {
+                GenOutcome::Error(m) => assert!(m.contains(URI), "{m}"),
+                other => panic!("{other:?}"),
+            }
+        }
     }
 
     #[test]

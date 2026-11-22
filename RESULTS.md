@@ -8,9 +8,9 @@ Standard is the suite outside `optional/`, less the format cases tagged `format-
 
 | | Standard | Optional | Compound | Generated |
 |---|:---:|:---:|:---:|---|
-| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 49.8% | 44.9% | 80.0% | 2026-11-22T02:41:23Z |
+| [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 56.3% | 46.9% | 80.0% | 2026-11-22T03:39:29Z |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 65.3% | 100.0% | 2026-11-22T01:59:39Z |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 35.7% | 13.3% | 0.0% | 2026-11-22T02:30:55Z |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 40.0% | 14.3% | 0.0% | 2026-11-22T03:39:13Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 23.3% | 10.2% | 0.0% | 2026-11-22T02:41:27Z |
 | [typify 0.10.1](results/typify-0.10.1/README.md) | 25.0% | 28.6% | 20.0% | 2026-11-22T01:57:31Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 24.6% | 24.5% | 20.0% | 2026-11-22T01:57:36Z |
@@ -20,11 +20,11 @@ Standard is the suite outside `optional/`, less the format cases tagged `format-
 | | Standard | Optional | Compound | Generated |
 |---|:---:|:---:|:---:|---|
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 92.2% | 48.0% | 100.0% | 2026-11-22T02:30:50Z |
-| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 2.6% | 10.2% | 0.0% | 2026-11-22T02:41:34Z |
+| [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 2.6% | 10.2% | 0.0% | 2026-11-22T03:50:44Z |
 | [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 32.0% | 22.4% | 80.0% | 2026-11-22T02:41:31Z |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 18.7% | 25.5% | 80.0% | 2026-11-22T02:41:40Z |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 38.7% | 13.3% | 40.0% | 2026-11-22T02:31:01Z |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 18.7% | 8.2% | 0.0% | 2026-11-22T02:30:57Z |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 19.1% | 25.5% | 80.0% | 2026-11-22T03:50:51Z |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 43.0% | 14.3% | 40.0% | 2026-11-22T03:39:20Z |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 23.0% | 9.2% | 0.0% | 2026-11-22T03:39:16Z |
 | [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 10.9% | 15.3% | 100.0% | 2026-11-22T02:41:30Z |
 
 ## Upcoming
@@ -35,16 +35,16 @@ Cases the suite marks for features of the unreleased JSON Schema v1, run under d
 |---|:---:|---|
 | [json-schema-rs 0.0.6+8032443](results/json-schema-rs-0.0.6-8032443/README.md) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
-| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 12.0% | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈🙈🙈❌🙈🙈🙈✅✅🙈🙈🙈🙈🙈 |
+| [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 12.0% | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈❌🙈🙈🙈✅✅🙈🙈🙈🙈🙈 |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 8.0% | 🙈🤯🤯🤯🙈🤯🤯🤯🤯🤯🦀🤯🙈🙈🦀🙈🙈🙈✅✅🙈🙈🙈🤯🤯 |
 | [typify 0.10.1](results/typify-0.10.1/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
 | [go-jsonschema v0.24.1 (go)](results/go-jsonschema-v0.24.1/README.md) | 0.0% | 🙈🦀❌🦀❌🦀🦀🦀🦀🦀❌🦀🦀🦀❌🦀❌❌❌❌❌🦀🦀🦀🦀 |
 | [json-schema-to-zod 2.8.1 + zod 4.6.7 (ts)](results/json-schema-to-zod-2.8.1-zod-4.6.7/README.md) | 12.0% | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈✅✅🙈🙈🙈🙈🙈 |
-| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 8.0% | 🙈❌❌❌🙈❌❌❌❌❌❌❌🦀🦀❌🙈🙈🙈✅✅🙈🙈🙈❌❌ |
-| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 16.0% | 🙈🙈🙈✅🙈❌❌❌❌❌🙈🙈🙈🙈❌✅🙈🙈✅✅🙈🚧🚧🙈🚧 |
-| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 4.0% | 🙈🙈🙈✅🦀❌❌❌❌❌🙈🦀🦀🦀❌🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈 |
+| [ogen v1.24.0 (go)](results/ogen-v1.24.0/README.md) | 8.0% | 🙈❌❌❌🙈❌❌❌❌🦀❌❌🦀🦀❌🙈🙈🙈✅✅🙈🙈🙈❌❌ |
+| [quicktype 26.0.0 (ts)](results/quicktype-26.0.0-typescript/README.md) | 16.0% | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈❌✅🙈🙈✅✅🙈🚧🚧🙈🚧 |
+| [quicktype 26.0.0 (go)](results/quicktype-26.0.0-go/README.md) | 4.0% | 🙈🙈🙈✅🦀🙈🙈🙈🙈🦀🙈🦀🦀🦀❌🙈🦀🦀🦀🦀🦀🙈🙈🙈🙈 |
 | [typebox 0.34.52 + schema2typebox 1.7.8 (ts)](results/typebox-0.34.52-schema2typebox-1.7.8/README.md) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
 
 ## The tools

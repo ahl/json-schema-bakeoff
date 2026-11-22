@@ -7,9 +7,9 @@ with the schema as a component (3.1 schema objects are JSON Schema 2020-12,
 so nothing is translated), and the check calls both `Decode` and
 `Validate`.
 
-_generated 2026-11-22T02:41:40Z_
+_generated 2026-11-22T03:50:51Z_
 
-**101 of 540 standard groups pass (18.7%)**
+**103 of 540 standard groups pass (19.1%)**
 
 | | bucket | meaning |
 |---|---|---|
@@ -26,13 +26,13 @@ _generated 2026-11-22T02:41:40Z_
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 101 | 220 | 2 | 0 | 0 | 31 | 186 | 0 | 540 | 18.7% |
+| 103 | 220 | 2 | 0 | 0 | 46 | 169 | 0 | 540 | 19.1% |
 
 ### Per-case match rate
 
 | Matched | Reached run | Rate (reached) | Total cases | Rate (all) |
 |---:|---:|---:|---:|---:|
-| 718 | 1066 | 67.4% | 1664 | 43.1% |
+| 724 | 1072 | 67.5% | 1664 | 43.5% |
 
 ### Chart
 
@@ -50,7 +50,7 @@ _generated 2026-11-22T02:41:40Z_
 | default.json | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | ✅✅🚧 |
 | dependentRequired.json | 2 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈✅✅🙈🙈🙈🙈 |
 | dependentSchemas.json | 0 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 8 | 🙈🙈🙈🙈🙈🙈🙈🙈 |
-| dynamicRef.json | 0 | 5 | 0 | 0 | 0 | 0 | 16 | 0 | 21 | 🙈❌❌❌🙈❌❌❌❌❌❌❌🙈❌❌❌❌❌❌🙈🙈 |
+| dynamicRef.json | 0 | 5 | 0 | 0 | 0 | 1 | 15 | 0 | 21 | 🙈❌❌❌🙈❌❌❌❌🦀❌❌🙈❌❌❌❌❌❌🙈🙈 |
 | enum.json | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 17 | 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈 |
 | format-date-time.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | format-date.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
@@ -72,8 +72,8 @@ _generated 2026-11-22T02:41:40Z_
 | format-uri-template.json | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | ✅✅ |
 | format-uri.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
 | format-uuid.json | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 2 | 🦀🦀 |
-| id-legacy.json | 0 | 10 | 0 | 0 | 0 | 2 | 28 | 0 | 40 | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌🙈🙈🙈🙈🙈🙈🙈🙈❌❌❌❌🦀🙈🦀🙈❌❌❌❌❌❌❌❌ |
-| id.json | 0 | 4 | 0 | 0 | 0 | 2 | 19 | 0 | 25 | ❌❌❌❌❌❌❌❌❌❌❌❌🙈🙈🙈🙈❌❌🦀🦀❌❌❌❌❌ |
+| id-legacy.json | 0 | 10 | 0 | 0 | 0 | 6 | 24 | 0 | 40 | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌🙈🙈🙈🙈🙈🙈🙈🙈❌❌❌❌🦀🙈🦀🙈❌❌🦀🦀🦀🦀❌❌ |
+| id.json | 0 | 4 | 0 | 0 | 0 | 4 | 17 | 0 | 25 | ❌❌❌❌❌❌❌❌❌❌❌❌🙈🙈🙈🙈❌❌🦀🦀❌❌🦀🦀❌ |
 | if-then-else.json | 4 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | ✅✅✅🙈🙈🙈✅🙈🙈🙈🙈🙈 |
 | infinite-loop-detection-legacy.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
 | infinite-loop-detection.json | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 🙈 |
@@ -94,27 +94,27 @@ _generated 2026-11-22T02:41:40Z_
 | properties.json | 1 | 4 | 0 | 0 | 0 | 0 | 1 | 0 | 6 | 🙈🙈❌🙈✅🙈 |
 | propertyNames.json | 1 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 🙈🙈✅🙈🙈🙈 |
 | recursiveRef.json | 1 | 8 | 0 | 0 | 0 | 0 | 1 | 0 | 10 | 🙈🙈✅🙈🙈🙈🙈🙈🙈❌ |
-| ref-legacy.json | 0 | 7 | 0 | 0 | 0 | 0 | 7 | 0 | 14 | 🙈❌🙈🙈🙈🙈❌❌🙈🙈❌❌❌❌ |
-| ref.json | 0 | 8 | 0 | 0 | 0 | 6 | 9 | 0 | 23 | 🙈🙈🙈❌🦀🙈🙈🙈🙈❌❌❌🙈🦀🦀🦀🦀🦀❌❌❌❌❌ |
+| ref-legacy.json | 1 | 7 | 0 | 0 | 0 | 3 | 3 | 0 | 14 | 🙈❌🙈🙈🙈🙈❌❌🙈🙈🦀🦀✅🦀 |
+| ref.json | 1 | 8 | 0 | 0 | 0 | 11 | 3 | 0 | 23 | 🙈🙈🙈❌🦀🙈🙈🙈🙈❌❌🦀🙈🦀🦀🦀🦀🦀🦀🦀🦀✅🦀 |
 | required.json | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 5 | 🙈✅✅🙈🙈 |
 | type.json | 8 | 0 | 1 | 0 | 0 | 0 | 3 | 0 | 12 | ✅🚧✅✅✅✅✅✅✅❌❌❌ |
 | unevaluatedItems.json | 8 | 20 | 0 | 0 | 0 | 2 | 17 | 0 | 47 | ✅🙈🙈✅🙈🙈❌✅🙈🙈🙈❌🙈❌❌✅✅✅❌❌❌❌🙈🙈🙈🙈❌🦀❌🦀❌❌❌🙈❌❌❌🙈🙈🙈🙈✅✅🙈🙈🙈❌ |
 | unevaluatedProperties.json | 9 | 20 | 0 | 0 | 0 | 2 | 14 | 0 | 45 | ✅🙈🙈🙈🙈✅✅🙈❌✅✅❌❌🙈🙈🙈🙈🙈❌🦀🦀❌❌❌❌✅✅🙈🙈🙈🙈❌❌❌❌❌❌✅✅🙈🙈🙈🙈🙈🙈 |
 | uniqueItems.json | 3 | 1 | 0 | 0 | 0 | 0 | 6 | 0 | 10 | ❌✅❌❌❌❌✅✅❌🙈 |
 | vocabulary.json | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 4 | ❌✅❌✅ |
-| **Total** | **101** | **220** | **2** | **0** | **0** | **31** | **186** | **0** | **540** |  |
+| **Total** | **103** | **220** | **2** | **0** | **0** | **46** | **169** | **0** | **540** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (186)
+#### ❌ `generation_error` (169)
 
-101 distinct first-line errors; most common:
+92 distinct first-line errors; most common:
 
 - **22×** `json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType "json:\"type\"" }`
 - **11×** `callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType "json:\"type\"" }`
 - **9×** `unexpected type bool`
-- **6×** `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
 - **5×** `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
+- **4×** `make ir: operations: path "/": post: requestBody: contents: media: "application/json": generate schema: Root: oneOf: collect variants: Root: sum types with same…`
 
 Per group:
 
@@ -131,10 +131,10 @@ Per group:
 - `anchor-legacy.json::URN base URI with URN and anchor ref (id) (4)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": property "foo": $ref: resolve "urn:uuid:deadbeef-1234-ff00-00ff-4321…`
 - `anchor-legacy.json::anchor within remote ref (7)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
 - `anchor-legacy.json::anchor within remote ref (id) (4)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
-- `anchor-legacy.json::Location-independent identifier in remote ref (7)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
-- `anchor-legacy.json::Location-independent identifier in remote ref (id) (4)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
-- `anchor-legacy.json::$ref to $ref finds detached $anchor (7)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-ref.json#/definitions/…`
-- `anchor-legacy.json::$ref to $ref finds detached $anchor (id) (4)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-ref.json#/definitions/…`
+- `anchor-legacy.json::Location-independent identifier in remote ref (7)` — `parse spec: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.json#/def…`
+- `anchor-legacy.json::Location-independent identifier in remote ref (id) (4)` — `parse spec: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.json#/def…`
+- `anchor-legacy.json::$ref to $ref finds detached $anchor (7)` — `parse spec: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-ref.json#/definitions/foo": at…`
+- `anchor-legacy.json::$ref to $ref finds detached $anchor (id) (4)` — `parse spec: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-ref.json#/definitions/foo": at…`
 - `anchor.json::Location-independent identifier (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "#foo": resolve: invalid pointer "foo": pointer must s…`
 - `anchor.json::Location-independent identifier with absolute URI (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/bar#foo": get "http://localhost…`
 - `anchor.json::Location-independent identifier with base URI change in subschema (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/nested.json#foo": get "http://l…`
@@ -142,8 +142,8 @@ Per group:
 - `anchor.json::Reference an anchor with a non-relative URI (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": allOf: $ref: resolve "https://example.com/schema-with-anchor#foo": g…`
 - `anchor.json::URN base URI with URN and anchor ref (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": property "foo": $ref: resolve "urn:uuid:deadbeef-1234-ff00-00ff-4321…`
 - `anchor.json::anchor within remote ref (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
-- `anchor.json::Location-independent identifier in remote ref (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.j…`
-- `anchor.json::$ref to $ref finds detached $anchor (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-ref.json#/$defs/foo": …`
+- `anchor.json::Location-independent identifier in remote ref (2020-12)` — `parse spec: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/locationIndependentIdentifier.json#/$de…`
+- `anchor.json::$ref to $ref finds detached $anchor (2020-12)` — `parse spec: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-ref.json#/$defs/foo": at http:…`
 - `anyOf.json::anyOf (2020-12)` — `make ir: operations: path "/": post: requestBody: contents: media: "application/json": generate schema: Root: anyOf: complex anyOf not implemented`
 - `anyOf.json::anyOf with base schema (2020-12)` — `make ir: operations: path "/": post: requestBody: contents: media: "application/json": generate schema: Root: anyOf: collect variants: Root: sum types with same…`
 - `anyOf.json::anyOf with boolean schemas, all true (2020-12)` — `json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType "json:\"type\"" }`
@@ -156,11 +156,10 @@ Per group:
 - `dynamicRef.json::A $dynamicRef resolves to the first $dynamicAnchor still in scope that is encountered when the schema is evaluated (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
 - `dynamicRef.json::A $dynamicRef with intermediate scopes that don't include a matching $dynamicAnchor does not affect dynamic scope resolution (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "intermediate-scope": get "jsonschema://dummy/intermed…`
 - `dynamicRef.json::An $anchor with the same name as a $dynamicAnchor is not used for dynamic scope resolution (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
-- `dynamicRef.json::strict-tree schema, guards against misspelled properties (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "tree.json": get "jsonschema://dummy/tree.json": exter…`
+- `dynamicRef.json::strict-tree schema, guards against misspelled properties (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "tree.json": get "jsonschema://dummy/tree.json": unsup…`
 - `dynamicRef.json::tests for implementation dynamic anchor and reference link (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "extendible-dynamic-ref.json": get "jsonschema://dummy…`
 - `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": allOf: $ref: resolve "extendible-dynamic-ref.json": get "jsonschema:…`
 - `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": allOf: $ref: resolve "extendible-dynamic-ref.json": get "jsonschema:…`
-- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-dynamicref.json#/$defs…`
 - `dynamicRef.json::$dynamicRef skips over intermediate resources - direct reference (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": property "bar-item": $ref: resolve "item": get "jsonschema://dummy/i…`
 - `dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "first#/$defs/stuff": get "jsonschema://dummy/first": …`
 - `dynamicRef.json::A $ref to a $dynamicAnchor in the same schema resource behaves like a normal $ref to an $anchor (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": items: $ref: resolve "#items": resolve: invalid pointer "items": poi…`
@@ -168,11 +167,12 @@ Per group:
 - `dynamicRef.json::A $dynamicRef without a matching $dynamicAnchor in the same schema resource behaves like a normal $ref to $anchor (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
 - `dynamicRef.json::A $dynamicRef with a non-matching $dynamicAnchor in the same schema resource behaves like a normal $ref to $anchor (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
 - `dynamicRef.json::A $dynamicRef that initially resolves to a schema with a matching $dynamicAnchor resolves to the first $dynamicAnchor in the dynamic scope (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "extended": get "jsonschema://dummy/extended": externa…`
-- … and 136 more
+- `dynamicRef.json::A $dynamicRef that initially resolves to a schema without a matching $dynamicAnchor behaves like a normal $ref to $anchor (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "extended": get "jsonschema://dummy/extended": externa…`
+- … and 119 more
 
-#### 🦀 `compile_fail` (31)
+#### 🦀 `compile_fail` (46)
 
-21 distinct first-line errors; most common:
+36 distinct first-line errors; most common:
 
 - **2×** `g_0b026108eff52b4f/g_0b026108eff52b4f.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 - **2×** `g_4dd3df819e7eb4f1/g_4dd3df819e7eb4f1.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment`
@@ -183,6 +183,7 @@ Per group:
 Per group:
 
 - `allOf.json::allOf combined with anyOf, oneOf (2020-12)` — `g_a7bc76f46069b836/g_a7bc76f46069b836.go:16:8: undefined: Root`
+- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (2020) (2020-12)` — `g_a12eed5112fa16c3/g_a12eed5112fa16c3.go:62:8: undefined: Root`
 - `format-date-time.json::validation of non-string date-time values (2020-12)` — `g_0b026108eff52b4f/g_0b026108eff52b4f.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 - `format-date-time.json::date-time annotation (2020-12)` — `g_0b026108eff52b4f/g_0b026108eff52b4f.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 - `format-date.json::validation of non-string date values (2020-12)` — `g_88b9c2f9d0ec847f/g_88b9c2f9d0ec847f.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
@@ -201,14 +202,28 @@ Per group:
 - `format-uuid.json::uuid format annotation (2020-12)` — `g_57098af8ea6b76df/g_57098af8ea6b76df.go:31:15: cannot use v (variable of array type "github.com/google/uuid".UUID) as jx.Raw value in assignment`
 - `id-legacy.json::$id with file URI still resolves pointers - *nix (7)` — `g_e4fafaf8d41a434b/g_e4fafaf8d41a434b.go:69:8: undefined: Root`
 - `id-legacy.json::$id with file URI still resolves pointers - windows (7)` — `g_af990e863765fa73/g_af990e863765fa73.go:69:8: undefined: Root`
+- `id-legacy.json::remote HTTP ref with different $id (7)` — `g_0376d715b3d422d7/g_0376d715b3d422d7.go:60:8: undefined: Root`
+- `id-legacy.json::remote HTTP ref with different id (4)` — `g_e498812f5597f232/g_e498812f5597f232.go:62:8: undefined: Root`
+- `id-legacy.json::remote HTTP ref with different URN $id (7)` — `g_2b374d25e8bbec94/g_2b374d25e8bbec94.go:60:8: undefined: Root`
+- `id-legacy.json::remote HTTP ref with different URN id (4)` — `g_9318008771c96500/g_9318008771c96500.go:62:8: undefined: Root`
 - `id.json::$id with file URI still resolves pointers - *nix (2020-12)` — `g_917206b598ca401a/g_917206b598ca401a.go:69:8: undefined: Root`
 - `id.json::$id with file URI still resolves pointers - windows (2020-12)` — `g_0381fb7eb15b7547/g_0381fb7eb15b7547.go:69:8: undefined: Root`
+- `id.json::remote HTTP ref with different $id (2020-12)` — `g_713b64c9c6362842/g_713b64c9c6362842.go:60:8: undefined: Root`
+- `id.json::remote HTTP ref with different URN $id (2020-12)` — `g_bab529aafd4d0684/g_bab529aafd4d0684.go:60:8: undefined: Root`
+- `ref-legacy.json::fragment within remote ref (7)` — `g_1e2d98a186df87f1/g_1e2d98a186df87f1.go:60:8: undefined: Root`
+- `ref-legacy.json::ref within remote ref (7)` — `g_d25ea1d56472b0bd/g_d25ea1d56472b0bd.go:60:8: undefined: Root`
+- `ref-legacy.json::remote ref with ref to definitions (7)` — `g_a1fe8da9cd3bc9df/g_a1fe8da9cd3bc9df.go:62:8: undefined: Root`
 - `ref.json::nested refs (2020-12)` — `g_3691cf520f18fe7a/g_3691cf520f18fe7a.go:60:8: undefined: Root`
+- `ref.json::Recursive references between schemas (2020-12)` — `g_abb593c156ddac2c/g_abb593c156ddac2c.go:571:8: undefined: Root`
 - `ref.json::ref creates new scope when adjacent to keywords (2020-12)` — `g_d295a5390dba3f7d/g_d295a5390dba3f7d.go:62:8: undefined: Root`
 - `ref.json::ref to if (2020-12)` — `g_6c0224fec4f4216a/g_6c0224fec4f4216a.go:60:8: undefined: Root`
 - `ref.json::ref to then (2020-12)` — `g_4612667e7ba2171c/g_4612667e7ba2171c.go:60:8: undefined: Root`
 - `ref.json::ref to else (2020-12)` — `g_5733ce677d191b67/g_5733ce677d191b67.go:60:8: undefined: Root`
 - `ref.json::empty tokens in $ref json-pointer (2020-12)` — `g_f86ad1ddbf085ad9/g_f86ad1ddbf085ad9.go:69:8: undefined: Root`
+- `ref.json::remote ref (2020-12)` — `g_14e1fbd6ddc1a70f/g_14e1fbd6ddc1a70f.go:60:8: undefined: Root`
+- `ref.json::fragment within remote ref (2020-12)` — `g_f2d7aabc430ef1a0/g_f2d7aabc430ef1a0.go:60:8: undefined: Root`
+- `ref.json::ref within remote ref (2020-12)` — `g_a73ef5d10ed7c3e3/g_a73ef5d10ed7c3e3.go:60:8: undefined: Root`
+- `ref.json::remote ref with ref to defs (2020-12)` — `g_82e083dfa69ba8e5/g_82e083dfa69ba8e5.go:62:8: undefined: Root`
 - `unevaluatedItems.json::unevaluatedItems with $ref (prefixItems) (2020-12)` — `g_751e2a631450f0d4/g_751e2a631450f0d4.go:62:8: undefined: Root`
 - `unevaluatedItems.json::unevaluatedItems before $ref (prefixItems) (2020-12)` — `g_751e2a631450f0d4/g_751e2a631450f0d4.go:62:8: undefined: Root`
 - `unevaluatedProperties.json::unevaluatedProperties with $ref (2020-12)` — `g_8077669cdd981595/g_8077669cdd981595.go:62:8: undefined: Root`
@@ -339,7 +354,7 @@ Per group:
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 25 | 44 | 1 | 0 | 0 | 12 | 16 | 0 | 98 | 25.5% |
+| 25 | 44 | 1 | 0 | 0 | 14 | 14 | 0 | 98 | 25.5% |
 
 ### Per-case match rate
 
@@ -372,7 +387,7 @@ Per group:
 | format-uuid.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | optional/bignum.json | 3 | 7 | 1 | 0 | 0 | 0 | 3 | 0 | 14 | 🚧✅✅🙈🙈❌🙈🙈❌🙈🙈✅❌🙈 |
 | optional/content.json | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 🙈🙈🙈 |
-| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 4 | ❌❌❌❌ |
+| optional/cross-draft.json | 0 | 0 | 0 | 0 | 0 | 2 | 2 | 0 | 4 | ❌🦀❌🦀 |
 | optional/dependencies-compatibility.json | 1 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 🙈✅🙈🙈🙈🙈🙈 |
 | optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | optional/ecmascript-regex.json | 15 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 20 | ✅✅✅✅✅✅✅✅✅✅🙈🙈🙈🙈🙈✅✅✅✅✅ |
@@ -383,13 +398,13 @@ Per group:
 | optional/non-bmp-regex.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | optional/non-schemas.json | 0 | 4 | 0 | 0 | 0 | 1 | 8 | 0 | 13 | ❌❌❌❌❌❌❌❌🙈🙈🙈🦀🙈 |
 | optional/zero-terminated-floats.json | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | ✅ |
-| **Total** | **25** | **44** | **1** | **0** | **0** | **12** | **16** | **0** | **98** |  |
+| **Total** | **25** | **44** | **1** | **0** | **0** | **14** | **14** | **0** | **98** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (16)
+#### ❌ `generation_error` (14)
 
-11 distinct first-line errors; most common:
+9 distinct first-line errors; most common:
 
 - **3×** `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": anyOf: $ref: resolve "#my_anchor": resolve: invalid pointer "my_anch…`
 - **2×** `callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType "json:\"type\"" }`
@@ -403,9 +418,7 @@ Per group:
 - `optional/bignum.json::float comparison with high precision on negative numbers (2020-12)` — `json: cannot unmarshal number into Go struct field .exclusiveMinimum of type bool`
 - `optional/bignum.json::uniqueItems comparison with high precision (2020-12)` — `make ir: operations: path "/": post: requestBody: contents: media: "application/json": generate schema: empty uniqueItems not implemented`
 - `optional/cross-draft.json::refs to future drafts are processed as future drafts (2019) (7)` — `callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType "json:\"type\"" }`
-- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/draft2020-12/prefixItems.json":…`
 - `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (7) (2020-12)` — `callback: json: cannot unmarshal bool into Go value of type struct { ogen.plain; Type jsonschema.RawType "json:\"type\"" }`
-- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/draft2019-09/ignore-prefixItems…`
 - `optional/dynamicRef.json::$dynamicRef skips over intermediate resources - pointer reference across resource boundary (2020) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": property "bar-item": $ref: resolve "bar#/$defs/item": get "jsonschem…`
 - `optional/non-schemas.json::$id inside an enum is not a real identifier ($id/$defs) (2020-12)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": anyOf: $ref: resolve "https://localhost:1234/id/my_identifier.json":…`
 - `optional/non-schemas.json::$id inside an enum is not a real identifier ($id/definitions) (7)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": anyOf: $ref: resolve "https://localhost:1234/id/my_identifier.json":…`
@@ -416,9 +429,9 @@ Per group:
 - `optional/non-schemas.json::anchor inside an enum is not a real identifier ($id) (7)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": anyOf: $ref: resolve "#my_anchor": resolve: invalid pointer "my_anch…`
 - `optional/non-schemas.json::anchor inside an enum is not a real identifier (id) (4)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": anyOf: $ref: resolve "#my_anchor": resolve: invalid pointer "my_anch…`
 
-#### 🦀 `compile_fail` (12)
+#### 🦀 `compile_fail` (14)
 
-11 distinct first-line errors; most common:
+13 distinct first-line errors; most common:
 
 - **2×** `g_ec6f8732906c68ab/g_ec6f8732906c68ab.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 - **1×** `g_0b026108eff52b4f/g_0b026108eff52b4f.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
@@ -436,6 +449,8 @@ Per group:
 - `format-time.json::validation of time strings (2020-12)` — `g_ec6f8732906c68ab/g_ec6f8732906c68ab.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 - `format-uri.json::validation of URIs (2020-12)` — `g_4dd3df819e7eb4f1/g_4dd3df819e7eb4f1.go:31:15: cannot use v (variable of struct type url.URL) as jx.Raw value in assignment`
 - `format-uuid.json::uuid format (2020-12)` — `g_57098af8ea6b76df/g_57098af8ea6b76df.go:31:15: cannot use v (variable of array type "github.com/google/uuid".UUID) as jx.Raw value in assignment`
+- `optional/cross-draft.json::refs to future drafts are processed as future drafts (2020) (2019-09)` — `g_9c67275b1ae998f8/g_9c67275b1ae998f8.go:62:8: undefined: Root`
+- `optional/cross-draft.json::refs to historic drafts are processed as historic drafts (2019) (2020-12)` — `g_e8d3c5ea1d2ea6e3/g_e8d3c5ea1d2ea6e3.go:62:8: undefined: Root`
 - `optional/format-assertion.json::schema that uses custom metaschema with format-assertion: false (2020-12)` — `g_5a31db261562afd4/g_5a31db261562afd4.go:31:15: cannot use v (variable of struct type netip.Addr) as jx.Raw value in assignment`
 - `optional/format-assertion.json::schema that uses custom metaschema with format-assertion: true (2020-12)` — `g_7103ad40fd782529/g_7103ad40fd782529.go:31:15: cannot use v (variable of struct type netip.Addr) as jx.Raw value in assignment`
 - `optional/format-time.json::validation of time strings (2020-12)` — `g_ec6f8732906c68ab/g_ec6f8732906c68ab.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
@@ -577,7 +592,7 @@ Per group:
 
 | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Pass rate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2 | 8 | 0 | 0 | 0 | 2 | 13 | 0 | 25 | 8.0% |
+| 2 | 8 | 0 | 0 | 0 | 3 | 12 | 0 | 25 | 8.0% |
 
 ### Per-case match rate
 
@@ -589,7 +604,7 @@ Per group:
 
 | File | ✅ | 🙈 | 🚧 | 🤪 | 💀 | 🦀 | ❌ | 🤯 | Total | Per group |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| dynamicRef.json | 0 | 2 | 0 | 0 | 0 | 0 | 10 | 0 | 12 | 🙈❌❌❌🙈❌❌❌❌❌❌❌ |
+| dynamicRef.json | 0 | 2 | 0 | 0 | 0 | 1 | 9 | 0 | 12 | 🙈❌❌❌🙈❌❌❌❌🦀❌❌ |
 | format-date-time.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | format-time.json | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 🦀 |
 | optional/dynamicRef.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
@@ -599,13 +614,13 @@ Per group:
 | proposals/propertyDependencies/unevaluatedProperties.json | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 🙈🙈 |
 | unevaluatedItems.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
 | unevaluatedProperties.json | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | ❌ |
-| **Total** | **2** | **8** | **0** | **0** | **0** | **2** | **13** | **0** | **25** |  |
+| **Total** | **2** | **8** | **0** | **0** | **0** | **3** | **12** | **0** | **25** |  |
 
 ### Failures
 
-#### ❌ `generation_error` (13)
+#### ❌ `generation_error` (12)
 
-10 distinct first-line errors; most common:
+9 distinct first-line errors; most common:
 
 - **2×** `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "./baseSchema": get "jsonschema://dummy/baseSchema": e…`
 - **2×** `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
@@ -618,19 +633,19 @@ Per group:
 - `dynamicRef.json::A $dynamicRef resolves to the first $dynamicAnchor still in scope that is encountered when the schema is evaluated (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
 - `dynamicRef.json::A $dynamicRef with intermediate scopes that don't include a matching $dynamicAnchor does not affect dynamic scope resolution (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "intermediate-scope": get "jsonschema://dummy/intermed…`
 - `dynamicRef.json::An $anchor with the same name as a $dynamicAnchor is not used for dynamic scope resolution (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "list": get "jsonschema://dummy/list": external refere…`
-- `dynamicRef.json::strict-tree schema, guards against misspelled properties (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "tree.json": get "jsonschema://dummy/tree.json": exter…`
+- `dynamicRef.json::strict-tree schema, guards against misspelled properties (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "tree.json": get "jsonschema://dummy/tree.json": unsup…`
 - `dynamicRef.json::tests for implementation dynamic anchor and reference link (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "extendible-dynamic-ref.json": get "jsonschema://dummy…`
 - `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $defs first (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": allOf: $ref: resolve "extendible-dynamic-ref.json": get "jsonschema:…`
 - `dynamicRef.json::$ref and $dynamicAnchor are independent of order - $ref first (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": allOf: $ref: resolve "extendible-dynamic-ref.json": get "jsonschema:…`
-- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "http://localhost:1234/detached-dynamicref.json#/$defs…`
 - `dynamicRef.json::$dynamicRef skips over intermediate resources - direct reference (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": property "bar-item": $ref: resolve "item": get "jsonschema://dummy/i…`
 - `dynamicRef.json::$dynamicRef avoids the root of each schema, but scopes are still registered (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "first#/$defs/stuff": get "jsonschema://dummy/first": …`
 - `optional/dynamicRef.json::$dynamicRef skips over intermediate resources - pointer reference across resource boundary (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": property "bar-item": $ref: resolve "bar#/$defs/item": get "jsonschem…`
 - `unevaluatedItems.json::unevaluatedItems with $dynamicRef (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "./baseSchema": get "jsonschema://dummy/baseSchema": e…`
 - `unevaluatedProperties.json::unevaluatedProperties with $dynamicRef (v1)` — `parse spec: at 1:1: parse components: schemas: "Root": resolve "#/components/schemas/Root": $ref: resolve "./baseSchema": get "jsonschema://dummy/baseSchema": e…`
 
-#### 🦀 `compile_fail` (2)
+#### 🦀 `compile_fail` (3)
 
+- `dynamicRef.json::$ref to $dynamicRef finds detached $dynamicAnchor (v1)` — `g_159dd362a63f3c27/g_159dd362a63f3c27.go:62:8: undefined: Root`
 - `format-date-time.json::validation of date-time strings with RFC 9557 suffixes (v1)` — `g_4cfc9e43cb78f43f/g_4cfc9e43cb78f43f.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 - `format-time.json::leap seconds are not valid times (v1)` — `g_1f9b7ecdc1697d47/g_1f9b7ecdc1697d47.go:31:15: cannot use v (variable of struct type "time".Time) as jx.Raw value in assignment`
 

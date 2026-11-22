@@ -29,6 +29,8 @@ cargo run -- run --generator go-jsonschema --filter 'required.json::required val
 | `go.mod`, `go.sum` | the pin, and the hashes the batch module borrows |
 | `main.go` | command dispatch, the version lookup, `writeAll` |
 | `generate.go` | `generate` (parent + worker) and the check entry point |
+| `loader.go` | the per-group schema loader that serves `externalSchemas` |
+| `loader_test.go` | what that loader serves and refuses, against the pinned tool |
 | `build.go` | `build`: the batch module, the converge loop, the runner source |
 | `batchdeps.go` | build-tagged blank imports: the modules *generated* code can need |
 
@@ -86,7 +88,8 @@ Two cases where it isn't:
 
 Everything is the CLI's default except the three things the contract fixes:
 `DefaultPackageName` (the module key, so the file declares `package <key>`),
-`DefaultOutputName` (`<out_dir>/<key>.go`) and the root type name. In
+`DefaultOutputName` (`<out_dir>/<key>.go`) and the root type name -- plus
+`Loader`, which is how the group's `externalSchemas` get in (see below). In
 particular `ExtraImports` is off, `OnlyModels` is off (so the validating
 `UnmarshalJSON` methods are emitted — that is the whole point of the row),
 `MinSizedInts`, `MinimalNames`, `StructNameFromTitle` and the `Disable*`
@@ -154,31 +157,54 @@ and the harness notices the dead process by itself. Each case's `data`
 stays a `json.RawMessage` so `json.Unmarshal` sees the digits `cases.json`
 holds.
 
-## No network
+## Remote references
 
-The tool's schema loader fetches `http(s)://` references with
-`&http.Client{}`, i.e. through `http.DefaultTransport`. The worker replaces
-that transport with one that fails every request, so a remote reference
-fails in-process and instantly:
+go-jsonschema loads the root schema and every `$ref` that names another
+document through `generator.Config.Loader`, a public option that the CLI
+leaves nil (meaning: a cache over a file loader and an HTTP loader). The
+glue builds one per group out of the tool's own pieces -- `MultiLoader`
+inside `NewCachedLoader`, the way the default is assembled -- with two
+substitutions. The file slot reads the root schema's own path and refuses
+every other file. The `http`/`https` slot looks the URI up in the group's
+`externalSchemas` and decodes the harness's bytes with `FromJSONReader`, the
+same decoder the tool's file loader uses; anything not in the table is
+refused (no group in the suite trips this today, so `loader_test.go` is
+what exercises it):
 
 ```
 could not follow $ref "http://localhost:1234/integer.json" to file
 "http://localhost:1234/integer.json": cannot load schema
-failed to load schema ...: the bakeoff harness runs offline:
-remote references are not fetched
+failed to load schema "http://localhost:1234/integer.json": refusing to load
+"http://localhost:1234/integer.json": not one of this group's external schemas
 ```
 
-So nothing is ever fetched. In practice the transport is reached by only
-four groups in the whole suite (`root ref in remote ref` in `ref.json` and
-`ref-legacy.json`, and two in `optional/cross-draft.json`), because the tool
-has to get as far as *resolving* a reference to try it: a schema whose root
-is `{"$ref": "http://localhost:1234/..."}` with no sibling `type` returns
-before any reference is followed, so it comes back `ok` with an empty module
-and lands in `compile_fail`. Several of the `id.json` and `id-legacy.json`
-groups fail earlier still -- on a *relative* ref (`folderInteger.json`,
-`./bar.json`) that the file loader looks for next to the schema and doesn't
-find. The case's `externalSchemas` would have the answer, and the glue
-ignores them, per the harness's policy.
+The key is the `$ref` text before the `#`, exactly as written. The tool
+never resolves a reference against an `$id` or against the document it
+came from, so only an absolute ref whose spelling is the retrieval URI
+matches. A relative ref (`folderInteger.json`, `./bar.json`) has no scheme,
+lands in the file slot, and is refused -- the `id.json` and `id-legacy.json`
+groups that depend on base-URI changes fail there. Anchors and `$dynamicRef`
+go no further; the loader only ever sees whole documents.
+
+The loader applies to every group, so the nine groups with relative refs
+(`dynamicRef.json`, `optional/dynamicRef.json`, `id.json::order of
+evaluation`) report the refusal rather than a missing file. The bucket is
+the same either way.
+
+The worker also replaces `http.DefaultTransport` with one that fails every
+request. The loader never hands anything to the tool's HTTP loader, so this
+is a backstop: nothing is ever fetched either way.
+
+So, how much does it buy? Not much, honestly. Of the 57 groups that
+carry external schemas, four follow a remote reference (`root ref in remote
+ref` in `ref.json` and `ref-legacy.json`, and two in
+`optional/cross-draft.json`): the two `root ref` groups are `false_accept`
+and the two cross-draft groups are `false_reject`. Four more (`base URI
+change - change folder*`) follow a relative reference and are refused.
+Everything else is decided before any reference is followed: a schema whose
+root is `{"$ref": "http://localhost:1234/..."}` with no sibling `type`
+comes back `ok` with an empty module and lands in `compile_fail`, external
+schemas or no.
 
 ## Quirks worth knowing
 
@@ -264,8 +290,8 @@ no root`, mostly `contains.json`, `unevaluatedItems.json` and
 else.** A nested pointer (`#/definitions/baz/definitions/bar`) is
 `definition does not exist in schema`; a bare `#` or an anchor (`#items`)
 is `value must point to definition within file`; a relative file ref
-(`folderInteger.json`, `./bar.json`) is tried against the filesystem next to
-the schema and fails there. A root `$ref` with no sibling `type` emits the
+(`folderInteger.json`, `./bar.json`) is refused by the loader without a disk
+read. A root `$ref` with no sibling `type` emits the
 referenced type under the *definition's* name and never a `Root`.
 
 **It never panicked.** Across the whole suite no schema crashed the

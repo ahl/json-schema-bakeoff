@@ -40,14 +40,26 @@ Each group's schema becomes a `JSONSchemaInput` with a single source named
 Nothing else is registered: a group's `definitions`/`$defs` are reachable
 through the document itself.
 
-References are resolved against a `JSONSchemaStore` whose `fetch` always
-returns `undefined`. That is the no-network policy, and returning
-`undefined` rather than throwing is deliberate — it is how quicktype
-learns an address is unresolvable, and it comes back as a labelled
-`SchemaFetchError` instead of an opaque exception. A group's
-`externalSchemas` are ignored, so every reference into them is a
-`generation_error`: 51 groups, across `ref.json`, `id.json`, `anchor.json`
-and friends. Another 11 `SchemaFetchError`s are references that should
+References are resolved against a `JSONSchemaStore`, quicktype's own hook
+for supplying documents, built fresh for each group over its
+`externalSchemas`. `fetch` hands back the document whose retrieval URI is
+exactly the address quicktype asks for, and `undefined` for anything else;
+nothing comes from the network or the disk. Returning `undefined` rather
+than throwing is deliberate: it's how quicktype learns an address is
+unresolvable, and it comes back as a labelled `SchemaFetchError` instead of
+an opaque exception.
+
+quicktype resolves a `$ref` against the current base and honors `$id`, but
+not draft 4's `id`, `$anchor` or `$dynamicRef`. Of the 57 groups that carry
+`externalSchemas`, 26 pass, 13 are `false_accept` and 2 are `false_reject`
+for Rust and TypeScript (Go trades four of those `false_accept`s for its
+usual `compile_fail`). The other 16 are `generation_error`: seven
+`SchemaKeyNotInObject` from a `#foo` anchor fragment into a remote document,
+seven `SchemaFetchError` where quicktype loses the base that an `id` or a
+nested `$id` set (a `#/definitions/...` pointer through a subschema with its
+own `$id`, say) and asks the store for a bare relative address like
+`folderInteger.json`, and two `SchemaFalseNotSupported` in
+`vocabulary.json`. Another 11 `SchemaFetchError`s are references that should
 resolve inside the document, against an embedded `$id` (`anchor.json::same
 $anchor with different base uri (2020-12)`); quicktype tries to fetch those
 too.
@@ -146,7 +158,7 @@ and that one the harness sees for itself.
 ## quicktype quirks worth knowing
 
 **Go output doesn't compile when the root type is `interface{}`.** This is
-the big one: 183 of the 540 Standard groups, 251 across every tier.
+the big one: 184 of the 540 Standard groups, 253 across every tier.
 quicktype emits
 
 ```go
@@ -162,13 +174,13 @@ constrains nothing about its root's *type* lands here — `maxLength.json`,
 `if-then-else.json`, `not.json`, `propertyNames.json`. It is quicktype's
 bug, not the harness's, so it is recorded as `compile_fail` and not worked
 around; dropping the three-line `Marshal` method from the Go output would
-turn those 251 groups
+turn those 253 groups
 into whatever `json.Unmarshal` into `interface{}` does (almost all of them
 `false_accept`), which is a different question than "does the generated
 code compile".
 
 **`Cannot read properties of null (reading 'literal')` is a quicktype bug
-in its own error formatter, not a lost verdict.** 140 of the TypeScript
+in its own error formatter, not a lost verdict.** 146 of the TypeScript
 target's stored case errors read that way. quicktype's `prettyTypeName`
 does `typeof typ === "object" && typ.literal !== undefined`, and
 `typeof null` is `"object"`, so a `null` member of a union crashes it. It
@@ -218,6 +230,6 @@ for TypeScript, and it is what a user of each target would see.
 **Nothing validates but the type.** quicktype models types, not
 constraints, so `maxLength`, `minimum`, `multipleOf`, `pattern`, `format`,
 `uniqueItems`, `not`, `if`/`then`/`else` and friends are all absent from
-the output. That is why `false_accept` dominates the Standard tier: 218
-groups for rust, 186 for typescript. It is the finding, not a defect in the
+the output. That is why `false_accept` dominates the Standard tier: 223
+groups for rust, 191 for typescript. It is the finding, not a defect in the
 integration.

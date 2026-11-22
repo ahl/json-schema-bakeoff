@@ -13,7 +13,7 @@
 //
 // plus one internal command, `worker`, which is how `generate` survives a
 // generation that takes the process down (see generate.go). `generate`
-// ignores `externalSchemas`.
+// serves each group's `externalSchemas` to the tool (see loader.go).
 //
 // The tool is used as a library (`pkg/generator`), not as a subprocess: the
 // CLI in its main.go is a thin cobra wrapper that aborts the whole run on

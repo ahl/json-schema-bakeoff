@@ -120,8 +120,9 @@ moves to the scratch directory beside its plan file instead.
 
 Everything is ogen's default except the feature set.
 
-- **`Parser.AllowRemote` off** (its default). Remote references fail
-  in-process; see "No network".
+- **`Parser.AllowRemote` off** (its default) for every group without
+  `externalSchemas`, and **on** for the 57 that have them, with a client
+  that can only see that group's documents; see "Remote references".
 - **`Parser.InferSchemaType` off** (its default, and the CLI's —
   `--infer-types` is opt-in). The biggest lever on the row's numbers, so it
   was measured against the old per-draft suite ([1.041][archive]): with
@@ -211,13 +212,14 @@ the `operationId` this wrapper picked. That is the wrapper showing through, so
 the former: an alias, so the method set is ogen's own and nothing is renamed
 or synthesized. Worth 1 group: `oneOf.json::nested oneOf, to check
 validation semantics`. What it deliberately does *not* do is invent a root
-type when ogen emitted none -- 16 groups stay `compile_fail` with the
-compiler's `undefined: Root`: a root `$ref` (most of them, in `ref.json`,
-`id.json`, `id-legacy.json` and the `unevaluated*` files), where ogen
-names the type after the *reference target* (`{"$ref": "#/definitions/a"}`
-gives `type A`), and `allOf.json`'s "allOf combined with anyOf, oneOf",
-where ogen emitted no schema type at all. That is the convention DESIGN.md
-sets and the one go-jsonschema's row follows.
+type when ogen emitted none -- 34 groups stay `compile_fail` with the
+compiler's `undefined: Root`: a root `$ref` (all but one, mostly in
+`ref.json`, `id.json`, `id-legacy.json` and `ref-legacy.json`, and 18 of
+them remote), where ogen names the type after the *reference target*
+(`{"$ref": "#/definitions/a"}` gives `type A`, and a ref to
+`integer.json` gives `type Integer`), and `allOf.json`'s "allOf combined
+with anyOf, oneOf", where ogen emitted no schema type at all. That is the
+convention DESIGN.md sets and the one go-jsonschema's row follows.
 
 ## Build
 
@@ -248,32 +250,50 @@ module provides package …` against the module that imported it, and this
 harness's incomplete pin list gets recorded as that group's `compile_fail`),
 and the batch's `go.sum` is copied unconditionally.
 
-## No network
+## Remote references
 
-Remote reference resolution is behind `ParseOptions.AllowRemote`, left at its
-default (off), so every remote reference fails during parsing, in-process,
-before anything resolves a host:
+ogen fetches remote documents only when `ParseOptions.AllowRemote` is set,
+and then through `ParseOptions.Remote` (`gen.RemoteOptions`: an
+`HTTPClient`, a `ReadFile` and a `URLToFilePath`), which becomes ogen's
+`jsonschema.ExternalResolver`. That is the tool's documented way to hand it
+other documents, so for a group with `externalSchemas` the glue flips
+`AllowRemote` -- a non-default option, and the one place this row departs
+from ogen's defaults on the schema side -- and passes a client whose
+`RoundTripper` is that group's table. A GET for a URL in the table gets 200
+and the harness's bytes (a `json.RawMessage`, so digits survive); anything
+else is an error out of `RoundTrip` rather than a 404, so the refusal is
+unambiguous. `ReadFile` always errors. The client never leaves the process.
+Groups without `externalSchemas` take exactly the old path: `AllowRemote`
+off, which fails every remote reference in-process with
 
 ```
 parse spec: at 1:1: parse components: schemas: "Root": resolve
-"#/components/schemas/Root": $ref: resolve "http://localhost:1234/integer.json":
-get "http://localhost:1234/integer.json": external references are disabled
+"#/components/schemas/Root": $ref: resolve "http://localhost:1234/...":
+get "http://localhost:1234/...": external references are disabled
 ```
 
-Of the 57 groups that carry `externalSchemas`, 49 fail with exactly that
-refusal, all ❌ (the other eight stop before their remote ref, or never
-reach it), which is the verification asked for: a remote ref must fail
-without the network, and it does. The glue ignores `externalSchemas`, per
-the harness's policy. 116 groups report the refusal and only 41 name
-`localhost:1234`. The rest are other things ogen classifies as external: 55
-are a relative file reference (`./bar.json`, `folderInteger.json`) or a
-non-pointer reference (`{"$ref": "list"}`), which become `get
-"jsonschema://dummy/<name>": external references are disabled`; 20 are an
-absolute URI that a sibling `$id` declares (`urn:uuid:...`, `tag:...`,
-`https://example.com/...`), which ogen can't know because `$id` isn't in
-its model. So the policy's failures are legible at a glance. Belt as well as
-braces: the worker also replaces `http.DefaultTransport` and
-`http.DefaultClient` with one that errors on every request.
+The resolver keys on the absolute, fragment-free URL, which is how the table is
+keyed too, so a `$ref` to `http://localhost:1234/integer.json` just works. What
+it can't do follows from the model. `$id` isn't in it, so an `$id` inside a
+retrieved document never registers that document under a second name
+(`the-nested-id.json` in the three "nested absolute ref" groups comes back
+refused), and a relative `$ref` resolves against ogen's own root base,
+`jsonschema://dummy`, not against any `$id`: that's `get
+"jsonschema://dummy/folderInteger.json": unsupported scheme "jsonschema"`, 17
+groups. Fragments are JSON pointers only, so a remote `#foo` anchor is `invalid
+pointer "foo": pointer must start with '/'`, 9 more.
+
+The 57 groups with `externalSchemas` are 4 ✅, 20 🦀 and 33 ❌. Two ✅ are "root ref
+in remote ref", in `ref.json` and `ref-legacy.json`. 18 of the 🦀 resolve the
+remote document and generate code, but name the type after the remote document
+(`type Integer`) because the root is a `$ref`, the same `undefined: Root` every
+local root `$ref` gets (see above). Of the groups without `externalSchemas`, 67
+report "external references are disabled": 37 are a relative or non-pointer
+reference against `jsonschema://dummy` (`{"$ref": "list"}`, `./baseSchema`), and
+the rest are absolute URIs a sibling `$id` declares (`urn:uuid:...`, `tag:...`,
+`http://localhost:1234/nested.json`). Belt as well as braces: the worker also
+replaces `http.DefaultTransport` and `http.DefaultClient` with one that errors
+on every request.
 
 ## Quirks
 
@@ -309,7 +329,7 @@ braces: the worker also replaces `http.DefaultTransport` and
 - **`type` as a list only works for nullability.** `["string", "null"]`
   collapses to `string` + `Nullable`; anything else is `multiple types are not
   supported`.
-- **The `not implemented` family is large and explicit,** which makes the 186
+- **The `not implemented` family is large and explicit,** which makes the 169
   Standard ❌ unusually readable: `sum types with same names not implemented`
   (10), `empty uniqueItems not implemented` (4), `complex anyOf not
   implemented` (4), `discriminator inference not implemented` (2), and `set
@@ -336,8 +356,8 @@ braces: the worker also replaces `http.DefaultTransport` and
   untyped `jx.Raw` root accepts everything, so ogen passes 23 of them; the
   other 16 are the compile bug above. `Validate` does enforce `format`, but
   only for a *typed* string, which those groups never declare.
-- **`$ref` is where the row falls apart:** 0 of 23 `ref.json` groups (8 🙈,
-  9 ❌, 6 compile failures). Local pointers resolve, but a root `$ref`
+- **`$ref` is where the row falls apart:** 1 of 23 `ref.json` groups (8 🙈,
+  3 ❌, 11 compile failures). Local pointers resolve, but a root `$ref`
   leaves no `Root`, `$id` is not in the model so a sibling `$id` never changes
   the base URI, `$anchor`/`$dynamicRef` are unknown, and a non-pointer
   reference is treated as remote.
