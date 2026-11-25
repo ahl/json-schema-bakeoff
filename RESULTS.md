@@ -12,6 +12,7 @@ Standard is the suite outside `optional/`, less the format cases tagged `format-
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 100.0% | 65.3% | 100.0% | 2026-11-22T01:59:39Z |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 40.0% | 14.3% | 0.0% | 2026-11-22T03:39:13Z |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 23.3% | 10.2% | 0.0% | 2026-11-22T02:41:27Z |
+| [typify 0.10.2](results/typify-0.10.2/README.md) | 28.1% | 28.6% | 20.0% | 2026-11-25T20:23:27Z |
 | [typify 0.10.1](results/typify-0.10.1/README.md) | 25.0% | 28.6% | 20.0% | 2026-11-22T01:57:31Z |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 24.6% | 24.5% | 20.0% | 2026-11-22T01:57:36Z |
 
@@ -37,6 +38,7 @@ Cases the suite marks for features of the unreleased JSON Schema v1, run under d
 | [jsonschema 0.60.2](results/jsonschema-0.60.2/README.md) [𝓥](#notes) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
 | [quicktype 26.0.0](results/quicktype-26.0.0-rust/README.md) | 12.0% | 🙈🙈🙈✅🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈❌🙈🙈🙈✅✅🙈🙈🙈🙈🙈 |
 | [schemafy 0.6.0](results/schemafy-0.6.0/README.md) | 8.0% | 🙈🤯🤯🤯🙈🤯🤯🤯🤯🤯🦀🤯🙈🙈🦀🙈🙈🙈✅✅🙈🙈🙈🤯🤯 |
+| [typify 0.10.2](results/typify-0.10.2/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
 | [typify 0.10.1](results/typify-0.10.1/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
 | [typify 0.8.0](results/typify-0.8.0/README.md) | 12.0% | 🙈🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯🤯✅🤯🙈✅✅🙈🙈🙈🤯🤯 |
 | [ajv 8.20.0 (js)](results/ajv-8.20.0/README.md) [𝓥](#notes) | 0.0% | ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌ |
@@ -129,7 +131,7 @@ TypeBox needs a separate generator; this row uses schema2typebox, the one
 TypeBox's readme points at. Most of what it can't express becomes
 `Type.Unknown()`.
 
-**typify 0.10.1** — [crates.io](https://crates.io/crates/typify)  
+**typify 0.10.2** — [crates.io](https://crates.io/crates/typify)  
 Rust types for serde from JSON Schema, built to generate OpenAPI clients
 (progenitor). Its design center is idiomatic Rust: structs, enums, newtypes,
 `deny_unknown_fields` when the schema is closed. Validation is whatever the
